@@ -19,8 +19,8 @@ Model/User.class
 Controllers/MovieTrailerController.class
 Controllers/HomeController.class
 Model/Ticket.class
-Controllers/MoviePageController.class
 Controllers/SearchResultController.class
+Controllers/MoviePageController.class
 Model/Movie.class
 Services/UserService.class
 Controllers/MovieNewsController.class
