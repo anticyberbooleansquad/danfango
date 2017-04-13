@@ -46,11 +46,11 @@ public class UserDAO{
     @SuppressWarnings("unchecked")
     public List<User> listUsers() {
             Session session = this.sessionFactory.getCurrentSession();
-            List<User> personsList = session.createQuery("from User").list();
-            for(User p : personsList){
-                    logger.info("User List::"+p);
+            List<User> usersList = session.createQuery("from User").list();
+            for(User u : usersList){
+                    logger.info("User List::"+u);
             }
-            return personsList;
+            return usersList;
     }
 
     

@@ -18,34 +18,9 @@
         <link href="<c:url value="/resources/css/responsive.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
+
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
-
-
-        <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
-        <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
-        <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
-        <script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
-        <script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
-        <script src="<c:url value="/resources/js/count-to.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
-        <script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
-        <script src="<c:url value="/resources/js/skrollr.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
-        <script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
-        <script src="<c:url value="/resources/js/myjs.js"/>"></script>
-
-
-        <!--[if IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
     </head>
     <body>
@@ -87,14 +62,14 @@
                                     <a href="/Danfango/movienews.html">Movie News</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/signuppage.html">Danfango<font color="EA6630"><b>VIP</b></font></a>
+                                    <a href="/Danfango/signuppage.html">DanfangoVIP</a>
                                     <ul class="dropdown">
 
                                         <c:if test="${isloggedin == 1}">
                                             <li><a href="/Danfango/logout.html">Sign-Out</a>
                                             </li>
                                         </c:if>
-                                            
+
 
                                         <c:if test="${isloggedin != 1}">
                                             <li><a href="/Danfango/signuppage.html">Join Now</a>
@@ -124,7 +99,7 @@
 
 
                 <c:if test="${favoriteState != 1}">
-                    <h1 class="spacing movietitle">MOVIE TITLE  <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i> </h1>
+                    <h1 class="spacing movietitle">MOVIE TITLE  <i id="favorite" class="fa fa-heart fa-inverse hi" aria-hidden="true"></i> </h1>
                 </c:if>
 
                 <ul class="spacing nav nav-pills">
@@ -136,14 +111,22 @@
                 </ul>
 
                 <div class="row">
-                    <div class="col-sm-3">
-                        <img class="spacing movieposter" src="resources/images/movies/lbposter.jpg"/>
+                    <div class="col-sm-3 leftpadding">
+                        <img class="movieposter" src="resources/images/movies/lbposter.jpg"/>
+                        <div class="movieInfo">
+                            <p>Release Date</p>
+                            <p>PG-13</p>
+                            <p>2h 45min</p>
+                            <p>Comedy, Action, Adventure</p>
+                            <p>Rating</p>
+                        </div>
                         <a href="/Danfango/ticketselectpage.html" id="buyticketbutton" class="spacing btn-system btn-mini border-btn btn-gray">
                             <i class="fa fa-ticket" aria-hidden="true"></i><b>
                                 BUY MOVIE TICKETS
                             </b><i class="fa fa-ticket" aria-hidden="true"></i>
                         </a>
                     </div>
+
 
                     <div class="col-md-4">
                         <div class="synopsis"></div>
@@ -243,7 +226,7 @@
 
                 <h1 class="spacing movietitle">MOVIE REVIEWS</h1>
 
-                <a href="/Danfango/ticketselectpage.html" data-toggle="modal" data-target="#myModalMessage" id="leavereviewbutton"  class="spacing btn-system btn-mini border-btn btn-gray"><b>LEAVE A REVIEW</b></a>
+                <a href="" data-toggle="modal" data-target="#myModalMessage" id="leavereviewbutton"  class="spacing btn-system btn-mini border-btn btn-gray"><b>LEAVE A REVIEW</b></a>
                 <br>
 
                 <div class="modal fade" id="myModalMessage" role="dialog">
@@ -253,9 +236,18 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Tell Us What You Think!</h4>
-                                <div class="rating">
-                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                </div>
+                                <fieldset class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                </fieldset>
                             </div>
 
                             <div class="modal-body">
@@ -370,8 +362,33 @@
             <div class="dot2"></div>
         </div>
     </div>
-    <script src="<c:url value="/resources/js/script.js" />"></script>
 
+
+    <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
+    <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
+    <script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
+    <script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
+    <script src="<c:url value="/resources/js/count-to.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
+    <script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
+    <script src="<c:url value="/resources/js/skrollr.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
+    <script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
+    <script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
+    <script src="<c:url value="/resources/js/notify.min.js" />"></script>
+
+    <script src="<c:url value="/resources/js/myjs.js" />"></script>
+    <script src="<c:url value="/resources/js/script.js" />"></script>
 
 </body>
 
