@@ -21,37 +21,10 @@
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/datepicker.css"/>" rel="stylesheet">
-        <link href="<c:url value = "https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto" /> rel="stylesheet">
+        <link href="<c:url value = "https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Work+Sans:200|Josefin+Sans:100i" /> rel="stylesheet">
+              <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
-
-        <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
-        <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
-        <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
-        <script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
-        <script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
-        <script src="<c:url value="/resources/js/count-to.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
-        <script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
-        <script src="<c:url value="/resources/js/skrollr.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
-        <script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
-        <script src="<c:url value="/resources/js/myjs.js" />"></script>
-
-
-        <!--[if IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-        <!--POSSIBLY SOME IN LINE STUFF THAT I DID NOT KNOW HOW TO INCLUDE FOR THE DATE PICKER-->
     </head>
     <body>
 
@@ -92,7 +65,7 @@
                                     <a href="/Danfango/movienews.html">Movie News</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/signuppage.html">Danfango<font color="EA6630"><b>VIP</b></font></a>
+                                    <a href="/Danfango/signuppage.html">DanfangoVIP</a>
                                     <ul class="dropdown">
 
                                         <c:if test="${isloggedin == 1}">
@@ -123,11 +96,7 @@
 
             <div class="spacing container">
 
-                <h2 class="spacing movietitle padding">MOVIE THEATRES AND TIMES</h2>
-
-
-
-                <div class="spacing datepicker ll-skin-cangas"></div>
+                <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES</h2>
 
                 <div class="spacing dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nearby Theatres
@@ -143,28 +112,75 @@
                     </ul>
                 </div>
 
-                <div class="row">
+                <div class="row form-group">
                     <div class="col-sm-3">
                         <img class="spacing movieposter" src="resources/images/movies/lbposter.jpg"/>
                     </div>
 
 
+
                     <div class ="spacing col-sm-6">
+
                         <div class="theatreTimes">
-                            <h4 class="theatreTimeCardsInfo">Movie Theatre Name</h4>
-                            <p class="theatreTimeCardsInfo">Movie Theatre Address</p>
+                            <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
+                            <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
+                            <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
+                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+
                             <div class="theatreTimeCardsTimes">
-                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary">3:00PM</a>
-                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary">5:00PM</a>
-                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary">7:30PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">5:30PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">5:50PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">6:30PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">7:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">8:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">8:30PM</a>
+
                             </div>
                         </div>
+
+                        <div class="theatreTimes">
+                            <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
+                            <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
+                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+                            <div class="theatreTimeCardsTimes">
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
+                            </div>
+                        </div>
+
+                        <div class="theatreTimes">
+                            <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
+                            <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
+                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+                            <div class="theatreTimeCardsTimes">
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
+                            </div>
+                        </div>
+
+                        <div class="theatreTimes">
+                            <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
+                            <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
+                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+                            <div class="theatreTimeCardsTimes">
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
+                                <a href="/Danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
+                            </div>
+                        </div>
+
+
                     </div>
+
+                    <div class="col-sm-3"></div>
 
                 </div>
             </div>
 
-            <div class="col-sm-3"></div>
 
         </div>
     </div>
@@ -237,8 +253,32 @@
     </div>
 </div>
 
-<script src="<c:url value="/resources/js/script.js" />"></script>
+<script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
+<script src="<c:url value="/resources/js/modernizrr.js" />"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
+<script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
+<script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
+<script src="<c:url value="/resources/js/count-to.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
+<script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
+<script src="<c:url value="/resources/js/skrollr.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
+<script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
+<script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
+<script src="<c:url value="/resources/js/notify.min.js" />"></script>
 
+
+<script src="<c:url value="/resources/js/myjs.js" />"></script>
+<script src="<c:url value="/resources/js/script.js" />"></script>
 
 </body>
 </html>

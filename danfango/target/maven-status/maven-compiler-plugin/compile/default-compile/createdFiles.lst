@@ -23,8 +23,8 @@ Controllers/MoviePageController.class
 Controllers/SearchResultController.class
 Model/Movie.class
 Services/UserService.class
-Controllers/MovieNewsController.class
 Controllers/CrewController.class
+Controllers/MovieNewsController.class
 Services/MemberService.class
 Controllers/SignInController.class
 Model/Agency$Type.class
