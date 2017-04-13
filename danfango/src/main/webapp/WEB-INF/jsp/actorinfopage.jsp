@@ -18,33 +18,8 @@
         <link href="<c:url value="/resources/css/responsive.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
-
-
-        <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
-        <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
-        <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
-        <script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
-        <script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
-        <script src="<c:url value="/resources/js/count-to.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
-        <script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
-        <script src="<c:url value="/resources/js/skrollr.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
-        <script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
-
-        <!--[if IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
     </head>
     <body>
 
@@ -92,7 +67,7 @@
                                             <li><a href="/Danfango/logout.html">Sign-Out</a>
                                             </li>
                                         </c:if>
-                                            
+
 
                                         <c:if test="${isloggedin != 1}">
                                             <li><a href="/Danfango/signuppage.html">Join Now</a>
@@ -121,7 +96,7 @@
                 <ul class="spacing nav nav-pills">
 
 
-                    <li role="presentation"><a href="/Danfango/actorinfopage.html"><h3>Overview</h3></a></li>
+                    <li class="active" role="presentation"><a href="/Danfango/actorinfopage.html"><h3>Overview</h3></a></li>
                     <li role="presentation"><a href="/Danfango/actorinfopage.html"><h3>Biography</h3></a></li>
                     <li role="presentation"><a href="/Danfango/actorinfopage.html"><h3>Filmography</h3></a></li>
                     <li role="presentation"><a href="/Danfango/actorinfopage.html"><h3>Photos</h3></a></li>
@@ -133,12 +108,9 @@
                     <div class="col-sm-3">
                         <img class="spacing movieposter" src="resources/images/actors/willarnet.jpg"/>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="synopsisplaceholder spacing">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus lacinia magna sit amet sollicitudin. Phasellus pellentesque ligula vitae metus mattis, pulvinar finibus ipsum aliquet. Proin laoreet dictum condimentum. Nam bibendum id urna vel sagittis. Sed facilisis scelerisque mollis. Sed ultricies fringilla suscipit. Nullam ante sem, egestas vel sodales non, scelerisque sed odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus lacinia magna sit amet sollicitudin. Phasellus pellentesque ligula vitae metus mattis, pulvinar finibus ipsum aliquet. Proin laoreet dictum condimentum. Nam bibendum id urna vel sagittis. Sed facilisis scelerisque mollis. Sed ultricies fringilla suscipit. Nullam ante sem, egestas vel sodales non, scelerisque sed odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus lacinia magna sit amet sollicitudin. Phasellus pellentesque ligula vitae metus mattis, pulvinar finibus ipsum aliquet. Proin laoreet dictum condimentum. Nam bibendum id urna vel sagittis. Sed facilisis scelerisque mollis. Sed ultricies fringilla suscipit. Nullam ante sem, egestas vel sodales non, scelerisque sed odio. 
-                        </div>
+                    <div class="col-md-4">
+                        <div class="synopsis"></div>
                     </div>
-                    <div class="col-sm-3"></div>
                 </div>
 
 
@@ -298,8 +270,30 @@
         </div>
     </div>
 
-    <script src="<c:url value="/resources/js/script.js" />"></script>
 
+    <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
+    <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
+    <script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
+    <script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
+    <script src="<c:url value="/resources/js/count-to.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
+    <script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
+    <script src="<c:url value="/resources/js/skrollr.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
+    <script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
+    <script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
+    <script src="<c:url value="/resources/js/myjs.js" />"></script>
+    <script src="<c:url value="/resources/js/script.js" />"></script>
 </body>
 
 </html>

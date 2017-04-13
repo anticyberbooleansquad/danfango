@@ -1,3 +1,4 @@
+/* CLASSES */
 .sidepadding{
 
     padding-right: 100px;
@@ -11,6 +12,21 @@
 .bottompadding{
     padding-bottom: 40px;
 }
+
+.leftpadding{
+  padding-left: 25px;
+}
+
+.signinmargin{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.joinmargin{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
     display: block;
@@ -100,25 +116,51 @@
     z-index: 5000;
 }
 
-.myFade{
-
-    /*opacity: 0.5;*/
+.rating { 
+    border: none;
+    float: left;
 }
 
-.rating {
-    unicode-bidi: bidi-override;
-    direction: rtl;
-    font-size: 30px;
-}
-.rating > span {
+.rating > input { display: none; } 
+.rating > label:before { 
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
     display: inline-block;
-    position: relative;
-    width: 1.1em;
+    content: "\f005";
 }
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-    content: "\2605";
+
+.rating > .half:before { 
+    content: "\f089";
     position: absolute;
+}
+
+.rating > label { 
+    color: #ddd; 
+    float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #eb7034;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #e8bf6d;  } 
+
+.rating > label{
+    font-size: 20px;
+}
+
+.rating{
+    margin-top: 10px;
+}
+
+.modal{
+    z-index: 10000000;
 }
 
 
@@ -176,7 +218,18 @@
     color:red;
 }
 
-.theatreTimeCardsInfo{
+
+.theatreTimes{
+    background-color:#fff;
+    min-width: 600px;
+    min-height:160px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0   rgba(0,0,0,.12);
+    border-radius: 2px;
+    margin-bottom: 5%;
+
+}
+
+.theatreTimeCardsName{
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     color: white;
@@ -184,11 +237,40 @@
     background-color: #eb7034;
 }
 
-.theatreTimeCardsTimes{
-    padding: 20px;
-    
+.theatreTimeCardsAddress{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: white;
+    padding: 5px;
+    background-color: #eb7034;
 }
 
+.theatreTimeCardsTimes{
+    padding: 20px;
+}
+
+.ticketInfo{
+    font-family: 'Josefin Sans', sans-serif;    
+    font-size: 15px;
+    color: lightgray;
+    padding: 5px;   
+}
+
+.timeButton{
+    margin-bottom: 1%;
+}
+
+
+.movieInfo{
+    background-color:#fff;
+    min-height:150px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0   rgba(0,0,0,.12);
+    border-radius: 2px;
+}
+
+.movieInfo > p{
+    margin: 8px;
+}
 
 /*review*/
 .review{
@@ -206,13 +288,14 @@
     border-radius: 2px;
 }
 
-.theatreTimes{
-    background-color:#fff;
-    min-width: 600px;
-    min-height:160px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0   rgba(0,0,0,.12);
+biography {
+    background-color: #fff;
+    min-width: 500px;
+    min-height: 270px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     border-radius: 2px;
 }
+
 
 
 .footer-widget h4 {
@@ -229,8 +312,16 @@
     padding-bottom: 10px;
 }
 
+.bx-wrapper{
+    background: none;
+    border: 10px;
+}
 
 
+
+
+
+/* IDs */
 #buyticketbutton{
 
     border: 3px solid #444;
