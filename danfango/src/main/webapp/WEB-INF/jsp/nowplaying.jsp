@@ -18,33 +18,9 @@
         <link href="<c:url value="/resources/css/responsive.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
+
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
-
-
-        <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
-        <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
-        <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
-        <script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
-        <script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
-        <script src="<c:url value="/resources/js/count-to.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
-        <script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
-        <script src="<c:url value="/resources/js/skrollr.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
-        <script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
-        <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
-
-        <!--[if IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
     </head>
     <body>
 
@@ -92,7 +68,7 @@
                                             <li><a href="/Danfango/logout.html">Sign-Out</a>
                                             </li>
                                         </c:if>
-                                            
+
 
                                         <c:if test="${isloggedin != 1}">
                                             <li><a href="/Danfango/signuppage.html">Join Now</a>
@@ -128,122 +104,304 @@
 
                 <h1 class="spacing accountfont underline">OPENING THIS WEEK</h1>
 
-                <!-- Start Recent Projects Carousel -->
-                <div class="spacing portfolio-page portfolio-3column">
+                <div class = "slider2">
 
-                    <ul id="portfolio-list" data-animated="fadeIn">
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/spiderman.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Spiderman: Homecoming</span>
-                                </div>       
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/lalaland.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">La La Land</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/civilwar.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Civil War</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/deadpool2.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Deadpool 2</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/kong.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Kong: Skull Island</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/powerrangers.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Power Rangers</span>
-                                </div>
-                            </li>
-                        </a>
-                </div>
-                <!-- End Recent Projects Carousel -->
+                    <div class="slide">
+                        <div class=" portfolio-page portfolio-3column">
+
+                            <ul id="portfolio-list" data-animated="fadeIn">
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/spiderman.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Spiderman: Homecoming</span>
+                                        </div>       
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/lalaland.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">La La Land</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/civilwar.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Civil War</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/deadpool2.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Deadpool 2</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/kong.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Kong: Skull Island</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/powerrangers.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Power Rangers</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                            </ul>
+
+                        </div><!-- END PORTFOLIO -->
+                    </div><!-- END SLIDER -->
+
+
+                    <div class="slide">
+                        <div class=" portfolio-page portfolio-3column">
+
+                            <ul id="portfolio-list" data-animated="fadeIn">
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/legobatman.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Lego Batman</span>
+                                        </div>       
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/rogueone.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Star Wars: Rogue One</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/doctorstrange.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Doctor Strange</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/beautybeast.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Beauty And The Beast</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/logan.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Logan</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/guardians.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Guardians of the Galaxy Vol.2</span>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div><!-- END PORTRAIT -->
+                    </div><!-- END SLIDE -->
+                    
+                    <div class="slide">
+                        <div class=" portfolio-page portfolio-3column">
+
+                            <ul id="portfolio-list" data-animated="fadeIn">
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/ghostintheshell.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Ghost In The Shell</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/alien.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Alien: Covenant</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/wonderwoman.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Wonder Woman</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/moana.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Moana</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                            </ul>
+                        </div><!-- END PORTRAIT -->
+                    </div><!-- END SLIDE -->
+
+
+                </div> <!--END MOVIE SLIDER -->
 
                 <h1 class="spacing accountfont underline">NOW PLAYING</h1>
 
-                <!-- Start Recent Projects Carousel -->
-                <div class="spacing portfolio-page portfolio-3column">
+                <div class = "slider2">
 
-                    <ul id="portfolio-list" data-animated="fadeIn">
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/legobatman.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Lego Batman</span>
-                                </div>       
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/rogueone.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Star Wars: Rogue One</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/doctorstrange.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Doctor Strange</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/beautybeast.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Beauty And The Beast</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/logan.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Logan</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a class="link" href="movieinfopage.html">
-                            <li>
-                                <img src="resources/images/movies/guardians.jpg" alt="" />
-                                <div class="portfolio-item-content">
-                                    <span class="header">Guardians of the Galaxy Vol.2</span>
-                                </div>
-                            </li>
-                        </a>
-                </div>
-                <!-- End Recent Projects Carousel -->
+                    <div class="slide">
+                        <div class=" portfolio-page portfolio-3column">
+
+                            <ul id="portfolio-list" data-animated="fadeIn">
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/spiderman.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Spiderman: Homecoming</span>
+                                        </div>       
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/lalaland.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">La La Land</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/civilwar.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Civil War</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/deadpool2.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Deadpool 2</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/kong.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Kong: Skull Island</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/powerrangers.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Power Rangers</span>
+                                        </div>
+                                    </li>
+                                </a>
+
+                            </ul>
+
+                        </div><!-- END PORTFOLIO -->
+                    </div><!-- END SLIDER -->
 
 
+                    <div class="slide">
+                        <div class=" portfolio-page portfolio-3column">
 
-            </div>
-        </div>
+                            <ul id="portfolio-list" data-animated="fadeIn">
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/legobatman.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Lego Batman</span>
+                                        </div>       
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/rogueone.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Star Wars: Rogue One</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/doctorstrange.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Doctor Strange</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/beautybeast.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Beauty And The Beast</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/logan.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Logan</span>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a class="link" href="movieinfopage.html">
+                                    <li>
+                                        <img src="resources/images/movies/guardians.jpg" alt="" />
+                                        <div class="portfolio-item-content">
+                                            <span class="header">Guardians of the Galaxy Vol.2</span>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div><!-- END PORTRAIT -->
+                    </div><!-- END SLIDE -->
+                    
+                    
+                    
+                </div> <!--END MOVIE SLIDER -->
+            </div> <!-- END MOVIE SLIDER CONTAINER -->
+            
+        </div><!--END OVERALL CONTAINER -->
 
 
 
@@ -312,8 +470,30 @@
             <div class="dot2"></div>
         </div>
     </div>
-    <script src="<c:url value="/resources/js/script.js" />"></script>
 
+    <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
+    <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
+    <script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
+    <script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
+    <script src="<c:url value="/resources/js/count-to.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
+    <script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
+    <script src="<c:url value="/resources/js/skrollr.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
+    <script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
+    <script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
+    <script src="<c:url value="/resources/js/myjs.js" />"></script>
+    <script src="<c:url value="/resources/js/script.js" />"></script>
 
 </body>
 </html>
