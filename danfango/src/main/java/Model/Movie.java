@@ -29,9 +29,12 @@ public class Movie implements Serializable {
     private int agencyId;
     private int agencyMovieId;
     private String title;
-    private enum rating{G, PG, PG_13, R, NC_17};
+    private enum rating {G, PG, PG_13, R, NC_17};
+    private int movieScore;
     private Timestamp releaseDate;
     private String synopsis;
+    private String runTime;
+    private String poster;
     //private List<CrewMember> crewMembers;
 
     /**
@@ -117,6 +120,31 @@ public class Movie implements Serializable {
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
+    
+    public void setMovieScore(int movieScore) {
+        this.movieScore = movieScore;
+    }
+    
+    public int getMovieScore() {
+        return movieScore;
+    }
+    
+    public void setRunTime(String runTime) {
+        this.runTime = runTime;
+    }
+    
+    public String getRunTime() {
+        return runTime;
+    }
+    
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+    
+    public String getPoster() {
+        return poster;
+    }
+    
 
 //    /**
 //     * @return the crewMembers

@@ -36,6 +36,12 @@ public class AgencyService {
     public AgencyService() {
     }
 
+    public void parseFile(String agency) throws Exception{
+        if (agency == "movie"){
+            parseMovieFile();
+        }
+    }
+    
     public void parseMovieFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
         File inputFile = new File("movieAgency.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -49,7 +55,7 @@ public class AgencyService {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
 
-                // if the movie does not exist in our db then we add it
+                
                 Movie movie = new Movie();
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
@@ -59,6 +65,11 @@ public class AgencyService {
                 movie.setAgencyMovieId(Integer.parseInt(eElement.getElementsByTagName("imdbID").item(0).getTextContent()));
                 movie.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
                 movie.setSynopsis(eElement.getElementsByTagName("plot").item(0).getTextContent());
+                movie.setMovieScore(Integer.parseInt(eElement.getElementsByTagName("imdbRating").item(0).getTextContent()));
+                movie.setRunTime(eElement.getElementsByTagName("runtime").item(0).getTextContent());
+                movie.setPoster(eElement.getElementsByTagName("poster").item(0).getTextContent());
+                
+                
 
                 // if movie does not exist then we add the movie
                 if (movieService.getMovieByAgencyId(counter) == null) {

@@ -1,0 +1,372 @@
+/* CLASSES */
+.sidepadding{
+
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+.toppadding{
+    padding-top: 40px;
+}
+
+.bottompadding{
+    padding-bottom: 40px;
+}
+
+.leftpadding{
+  padding-left: 25px;
+}
+
+.signinmargin{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.joinmargin{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    max-width: 100%;
+    height: 30em;
+}
+
+.navbar-right{
+    margin-right: -60px;
+}
+
+.reviewplaceholder{
+
+    width: 500px;
+    height: 200px;
+    border: solid black;
+    background-color: white;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.synopsisplaceholder{
+
+    border: solid black;
+    background-color: white;
+    text-align: center;
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+.theatreplaceholder{
+
+    border: solid gray;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+
+.genretable{
+    width: 50%;
+}
+
+.spacing{
+    padding: 10px;
+}
+
+.border{
+    border: solid gray;
+}
+
+.movieposter{
+
+    width: 100%;
+    height: 100%;
+}
+
+.movietitle{
+    font-size: 40px;
+}
+
+.genretitle{
+    font-size: 15px;
+}
+.accountfont{
+    font-size: 30px;
+}
+
+.itemcenter{
+    display: block;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.joinbutton{
+    width: 100%;
+    text-align: center;
+}
+
+.signupform{
+    width: 100%;
+}
+
+.modal-dialog{
+
+    z-index: 5000;
+}
+
+.rating { 
+    border: none;
+    float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.rating > .half:before { 
+    content: "\f089";
+    position: absolute;
+}
+
+.rating > label { 
+    color: #ddd; 
+    float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #eb7034;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #e8bf6d;  } 
+
+.rating > label{
+    font-size: 20px;
+}
+
+.rating{
+    margin-top: 10px;
+}
+
+.modal{
+    z-index: 10000000;
+}
+
+
+#main-slide .slider-content h2 {
+    font-size: 76px;
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+#main-slide .slider-content h3 {
+    font-size: 36px;
+    font-weight: 300;
+    margin-top: 60px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+}
+
+.slider.btn {
+    background-color: #eb7034
+}
+
+#main-slide .animated2 strong {
+    color: #eb7034;
+}
+
+#main-slide .animated4 strong {
+    color: #eb7034;
+}
+
+
+.nav-pills > li.active > a{
+    background-color: #f27341;
+}
+
+.nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: rgb(255, 214, 88);
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.subheader{
+    background-color: #53565b;
+}
+
+.fa-heart:hover {
+    color: red;
+}
+
+.favoriteState{
+    color:red;
+}
+
+
+.theatreTimes{
+    background-color:#fff;
+    min-width: 600px;
+    min-height:160px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0   rgba(0,0,0,.12);
+    border-radius: 2px;
+    margin-bottom: 5%;
+
+}
+
+.theatreTimeCardsName{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: white;
+    padding: 5px;
+    background-color: #eb7034;
+}
+
+.theatreTimeCardsAddress{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: white;
+    padding: 5px;
+    background-color: #eb7034;
+}
+
+.theatreTimeCardsTimes{
+    padding: 20px;
+}
+
+.ticketInfo{
+    font-family: 'Josefin Sans', sans-serif;    
+    font-size: 15px;
+    color: lightgray;
+    padding: 5px;   
+}
+
+.timeButton{
+    margin-bottom: 1%;
+}
+
+
+.movieInfo{
+    background-color:#fff;
+    min-height:150px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0   rgba(0,0,0,.12);
+    border-radius: 2px;
+}
+
+.movieInfo > p{
+    margin: 8px;
+}
+
+/*review*/
+.review{
+    background-color:#fff;
+    min-height:350px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0   rgba(0,0,0,.12);
+    border-radius: 2px;
+}
+
+.synopsis{
+    background-color:#fff;
+    min-width: 600px;
+    min-height:350px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0   rgba(0,0,0,.12);
+    border-radius: 2px;
+}
+
+biography {
+    background-color: #fff;
+    min-width: 500px;
+    min-height: 270px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    border-radius: 2px;
+}
+
+
+
+.footer-widget h4 {
+    color: #eee;
+    text-transform: uppercase;
+    padding-bottom: 0px;
+    margin-bottom: 0px; 
+    font-size: 14px;
+    font-weight: 700;
+    position: relative;
+}
+
+.footer-widget h6 {
+    padding-bottom: 10px;
+}
+
+.bx-wrapper{
+    background: none;
+    border: 10px;
+}
+
+
+
+
+
+/* IDs */
+#buyticketbutton{
+
+    border: 3px solid #444;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+}
+
+#leavereviewbutton{
+
+    border: 3px solid #444;
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+
+#danfangologo{
+
+    padding: 10px;
+}
+
+#moviesheader{
+
+    font-size: 40px;
+}
+
+#navbarfont{
+
+    font-size: 100px;
+}
+
+#container{
+    /*	background-color: lightgray;
+    */	background-image: url("images/grey4.jpg");
+}
+#navbottom{
+    border-bottom-color: black;
+    border-bottom-width: medium;
+}
+
+#search{
+    width: 25%;
+}
+
