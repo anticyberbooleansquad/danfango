@@ -17,8 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MemberService {
-     @Autowired 
-    private ServletContext servletContext;
+     
     
     public MemberService(){
     

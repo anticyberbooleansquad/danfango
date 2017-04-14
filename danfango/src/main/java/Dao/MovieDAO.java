@@ -60,6 +60,13 @@ public class MovieDAO{
             logger.info("Movie loaded successfully, Movie details="+m);
             return m;
     }
+    
+    public Movie getMovieByAgencyId(int agencyId) {
+            Session session = this.sessionFactory.getCurrentSession();		
+            Movie m = (Movie) session.load(Movie.class, new Integer(agencyId));
+            logger.info("Movie loaded successfully, Movie details="+m);
+            return m;
+    }
 
     
     public void removeMovie(int id) {
