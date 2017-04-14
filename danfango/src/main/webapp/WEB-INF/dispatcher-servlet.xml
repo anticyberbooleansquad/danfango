@@ -29,6 +29,8 @@
     
     <bean id="authenticationService" class="Services.AuthenticationService"/>
     <bean id="memberService" class="Services.MemberService"/>
+    <bean id="movieService" class="Services.MovieService"/>
+    <bean id="authenticationService" class="Services.AuthenticationService"/>
     
     
     <bean id="viewResolver"
