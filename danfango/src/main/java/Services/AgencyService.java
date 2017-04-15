@@ -36,7 +36,7 @@ public class AgencyService {
     public AgencyService() {
     }
 
-    public void parseFile(String agency) throws Exception{
+    public void parseFile(String agency) throws Exception {
         if (agency == "movie"){
             parseMovieFile();
         }
