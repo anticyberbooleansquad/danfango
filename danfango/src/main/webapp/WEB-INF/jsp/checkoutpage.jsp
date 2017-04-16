@@ -39,42 +39,42 @@
                                 <i class="fa fa-bars"></i>
                             </button>
                             <!-- End Toggle Nav Link For Mobiles -->
-                            <a href="/Danfango/index.html">
+                            <a href="/danfango/index.html">
                                 <img id="danfangologo" alt="" src="resources/images/danfango-site-logo.jpg">
                             </a>
                         </div>
                         <div class="navbar-collapse collapse toppadding">
                             <!-- Start Search -->  
                             <input type="text" id="search" placeholder="Enter City + State, ZIP Code, or Movie" required data-error="Please enter valid info">
-                            <a href="/Danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
+                            <a href="/danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
 
                             <!-- End Search -->
 
                             <!-- Start Navigation List -->
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="/Danfango/nowplaying.html">Movies</a>
+                                    <a href="/danfango/nowplaying.html">Movies</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/ticketselectpage.html">Movie Times + Tickets</a>
+                                    <a href="/danfango/ticketselectpage.html">Movie Times + Tickets</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/movienews.html">Movie News</a>
+                                    <a href="/danfango/movienews.html">Movie News</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/signuppage.html">DanfangoVIP</a>
+                                    <a href="/danfango/signuppage.html">DanfangoVIP</a>
                                     <ul class="dropdown">
 
                                         <c:if test="${isloggedin == 1}">
-                                            <li><a href="/Danfango/logout.html">Sign-Out</a>
+                                            <li><a href="/danfango/logout.html">Sign-Out</a>
                                             </li>
                                         </c:if>
 
 
                                         <c:if test="${isloggedin != 1}">
-                                            <li><a href="/Danfango/signuppage.html">Join Now</a>
+                                            <li><a href="/danfango/signuppage.html">Join Now</a>
                                             </li>
-                                            <li><a href="/Danfango/signinpage.html">Sign-In</a>
+                                            <li><a href="/danfango/signinpage.html">Sign-In</a>
                                             </li>
                                         </c:if>
 
@@ -107,16 +107,16 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="/Danfango/#">1</a></li>
-                                <li><a href="/Danfango/#">2</a></li>
-                                <li><a href="/Danfango/#">3</a></li>
-                                <li><a href="/Danfango/#">4</a></li>
-                                <li><a href="/Danfango/#">5</a></li>
-                                <li><a href="/Danfango/#">6</a></li>
-                                <li><a href="/Danfango/#">7</a></li>
-                                <li><a href="/Danfango/#">8</a></li>
-                                <li><a href="/Danfango/#">9</a></li>
-                                <li><a href="/Danfango/#">10</a></li>
+                                <li><a href="/danfango/#">1</a></li>
+                                <li><a href="/danfango/#">2</a></li>
+                                <li><a href="/danfango/#">3</a></li>
+                                <li><a href="/danfango/#">4</a></li>
+                                <li><a href="/danfango/#">5</a></li>
+                                <li><a href="/danfango/#">6</a></li>
+                                <li><a href="/danfango/#">7</a></li>
+                                <li><a href="/danfango/#">8</a></li>
+                                <li><a href="/danfango/#">9</a></li>
+                                <li><a href="/danfango/#">10</a></li>
                             </ul>
                         </div>
 
@@ -126,16 +126,16 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="/Danfango/#">1</a></li>
-                                <li><a href="/Danfango/#">2</a></li>
-                                <li><a href="/Danfango/#">3</a></li>
-                                <li><a href="/Danfango/#">4</a></li>
-                                <li><a href="/Danfango/#">5</a></li>
-                                <li><a href="/Danfango/#">6</a></li>
-                                <li><a href="/Danfango/#">7</a></li>
-                                <li><a href="/Danfango/#">8</a></li>
-                                <li><a href="/Danfango/#">9</a></li>
-                                <li><a href="/Danfango/#">10</a></li>
+                                <li><a href="/danfango/#">1</a></li>
+                                <li><a href="/danfango/#">2</a></li>
+                                <li><a href="/danfango/#">3</a></li>
+                                <li><a href="/danfango/#">4</a></li>
+                                <li><a href="/danfango/#">5</a></li>
+                                <li><a href="/danfango/#">6</a></li>
+                                <li><a href="/danfango/#">7</a></li>
+                                <li><a href="/danfango/#">8</a></li>
+                                <li><a href="/danfango/#">9</a></li>
+                                <li><a href="/danfango/#">10</a></li>
                             </ul>
                         </div>
 
@@ -145,15 +145,15 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="/Danfango/#">1</a></li>
-                                <li><a href="/Danfango/#">2</a></li>
-                                <li><a href="/Danfango/#">3</a></li>
-                                <li><a href="/Danfango/#">4</a></li>
-                                <li><a href="/Danfango/#">5</a></li>
+                                <li><a href="/danfango/#">1</a></li>
+                                <li><a href="/danfango/#">2</a></li>
+                                <li><a href="/danfango/#">3</a></li>
+                                <li><a href="/danfango/#">4</a></li>
+                                <li><a href="/danfango/#">5</a></li>
                             </ul>
                         </div>
 
-                        <a href="/Danfango/paymentpage.html" class="btn-system btn-large btn-gray joinbutton spacing">BUY TICKETS!</a> 
+                        <a href="/danfango/paymentpage.html" class="btn-system btn-large btn-gray joinbutton spacing">BUY TICKETS!</a> 
 
                     </div>
                 </div>
@@ -189,16 +189,16 @@
                     <div class="copyright-section">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/Danfango/http://graygrids.com">GrayGrids</a></p>
+                                <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
                             </div>
                             <!-- .col-md-6 -->
                             <div class="col-md-6">
                                 <ul class="footer-nav">
-                                    <li><a href="/Danfango/#">Sitemap</a>
+                                    <li><a href="/danfango/#">Sitemap</a>
                                     </li>
-                                    <li><a href="/Danfango/#">Privacy Policy</a>
+                                    <li><a href="/danfango/#">Privacy Policy</a>
                                     </li>
-                                    <li><a href="/Danfango/#">Contact</a>
+                                    <li><a href="/danfango/#">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -217,7 +217,7 @@
         <!-- End Full Body Container -->
 
         <!-- Go To Top Link -->
-        <a href="/Danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+        <a href="/danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 
         <div id="loader">
             <div class="spinner">

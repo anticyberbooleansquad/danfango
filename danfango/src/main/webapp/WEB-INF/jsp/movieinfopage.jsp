@@ -39,42 +39,42 @@
                                 <i class="fa fa-bars"></i>
                             </button>
                             <!-- End Toggle Nav Link For Mobiles -->
-                            <a href="/Danfango/index.html">
+                            <a href="/danfango/index.html">
                                 <img id="danfangologo" alt="" src="resources/images/danfango-site-logo.jpg">
                             </a>
                         </div>
                         <div class="navbar-collapse collapse toppadding">
                             <!-- Start Search -->  
                             <input type="text" id="search" placeholder="Enter City + State, ZIP Code, or Movie" required data-error="Please enter valid info">
-                            <a href="/Danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
+                            <a href="/danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
 
                             <!-- End Search -->
 
                             <!-- Start Navigation List -->
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="/Danfango/nowplaying.html">Movies</a>
+                                    <a href="/danfango/nowplaying.html">Movies</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/ticketselectpage.html">Movie Times + Tickets</a>
+                                    <a href="/danfango/ticketselectpage.html">Movie Times + Tickets</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/movienews.html">Movie News</a>
+                                    <a href="/danfango/movienews.html">Movie News</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/signuppage.html">DanfangoVIP</a>
+                                    <a href="/danfango/signuppage.html">DanfangoVIP</a>
                                     <ul class="dropdown">
 
                                         <c:if test="${isloggedin == 1}">
-                                            <li><a href="/Danfango/logout.html">Sign-Out</a>
+                                            <li><a href="/danfango/logout.html">Sign-Out</a>
                                             </li>
                                         </c:if>
 
 
                                         <c:if test="${isloggedin != 1}">
-                                            <li><a href="/Danfango/signuppage.html">Join Now</a>
+                                            <li><a href="/danfango/signuppage.html">Join Now</a>
                                             </li>
-                                            <li><a href="/Danfango/signinpage.html">Sign-In</a>
+                                            <li><a href="/danfango/signinpage.html">Sign-In</a>
                                             </li>
                                         </c:if>
 
@@ -103,11 +103,11 @@
                 </c:if>
 
                 <ul class="spacing nav nav-pills">
-                    <li class="active" role="presentation"><a href="/Danfango/movieinfopage.html"><h3>Overview</h3></a></li>
-                    <li role="presentation"><a href="/Danfango/ticketselectpage.html"><h3>Movie Times + Tickets</h3></a></li>
-                    <li role="presentation"><a href="/Danfango/movieinfopage.html"><h3>Synopsis</h3></a></li>
-                    <li role="presentation"><a href="/Danfango/movieinfopage.html"><h3>Movie Reviews</h3></a></li>
-                    <li role="presentation"><a href="/Danfango/movietrailerpage.html"><h3>Trailers</h3></a></li>
+                    <li class="active" role="presentation"><a href="/danfango/movieinfopage.html"><h3>Overview</h3></a></li>
+                    <li role="presentation"><a href="/danfango/ticketselectpage.html"><h3>Movie Times + Tickets</h3></a></li>
+                    <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Synopsis</h3></a></li>
+                    <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Movie Reviews</h3></a></li>
+                    <li role="presentation"><a href="/danfango/movietrailerpage.html"><h3>Trailers</h3></a></li>
                 </ul>
 
                 <div class="row">
@@ -120,7 +120,7 @@
                             <p>Comedy, Action, Adventure</p>
                             <p>Rating</p>
                         </div>
-                        <a href="/Danfango/ticketselectpage.html" id="buyticketbutton" class="spacing btn-system btn-mini border-btn btn-gray">
+                        <a href="/danfango/ticketselectpage.html" id="buyticketbutton" class="spacing btn-system btn-mini border-btn btn-gray">
                             <i class="fa fa-ticket" aria-hidden="true"></i><b>
                                 BUY MOVIE TICKETS
                             </b><i class="fa fa-ticket" aria-hidden="true"></i>
@@ -141,7 +141,7 @@
                     <h1 class="spacing movietitle">CAST + CREW</h1>
                     <div class="spacing projects-carousel touch-carousel">
 
-                        <a href="/Danfango/actorinfopage.html">
+                        <a href="/danfango/actorinfopage.html">
                             <div class="portfolio-item item">
                                 <div class="portfolio-border">
                                     <div class="portfolio-thumb">
@@ -156,7 +156,7 @@
                             </div>
                         </a>
 
-                        <a href="/Danfango/actorinfopage.html">
+                        <a href="/danfango/actorinfopage.html">
                             <div class="portfolio-item item">
                                 <div class="portfolio-border">
                                     <div class="portfolio-thumb">
@@ -171,7 +171,7 @@
                             </div>
                         </a>
 
-                        <a href="/Danfango/actorinfopage.html">
+                        <a href="/danfango/actorinfopage.html">
                             <div class="portfolio-item item">
                                 <div class="portfolio-border">
                                     <div class="portfolio-thumb">
@@ -186,7 +186,7 @@
                             </div>
                         </a>
 
-                        <a href="/Danfango/actorinfopage.html">
+                        <a href="/danfango/actorinfopage.html">
                             <div class="portfolio-item item">
                                 <div class="portfolio-border">
                                     <div class="portfolio-thumb">
@@ -201,7 +201,7 @@
                             </div>
                         </a>
 
-                        <a href="/Danfango/actorinfopage.html">
+                        <a href="/danfango/actorinfopage.html">
                             <div class="portfolio-item item">
                                 <div class="portfolio-border">
                                     <div class="portfolio-thumb">
@@ -326,16 +326,16 @@
                 <div class="copyright-section">
                     <div class="row">
                         <div class="col-md-6">
-                            <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/Danfango/http://graygrids.com">GrayGrids</a></p>
+                            <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
                         </div>
                         <!-- .col-md-6 -->
                         <div class="col-md-6">
                             <ul class="footer-nav">
-                                <li><a href="/Danfango/#">Sitemap</a>
+                                <li><a href="/danfango/#">Sitemap</a>
                                 </li>
-                                <li><a href="/Danfango/#">Privacy Policy</a>
+                                <li><a href="/danfango/#">Privacy Policy</a>
                                 </li>
-                                <li><a href="/Danfango/#">Contact</a>
+                                <li><a href="/danfango/#">Contact</a>
                                 </li>
                             </ul>
                         </div>
@@ -354,7 +354,7 @@
     <!-- End Full Body Container -->
 
     <!-- Go To Top Link -->
-    <a href="/Danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+    <a href="/danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 
     <div id="loader">
         <div class="spinner">
