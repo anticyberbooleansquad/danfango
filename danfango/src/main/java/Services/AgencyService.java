@@ -54,11 +54,8 @@ public class AgencyService {
         for (int counter = 0; counter < nList.getLength(); counter++) {
             Node nNode = nList.item(counter);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-
-                
+                Element eElement = (Element) nNode;                
                 Movie movie = new Movie();
-
                 if (!eElement.getElementsByTagName("released").item(0).getTextContent().equals("N/A")){
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
                     Date parsedDate = dateFormat.parse(eElement.getElementsByTagName("released").item(0).getTextContent());
