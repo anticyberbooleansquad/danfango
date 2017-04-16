@@ -5,23 +5,28 @@
  */
 package Services;
 
-import Model.Movie;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import Dao.AgencyDAO;
+import Model.Agency;
+import Model.Movie;
 
 /**
  *
@@ -32,8 +37,42 @@ public class AgencyService {
 
     @Autowired
     MovieService movieService;
-
+    private AgencyDAO agencyDAO;
+    
     public AgencyService() {
+    }
+
+    public void setAgencyDAO(AgencyDAO agencyDAO) {
+            this.agencyDAO = agencyDAO;
+    }
+
+
+    @Transactional
+    public void addAgency(Agency a) {
+            this.agencyDAO.addAgency(a);
+    }
+
+
+    @Transactional
+    public void updateAgency(Agency a) {
+            this.agencyDAO.updateAgency(a);
+    }
+
+
+    @Transactional
+    public List<Agency> listAgencys() {
+            return this.agencyDAO.listAgencys();
+    }
+
+
+    @Transactional
+    public Agency getAgencyById(int id) {
+            return this.agencyDAO.getAgencyById(id);
+    }
+
+    @Transactional
+    public void removeAgency(int id) {
+            this.agencyDAO.removeAgency(id);
     }
 
     public void parseFile(String agency) throws Exception {

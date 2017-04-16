@@ -25,6 +25,7 @@
     <mvc:view-controller path="/" view-name="index"/>
     
     
+
     <bean id="authenticationService" class="Services.AuthenticationService"/>
     <bean id="agencyService" class="Services.AgencyService"/>
     <bean id="movieService" class="Services.MovieService">

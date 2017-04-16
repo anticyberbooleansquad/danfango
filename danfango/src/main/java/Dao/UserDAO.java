@@ -60,6 +60,13 @@ public class UserDAO{
             logger.info("User loaded successfully, User details="+u);
             return u;
     }
+    
+    public User getUserByEmail(String email) {
+            Session session = this.sessionFactory.getCurrentSession();		
+            User u = (User) session.load(User.class, new String(email));
+            logger.info("User loaded successfully, User details="+u);
+            return u;
+    }
 
     
     public void removeUser(int id) {
@@ -71,11 +78,5 @@ public class UserDAO{
             logger.info("User deleted successfully, person details="+u);
     }
     
-    public User getUserByEmail(String email) {
-            Session session = this.sessionFactory.getCurrentSession();		
-            User u = (User) session.load(User.class, email);
-            logger.info("User loaded successfully, User details="+u);
-            return u;
-    }
 
 }

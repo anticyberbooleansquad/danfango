@@ -5,15 +5,27 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Set;
-
+import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  *
  * @author johnlegutko
  */
-public class Theatre {
+@Entity
+@Table
+public class Theatre implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private int id;
+    @OneToOne
     private Agency agency;
     private int agencyTheatreId;
     private String name;
@@ -21,7 +33,6 @@ public class Theatre {
     private String city;
     private String zip;
     private String state;
-    private Set<Showing> showings;
 
     /**
      * @return the id
@@ -133,20 +144,6 @@ public class Theatre {
      */
     public void setState(String state) {
         this.state = state;
-    }
-
-    /**
-     * @return the showings
-     */
-    public Set<Showing> getShowings() {
-        return showings;
-    }
-
-    /**
-     * @param showings the showings to set
-     */
-    public void setShowings(Set<Showing> showings) {
-        this.showings = showings;
     }
     
 }
