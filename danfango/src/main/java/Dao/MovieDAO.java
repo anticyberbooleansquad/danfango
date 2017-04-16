@@ -32,7 +32,7 @@ public class MovieDAO{
     
     public void addMovie(Movie m) {
             Session session = this.sessionFactory.getCurrentSession();
-            session.persist(m);
+            session.merge(m);
             logger.info("Movie saved successfully, Movie Details="+m);
     }
 
@@ -57,6 +57,13 @@ public class MovieDAO{
     public Movie getMovieById(int id) {
             Session session = this.sessionFactory.getCurrentSession();		
             Movie m = (Movie) session.load(Movie.class, new Integer(id));
+            logger.info("Movie loaded successfully, Movie details="+m);
+            return m;
+    }
+    
+    public Movie getMovieByAgencyId(String agencyId) {
+            Session session = this.sessionFactory.getCurrentSession();		
+            Movie m = (Movie) session.load(Movie.class, agencyId);
             logger.info("Movie loaded successfully, Movie details="+m);
             return m;
     }

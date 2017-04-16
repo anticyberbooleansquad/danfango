@@ -40,44 +40,44 @@
                                 <i class="fa fa-bars"></i>
                             </button>
                             <!-- End Toggle Nav Link For Mobiles -->
-                            <a href="/Danfango/index.html">
+                            <a href="/danfango/index.html">
                                 <img id="danfangologo" alt="" src="resources/images/danfango-site-logo.jpg">
                             </a>
                         </div>
                         <div class="navbar-collapse collapse toppadding">
                             <!-- Start Search -->  
                             <input type="text" id="search" placeholder="Enter City + State, ZIP Code, or Movie" required data-error="Please enter valid info">
-                            <a href="/Danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
+                            <a href="/danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
 
                             <!-- End Search -->
 
                             <!-- Start Navigation List -->
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="/Danfango/nowplaying.html">Movies</a>
+                                    <a href="/danfango/nowplaying.html">Movies</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/ticketselectpage.html">Movie Times + Tickets</a>
+                                    <a href="/danfango/ticketselectpage.html">Movie Times + Tickets</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/movienews.html">Movie News</a>
+                                    <a href="/danfango/movienews.html">Movie News</a>
                                 </li>
                                 <li>
 
                                     <c:if test="${isloggedin == 1}">
-                                        <a href="/Danfango/signuppage.html">DanfangoVIP (Welcome ${user.firstName}!)</a>
+                                        <a href="/danfango/signuppage.html">DanfangoVIP (Welcome ${user.firstName}!)</a>
                                         <ul class="dropdown">
-                                            <li><a href="/Danfango/logout.html">Sign-Out</a>
+                                            <li><a href="/danfango/logout.html">Sign-Out</a>
                                             </li>
                                         </c:if>
 
 
                                         <c:if test="${isloggedin != 1}">
-                                            <a href="/Danfango/signuppage.html">DanfangoVIP</a>
+                                            <a href="/danfango/signuppage.html">DanfangoVIP</a>
                                             <ul class="dropdown">
-                                                <li><a href="/Danfango/signuppage.html">Join Now</a>
+                                                <li><a href="/danfango/signuppage.html">Join Now</a>
                                                 </li>
-                                                <li><a href="/Danfango/signinpage.html">Sign-In</a>
+                                                <li><a href="/danfango/signinpage.html">Sign-In</a>
                                                 </li>
                                             </c:if>
 
@@ -134,7 +134,7 @@
                                     <h3 class="animated5">
                                         <span>For awesome benefits and rewards</span>
                                     </h3>
-                                    <p class="animated6"><a href="/Danfango/signuppage.html" class="slider btn btn-system btn-large">Join Now</a>
+                                    <p class="animated6"><a href="/danfango/signuppage.html" class="slider btn btn-system btn-large">Join Now</a>
                                     </p>
                                 </div>
                             </div>
@@ -307,16 +307,16 @@
                     <div class="copyright-section">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/Danfango/http://graygrids.com">GrayGrids</a></p>
+                                <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
                             </div>
                             <!-- .col-md-6 -->
                             <div class="col-md-6">
                                 <ul class="footer-nav">
-                                    <li><a href="/Danfango/#">Sitemap</a>
+                                    <li><a href="/danfango/#">Sitemap</a>
                                     </li>
-                                    <li><a href="/Danfango/#">Privacy Policy</a>
+                                    <li><a href="/danfango/#">Privacy Policy</a>
                                     </li>
-                                    <li><a href="/Danfango/#">Contact</a>
+                                    <li><a href="/danfango/#">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -334,7 +334,7 @@
         <!-- End Full Body Container -->
 
         <!-- Go To Top Link -->
-        <a href="/Danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+        <a href="/danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 
         <div id="loader">
             <div class="spinner">

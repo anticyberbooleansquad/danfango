@@ -23,13 +23,25 @@
     <mvc:resources mapping="/resources/**" location="/resources/css" />
     <mvc:annotation-driven />
     <mvc:view-controller path="/" view-name="index"/>
-    <!--<bean name="/test.html" class="com.danfango.TestController" />-->
-    <!--<bean id="authenticationService" class="Services.AuthenticationService"/>-->
-    <!--<bean id="memberService" class="Services.MemberService"/>-->
     
-    <bean id="authenticationService" class="Services.AuthenticationService"/>
+    
     <bean id="memberService" class="Services.MemberService"/>
+    <bean id="authenticationService" class="Services.AuthenticationService"/>
+    <bean id="agencyService" class="Services.AgencyService"/>
+    <bean id="movieService" class="Services.MovieService">
+        <property name="movieDAO" ref="movieDAO"></property>
+    </bean>
+    <bean id="userService" class="Services.UserService">
+        <property name="userDAO" ref="userDAO"></property>
+    </bean>
     
+    <bean id="userDAO" class="Dao.UserDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+    <bean id="movieDAO" class="Dao.MovieDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
     
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -69,19 +81,8 @@
             <property name="schemaUpdate" value="true" /> -->
     </bean>    
 
-    <bean id="userDAO" class="Dao.UserDAO">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>
-    <bean id="userService" class="Services.UserService">
-        <property name="userDAO" ref="userDAO"></property>
-    </bean>
     
-    <bean id="movieDAO" class="Dao.MovieDAO">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>
-    <bean id="movieService" class="Services.MovieService">
-        <property name="movieDAO" ref="movieDAO"></property>
-    </bean>
+    
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	

@@ -27,11 +27,15 @@ public class Movie implements Serializable {
     @Column
     private Integer id;
     private int agencyId;
-    private int agencyMovieId;
+    private String agencyMovieId;
     private String title;
-    private enum rating{G, PG, PG_13, R, NC_17};
+    private rating rating;
+    private enum rating {G, PG, PG_13, R, NC_17};
+    private double movieScore;
     private Timestamp releaseDate;
     private String synopsis;
+    private String runTime;
+    private String poster;
     //private List<CrewMember> crewMembers;
 
     /**
@@ -65,14 +69,14 @@ public class Movie implements Serializable {
     /**
      * @return the agencyMovieId
      */
-    public int getAgencyMovieId() {
+    public String getAgencyMovieId() {
         return agencyMovieId;
     }
 
     /**
      * @param agencyMovieId the agencyMovieId to set
      */
-    public void setAgencyMovieId(int agencyMovieId) {
+    public void setAgencyMovieId(String agencyMovieId) {
         this.agencyMovieId = agencyMovieId;
     }
 
@@ -117,6 +121,35 @@ public class Movie implements Serializable {
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
+    
+    public void setMovieScore(double movieScore) {
+        this.movieScore = movieScore;
+    }
+    
+    public double getMovieScore() {
+        return movieScore;
+    }
+    
+    public void setRunTime(String runTime) {
+        this.runTime = runTime;
+    }
+    
+    public String getRunTime() {
+        return runTime;
+    }
+    
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+    
+    public String getPoster() {
+        return poster;
+    }
+    
+    public void setRating() {
+        this.rating=rating.G;
+    }
+    
 
 //    /**
 //     * @return the crewMembers

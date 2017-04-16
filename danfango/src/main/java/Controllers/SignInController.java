@@ -6,6 +6,7 @@ package Controllers;
  */
 import Model.User;
 import Configuration.MyServletContextListener;
+import Services.AgencyService;
 import Services.AuthenticationService;
 import Services.MemberService;
 import java.util.HashMap;
@@ -27,6 +28,8 @@ public class SignInController{
     AuthenticationService authenticationService; 
     @Autowired
     MemberService memberService;
+    @Autowired
+    AgencyService agencyService;
     
     @RequestMapping(value = "/signinpage")
     protected ModelAndView getSignInPage(){
@@ -46,6 +49,7 @@ public class SignInController{
            User user = memberService.getUserByEmail(email);
            HttpSession session = request.getSession();
            session.setAttribute("user", user);
+           
            modelandview = new ModelAndView("index");
        }
        else{
@@ -53,6 +57,17 @@ public class SignInController{
            modelandview.addObject("signinError", "Incorrect credentials entered. Please try again.");
        }       
         return modelandview;
+    }
+    
+    //this is temporary we will make this function fully and not hard code it 
+    @RequestMapping(value = "/submitAgencyCredentials")
+    protected ModelAndView submitAgencyCredentials() throws Exception{
+    //protected ModelAndView submitAgencyCredentials(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) throws Exception{
+        ModelAndView modelandview;
+        agencyService.parseFile("movie");  
+        modelandview = new ModelAndView("index");
+        return modelandview;
+
     }
     
     @RequestMapping(value = "/logout")

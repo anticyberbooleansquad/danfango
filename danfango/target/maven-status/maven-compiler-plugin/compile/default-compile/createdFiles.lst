@@ -8,6 +8,7 @@ Model/Agency.class
 Services/AuthenticationService.class
 Controllers/CheckOutController.class
 Model/Advertisement.class
+Services/AgencyService.class
 Model/TheatreRoom.class
 Model/Theatre.class
 Controllers/ComingSoonController.class
