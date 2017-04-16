@@ -38,42 +38,42 @@
                                 <i class="fa fa-bars"></i>
                             </button>
                             <!-- End Toggle Nav Link For Mobiles -->
-                            <a href="/Danfango/index.html">
+                            <a href="/danfango/index.html">
                                 <img id="danfangologo" alt="" src="resources/images/danfango-site-logo.jpg">
                             </a>
                         </div>
                         <div class="navbar-collapse collapse toppadding">
                             <!-- Start Search -->  
                             <input type="text" id="search" placeholder="Enter City + State, ZIP Code, or Movie" required data-error="Please enter valid info">
-                            <a href="/Danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
+                            <a href="/danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
 
                             <!-- End Search -->
 
                             <!-- Start Navigation List -->
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="/Danfango/nowplaying.html">Movies</a>
+                                    <a href="/danfango/nowplaying.html">Movies</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/ticketselectpage.html">Movie Times + Tickets</a>
+                                    <a href="/danfango/ticketselectpage.html">Movie Times + Tickets</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/movienews.html">Movie News</a>
+                                    <a href="/danfango/movienews.html">Movie News</a>
                                 </li>
                                 <li>
-                                    <a href="/Danfango/signuppage.html">DanfangoVIP</a>
+                                    <a href="/danfango/signuppage.html">DanfangoVIP</a>
                                     <ul class="dropdown">
 
                                         <c:if test="${isloggedin == 1}">
-                                            <li><a href="/Danfango/logout.html">Sign-Out</a>
+                                            <li><a href="/danfango/logout.html">Sign-Out</a>
                                             </li>
                                         </c:if>
 
 
                                         <c:if test="${isloggedin != 1}">
-                                            <li><a href="/Danfango/signuppage.html">Join Now</a>
+                                            <li><a href="/danfango/signuppage.html">Join Now</a>
                                             </li>
-                                            <li><a href="/Danfango/signinpage.html">Sign-In</a>
+                                            <li><a href="/danfango/signinpage.html">Sign-In</a>
                                             </li>
                                         </c:if>
 
@@ -95,38 +95,38 @@
                 <h2 class="spacing movietitle">MOVIE <font color="EA6630"><b>GENRES</b></font></h2>
 
                 <ul class="spacing nav nav-pills">
-                    <li role="presentation"><a href="/Danfango/nowplaying.html"><h3>Now Playing</h3></a></li>
-                    <li role="presentation"><a href="/Danfango/comingsoon.html"><h3>Coming Soon</h3></a></li>
-                    <li class="active" role="presentation"><a href="/Danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
-                    <li role="presentation"><a href="/Danfango/athomedvd.html"><h3>At Home</h3></a></li>
+                    <li role="presentation"><a href="/danfango/nowplaying.html"><h3>Now Playing</h3></a></li>
+                    <li role="presentation"><a href="/danfango/comingsoon.html"><h3>Coming Soon</h3></a></li>
+                    <li class="active" role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
+                    <li role="presentation"><a href="/danfango/athomedvd.html"><h3>At Home</h3></a></li>
                 </ul>
 
                 <div class="row">
 
                     <div class="col-md-6 spacing list-group genretable">
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Action</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Drama</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Comedy</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Kids</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Horror</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Romance</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Sci-Fi</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Animated</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Documentaries</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">3D</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Action</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Drama</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Comedy</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Kids</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Horror</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Romance</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Sci-Fi</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Animated</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Documentaries</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">3D</a>
                     </div>
 
                     <div class="col-md-6 spacing list-group genretable">
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Suspense</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Indie</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Foreign</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Special Events</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Western</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Historical</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">War</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Dance</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Film,TV,& Radio</a>
-                        <a href="/Danfango/nowplaying.html" class="list-group-item list-group-item-action">Music/Performing Arts</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Suspense</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Indie</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Foreign</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Special Events</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Western</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Historical</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">War</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Dance</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Film,TV,& Radio</a>
+                        <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Music/Performing Arts</a>
                     </div>
 
                 </div>
@@ -165,16 +165,16 @@
                     <div class="copyright-section">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/Danfango/http://graygrids.com">GrayGrids</a></p>
+                                <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
                             </div>
                             <!-- .col-md-6 -->
                             <div class="col-md-6">
                                 <ul class="footer-nav">
-                                    <li><a href="/Danfango/#">Sitemap</a>
+                                    <li><a href="/danfango/#">Sitemap</a>
                                     </li>
-                                    <li><a href="/Danfango/#">Privacy Policy</a>
+                                    <li><a href="/danfango/#">Privacy Policy</a>
                                     </li>
-                                    <li><a href="/Danfango/#">Contact</a>
+                                    <li><a href="/danfango/#">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -193,7 +193,7 @@
         <!-- End Full Body Container -->
 
         <!-- Go To Top Link -->
-        <a href="/Danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+        <a href="/danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 
         <div id="loader">
             <div class="spinner">
