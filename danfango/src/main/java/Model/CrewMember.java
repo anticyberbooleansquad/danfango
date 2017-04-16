@@ -11,12 +11,13 @@ import javax.persistence.*;
  *
  * @author johnlegutko
  */
-//@Entity
+@Entity
 public class CrewMember {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @OneToOne
     private Agency agency;
     private int agencyCrewId;
     private String firstName;

@@ -35,7 +35,7 @@ public class Movie implements Serializable {
     private String synopsis;
     private String runTime;
     private String poster;
-    //private List<CrewMember> crewMembers;
+    private List<CrewMember> crewMembers;
 
     /**
      * @return the id

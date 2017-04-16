@@ -10,12 +10,12 @@ import javax.persistence.*;
  *
  * @author johnlegutko
  */
-//@Entity
+@Entity
 public class Agency {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private enum Type{MOVIE, CREW, AD};
+    private enum type{MOVIE, CREW, AD};
     private String username;
     private String email;
 

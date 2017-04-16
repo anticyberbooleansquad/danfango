@@ -10,11 +10,12 @@ import javax.persistence.*;
  *
  * @author johnlegutko
  */
-//@Entity
+@Entity
 public class Advertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @OneToOne
     private Agency agency;
     private Long agencyAdID;
     private String title;

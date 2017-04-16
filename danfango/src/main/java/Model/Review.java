@@ -16,6 +16,7 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @ManyToOne
     private Movie movie;
     private String title;
     private String content;
