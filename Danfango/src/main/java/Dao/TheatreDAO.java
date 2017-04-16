@@ -13,15 +13,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import Model.User;
+import Model.Theatre;
 /**
  *
  * @author charles
  */
 @Repository
-public class UserDAO{
+public class TheatreDAO{
    
-    private static final Logger logger = LoggerFactory.getLogger(UserDAO.class);
+    private static final Logger logger = LoggerFactory.getLogger(TheatreDAO.class);
     
     private SessionFactory sessionFactory;
 
@@ -30,52 +30,45 @@ public class UserDAO{
     }
 
     
-    public void addUser(User u) {
+    public void addTheatre(Theatre u) {
             Session session = this.sessionFactory.getCurrentSession();
             session.persist(u);
-            logger.info("User saved successfully, User Details="+u);
+            logger.info("Theatre saved successfully, Theatre Details="+u);
     }
 
     
-    public void updateUser(User u) {
+    public void updateTheatre(Theatre u) {
             Session session = this.sessionFactory.getCurrentSession();
             session.update(u);
-            logger.info("User updated successfully, User Details="+u);
+            logger.info("Theatre updated successfully, Theatre Details="+u);
     }
 
     @SuppressWarnings("unchecked")
-    public List<User> listUsers() {
+    public List<Theatre> listTheatres() {
             Session session = this.sessionFactory.getCurrentSession();
-            List<User> usersList = session.createQuery("from User").list();
-            for(User u : usersList){
-                    logger.info("User List::"+u);
+            List<Theatre> theatresList = session.createQuery("from Theatre").list();
+            for(Theatre u : theatresList){
+                    logger.info("Theatre List::"+u);
             }
-            return usersList;
+            return theatresList;
     }
 
     
-    public User getUserById(int id) {
+    public Theatre getTheatreById(int id) {
             Session session = this.sessionFactory.getCurrentSession();		
-            User u = (User) session.load(User.class, new Integer(id));
-            logger.info("User loaded successfully, User details="+u);
-            return u;
-    }
-    
-    public User getUserByEmail(String email) {
-            Session session = this.sessionFactory.getCurrentSession();		
-            User u = (User) session.load(User.class, new String(email));
-            logger.info("User loaded successfully, User details="+u);
+            Theatre u = (Theatre) session.load(Theatre.class, new Integer(id));
+            logger.info("Theatre loaded successfully, Theatre details="+u);
             return u;
     }
 
     
-    public void removeUser(int id) {
+    public void removeTheatre(int id) {
             Session session = this.sessionFactory.getCurrentSession();
-            User u = (User) session.load(User.class, new Integer(id));
+            Theatre u = (Theatre) session.load(Theatre.class, new Integer(id));
             if(null != u){
                     session.delete(u);
             }
-            logger.info("User deleted successfully, person details="+u);
+            logger.info("Theatre deleted successfully, person details="+u);
     }
 
 }

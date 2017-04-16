@@ -6,13 +6,22 @@
 package Model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.List;
+import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  *
  * @author johnlegutko
  */
 @Entity
-public class CrewMember {
+@Table
+public class CrewMember implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

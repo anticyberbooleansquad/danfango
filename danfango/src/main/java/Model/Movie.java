@@ -36,6 +36,7 @@ public class Movie implements Serializable {
     private String synopsis;
     private String runTime;
     private String poster;
+    @OneToMany
     private List<CrewMember> crewMembers;
 
     /**
@@ -151,19 +152,19 @@ public class Movie implements Serializable {
     }
     
 
-//    /**
-//     * @return the crewMembers
-//     */
-//    public List<CrewMember> getCrewMembers() {
-//        return crewMembers;
-//    }
-//
-//    /**
-//     * @param crewMembers the crewMembers to set
-//     */
-//    public void setCrewMembers(List<CrewMember> crewMembers) {
-//        this.crewMembers = crewMembers;
-//    }
+    /**
+     * @return the crewMembers
+     */
+    public List<CrewMember> getCrewMembers() {
+        return crewMembers;
+    }
+
+    /**
+     * @param crewMembers the crewMembers to set
+     */
+    public void setCrewMembers(List<CrewMember> crewMembers) {
+        this.crewMembers = crewMembers;
+    }
     
     
 }

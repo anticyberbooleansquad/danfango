@@ -8,22 +8,36 @@ package Model;
 import Model.Ticket.TicketType;
 import java.sql.Time;
 import java.util.HashMap;
+import java.sql.Timestamp;
+import java.util.List;
+import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author johnlegutko
  */
-//@Entity
+@Entity
+@Table
 public class Showing {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Integer id;
     private Time time;
+    @OneToOne
+    private Theatre theatre;
+    @OneToOne
     private Movie movie;
+    @OneToOne
     private TheatreRoom theatreRoom;
-    private HashMap<TicketType, Double> priceInfo;
+    //private HashMap<TicketType, Double> priceInfo;
 
     public Integer getId() {
         return id;
@@ -39,6 +53,14 @@ public class Showing {
 
     public void setTime(Time time) {
         this.time = time;
+    }
+    
+    public Theatre getTheatre() {
+        return theatre;
+    }
+
+    public void setTheatre(Theatre theatre) {
+        this.theatre = theatre;
     }
 
     public Movie getMovie() {
@@ -57,12 +79,12 @@ public class Showing {
         this.theatreRoom = theatreRoom;
     }
 
-    public HashMap<TicketType, Double> getPriceInfo() {
-        return priceInfo;
-    }
-
-    public void setPriceInfo(HashMap<TicketType, Double> priceInfo) {
-        this.priceInfo = priceInfo;
-    }
+//    public HashMap<TicketType, Double> getPriceInfo() {
+//        return priceInfo;
+//    }
+//
+//    public void setPriceInfo(HashMap<TicketType, Double> priceInfo) {
+//        this.priceInfo = priceInfo;
+//    }
 
 }

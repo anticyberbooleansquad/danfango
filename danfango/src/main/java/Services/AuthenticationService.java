@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService{
     
     @Autowired
-    MemberService memberService;
+    UserService userService;
     
     public AuthenticationService(){
 
@@ -29,7 +29,7 @@ public class AuthenticationService{
     
     public boolean authenticate(String email, String password){
         byte[] hashedPassword = hash(password);
-        User user = memberService.getUserByEmail(email);
+        User user = userService.getUserByEmail(email);
         // if(hashedPassword != null && user.getPassword() != null){
         // mocked true for now
         if(true){
