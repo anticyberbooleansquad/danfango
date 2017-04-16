@@ -76,14 +76,14 @@ public class AgencyService {
 
                 
                 
-//                 movieService.addMovie(movie);
+                movieService.addMovie(movie);
                 // if movie does not exist then we add the movie
-                if (movieService.getMovieByAgencyId(movie.getAgencyMovieId()) == null) {
-                    movieService.addMovie(movie);
-                } // if the movie does exist then we update that movie oobject
-                else {
-                    movieService.updateMovie(movie);
-                }
+//                if (movieService.getMovieByAgencyId(movie.getAgencyMovieId()) == null) {
+//                    movieService.addMovie(movie);
+//                } // if the movie does exist then we update that movie oobject
+//                else {
+//                    movieService.updateMovie(movie);
+//                }
 
                 System.out.println("title : " + eElement.getElementsByTagName("title").item(0).getTextContent());
                 System.out.println("year : " + eElement.getElementsByTagName("year").item(0).getTextContent());
@@ -99,6 +99,47 @@ public class AgencyService {
                 System.out.println("director : " + eElement.getElementsByTagName("director").item(0).getTextContent());
                 System.out.println("writer : " + eElement.getElementsByTagName("writer").item(0).getTextContent());
                 System.out.println("\n");
+
+            }
+        }
+    }
+    
+    public void parseCrewFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
+        ClassLoader classLoader = getClass().getClassLoader();
+	File inputFile = new File(classLoader.getResource("movieAgency.xml").getFile());
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        org.w3c.dom.Document doc = dBuilder.parse(inputFile);
+        doc.getDocumentElement().normalize();
+        NodeList nList = doc.getElementsByTagName("movie");
+
+        for (int counter = 0; counter < nList.getLength(); counter++) {
+            Node nNode = nList.item(counter);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+
+                
+                Movie movie = new Movie();
+
+                if (!eElement.getElementsByTagName("released").item(0).getTextContent().equals("N/A")){
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+                    Date parsedDate = dateFormat.parse(eElement.getElementsByTagName("released").item(0).getTextContent());
+                    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+                    movie.setReleaseDate(timestamp);
+                }
+                if(!eElement.getElementsByTagName("imdbRating").item(0).getTextContent().equals("N/A")){
+                    movie.setMovieScore(Double.parseDouble(eElement.getElementsByTagName("imdbRating").item(0).getTextContent()));
+                }
+                movie.setAgencyMovieId(eElement.getElementsByTagName("imdbID").item(0).getTextContent());
+                movie.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
+                movie.setSynopsis(eElement.getElementsByTagName("plot").item(0).getTextContent());
+                movie.setRunTime(eElement.getElementsByTagName("runtime").item(0).getTextContent());
+                movie.setPoster(eElement.getElementsByTagName("poster").item(0).getTextContent());
+
+                
+                
+                movieService.addMovie(movie);
+
 
             }
         }
