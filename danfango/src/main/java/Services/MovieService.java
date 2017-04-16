@@ -47,7 +47,7 @@ public class MovieService {
 	}
         
         @Transactional
-	public Movie getMovieByAgencyId(int agencyId) {
+	public Movie getMovieByAgencyId(String agencyId) {
 		return this.movieDAO.getMovieByAgencyId(agencyId);
 	}
 	
