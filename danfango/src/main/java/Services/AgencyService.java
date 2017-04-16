@@ -76,14 +76,14 @@ public class AgencyService {
 
                 
                 
-//                 movieService.addMovie(movie);
-                // if movie does not exist then we add the movie
-                if (movieService.getMovieByAgencyId(movie.getAgencyMovieId()) == null) {
-                    movieService.addMovie(movie);
-                } // if the movie does exist then we update that movie oobject
-                else {
-                    movieService.updateMovie(movie);
-                }
+                 movieService.addMovie(movie);
+//                // if movie does not exist then we add the movie
+//                if (movieService.getMovieByAgencyId(movie.getAgencyMovieId()) == null) {
+//                    movieService.addMovie(movie);
+//                } // if the movie does exist then we update that movie oobject
+//                else {
+//                    movieService.updateMovie(movie);
+//                }
 
                 System.out.println("title : " + eElement.getElementsByTagName("title").item(0).getTextContent());
                 System.out.println("year : " + eElement.getElementsByTagName("year").item(0).getTextContent());
