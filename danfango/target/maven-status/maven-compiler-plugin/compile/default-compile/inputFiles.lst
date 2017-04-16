@@ -5,6 +5,7 @@
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Controllers/SignUpPageController.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Controllers/HomeController.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Model/Review.java
+/Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Services/MovieService.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Services/MemberService.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Controllers/TicketSelectController.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Controllers/CheckOutController.java
@@ -13,6 +14,7 @@
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Controllers/SignInController.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Configuration/MyServletContextListener.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Controllers/TestController.java
+/Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Dao/MovieDAO.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Controllers/MovieGenreController.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Controllers/ComingSoonController.java
 /Users/johnlegutko/Documents/CSE308_Danfango/danfango/danfango/src/main/java/Controllers/MovieNewsController.java

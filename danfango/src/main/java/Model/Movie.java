@@ -6,17 +6,25 @@
 package Model;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  *
  * @author johnlegutko
  */
-//@Entity
-//@Table
-public class Movie {
+@Entity
+@Table
+public class Movie implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Integer id;
     private int agencyId;
     private int agencyMovieId;
@@ -24,6 +32,7 @@ public class Movie {
     private enum rating{G, PG, PG_13, R, NC_17};
     private Timestamp releaseDate;
     private String synopsis;
+    //private List<CrewMember> crewMembers;
 
     /**
      * @return the id
@@ -108,6 +117,20 @@ public class Movie {
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
+
+//    /**
+//     * @return the crewMembers
+//     */
+//    public List<CrewMember> getCrewMembers() {
+//        return crewMembers;
+//    }
+//
+//    /**
+//     * @param crewMembers the crewMembers to set
+//     */
+//    public void setCrewMembers(List<CrewMember> crewMembers) {
+//        this.crewMembers = crewMembers;
+//    }
     
     
 }
