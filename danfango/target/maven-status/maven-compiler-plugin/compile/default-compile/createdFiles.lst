@@ -21,12 +21,12 @@ Model/User.class
 Controllers/MovieTrailerController.class
 Controllers/HomeController.class
 Model/Ticket.class
-Controllers/MoviePageController.class
 Controllers/SearchResultController.class
+Controllers/MoviePageController.class
 Model/Movie.class
 Services/UserService.class
-Controllers/CrewController.class
 Controllers/MovieNewsController.class
+Controllers/CrewController.class
 Services/MemberService.class
 Controllers/SignInController.class
 Model/Agency$Type.class
