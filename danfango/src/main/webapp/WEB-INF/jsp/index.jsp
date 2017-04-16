@@ -65,19 +65,19 @@
                                 <li>
 
                                     <c:if test="${isloggedin == 1}">
-                                        <a href="/Danfango/signuppage.html">DanfangoVIP (Welcome ${user.firstName}!)</a>
+                                        <a href="/danfango/signuppage.html">DanfangoVIP (Welcome ${user.firstName}!)</a>
                                         <ul class="dropdown">
-                                            <li><a href="/Danfango/logout.html">Sign-Out</a>
+                                            <li><a href="/danfango/logout.html">Sign-Out</a>
                                             </li>
                                         </c:if>
 
 
                                         <c:if test="${isloggedin != 1}">
-                                            <a href="/Danfango/signuppage.html">DanfangoVIP</a>
+                                            <a href="/danfango/signuppage.html">DanfangoVIP</a>
                                             <ul class="dropdown">
-                                                <li><a href="/Danfango/signuppage.html">Join Now</a>
+                                                <li><a href="/danfango/signuppage.html">Join Now</a>
                                                 </li>
-                                                <li><a href="/Danfango/signinpage.html">Sign-In</a>
+                                                <li><a href="/danfango/signinpage.html">Sign-In</a>
                                                 </li>
                                             </c:if>
 
@@ -134,7 +134,7 @@
                                     <h3 class="animated5">
                                         <span>For awesome benefits and rewards</span>
                                     </h3>
-                                    <p class="animated6"><a href="/Danfango/signuppage.html" class="slider btn btn-system btn-large">Join Now</a>
+                                    <p class="animated6"><a href="/danfango/signuppage.html" class="slider btn btn-system btn-large">Join Now</a>
                                     </p>
                                 </div>
                             </div>

@@ -27,10 +27,11 @@ public class Movie implements Serializable {
     @Column
     private Integer id;
     private int agencyId;
-    private int agencyMovieId;
+    private String agencyMovieId;
     private String title;
+    private rating rating;
     private enum rating {G, PG, PG_13, R, NC_17};
-    private int movieScore;
+    private double movieScore;
     private Timestamp releaseDate;
     private String synopsis;
     private String runTime;
@@ -68,14 +69,14 @@ public class Movie implements Serializable {
     /**
      * @return the agencyMovieId
      */
-    public int getAgencyMovieId() {
+    public String getAgencyMovieId() {
         return agencyMovieId;
     }
 
     /**
      * @param agencyMovieId the agencyMovieId to set
      */
-    public void setAgencyMovieId(int agencyMovieId) {
+    public void setAgencyMovieId(String agencyMovieId) {
         this.agencyMovieId = agencyMovieId;
     }
 
@@ -121,11 +122,11 @@ public class Movie implements Serializable {
         this.synopsis = synopsis;
     }
     
-    public void setMovieScore(int movieScore) {
+    public void setMovieScore(double movieScore) {
         this.movieScore = movieScore;
     }
     
-    public int getMovieScore() {
+    public double getMovieScore() {
         return movieScore;
     }
     
@@ -143,6 +144,10 @@ public class Movie implements Serializable {
     
     public String getPoster() {
         return poster;
+    }
+    
+    public void setRating() {
+        this.rating=rating.G;
     }
     
 

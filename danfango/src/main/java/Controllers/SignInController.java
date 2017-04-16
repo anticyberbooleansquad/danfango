@@ -60,8 +60,9 @@ public class SignInController{
     }
     
     //this is temporary we will make this function fully and not hard code it 
-    @RequestMapping(value = "/submitAgencyCredentials", method = RequestMethod.POST)
-    protected ModelAndView submitAgencyCredentials(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) throws Exception{
+    @RequestMapping(value = "/submitAgencyCredentials")
+    protected ModelAndView submitAgencyCredentials() throws Exception{
+    //protected ModelAndView submitAgencyCredentials(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) throws Exception{
         ModelAndView modelandview;
         agencyService.parseFile("movie");  
         modelandview = new ModelAndView("index");

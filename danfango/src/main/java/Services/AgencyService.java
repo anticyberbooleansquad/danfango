@@ -43,7 +43,8 @@ public class AgencyService {
     }
     
     public void parseMovieFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        File inputFile = new File("movieAgency.xml");
+        ClassLoader classLoader = getClass().getClassLoader();
+	File inputFile = new File(classLoader.getResource("movieAgency.xml").getFile());
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         org.w3c.dom.Document doc = dBuilder.parse(inputFile);
@@ -58,21 +59,26 @@ public class AgencyService {
                 
                 Movie movie = new Movie();
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                Date parsedDate = dateFormat.parse(eElement.getElementsByTagName("released").item(0).getTextContent());
-                Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-                movie.setReleaseDate(timestamp);
-                movie.setAgencyMovieId(Integer.parseInt(eElement.getElementsByTagName("imdbID").item(0).getTextContent()));
+                if (!eElement.getElementsByTagName("released").item(0).getTextContent().equals("N/A")){
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+                    Date parsedDate = dateFormat.parse(eElement.getElementsByTagName("released").item(0).getTextContent());
+                    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+                    movie.setReleaseDate(timestamp);
+                }
+                if(!eElement.getElementsByTagName("imdbRating").item(0).getTextContent().equals("N/A")){
+                    movie.setMovieScore(Double.parseDouble(eElement.getElementsByTagName("imdbRating").item(0).getTextContent()));
+                }
+                movie.setAgencyMovieId(eElement.getElementsByTagName("imdbID").item(0).getTextContent());
                 movie.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
                 movie.setSynopsis(eElement.getElementsByTagName("plot").item(0).getTextContent());
-                movie.setMovieScore(Integer.parseInt(eElement.getElementsByTagName("imdbRating").item(0).getTextContent()));
                 movie.setRunTime(eElement.getElementsByTagName("runtime").item(0).getTextContent());
                 movie.setPoster(eElement.getElementsByTagName("poster").item(0).getTextContent());
-                
-                
 
+                
+                
+//                 movieService.addMovie(movie);
                 // if movie does not exist then we add the movie
-                if (movieService.getMovieByAgencyId(counter) == null) {
+                if (movieService.getMovieByAgencyId(movie.getAgencyMovieId()) == null) {
                     movieService.addMovie(movie);
                 } // if the movie does exist then we update that movie oobject
                 else {
