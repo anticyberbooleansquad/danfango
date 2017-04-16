@@ -9,9 +9,14 @@ package Controllers;
  *
  * @author johnlegutko
  */
+import Model.User;
+import Services.AuthenticationService;
+import Services.UserService;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +27,33 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SignUpPageController{
     
+    @Autowired
+    UserService userService;
+    @Autowired
+    AuthenticationService authenticationService;
+    
     @RequestMapping(value = "/signuppage")
     protected ModelAndView getSignUpPage(){
     
         ModelAndView modelandview = new ModelAndView("signuppage");        
+        return modelandview;
+    }
+    
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    protected ModelAndView register(@RequestParam("email") String email, @RequestParam("password") String password,@RequestParam("firstname") String firstname,@RequestParam("lastname") String lastname, HttpServletRequest request){
+        ModelAndView modelandview;
+        
+        User u = new User(); 
+        u.setFirstName(firstname);
+        u.setLastName(lastname);
+        u.setEmail(email);
+        u.setPassword(authenticationService.hash(password));
+        userService.addUser(u);
+        
+        request.setAttribute("isloggedin", 1);
+        HttpSession session = request.getSession();
+        session.setAttribute("user", u);   
+        modelandview = new ModelAndView("index");
         return modelandview;
     }
     

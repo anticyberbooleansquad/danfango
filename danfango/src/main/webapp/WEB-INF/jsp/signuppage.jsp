@@ -98,25 +98,30 @@
 
                         <h1 class="spacing">JOIN DANFANGO<font color="EA6630"><b>VIP</b></font></h1>
 
-                        <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake">
+                        <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/register">
 
                             <div class="controls">
-                                <input type="text" id="name" placeholder="Name" required data-error="Please enter your name">
+                                <input type="text" name="firstname" id="firstname" placeholder="First Name" required data-error="Please enter your First Name">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            
+                            <div class="controls">
+                                <input type="text" name="lastname" id="lastname" placeholder="Last Name" required data-error="Please enter your Last Name">
                                 <div class="help-block with-errors"></div>
                             </div>
 
                             <div class="controls">
-                                <input type="text" id="email" placeholder="E-mail" required data-error="Please enter your E-mail">
+                                <input type="text" name="email" id="email" placeholder="E-mail" required data-error="Please enter your E-mail">
                                 <div class="help-block with-errors"></div>
                             </div>
 
                             <div class="controls">
-                                <input type="text" id="password" placeholder="Password" required data-error="Please enter your Password">
+                                <input type="text" name="password" id="password" placeholder="Password" required data-error="Please enter your Password">
                                 <div class="help-block with-errors"></div>
                             </div>
+                            <input type="submit" value="JOIN NOW!" class="btn-system btn-large btn-gray joinbutton spacing">
+
                         </form>
-
-                        <a href="/danfango/#" class="btn-system btn-large btn-gray joinbutton spacing">JOIN NOW!</a>
 
                     </div>
                 </div>

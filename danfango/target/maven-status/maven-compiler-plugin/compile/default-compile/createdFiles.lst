@@ -7,8 +7,8 @@ Services/MovieService.class
 Model/Agency.class
 Services/AuthenticationService.class
 Controllers/CheckOutController.class
-Model/Advertisement.class
 Services/AgencyService.class
+Model/Advertisement.class
 Model/TheatreRoom.class
 Model/Theatre.class
 Controllers/ComingSoonController.class
@@ -21,13 +21,12 @@ Model/User.class
 Controllers/MovieTrailerController.class
 Controllers/HomeController.class
 Model/Ticket.class
-Controllers/MoviePageController.class
 Controllers/SearchResultController.class
-Model/Movie.class
+Controllers/MoviePageController.class
 Services/UserService.class
+Model/Movie.class
 Controllers/CrewController.class
 Controllers/MovieNewsController.class
-Services/MemberService.class
 Controllers/SignInController.class
 Model/Agency$Type.class
 Model/Ticket$TicketType.class
