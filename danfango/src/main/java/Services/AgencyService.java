@@ -5,10 +5,12 @@
  */
 package Services;
 
+import Model.CrewMember;
 import Model.Movie;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,13 +34,18 @@ public class AgencyService {
 
     @Autowired
     MovieService movieService;
+    @Autowired
+    CrewService crewService;
 
     public AgencyService() {
     }
 
     public void parseFile(String agency) throws Exception {
-        if (agency == "movie"){
+        if (agency.equals("movie")){
             parseMovieFile();
+        }
+        else if(agency.equals("actor")){
+            parseCrewFile();
         }
     }
     
@@ -106,12 +113,12 @@ public class AgencyService {
     
     public void parseCrewFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
         ClassLoader classLoader = getClass().getClassLoader();
-	File inputFile = new File(classLoader.getResource("movieAgency.xml").getFile());
+	File inputFile = new File(classLoader.getResource("actorAgency.xml").getFile());
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         org.w3c.dom.Document doc = dBuilder.parse(inputFile);
         doc.getDocumentElement().normalize();
-        NodeList nList = doc.getElementsByTagName("movie");
+        NodeList nList = doc.getElementsByTagName("actor");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
             Node nNode = nList.item(counter);
@@ -119,27 +126,23 @@ public class AgencyService {
                 Element eElement = (Element) nNode;
 
                 
-                Movie movie = new Movie();
-
-                if (!eElement.getElementsByTagName("released").item(0).getTextContent().equals("N/A")){
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
-                    Date parsedDate = dateFormat.parse(eElement.getElementsByTagName("released").item(0).getTextContent());
-                    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-                    movie.setReleaseDate(timestamp);
-                }
-                if(!eElement.getElementsByTagName("imdbRating").item(0).getTextContent().equals("N/A")){
-                    movie.setMovieScore(Double.parseDouble(eElement.getElementsByTagName("imdbRating").item(0).getTextContent()));
-                }
-                movie.setAgencyMovieId(eElement.getElementsByTagName("imdbID").item(0).getTextContent());
-                movie.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
-                movie.setSynopsis(eElement.getElementsByTagName("plot").item(0).getTextContent());
-                movie.setRunTime(eElement.getElementsByTagName("runtime").item(0).getTextContent());
-                movie.setPoster(eElement.getElementsByTagName("poster").item(0).getTextContent());
+                CrewMember actor = new CrewMember();
+                
+                actor.setFullName(eElement.getElementsByTagName("fullName").item(0).getTextContent());
+                
+                String dob = eElement.getElementsByTagName("birthday").item(0).getTextContent();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date parsedDate = dateFormat.parse(dob);
+                Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+                Date date = new Date(timestamp.getTime());
+                actor.setDob((java.sql.Date) date);
+                
+                actor.setAge(Integer.parseInt(eElement.getElementsByTagName("age").item(0).getTextContent()));
+                actor.setBiography(eElement.getElementsByTagName("biography").item(0).getTextContent());
 
                 
                 
-                movieService.addMovie(movie);
-
+                crewService.addCrew(actor);
 
             }
         }
