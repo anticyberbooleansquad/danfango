@@ -6,20 +6,32 @@
 package Model;
 
 import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.List;
+import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  *
  * @author johnlegutko
  */
-//@Entity
-public class TheatreRoom {
+@Entity
+@Table
+public class TheatreRoom implements Serializable{
     
     public enum SeatingType {Reserved, Nonreserved}
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Integer id;
-    private ArrayList<Seat> seats;
+    @OneToOne
+    private Theatre theatre;
+    //private ArrayList<Seat> seats;
     private SeatingType seatingType;
     private int totalSeats;
     private int totalSeatsRemaining;
@@ -32,13 +44,13 @@ public class TheatreRoom {
         this.id = id;
     }
 
-    public ArrayList<Seat> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(ArrayList<Seat> seats) {
-        this.seats = seats;
-    }
+//    public ArrayList<Seat> getSeats() {
+//        return seats;
+//    }
+//
+//    public void setSeats(ArrayList<Seat> seats) {
+//        this.seats = seats;
+//    }
 
     public SeatingType getSeatingType() {
         return seatingType;

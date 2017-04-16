@@ -45,10 +45,15 @@ public class UserService {
 	public User getUserById(int id) {
 		return this.userDAO.getUserById(id);
 	}
+        
+        @Transactional
+	public User getUserByEmail(String email) {
+		return this.userDAO.getUserByEmail(email);
+	}
 	
 	@Transactional
 	public void removeUser(int id) {
 		this.userDAO.removeUser(id);
 	}
-	
+        	
 }

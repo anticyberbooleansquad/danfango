@@ -25,14 +25,14 @@
     <mvc:view-controller path="/" view-name="index"/>
     
     
-    <bean id="memberService" class="Services.MemberService"/>
+
     <bean id="authenticationService" class="Services.AuthenticationService"/>
     <bean id="agencyService" class="Services.AgencyService"/>
     <bean id="movieService" class="Services.MovieService">
         <property name="movieDAO" ref="movieDAO"></property>
     </bean>
-    <bean id="crewService" class="Services.CrewService">
-        <property name="crewDAO" ref="crewDAO"></property>
+    <bean id="crewMemberService" class="Services.CrewMemberService">
+        <property name="crewMemberDAO" ref="crewMemberDAO"></property>
     </bean>
     <bean id="userService" class="Services.UserService">
         <property name="userDAO" ref="userDAO"></property>
@@ -46,7 +46,7 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
-    <bean id="crewDAO" class="Dao.CrewDAO">
+    <bean id="crewMemberDAO" class="Dao.CrewMemberDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     

@@ -17,6 +17,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @ManyToOne
     private User user;
     private double totalPrice;
     private ArrayList<Ticket> tickets;

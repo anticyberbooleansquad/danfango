@@ -6,7 +6,15 @@
 package Model;
 
 import java.util.Date;
+import java.sql.Timestamp;
+import java.util.List;
+import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
@@ -22,7 +30,8 @@ public class Article {
     private String movieName;
     private Long movieID;
     private Date publishDate;
-    private Long agencyID;
+    @ManyToOne
+    private Agency agency;
     private Long agencyArticleID;
 
     public Integer getId() {
@@ -65,12 +74,12 @@ public class Article {
         this.publishDate = publishDate;
     }
 
-    public Long getAgencyID() {
-        return agencyID;
+    public Agency getAgency() {
+        return agency;
     }
 
-    public void setAgencyID(Long agencyID) {
-        this.agencyID = agencyID;
+    public void setAgency(Agency agency) {
+        this.agency = agency;
     }
 
     public Long getAgencyArticleID() {

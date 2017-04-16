@@ -6,23 +6,35 @@
 package Model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.List;
+import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  *
  * @author johnlegutko
  */
-//@Entity
-public class CrewMember {
+@Entity
+@Table
+public class CrewMember implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @OneToOne
     private Agency agency;
     private int agencyCrewId;
     private String fullName;
-    private String biography;
+    
+    @Column(name = "biography", nullable = false, length = 10000)
+    private String biography ;
     private int age;
-    private Date dob;
+    private Timestamp dob;
 
     /**
      * @return the id
@@ -105,14 +117,14 @@ public class CrewMember {
     /**
      * @return the dob
      */
-    public Date getDob() {
+    public Timestamp getDob() {
         return dob;
     }
 
     /**
      * @param dob the dob to set
      */
-    public void setDob(Date dob) {
+    public void setDob(Timestamp dob) {
         this.dob = dob;
     }
     
