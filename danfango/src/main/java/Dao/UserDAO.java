@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.User;
+import org.hibernate.criterion.Restrictions;
 /**
  *
  * @author charles
@@ -62,8 +63,12 @@ public class UserDAO{
     }
     
     public User getUserByEmail(String email) {
-            Session session = this.sessionFactory.getCurrentSession();		
-            User u = (User) session.load(User.class, new String(email));
+            Session session = this.sessionFactory.getCurrentSession();	
+            List users = session.createCriteria(User.class).add(Restrictions.eq("email", email)).list();
+            if (users.isEmpty()){
+                return null;
+            }
+            User u = (User) users.get(0);
             logger.info("User loaded successfully, User details="+u);
             return u;
     }
