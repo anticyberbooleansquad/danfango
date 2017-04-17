@@ -29,6 +29,8 @@ import org.springframework.transaction.annotation.Transactional;
 import Dao.AgencyDAO;
 import Model.Agency;
 import Model.Movie;
+import Model.Theatre;
+import org.w3c.dom.Document;
 
 /**
  *
@@ -81,16 +83,53 @@ public class AgencyService {
             parseMovieFile();
         } else if (agency.equals("actor")) {
             parseCrewFile();
+        } else if (agency.equals("theatre")) {
+            parseTheatreFile();
+        }
+
+    }
+
+    public Document prepareDoc(String fileName) throws SAXException, IOException, ParserConfigurationException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File inputFile = new File(classLoader.getResource(fileName).getFile());
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document doc = dBuilder.parse(inputFile);
+        doc.getDocumentElement().normalize();
+        return doc;
+    }
+
+    public void parseTheatreFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
+        Document doc = prepareDoc("theatreAgency.xml");
+
+        NodeList nList = doc.getElementsByTagName("theatre");
+
+        for (int counter = 0; counter < nList.getLength(); counter++) {
+            Node nNode = nList.item(counter);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                Theatre theatre = new Theatre();
+
+                String agencyId = eElement.getElementsByTagName("agencyID").item(0).getTextContent();
+                String name = eElement.getElementsByTagName("name").item(0).getTextContent();
+                String address = eElement.getElementsByTagName("address").item(0).getTextContent();
+                String city = eElement.getElementsByTagName("address").item(0).getTextContent();
+                String state = eElement.getElementsByTagName("state").item(0).getTextContent();
+                String zipcode = eElement.getElementsByTagName("zipcode").item(0).getTextContent();
+                theatre.setAgencyTheatreId(Integer.parseInt(agencyId));
+                theatre.setName(name);
+                theatre.setAddress(address);
+                theatre.setCity(city);
+                theatre.setState(state);
+                theatre.setZip(zipcode);
+                
+                // use the theatre service to add the theatre here V 
+            }
         }
     }
 
     public void parseMovieFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File inputFile = new File(classLoader.getResource("movieAgency.xml").getFile());
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        org.w3c.dom.Document doc = dBuilder.parse(inputFile);
-        doc.getDocumentElement().normalize();
+        Document doc = prepareDoc("movieAgency.xml");
         NodeList nList = doc.getElementsByTagName("movie");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
@@ -107,11 +146,17 @@ public class AgencyService {
                 if (!eElement.getElementsByTagName("imdbRating").item(0).getTextContent().equals("N/A")) {
                     movie.setMovieScore(Double.parseDouble(eElement.getElementsByTagName("imdbRating").item(0).getTextContent()));
                 }
-                movie.setAgencyMovieId(eElement.getElementsByTagName("imdbID").item(0).getTextContent());
-                movie.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
-                movie.setSynopsis(eElement.getElementsByTagName("plot").item(0).getTextContent());
-                movie.setRunTime(eElement.getElementsByTagName("runtime").item(0).getTextContent());
-                movie.setPoster(eElement.getElementsByTagName("poster").item(0).getTextContent());
+                
+                String agencyMovieId = (eElement.getElementsByTagName("imdbID").item(0).getTextContent());
+                String movieTitle = (eElement.getElementsByTagName("title").item(0).getTextContent());
+                String movieSynopsis = (eElement.getElementsByTagName("plot").item(0).getTextContent());
+                String movieRunTime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
+                String posterLink = (eElement.getElementsByTagName("poster").item(0).getTextContent());
+                movie.setAgencyMovieId(agencyMovieId);
+                movie.setTitle(movieTitle);
+                movie.setSynopsis(movieSynopsis);
+                movie.setRunTime(movieRunTime);
+                movie.setPoster(posterLink);
 
                 movieService.addMovie(movie);
                 // if movie does not exist then we add the movie
@@ -122,7 +167,6 @@ public class AgencyService {
 //                else {
 //                    movieService.updateMovie(movie);
 //                }
-
                 System.out.println("title : " + eElement.getElementsByTagName("title").item(0).getTextContent());
                 System.out.println("year : " + eElement.getElementsByTagName("year").item(0).getTextContent());
                 System.out.println("rated : " + eElement.getElementsByTagName("rated").item(0).getTextContent());
@@ -143,22 +187,19 @@ public class AgencyService {
     }
 
     public void parseCrewFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File inputFile = new File(classLoader.getResource("actorAgency.xml").getFile());
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        org.w3c.dom.Document doc = dBuilder.parse(inputFile);
-        doc.getDocumentElement().normalize();
+        Document doc = prepareDoc("actorAgency.xml");
         NodeList nList = doc.getElementsByTagName("actor");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
             Node nNode = nList.item(counter);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
-
                 CrewMember actor = new CrewMember();
-
-                actor.setFullName(eElement.getElementsByTagName("name").item(0).getTextContent());
+                
+                String fullName = eElement.getElementsByTagName("name").item(0).getTextContent();
+                actor.setFullName(fullName);
+                String biography = eElement.getElementsByTagName("biography").item(0).getTextContent();
+                actor.setBiography(biography);
 
                 if (!eElement.getElementsByTagName("birthday").item(0).getTextContent().equals("")) {
                     String dob = eElement.getElementsByTagName("birthday").item(0).getTextContent();
@@ -167,12 +208,10 @@ public class AgencyService {
                     Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                     actor.setDob(timestamp);
                 }
-
                 if (!eElement.getElementsByTagName("age").item(0).getTextContent().equals("")) {
-                    actor.setAge(Integer.parseInt(eElement.getElementsByTagName("age").item(0).getTextContent()));
+                    int age = Integer.parseInt(eElement.getElementsByTagName("age").item(0).getTextContent());
+                    actor.setAge(age);
                 }
-                actor.setBiography(eElement.getElementsByTagName("biography").item(0).getTextContent());
-
                 crewService.addCrewMember(actor);
 
             }
