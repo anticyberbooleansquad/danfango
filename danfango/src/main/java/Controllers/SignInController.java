@@ -8,7 +8,7 @@ import Model.User;
 import Configuration.MyServletContextListener;
 import Services.AgencyService;
 import Services.AuthenticationService;
-import Services.MemberService;
+import Services.UserService;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletContext;
@@ -27,7 +27,8 @@ public class SignInController{
     @Autowired
     AuthenticationService authenticationService; 
     @Autowired
-    MemberService memberService;
+
+    UserService userService;
     @Autowired
     AgencyService agencyService;
     
@@ -46,7 +47,7 @@ public class SignInController{
         
        boolean authenticated = authenticationService.authenticate(email, password);
        if(authenticated){
-           User user = memberService.getUserByEmail(email);
+           User user = userService.getUserByEmail(email);
            HttpSession session = request.getSession();
            session.setAttribute("user", user);
            
@@ -64,7 +65,8 @@ public class SignInController{
     protected ModelAndView submitAgencyCredentials() throws Exception{
     //protected ModelAndView submitAgencyCredentials(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) throws Exception{
         ModelAndView modelandview;
-        agencyService.parseFile("movie");  
+        //agencyService.parseFile("movie");  
+        agencyService.parseFile("actor");  
         modelandview = new ModelAndView("index");
         return modelandview;
 

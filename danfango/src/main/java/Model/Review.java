@@ -5,17 +5,28 @@
  */
 package Model;
 
+import java.sql.Timestamp;
+import java.util.List;
+import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  *
  * @author johnlegutko
  */
-//@Entity
-public class Review {
+@Entity
+@Table
+public class Review implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Integer id;
+    @ManyToOne
     private Movie movie;
     private String title;
     private String content;

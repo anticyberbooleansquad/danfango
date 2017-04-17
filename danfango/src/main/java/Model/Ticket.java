@@ -23,6 +23,7 @@ public class Ticket {
     private TicketType ticketType;
     @OneToOne(targetEntity=Seat.class, mappedBy="seat", fetch=FetchType.EAGER)
     private Seat seat;
+    @OneToOne
     private Showing showing;
 
     public Integer getId() {

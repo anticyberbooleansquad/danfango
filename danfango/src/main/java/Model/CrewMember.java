@@ -6,24 +6,35 @@
 package Model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.List;
+import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  *
  * @author johnlegutko
  */
-//@Entity
-public class CrewMember {
+@Entity
+@Table
+public class CrewMember implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @OneToOne
     private Agency agency;
     private int agencyCrewId;
-    private String firstName;
-    private String lastName;
-    private String biography;
+    private String fullName;
+    
+    @Column(name = "biography", nullable = false, length = 10000)
+    private String biography ;
     private int age;
-    private Date dob;
+    private Timestamp dob;
 
     /**
      * @return the id
@@ -67,34 +78,14 @@ public class CrewMember {
         this.agencyCrewId = agencyCrewId;
     }
 
-    /**
-     * @return the firstName
-     */
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    /**
-     * @param firstName the firstName to set
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
-
-    /**
-     * @return the lastName
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * @param lastName the lastName to set
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+  
     /**
      * @return the biography
      */
@@ -126,14 +117,14 @@ public class CrewMember {
     /**
      * @return the dob
      */
-    public Date getDob() {
+    public Timestamp getDob() {
         return dob;
     }
 
     /**
      * @param dob the dob to set
      */
-    public void setDob(Date dob) {
+    public void setDob(Timestamp dob) {
         this.dob = dob;
     }
     
