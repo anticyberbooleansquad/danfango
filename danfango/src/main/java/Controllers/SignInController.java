@@ -43,6 +43,14 @@ public class SignInController{
     protected ModelAndView submitCredentials(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request){
         ModelAndView modelandview;
         
+        //for testing 
+//        User u = new User(); 
+//        u.setFirstName("first1");
+//        u.setLastName("last1");
+//        u.setEmail("email1");
+//        u.setPassword(authenticationService.hash("password1"));
+//        userService.addUser(u);
+        
         request.setAttribute("isloggedin", 1);
         
        boolean authenticated = authenticationService.authenticate(email, password);
@@ -65,7 +73,7 @@ public class SignInController{
     protected ModelAndView submitAgencyCredentials() throws Exception{
     //protected ModelAndView submitAgencyCredentials(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) throws Exception{
         ModelAndView modelandview;
-        //agencyService.parseFile("movie");  
+        agencyService.parseFile("movie");  
         agencyService.parseFile("actor");  
         modelandview = new ModelAndView("index");
         return modelandview;

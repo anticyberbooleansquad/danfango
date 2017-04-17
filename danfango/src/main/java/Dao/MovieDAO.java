@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Movie;
+import org.hibernate.criterion.Restrictions;
 /**
  *
  * @author charles
@@ -62,8 +63,12 @@ public class MovieDAO{
     }
     
     public Movie getMovieByAgencyId(String agencyId) {
-            Session session = this.sessionFactory.getCurrentSession();		
-            Movie m = (Movie) session.load(Movie.class, agencyId);
+            Session session = this.sessionFactory.getCurrentSession();
+            List movies = session.createCriteria(Movie.class).add(Restrictions.eq("agencyMovieId", agencyId)).list();
+            if (movies.isEmpty()){
+                return null;
+            }
+            Movie m = (Movie) movies.get(0);
             logger.info("Movie loaded successfully, Movie details="+m);
             return m;
     }
