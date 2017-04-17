@@ -64,22 +64,23 @@
                                 </li>
                                 <li>
 
+
                                     <c:if test="${isloggedin == 1}">
-                                        <a href="/danfango/signuppage.html">DanfangoVIP (Welcome ${user.firstName}!)</a>
+                                        <a href="/danfango/signuppage.html">DanfangoVIP (Welcome)</a>
                                         <ul class="dropdown">
                                             <li><a href="/danfango/logout.html">Sign-Out</a>
                                             </li>
-                                        </c:if>
+                                    </c:if>
 
 
-                                        <c:if test="${isloggedin != 1}">
-                                            <a href="/danfango/signuppage.html">DanfangoVIP</a>
-                                            <ul class="dropdown">
-                                                <li><a href="/danfango/signuppage.html">Join Now</a>
-                                                </li>
-                                                <li><a href="/danfango/signinpage.html">Sign-In</a>
-                                                </li>
-                                            </c:if>
+                                    <c:if test="${isloggedin != 1}">
+                                        <a href="/danfango/signuppage.html">DanfangoVIP</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/danfango/signuppage.html">Join Now</a>
+                                            </li>
+                                            <li><a href="/danfango/signinpage.html">Sign-In</a>
+                                            </li>
+                                     </c:if>
 
                                         </ul>
                                 </li>
