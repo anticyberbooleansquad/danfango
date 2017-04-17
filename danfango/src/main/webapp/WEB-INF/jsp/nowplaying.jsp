@@ -61,23 +61,26 @@
                                     <a href="/danfango/movienews.html">Movie News</a>
                                 </li>
                                 <li>
-                                    <a href="/danfango/signuppage.html">DanfangoVIP</a>
-                                    <ul class="dropdown">
 
-                                        <c:if test="${isloggedin == 1}">
+
+                                    <c:if test="${sessionScope.user != null}">
+                                        <a href="/danfango/signuppage.html">DanfangoVIP (Welcome ${user.firstName})</a>
+                                        <ul class="dropdown">
                                             <li><a href="/danfango/logout.html">Sign-Out</a>
                                             </li>
-                                        </c:if>
+                                       </c:if>
 
 
-                                        <c:if test="${isloggedin != 1}">
-                                            <li><a href="/danfango/signuppage.html">Join Now</a>
-                                            </li>
-                                            <li><a href="/danfango/signinpage.html">Sign-In</a>
-                                            </li>
-                                        </c:if>
+                                        <c:if test="${sessionScope.user == null}">
+                                            <a href="/danfango/signuppage.html">DanfangoVIP</a>
+                                            <ul class="dropdown">
+                                                <li><a href="/danfango/signuppage.html">Join Now</a>
+                                                </li>
+                                                <li><a href="/danfango/signinpage.html">Sign-In</a>
+                                                </li>
+                                            </c:if>
 
-                                    </ul>
+                                        </ul>
                                 </li>
 
                             </ul>
@@ -226,7 +229,7 @@
                             </ul>
                         </div><!-- END PORTRAIT -->
                     </div><!-- END SLIDE -->
-                    
+
                     <div class="slide">
                         <div class=" portfolio-page portfolio-3column">
 
@@ -395,12 +398,12 @@
                             </ul>
                         </div><!-- END PORTRAIT -->
                     </div><!-- END SLIDE -->
-                    
-                    
-                    
+
+
+
                 </div> <!--END MOVIE SLIDER -->
             </div> <!-- END MOVIE SLIDER CONTAINER -->
-            
+
         </div><!--END OVERALL CONTAINER -->
 
 

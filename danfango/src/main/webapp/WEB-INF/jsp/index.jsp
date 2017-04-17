@@ -64,15 +64,15 @@
                                 </li>
                                 <li>
 
-                                    <c:if test="${isloggedin == 1}">
-                                        <a href="/danfango/signuppage.html">DanfangoVIP (Welcome ${user.firstName}!)</a>
+                                    <c:if test="${sessionScope.user != null}">
+                                        <a href="/danfango/signuppage.html">DanfangoVIP (Welcome ${user.firstName})</a>
                                         <ul class="dropdown">
                                             <li><a href="/danfango/logout.html">Sign-Out</a>
                                             </li>
                                         </c:if>
 
 
-                                        <c:if test="${isloggedin != 1}">
+                                        <c:if test="${sessionScope.user== null}">
                                             <a href="/danfango/signuppage.html">DanfangoVIP</a>
                                             <ul class="dropdown">
                                                 <li><a href="/danfango/signuppage.html">Join Now</a>
