@@ -30,7 +30,6 @@ public class CrewMember implements Serializable{
     private Agency agency;
     private int agencyCrewId;
     private String fullName;
-    
     @Column(name = "biography", nullable = false, length = 10000)
     private String biography ;
     private int age;
