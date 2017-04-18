@@ -28,9 +28,12 @@ public class AuthenticationService {
     public boolean authenticate(String email, String password) {
         String hashedPassword = hash(password);
         User user = userService.getUserByEmail(email);
-        if (hashedPassword != null && user.getPassword() != null) {
-            return user.getPassword().equals(hashedPassword);
+        if (user != null) {
+            if (hashedPassword != null && user.getPassword() != null) {
+                return user.getPassword().equals(hashedPassword);
+            }
         }
+
         return false;
     }
 

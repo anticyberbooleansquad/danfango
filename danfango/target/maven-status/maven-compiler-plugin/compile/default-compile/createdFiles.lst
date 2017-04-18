@@ -47,6 +47,7 @@ Controllers/CrewController.class
 Model/Ticket$TicketType.class
 Model/Seat.class
 Controllers/NowPlayingController.class
+Controllers/MyAccountController.class
 Dao/MovieDAO.class
 Dao/AgencyDAO.class
 Model/TheatreRoom$SeatingType.class

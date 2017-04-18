@@ -28,216 +28,152 @@
     </head>
     <body>
 
-        <!-- Full Body Container -->
-        <div id="container">
+        <jsp:include page="header.jsp" />
 
-            <!-- Start Header Section -->
-            <header class="clearfix">
-                <!-- Start  Logo & Naviagtion  -->
-                <div class="navbar navbar-default navbar-top" role="navigation" data-spy="affix" data-offset-top="50">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <!-- Stat Toggle Nav Link For Mobiles -->
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <!-- End Toggle Nav Link For Mobiles -->
-                            <a href="/danfango/index.html">
-                                <img id="danfangologo" alt="" src="resources/images/danfango-site-logo.jpg">
-                            </a>
-                        </div>
-                        <div class="navbar-collapse collapse toppadding">
-                            <!-- Start Search -->  
-                            <input type="text" id="search" placeholder="Enter City + State, ZIP Code, or Movie" required data-error="Please enter valid info">
-                            <a href="/danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
+        <div class="spacing container">
 
-                            <!-- End Search -->
+            <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES</h2>
 
-                            <!-- Start Navigation List -->
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="/danfango/nowplaying.html">Movies</a>
-                                </li>
-                                <li>
-                                    <a href="/danfango/ticketselectpage.html">Movie Times + Tickets</a>
-                                </li>
-                                <li>
-                                    <a href="/danfango/movienews.html">Movie News</a>
-                                </li>
-                                <li>
-                                    <a href="/danfango/signuppage.html">DanfangoVIP</a>
-                                    <ul class="dropdown">
-
-                                        <c:if test="${isloggedin == 1}">
-                                            <li><a href="/danfango/logout.html">Sign-Out</a>
-                                            </li>
-                                        </c:if>
-
-
-                                        <c:if test="${isloggedin != 1}">
-                                            <li><a href="/danfango/signuppage.html">Join Now</a>
-                                            </li>
-                                            <li><a href="/danfango/signinpage.html">Sign-In</a>
-                                            </li>
-                                        </c:if>
-
-                                    </ul>
-                                </li>
-
-                            </ul>
-                            <!-- End Navigation List -->
-                        </div>
-                    </div>
-                </div>
-                <!-- End Header Logo & Naviagtion -->
-            </header>
-            <!-- End Header Section -->
-
-
-            <div class="spacing container">
-
-                <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES</h2>
-
-                <div class="spacing dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nearby Theatres
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="/danfango/#">Theatre</a></li>
-                        <li><a href="/danfango/#">Theatre</a></li>
-                        <li><a href="/danfango/#">Theatre</a></li>
-                        <li><a href="/danfango/#">Theatre</a></li>
-                        <li><a href="/danfango/#">Theatre</a></li>
-                        <li><a href="/danfango/#">Theatre</a></li>
-                    </ul>
-                </div>
-
-                <div class="row form-group">
-                    <div class="col-sm-3">
-                        <img class="spacing movieposter" src="resources/images/movies/lbposter.jpg"/>
-                    </div>
-
-
-
-                    <div class ="spacing col-sm-6">
-
-                        <div class="theatreTimes">
-                            <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
-                            <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
-                            <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
-                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
-
-                            <div class="theatreTimeCardsTimes">
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:30PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:50PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">6:30PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">8:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">8:30PM</a>
-
-                            </div>
-                        </div>
-
-                        <div class="theatreTimes">
-                            <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
-                            <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
-                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
-                            <div class="theatreTimeCardsTimes">
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
-                            </div>
-                        </div>
-
-                        <div class="theatreTimes">
-                            <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
-                            <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
-                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
-                            <div class="theatreTimeCardsTimes">
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
-                            </div>
-                        </div>
-
-                        <div class="theatreTimes">
-                            <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
-                            <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
-                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
-                            <div class="theatreTimeCardsTimes">
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
-                                <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="col-sm-3"></div>
-
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-
-
-
-
-    <!-- Start Footer Section -->
-    <footer class="itemcenter">
-        <div class="container">
-            <div class="footer-widget social-widget">
-                <h4>Anti-Graduation Squad</h4>
-                <h6>ft. John Legutko, Joseph Giardina, Konrad Juszkiewicz, Charles Bendernagel</h6>
-
-                <h4>Follow Us<span class="head-line"></span></h4>
-                <ul class="social-icons">
-                    <li>
-                        <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
-                    </li>
-                    <li>
-                        <a class="instgram" href="#"><i class="fa fa-instagram"></i></a>
-                    </li>
+            <div class="spacing dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nearby Theatres
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="/danfango/#">Theatre</a></li>
+                    <li><a href="/danfango/#">Theatre</a></li>
+                    <li><a href="/danfango/#">Theatre</a></li>
+                    <li><a href="/danfango/#">Theatre</a></li>
+                    <li><a href="/danfango/#">Theatre</a></li>
+                    <li><a href="/danfango/#">Theatre</a></li>
                 </ul>
             </div>
-            <!-- .row -->
-            <!-- Start Copyright -->
-            <div class="copyright-section">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
-                    </div>
-                    <!-- .col-md-6 -->
-                    <div class="col-md-6">
-                        <ul class="footer-nav">
-                            <li><a href="/danfango/#">Sitemap</a>
-                            </li>
-                            <li><a href="/danfango/#">Privacy Policy</a>
-                            </li>
-                            <li><a href="/danfango/#">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- .col-md-6 -->
-                </div>
-                <!-- .row -->
-            </div>
-            <!-- End Copyright -->
 
+            <div class="row form-group">
+                <div class="col-sm-3">
+                    <img class="spacing movieposter" src="resources/images/movies/lbposter.jpg"/>
+                </div>
+
+
+
+                <div class ="spacing col-sm-6">
+
+                    <div class="theatreTimes">
+                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
+                        <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
+                        <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
+                        <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+
+                        <div class="theatreTimeCardsTimes">
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:30PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:50PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">6:30PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">8:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">8:30PM</a>
+
+                        </div>
+                    </div>
+
+                    <div class="theatreTimes">
+                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
+                        <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
+                        <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+                        <div class="theatreTimeCardsTimes">
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
+                        </div>
+                    </div>
+
+                    <div class="theatreTimes">
+                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
+                        <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
+                        <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+                        <div class="theatreTimeCardsTimes">
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
+                        </div>
+                    </div>
+
+                    <div class="theatreTimes">
+                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
+                        <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
+                        <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+                        <div class="theatreTimeCardsTimes">
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
+                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-sm-3"></div>
+
+            </div>
         </div>
-    </footer>
-    <!-- End Footer Section -->
+
+
+    </div>
+</div>
+
+
+
+
+<!-- Start Footer Section -->
+<footer class="itemcenter">
+    <div class="container">
+        <div class="footer-widget social-widget">
+            <h4>Anti-Graduation Squad</h4>
+            <h6>ft. John Legutko, Joseph Giardina, Konrad Juszkiewicz, Charles Bendernagel</h6>
+
+            <h4>Follow Us<span class="head-line"></span></h4>
+            <ul class="social-icons">
+                <li>
+                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li>
+                    <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
+                </li>
+                <li>
+                    <a class="instgram" href="#"><i class="fa fa-instagram"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- .row -->
+        <!-- Start Copyright -->
+        <div class="copyright-section">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
+                </div>
+                <!-- .col-md-6 -->
+                <div class="col-md-6">
+                    <ul class="footer-nav">
+                        <li><a href="/danfango/#">Sitemap</a>
+                        </li>
+                        <li><a href="/danfango/#">Privacy Policy</a>
+                        </li>
+                        <li><a href="/danfango/#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- .col-md-6 -->
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- End Copyright -->
+
+    </div>
+</footer>
+<!-- End Footer Section -->
 
 
 </div>
