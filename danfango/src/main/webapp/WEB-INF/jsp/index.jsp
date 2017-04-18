@@ -105,42 +105,21 @@
 
             <div class="row spacing">
 
-                <div class = col-md-3>
-                    <a class="" href="movieinfopage.html">
-                        <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMzAwMmQxNTctYjVmYi00MDdlLWEzMWUtOTE5NTRiNDhhNjI2L2ltYWdlXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg">
-                    </a>
-                    <a class="" href="movieinfopage.html">
-                        <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTk4Mzg0MDYwM15BMl5BanBnXkFtZTgwMzE2ODM4MTI@._V1_SX300.jpg">
-                    </a>
-                </div>
-                <div class = col-md-3>
-                    <a class="link" href="movieinfopage.html">
-                        <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwMzI5ODEwNF5BMl5BanBnXkFtZTgwNjAzNjI2MDI@._V1_SX300.jpg">
-                    </a>
-                    <a class="link" href="movieinfopage.html">
-                        <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjMxODI2NDM5Nl5BMl5BanBnXkFtZTgwNjgzOTk1MTI@._V1_SX300.jpg">
-                    </a>
-                </div>
-                <div class = col-md-3>
-                    <a class="link" href="movieinfopage.html">
-                        <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTYyMTcxNzc5M15BMl5BanBnXkFtZTgwOTg2ODE2MTI@._V1_SX300.jpg">
-                    </a>
-                    <a class="link" href="movieinfopage.html">
-                        <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ3Mzc0NTc3MF5BMl5BanBnXkFtZTgwNDQzNTM2OTE@._V1_SX300.jpg">
-                    </a>
-                </div>
-                <div class = col-md-3>
-                    <a class="link" href="movieinfopage.html">
-                        <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTg2MzI1MTg3OF5BMl5BanBnXkFtZTgwNTU3NDA2MTI@._V1_SX300.jpg">
-                    </a>
-                    <a class="link" href="movieinfopage.html">
-                        <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BNzc2MDI2NTIxNV5BMl5BanBnXkFtZTgwMTc4OTAyMTI@._V1_SX300.jpg">
-                    </a>
-                </div>
+                <c:forEach var = "movie" items="${movies}">
+                    <div class = col-md-3>
+                        <a class="" href="movieinfopage/${movie.id}">
+                            <img class ="posters" src=${movie.poster}>
+                        </a>
+                        <a class="" href="movieinfopage.html">
+                            <img class ="posters" src=${movie.poster}>
+                        </a>
+                    </div>
+                </c:forEach>
+
+                
             </div><!--row-->
-        </div><!-- END SLIDER -->
-
-
+            
+        </div>
 
     </div>
     <!-- End Portfolio Section -->

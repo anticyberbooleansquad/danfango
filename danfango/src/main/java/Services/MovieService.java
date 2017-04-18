@@ -50,6 +50,11 @@ public class MovieService {
 	public Movie getMovieByAgencyId(String agencyId) {
 		return this.movieDAO.getMovieByAgencyId(agencyId);
 	}
+        
+        @Transactional
+	public List<Movie> getMoviesOpeningThisWeek() {
+		return this.movieDAO.getMoviesOpeningThisWeek();
+	}
 	
 	@Transactional
 	public void removeMovie(int id) {

@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+    <c:set var="contextPath" value="resources/images"/>
 
     <head>
         <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
@@ -18,7 +19,7 @@
 
     </head>
     <body>
-
+        
         <!-- Full Body Container -->
         <div id="container">
 
@@ -34,7 +35,7 @@
                             </button>
                             <!-- End Toggle Nav Link For Mobiles -->
                             <a href="/danfango/index.html">
-                                <img id="danfangologo" alt="" src="resources/images/danfango-site-logo.jpg">
+                                <img id="danfangologo" alt="" src="${contextPath}/danfango-site-logo.jpg">
                             </a>
                         </div>
                         <div class="navbar-collapse collapse toppadding">

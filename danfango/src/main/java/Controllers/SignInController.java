@@ -51,7 +51,7 @@ public class SignInController {
 //        u.setEmail("email1");
 //        u.setPassword(authenticationService.hash("password1"));
 //        userService.addUser(u);
-        request.setAttribute("isloggedin", 1);
+        
 
         boolean authenticated = authenticationService.authenticate(email, password);
         if (authenticated) {

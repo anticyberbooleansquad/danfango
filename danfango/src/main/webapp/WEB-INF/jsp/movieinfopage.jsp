@@ -29,12 +29,12 @@
         <div class="container">
 
             <c:if test="${favoriteState == 1}">
-                <h1 class="spacing movietitle">MOVIE TITLE  <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true"></i> </h1>
+                <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true"></i> </h1>
             </c:if>
 
 
             <c:if test="${favoriteState != 1}">
-                <h1 class="spacing movietitle">MOVIE TITLE  <i id="favorite" class="fa fa-heart fa-inverse hi" aria-hidden="true"></i> </h1>
+                <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse hi" aria-hidden="true"></i> </h1>
             </c:if>
 
             <ul class="spacing nav nav-pills">
@@ -47,11 +47,11 @@
 
             <div class="row">
                 <div class="col-sm-3 leftpadding">
-                    <img class="movieposter" src="resources/images/movies/lbposter.jpg"/>
+                    <img class="movieposter" src=${movie.poster}/>
                     <div class="movieInfo">
-                        <p>Release Date</p>
+                        <p>${movie.releaseDate}</p>
                         <p>PG-13</p>
-                        <p>2h 45min</p>
+                        <p>${movie.runTime}</p>
                         <p>Comedy, Action, Adventure</p>
                         <p>Rating</p>
                     </div>
