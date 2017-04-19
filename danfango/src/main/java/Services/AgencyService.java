@@ -38,46 +38,46 @@ import org.w3c.dom.Document;
  */
 @Service
 public class AgencyService {
-
+    
     @Autowired
     MovieService movieService;
     @Autowired
     CrewMemberService crewService;
-
+    
     private AgencyDAO agencyDAO;
-
+    
     public AgencyService() {
     }
-
+    
     public void setAgencyDAO(AgencyDAO agencyDAO) {
         this.agencyDAO = agencyDAO;
     }
-
+    
     @Transactional
     public void addAgency(Agency a) {
         this.agencyDAO.addAgency(a);
     }
-
+    
     @Transactional
     public void updateAgency(Agency a) {
         this.agencyDAO.updateAgency(a);
     }
-
+    
     @Transactional
     public List<Agency> listAgencys() {
         return this.agencyDAO.listAgencys();
     }
-
+    
     @Transactional
     public Agency getAgencyById(int id) {
         return this.agencyDAO.getAgencyById(id);
     }
-
+    
     @Transactional
     public void removeAgency(int id) {
         this.agencyDAO.removeAgency(id);
     }
-
+    
     public void parseFile(String agency) throws Exception {
         if (agency.equals("movie")) {
             parseMovieFile();
@@ -86,10 +86,9 @@ public class AgencyService {
         } else if (agency.equals("theatre")) {
             parseTheatreFile();
         }
-
+        
     }
     
-
     public Document prepareDoc(String fileName) throws SAXException, IOException, ParserConfigurationException {
         ClassLoader classLoader = getClass().getClassLoader();
         File inputFile = new File(classLoader.getResource(fileName).getFile());
@@ -99,18 +98,18 @@ public class AgencyService {
         doc.getDocumentElement().normalize();
         return doc;
     }
-
+    
     public void parseTheatreFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
         Document doc = prepareDoc("theatreAgency.xml");
-
+        
         NodeList nList = doc.getElementsByTagName("theatre");
-
+        
         for (int counter = 0; counter < nList.getLength(); counter++) {
             Node nNode = nList.item(counter);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
                 Theatre theatre = new Theatre();
-
+                
                 String agencyId = eElement.getElementsByTagName("agencyID").item(0).getTextContent();
                 String name = eElement.getElementsByTagName("name").item(0).getTextContent();
                 String address = eElement.getElementsByTagName("address").item(0).getTextContent();
@@ -123,16 +122,16 @@ public class AgencyService {
                 theatre.setCity(city);
                 theatre.setState(state);
                 theatre.setZip(zipcode);
-                
+
                 // use the theatre service to add the theatre here V 
             }
         }
     }
-
+    
     public void parseMovieFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
         Document doc = prepareDoc("movieAgency.xml");
         NodeList nList = doc.getElementsByTagName("movie");
-
+        
         for (int counter = 0; counter < nList.getLength(); counter++) {
             Node nNode = nList.item(counter);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -158,23 +157,25 @@ public class AgencyService {
                 movie.setSynopsis(movieSynopsis);
                 movie.setRunTime(movieRunTime);
                 movie.setPoster(posterLink);
-
-
+                
                 if (movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()) == null) {
                     movieService.addMovie(movie);
                 } // if the movie does exist then we update that movie oobject
                 else {
+//                    Movie mov = movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()) ;
+//                    mov=movie;
+                    movie.setId(movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()).getId());
                     movieService.updateMovie(movie);
                 }
-
+                
             }
         }
     }
-
+    
     public void parseCrewFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
         Document doc = prepareDoc("actorAgency.xml");
         NodeList nList = doc.getElementsByTagName("actor");
-
+        
         for (int counter = 0; counter < nList.getLength(); counter++) {
             Node nNode = nList.item(counter);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -185,7 +186,7 @@ public class AgencyService {
                 actor.setFullName(fullName);
                 String biography = eElement.getElementsByTagName("biography").item(0).getTextContent();
                 actor.setBiography(biography);
-
+                
                 if (!eElement.getElementsByTagName("birthday").item(0).getTextContent().equals("")) {
                     String dob = eElement.getElementsByTagName("birthday").item(0).getTextContent();
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -197,7 +198,7 @@ public class AgencyService {
                     int age = Integer.parseInt(eElement.getElementsByTagName("age").item(0).getTextContent());
                     actor.setAge(age);
                 }
-//                NodeList movies = eElement.getElementsByTagName("movie");
+                NodeList movies = eElement.getElementsByTagName("movie");
                 
 //                for (int i = 0; i < movies.getLength(); i++) {
 //                    Node movie = movies.item(i);
@@ -211,14 +212,15 @@ public class AgencyService {
 //                }
 //                  crewService.addCrewMember(actor);
 
-                if (crewService.getCrewMemberByNameAndDOB(actor.getFullName(), actor.getDob()) == null) {
-                    crewService.addCrewMember(actor);
-                } // if the movie does exist then we update that movie oobject
-                else {
-                    crewService.updateCrewMember(actor);
+                    if (crewService.getCrewMemberByNameAndDOB(actor.getFullName(), actor.getDob()) == null) {
+                        crewService.addCrewMember(actor);
+                    } // if the movie does exist then we update that movie oobject
+                    else {
+                        actor.setId(crewService.getCrewMemberByNameAndDOB(actor.getFullName(), actor.getDob()).getId());
+                        crewService.updateCrewMember(actor);
+                    }
+                    
                 }
-
             }
         }
     }
-}
