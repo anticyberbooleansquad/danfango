@@ -64,7 +64,7 @@
 
 
                 <div class="col-md-4">
-                    <div class="synopsis"></div>
+                    <div class="synopsis">${movie.synopsis}</div>
                 </div>
 
             </div>
