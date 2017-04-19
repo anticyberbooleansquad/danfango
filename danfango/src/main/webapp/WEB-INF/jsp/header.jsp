@@ -34,7 +34,7 @@
                                 <i class="fa fa-bars"></i>
                             </button>
                             <!-- End Toggle Nav Link For Mobiles -->
-                            <a href="/index">
+                            <a href="/danfango/index.html">
                                 <img id="danfangologo" alt="" src="${contextPath}/danfango-site-logo.jpg">
                             </a>
                         </div>

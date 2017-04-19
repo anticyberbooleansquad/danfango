@@ -47,6 +47,7 @@
                         </div>
 
                         <div class="controls">
+                            <h2>${UsedEmail}</h2>
                             <input type="text" name="email" id="email" placeholder="E-mail" required data-error="Please enter your E-mail">
                             <div class="help-block with-errors"></div>
                         </div>

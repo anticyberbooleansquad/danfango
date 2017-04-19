@@ -43,18 +43,25 @@ public class SignUpPageController{
     protected ModelAndView register(@RequestParam("email") String email, @RequestParam("password") String password,@RequestParam("firstname") String firstname,@RequestParam("lastname") String lastname, HttpServletRequest request){
         ModelAndView modelandview;
         
-        User u = new User(); 
-        u.setFirstName(firstname);
-        u.setLastName(lastname);
-        u.setEmail(email);
-        u.setPassword(authenticationService.hash(password));
-        userService.addUser(u);
-        
-        request.setAttribute("isloggedin", 1);
-        HttpSession session = request.getSession();
-        session.setAttribute("user", u);   
-        modelandview = new ModelAndView("index");
-        return modelandview;
+        if (userService.getUserByEmail(email) != null){
+            request.setAttribute("UsedEmail", "The email You have selected is already attached to an account");
+            modelandview = new ModelAndView("signuppage");
+            return modelandview;
+        }
+        else{
+            User u = new User(); 
+            u.setFirstName(firstname);
+            u.setLastName(lastname);
+            u.setEmail(email);
+            u.setPassword(authenticationService.hash(password));
+            userService.addUser(u);
+
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("user", u);   
+            modelandview = new ModelAndView("index");
+            return modelandview;
+        }
     }
     
     
