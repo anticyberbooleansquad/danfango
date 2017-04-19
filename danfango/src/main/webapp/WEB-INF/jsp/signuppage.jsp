@@ -33,7 +33,7 @@
                 <div class="col-md-6 spacing border">
 
                     <h1 class="spacing">JOIN DANFANGO<font color="EA6630"><b>VIP</b></font></h1>
-
+                    <h2>${UsedEmail}</h2>
                     <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/register">
 
                         <div class="controls">
@@ -47,6 +47,7 @@
                         </div>
 
                         <div class="controls">
+                            
                             <input type="text" name="email" id="email" placeholder="E-mail" required data-error="Please enter your E-mail">
                             <div class="help-block with-errors"></div>
                         </div>

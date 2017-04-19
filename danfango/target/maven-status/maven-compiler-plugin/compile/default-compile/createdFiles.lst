@@ -2,12 +2,21 @@ Model/Review.class
 Model/Agency.class
 Services/AuthenticationService.class
 Controllers/CheckOutController.class
+<<<<<<< HEAD
 Dao/ReviewDAO.class
 Model/Advertisement.class
 Dao/TheatreRoomDAO.class
 Services/TheatreRoomService.class
 Model/TheatreRoom.class
 Services/TheatreService.class
+=======
+Model/Advertisement.class
+Dao/ReviewDAO.class
+Services/TheatreRoomService.class
+Dao/TheatreRoomDAO.class
+Services/TheatreService.class
+Model/TheatreRoom.class
+>>>>>>> fa0ebca0efa9524c690a736de0a07f6115b7470e
 Model/Theatre.class
 Dao/UserDAO.class
 Model/Article.class
@@ -15,8 +24,13 @@ Model/User.class
 Dao/TheatreDAO.class
 Services/ShowingService.class
 Controllers/HomeController.class
+<<<<<<< HEAD
 Controllers/MoviePageController.class
 Controllers/SearchResultController.class
+=======
+Controllers/SearchResultController.class
+Controllers/MoviePageController.class
+>>>>>>> fa0ebca0efa9524c690a736de0a07f6115b7470e
 Controllers/MovieNewsController.class
 Controllers/SignInController.class
 Services/AdvertisementService.class
@@ -26,8 +40,13 @@ Controllers/UserController.class
 Configuration/MyServletContextListener.class
 Dao/GenreDAO.class
 Controllers/PaymentController.class
+<<<<<<< HEAD
 Dao/CrewMemberDAO.class
 Dao/ShowingDAO.class
+=======
+Dao/ShowingDAO.class
+Dao/CrewMemberDAO.class
+>>>>>>> fa0ebca0efa9524c690a736de0a07f6115b7470e
 Controllers/MovieGenreController.class
 Controllers/TicketSelectController.class
 Model/Order.class
@@ -35,16 +54,26 @@ Services/MovieService.class
 Services/AgencyService.class
 Services/ReviewService.class
 Controllers/ComingSoonController.class
+<<<<<<< HEAD
 Dao/AdvertisementDAO.class
 Model/Showing.class
+=======
+Model/Showing.class
+Dao/AdvertisementDAO.class
+>>>>>>> fa0ebca0efa9524c690a736de0a07f6115b7470e
 Controllers/SignUpPageController.class
 Model/Genre.class
 Controllers/TestController.class
 Model/Agency$type.class
 Controllers/MovieTrailerController.class
 Model/Ticket.class
+<<<<<<< HEAD
 Model/Movie.class
 Services/UserService.class
+=======
+Services/UserService.class
+Model/Movie.class
+>>>>>>> fa0ebca0efa9524c690a736de0a07f6115b7470e
 Controllers/CrewController.class
 Model/Ticket$TicketType.class
 Model/Seat.class

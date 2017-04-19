@@ -122,6 +122,24 @@
 
             <h2 class="spacing accountfont underline">My Reviews</h2>
             <hr>
+            
+            <h2 class="spacing accountfont underline">Change Account Credentials</h2>
+            ${UsedEmail}
+            <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/changeemail">
+                <div class="controls">
+                    <input type="text" name="email" id="email" placeholder="E-Mail" required data-error="Please enter your new email">
+                    <div class="help-block with-errors"></div>
+                </div>
+                <input type="submit" value="Submit" class="btn-system btn-large btn-gray joinbutton spacing">
+
+            </form>
+            <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/changepassword">
+                <div class="controls">
+                    <input type="text" name="password" id="password" placeholder="Password" required data-error="Please enter a new Password">
+                    <div class="help-block with-errors"></div>
+                </div>
+                <input type="submit" value="Submit" class="btn-system btn-large btn-gray joinbutton spacing">
+            </form>
 
         </div>
 
