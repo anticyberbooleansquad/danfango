@@ -22,15 +22,17 @@ import javax.persistence.Table;
 @Table
 public class Movie implements Serializable {
     
+    private enum rating {G, PG, PG_13, R, NC_17};
+  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer id;
-    private int agencyId;
+    @OneToOne
+    private Agency agency;
     private String agencyMovieId;
     private String title;
     private rating rating;
-    private enum rating {G, PG, PG_13, R, NC_17};
     private double movieScore;
     private Timestamp releaseDate;
     private String synopsis;
@@ -38,6 +40,8 @@ public class Movie implements Serializable {
     private String poster;
     @OneToMany
     private List<CrewMember> crewMembers;
+    @OneToMany
+    private List<Genre> genres;
 
     /**
      * @return the id
@@ -56,15 +60,15 @@ public class Movie implements Serializable {
     /**
      * @return the agencyId
      */
-    public int getAgencyId() {
-        return agencyId;
+    public Agency getAgency() {
+        return agency;
     }
 
     /**
      * @param agencyId the agencyId to set
      */
-    public void setAgencyId(int agencyId) {
-        this.agencyId = agencyId;
+    public void setAgency(Agency agency) {
+        this.agency = agency;
     }
 
     /**
@@ -148,7 +152,7 @@ public class Movie implements Serializable {
     }
     
     public void setRating() {
-        this.rating=rating.G;
+      this.setRating(getRating().G);
     }
     
 
@@ -165,6 +169,34 @@ public class Movie implements Serializable {
     public void setCrewMembers(List<CrewMember> crewMembers) {
         this.crewMembers = crewMembers;
     }
+
+  /**
+   * @return the rating
+   */
+  public rating getRating() {
+    return rating;
+  }
+
+  /**
+   * @param rating the rating to set
+   */
+  public void setRating(rating rating) {
+    this.rating = rating;
+  }
+
+  /**
+   * @return the genres
+   */
+  public List<Genre> getGenres() {
+    return genres;
+  }
+
+  /**
+   * @param genres the genres to set
+   */
+  public void setGenres(List<Genre> genres) {
+    this.genres = genres;
+  }
     
     
 }
