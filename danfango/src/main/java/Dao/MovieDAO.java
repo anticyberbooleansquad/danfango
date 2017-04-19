@@ -63,9 +63,9 @@ public class MovieDAO {
         return m;
     }
 
-    public Movie getMovieByAgencyId(String agencyId) {
+    public Movie getMovieByAgencyMovieId(String agencyMovieId) {
         Session session = this.sessionFactory.getCurrentSession();
-        List movies = session.createCriteria(Movie.class).add(Restrictions.eq("agencyMovieId", agencyId)).list();
+        List movies = session.createCriteria(Movie.class).add(Restrictions.eq("agencyMovieId", agencyMovieId)).list();
         if (movies.isEmpty()) {
             return null;
         }
@@ -87,6 +87,39 @@ public class MovieDAO {
             return null;
         }
         logger.info("Opening This Week loaded successfully, Movie details=" + movies);
+        return movies;
+    }
+    
+    public List<Movie> getMoviesNowPlaying() {
+        Session session = this.sessionFactory.getCurrentSession();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -50);
+        Date date = cal.getTime();
+        Timestamp today = new Timestamp(System.currentTimeMillis());
+        Timestamp lastMonth = new Timestamp(date.getTime());
+
+        List movies = session.createCriteria(Movie.class).add(Restrictions.between("releaseDate", lastMonth, today)).list();
+        if (movies.isEmpty()) {
+            return null;
+        }
+        
+        logger.info("Now Playing loaded successfully, Movie details=" + movies);
+        return movies;
+    }
+    
+    public List<Movie> getMoviesComingSoon() {
+        Session session = this.sessionFactory.getCurrentSession();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 240);
+        Date date = cal.getTime();
+        Timestamp today = new Timestamp(System.currentTimeMillis());
+        Timestamp comingSoon = new Timestamp(date.getTime());
+
+        List movies = session.createCriteria(Movie.class).add(Restrictions.between("releaseDate", today, comingSoon)).list();
+        if (movies.isEmpty()) {
+            return null;
+        }
+        logger.info("Coming Soon successfully, Movie details=" + movies);
         return movies;
     }
 

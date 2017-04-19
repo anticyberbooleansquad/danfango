@@ -38,8 +38,8 @@
             </c:if>
 
             <ul class="spacing nav nav-pills">
-                <li class="active" role="presentation"><a href="/danfango/movieinfopage.html"><h3>Overview</h3></a></li>
-                <li role="presentation"><a href="/danfango/ticketselectpage.html"><h3>Movie Times + Tickets</h3></a></li>
+                <li class="active" role="presentation"><a href="/danfango/movieinfopage/${movie.id}"><h3>Overview</h3></a></li>
+                <li role="presentation"><a href="/danfango/ticketselectpage/${movie.id}"><h3>Movie Times + Tickets</h3></a></li>
                 <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Synopsis</h3></a></li>
                 <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Movie Reviews</h3></a></li>
                 <li role="presentation"><a href="/danfango/movietrailerpage.html"><h3>Trailers</h3></a></li>
@@ -49,11 +49,11 @@
                 <div class="col-sm-3 leftpadding">
                     <img class="movieposter" src=${movie.poster}/>
                     <div class="movieInfo">
-                        <p>${movie.releaseDate}</p>
-                        <p>PG-13</p>
-                        <p>${movie.runTime}</p>
-                        <p>Comedy, Action, Adventure</p>
-                        <p>Rating</p>
+                        <p><b>Release Date:</b> ${movie.releaseDate}</p>
+                        <p><b>Rating:</b> </p>
+                        <p><b>Runtime:</b> ${movie.runTime}</p>
+                        <p><b>Genre:</b> Comedy, Action, Adventure</p>
+                        <p><b>Score:</b> ${movie.movieScore}</p>
                     </div>
                     <a href="/danfango/ticketselectpage.html" id="buyticketbutton" class="spacing btn-system btn-mini border-btn btn-gray">
                         <i class="fa fa-ticket" aria-hidden="true"></i><b>
@@ -64,7 +64,9 @@
 
 
                 <div class="col-md-4">
-                    <div class="synopsis">${movie.synopsis}</div>
+                    <div class="synopsis">
+                        <p class="synopsisFont">${movie.synopsis}</p> 
+                    </div>
                 </div>
 
             </div>

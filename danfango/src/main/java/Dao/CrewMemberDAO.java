@@ -15,6 +15,8 @@ import org.springframework.stereotype.Repository;
 
 import Model.CrewMember;
 import Model.Movie;
+import java.sql.Timestamp;
+import org.hibernate.criterion.Restrictions;
 /**
  *
  * @author charles
@@ -69,6 +71,18 @@ public class CrewMemberDAO{
             return m;
     }
     
+    public CrewMember getCrewMemberByNameAndDOB(String name, Timestamp dob)
+    {
+        Session session = this.sessionFactory.getCurrentSession();
+        List crewMembers = session.createCriteria(CrewMember.class).add(Restrictions.eq("fullName", name)).add(Restrictions.eq("dob", dob)).list();
+        if (crewMembers.isEmpty()) {
+            return null;
+        }
+        CrewMember cm = (CrewMember) crewMembers.get(0);
+        logger.info("Movie loaded successfully, Movie details=" + cm);
+        return cm;
+    }
+   
     public void removeCrewMember(int id) {
             Session session = this.sessionFactory.getCurrentSession();
             CrewMember c = (CrewMember) session.load(CrewMember.class, new Integer(id));

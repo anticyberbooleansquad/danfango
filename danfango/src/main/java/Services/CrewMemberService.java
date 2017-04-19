@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Dao.CrewMemberDAO;
 import Model.CrewMember;
+import java.sql.Timestamp;
 
 @Service
 public class CrewMemberService {
@@ -44,6 +45,11 @@ public class CrewMemberService {
 	@Transactional
 	public CrewMember getCrewMemberById(int id) {
 		return this.crewMemberDAO.getCrewMemberById(id);
+	}
+        
+        @Transactional
+	public CrewMember getCrewMemberByNameAndDOB(String name, Timestamp dob) {
+		return this.crewMemberDAO.getCrewMemberByNameAndDOB(name, dob);
 	}
 	
 	@Transactional

@@ -47,13 +47,23 @@ public class MovieService {
 	}
         
         @Transactional
-	public Movie getMovieByAgencyId(String agencyId) {
-		return this.movieDAO.getMovieByAgencyId(agencyId);
+	public Movie getMovieByAgencyMovieId(String agencyMovieId) {
+		return this.movieDAO.getMovieByAgencyMovieId(agencyMovieId);
 	}
         
         @Transactional
 	public List<Movie> getMoviesOpeningThisWeek() {
 		return this.movieDAO.getMoviesOpeningThisWeek();
+	}
+        
+        @Transactional
+	public List<Movie> getMoviesNowPlaying() {
+		return this.movieDAO.getMoviesNowPlaying();
+	}
+        
+        @Transactional
+	public List<Movie> getMoviesComingSoon() {
+		return this.movieDAO.getMoviesComingSoon();
 	}
 	
 	@Transactional

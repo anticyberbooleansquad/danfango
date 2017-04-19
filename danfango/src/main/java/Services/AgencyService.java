@@ -160,27 +160,12 @@ public class AgencyService {
                 movie.setPoster(posterLink);
 
 
-                if (movieService.getMovieByAgencyId(movie.getAgencyMovieId()) == null) {
+                if (movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()) == null) {
                     movieService.addMovie(movie);
                 } // if the movie does exist then we update that movie oobject
                 else {
                     movieService.updateMovie(movie);
                 }
-                
-                System.out.println("title : " + eElement.getElementsByTagName("title").item(0).getTextContent());
-                System.out.println("year : " + eElement.getElementsByTagName("year").item(0).getTextContent());
-                System.out.println("rated : " + eElement.getElementsByTagName("rated").item(0).getTextContent());
-                System.out.println("released : " + eElement.getElementsByTagName("released").item(0).getTextContent());
-                System.out.println("imdbID : " + eElement.getElementsByTagName("imdbID").item(0).getTextContent());
-                System.out.println("imdbRating : " + eElement.getElementsByTagName("imdbRating").item(0).getTextContent());
-                System.out.println("genre : " + eElement.getElementsByTagName("genre").item(0).getTextContent());
-                System.out.println("plot : " + eElement.getElementsByTagName("plot").item(0).getTextContent());
-                System.out.println("poster : " + eElement.getElementsByTagName("poster").item(0).getTextContent());
-                System.out.println("runtime : " + eElement.getElementsByTagName("runtime").item(0).getTextContent());
-                System.out.println("actors : " + eElement.getElementsByTagName("actors").item(0).getTextContent());
-                System.out.println("director : " + eElement.getElementsByTagName("director").item(0).getTextContent());
-                System.out.println("writer : " + eElement.getElementsByTagName("writer").item(0).getTextContent());
-                System.out.println("\n");
 
             }
         }
@@ -212,7 +197,16 @@ public class AgencyService {
                     int age = Integer.parseInt(eElement.getElementsByTagName("age").item(0).getTextContent());
                     actor.setAge(age);
                 }
-                crewService.addCrewMember(actor);
+//                NodeList nList2 = doc.getElementsByTagName("movie");
+
+                
+                
+                if (crewService.getCrewMemberByNameAndDOB(actor.getFullName(), actor.getDob()) == null) {
+                    crewService.addCrewMember(actor);
+                } // if the movie does exist then we update that movie oobject
+                else {
+                    crewService.updateCrewMember(actor);
+                }
 
             }
         }

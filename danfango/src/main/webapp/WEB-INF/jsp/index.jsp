@@ -102,23 +102,29 @@
                 </h1>
             </div>
             <!-- End Big Heading -->
+            <c:forEach var="movie" items="${movies}" step="4" varStatus="loop">
 
-            <div class="row spacing">
+                <div class="row spacing">
 
-                <c:forEach var = "movie" items="${movies}">
                     <div class = col-md-3>
                         <a class="" href="movieinfopage/${movie.id}">
                             <img class ="posters" src=${movie.poster}>
                         </a>
-                        <a class="" href="movieinfopage.html">
-                            <img class ="posters" src=${movie.poster}>
+                        <a class="" href="movieinfopage/${movies[loop.index+1].id}">
+                            <img class ="posters" src=${movies[loop.index+1].poster}>
+                        </a>
+                        <a class="" href="movieinfopage/${movies[loop.index+2].id}">
+                            <img class ="posters" src=${movies[loop.index+2].poster}>
+                        </a>
+                        <a class="" href="movieinfopage/${movies[loop.index+3].id}">
+                            <img class ="posters" src=${movies[loop.index+3].poster}>
                         </a>
                     </div>
-                </c:forEach>
+             </c:forEach>
 
-                
+
             </div><!--row-->
-            
+
         </div>
 
     </div>

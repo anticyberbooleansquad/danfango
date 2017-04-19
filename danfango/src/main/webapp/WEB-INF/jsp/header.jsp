@@ -48,7 +48,7 @@
                             <!-- Start Navigation List -->
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
-                                    <a href="/danfango/nowplaying.html">Movies</a>
+                                    <a href="/danfango/nowplaying">Movies</a>
                                 </li>
                                 <li>
                                     <a href="/danfango/ticketselectpage.html">Movie Times + Tickets</a>

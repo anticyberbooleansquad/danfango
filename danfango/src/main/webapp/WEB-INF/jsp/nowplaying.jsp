@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,63 +44,22 @@
 
             <div class = "slider2">
 
-                <div class="slide">
-                    <div class="row spacing">
+                <c:forEach items="${openingThisWeek}" var="movie" varStatus="loop" step="4">
+                    <div class="slide"> 
+                        <div class="row spacing">
+                            <c:forEach begin="0" end="3" varStatus="loop2"> 
+                                <c:if test="${not empty openingThisWeek[loop.index+loop2.index]}">
+                                    <div class = "col-md-3">
+                                        <a class="" href="movieinfopage/${openingThisWeek[loop.index + loop2.index].id}">
+                                            <img class ="posters" src=${openingThisWeek[loop.index+ loop2.index].poster}>
+                                        </a>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </div><!--row-->
+                    </div><!-- END SLIDER -->
+                </c:forEach>
 
-                        <div class = "col-md-3">
-                            <a class="" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMzk1NzI1ODg3M15BMl5BanBnXkFtZTgwNzM0Mzc4MTI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMzJiNTI3MjItMGJiMy00YzA1LTg2MTItZmE1ZmRhOWQ0NGY1XkEyXkFqcGdeQXVyOTk4MTM0NQ@@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTkwMTgwODAxMl5BMl5BanBnXkFtZTgwNTEwNTQ3MDI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-
-
-                    </div><!--row-->
-                </div><!-- END SLIDER -->
-                
-                <div class="slide">
-                    <div class="row spacing">
-
-                        <div class = "col-md-3">
-                            <a class="" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTU1MTkxNzc5NF5BMl5BanBnXkFtZTgwOTM2Mzk3MTI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BNzI5MzM3MzkxNF5BMl5BanBnXkFtZTgwOTkyMjI4MTI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTk2NjI5NzgwNl5BMl5BanBnXkFtZTgwNDc4NTA1OTE@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjI1MjkzMjczMV5BMl5BanBnXkFtZTgwNDk4NjYyMTI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-
-
-                    </div><!--row-->
-                </div><!-- END SLIDER -->
-
-                
 
             </div> <!--END MOVIE SLIDER -->
 
@@ -106,63 +67,21 @@
 
             <div class = "slider2">
 
-                <div class="slide">
-                    <div class="row spacing">
-
-                        <div class = "col-md-3">
-                            <a class="" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BNDUzOTE5OTk1NF5BMl5BanBnXkFtZTgwNzgwNzA4MDI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMzUxNjQ5MjAyOF5BMl5BanBnXkFtZTgwMjIzOTA1MDI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjMwMzM4NTE5OV5BMl5BanBnXkFtZTgwMTAwNDU4MDI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-
-
-                    </div><!--row-->
-                </div><!-- END SLIDER -->
-
-
-                <div class="slide">
-                    <div class="row spacing">
-
-                        <div class = "col-md-3">
-                            <a class="" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjEwMzMxODIzOV5BMl5BanBnXkFtZTgwNzg3OTAzMDI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjI3NzA1MDk4N15BMl5BanBnXkFtZTgwNzE2ODIyMTI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjMxOTM1OTI4MV5BMl5BanBnXkFtZTgwODE5OTYxMDI@._V1_SX300.jpg">
-                            </a>
-                        </div>
-                        <div class = "col-md-3">
-                            <a class="link" href="movieinfopage.html">
-                                <img class ="posters" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_SX300.jpg">
-                            </a>
-                        </div>
-
-
-                    </div><!--row-->
-                </div><!-- END SLIDE -->
-
+                <c:forEach items="${nowPlaying}" var="movie" varStatus="loop" step="4">
+                    <div class="slide"> 
+                        <div class="row spacing">
+                            <c:forEach begin="0" end="3" varStatus="loop2"> 
+                                <c:if test="${not empty nowPlaying[loop.index+loop2.index]}">
+                                    <div class = "col-md-3">
+                                        <a class="" href="movieinfopage/${nowPlaying[loop.index + loop2.index].id}">
+                                            <img class ="posters" src=${nowPlaying[loop.index+ loop2.index].poster}>
+                                        </a>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </div><!--row-->
+                    </div><!-- END SLIDER -->
+                </c:forEach>
 
 
             </div> <!--END MOVIE SLIDER -->

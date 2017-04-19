@@ -50,7 +50,7 @@
 
             <div class="row form-group">
                 <div class="col-sm-3">
-                    <img class="spacing movieposter" src="resources/images/movies/lbposter.jpg"/>
+                    <img class="spacing movieposter" src=${movie.poster}/>
                 </div>
 
 
