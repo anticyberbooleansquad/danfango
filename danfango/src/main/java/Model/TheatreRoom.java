@@ -31,6 +31,7 @@ public class TheatreRoom implements Serializable{
     private Integer id;
     @OneToOne
     private Theatre theatre;
+    //@OneToMany
     //private ArrayList<Seat> seats;
     private SeatingType seatingType;
     private int totalSeats;
@@ -75,6 +76,20 @@ public class TheatreRoom implements Serializable{
     public void setTotalSeatsRemaining(int totalSeatsRemaining) {
         this.totalSeatsRemaining = totalSeatsRemaining;
     }
+
+  /**
+   * @return the theatre
+   */
+  public Theatre getTheatre() {
+    return theatre;
+  }
+
+  /**
+   * @param theatre the theatre to set
+   */
+  public void setTheatre(Theatre theatre) {
+    this.theatre = theatre;
+  }
     
     
     

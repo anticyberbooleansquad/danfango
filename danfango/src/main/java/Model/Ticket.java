@@ -5,14 +5,15 @@
  */
 package Model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
  *
  * @author johnlegutko
  */
-//@Entity
-public class Ticket {
+//@Embeddable
+public class Ticket implements Serializable{
     
     public enum TicketType {Child, Adult, Senior, Veteran};
 

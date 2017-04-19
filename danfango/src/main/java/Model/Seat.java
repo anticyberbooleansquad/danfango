@@ -11,11 +11,14 @@ import javax.persistence.*;
  *
  * @author johnlegutko
  */
-//@Entity
+@Entity
+@Table
 public class Seat {
     
     @Id
     private Integer id;
+    @OneToOne
+    private TheatreRoom theatreRoom;
     private String row;
     private int seatNumber;
     private boolean reserved;
