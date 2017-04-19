@@ -74,7 +74,15 @@ public class CrewMemberDAO{
     public CrewMember getCrewMemberByNameAndDOB(String name, Timestamp dob)
     {
         Session session = this.sessionFactory.getCurrentSession();
-        List crewMembers = session.createCriteria(CrewMember.class).add(Restrictions.eq("fullName", name)).add(Restrictions.eq("dob", dob)).list();
+        List crewMembers;
+        if(1)
+        {
+            crewMembers = session.createCriteria(CrewMember.class).add(Restrictions.eq("fullName", name)).list();
+        }
+        else
+        {
+            crewMembers = session.createCriteria(CrewMember.class).add(Restrictions.eq("fullName", name)).add(Restrictions.eq("dob", dob)).list();
+        }
         if (crewMembers.isEmpty()) {
             return null;
         }
