@@ -75,7 +75,7 @@ public class CrewMemberDAO{
     {
         Session session = this.sessionFactory.getCurrentSession();
         List crewMembers;
-        if(1)
+        if(dob == null)
         {
             crewMembers = session.createCriteria(CrewMember.class).add(Restrictions.eq("fullName", name)).list();
         }
