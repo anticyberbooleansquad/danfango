@@ -34,6 +34,8 @@ public class CrewMember implements Serializable{
     private String biography ;
     private int age;
     private Timestamp dob;
+    @OneToMany
+    private List<Movie> movies;
 
     /**
      * @return the id
@@ -125,6 +127,14 @@ public class CrewMember implements Serializable{
      */
     public void setDob(Timestamp dob) {
         this.dob = dob;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
     
     
