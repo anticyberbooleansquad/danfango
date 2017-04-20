@@ -8,6 +8,7 @@ package Model;
 import java.sql.Timestamp;
 import java.util.List;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,8 +39,8 @@ public class Movie implements Serializable {
     private String synopsis;
     private String runTime;
     private String poster;
-    @OneToMany
-    private List<CrewMember> crewMembers;
+    @ManyToMany
+    private List<CrewMember> crewMembers = new ArrayList<CrewMember>();
     @OneToMany
     private List<Genre> genres;
 

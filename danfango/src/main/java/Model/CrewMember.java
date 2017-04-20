@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,8 +35,8 @@ public class CrewMember implements Serializable{
     private String biography ;
     private int age;
     private Timestamp dob;
-    @OneToMany
-    private List<Movie> movies;
+    @ManyToMany
+    private List<Movie> movies= new ArrayList<Movie>();
 
     /**
      * @return the id

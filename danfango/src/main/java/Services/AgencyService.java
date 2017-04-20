@@ -200,22 +200,23 @@ public class AgencyService {
                 }
                 NodeList movies = eElement.getElementsByTagName("movie");
                 
-//                for (int i = 0; i < movies.getLength(); i++) {
-//                    Node movie = movies.item(i);
-//                    Element movieElement = (Element) movie;
-//                    String movieid= movieElement.getTextContent();
-//                    System.out.println("MOVIEID: "+ movieid);
-//                    Movie m = movieService.getMovieByAgencyMovieId(movieid);
-//                    System.out.println("MOVIE: "+ m.getTitle());
-//
-//                    actor.getMovies().add(m);
-//                }
+                for (int i = 0; i < movies.getLength(); i++) {
+                    Node movie = movies.item(i);
+                    Element movieElement = (Element) movie;
+                    String movieid= movieElement.getTextContent();
+                    System.out.println("MOVIEID: "+ movieid);
+                    Movie m = movieService.getMovieByAgencyMovieId(movieid);
+                    if (m != null){
+                        actor.getMovies().add(m);
+                    }
+                }
 //                  crewService.addCrewMember(actor);
 
                     if (crewService.getCrewMemberByNameAndDOB(actor.getFullName(), actor.getDob()) == null) {
                         crewService.addCrewMember(actor);
                     } // if the movie does exist then we update that movie oobject
                     else {
+                        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ "+ actor.getFullName());
                         actor.setId(crewService.getCrewMemberByNameAndDOB(actor.getFullName(), actor.getDob()).getId());
                         crewService.updateCrewMember(actor);
                     }
