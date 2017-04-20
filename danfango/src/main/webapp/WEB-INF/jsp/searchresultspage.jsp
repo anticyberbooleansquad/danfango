@@ -29,6 +29,11 @@
         <div class="spacing container">
 
             <h2 class="spacing movietitle">SEARCH <font color="EA6630"><b>RESULTS</b></font></h2>
+            
+            <c:forEach items="${movies}" var="movie">
+                <p>${movie.id} : ${movie.name}</p>
+                
+            </c:forEach>
 
         </div>
 

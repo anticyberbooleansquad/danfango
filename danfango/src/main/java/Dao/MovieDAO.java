@@ -131,5 +131,11 @@ public class MovieDAO {
         }
         logger.info("Movie deleted successfully, person details=" + m);
     }
+    
+    public List<Movie> getMoviesLikeTitle(String title){
+        Session session = this.sessionFactory.getCurrentSession();
+        List movies = session.createCriteria(Movie.class).add(Restrictions.like("title", title)).list();
+        return movies;
+    }
 
 }

@@ -19,7 +19,7 @@
 
     </head>
     <body>
-        
+
         <!-- Full Body Container -->
         <div id="container">
 
@@ -40,8 +40,29 @@
                         </div>
                         <div class="navbar-collapse collapse toppadding">
                             <!-- Start Search -->  
-                            <input type="text" id="search" placeholder="Enter City + State, ZIP Code, or Movie" required data-error="Please enter valid info">
-                            <a href="/danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>
+<!--                            <input type="text" id="search" placeholder="Enter City + State, ZIP Code, or Movie" required data-error="Please enter valid info">-->
+
+                            <form role="form" id="searchForm" method="POST" action="/danfango/search">                                           
+                                <input type="text" name= "searchString" id="searchString" placeholder="Enter City + State, ZIP Code, or Movie">
+                                <input type="submit" value="search" class="btn-system btn-mini border-btn btn-gray">
+
+                            </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <!--                            <a href="/danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>-->
 
                             <!-- End Search -->
 

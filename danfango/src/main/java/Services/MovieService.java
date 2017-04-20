@@ -70,5 +70,8 @@ public class MovieService {
 	public void removeMovie(int id) {
 		this.movieDAO.removeMovie(id);
 	}
-	
+	@Transactional
+                public List<Movie> getMoviesLikeTitle(String title){
+                    return this.movieDAO.getMoviesLikeTitle(title);
+                }
 }
