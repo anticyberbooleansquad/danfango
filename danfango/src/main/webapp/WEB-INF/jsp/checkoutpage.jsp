@@ -89,7 +89,7 @@
                         </ul>
                     </div>
 
-                    <a href="/danfango/paymentpage.html" class="btn-system btn-large btn-gray joinbutton spacing">BUY TICKETS!</a> 
+                    <a href="/danfango/seatselection.html" class="btn-system btn-large btn-gray joinbutton spacing">BUY TICKETS!</a> 
 
                 </div>
             </div>

@@ -22,7 +22,7 @@
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/datepicker.css"/>" rel="stylesheet">
         <link href="<c:url value = "https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Work+Sans:200|Josefin+Sans:100i" /> rel="stylesheet">
-              <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
     </head>
@@ -58,7 +58,7 @@
                 <div class ="spacing col-sm-6">
 
                     <div class="theatreTimes">
-                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
+                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
                         <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
                         <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
                         <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>

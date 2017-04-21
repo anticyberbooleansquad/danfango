@@ -44,6 +44,25 @@
     padding-bottom:20px;
 }
 
+.seatButton{
+    height: 35px;
+    width: 50px;
+}
+
+.screen{
+    height: 40px;
+    width: 100%;
+    background-color: white;
+}
+
+.seat-selected{
+    opacity: 1.0; 
+}
+
+.seat-unselected{
+    opacity:0.5; 
+}
+
 .overlay {
   position: absolute;
   top: 0;
