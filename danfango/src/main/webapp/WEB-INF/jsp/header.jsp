@@ -72,10 +72,10 @@
                                     <a href="/danfango/nowplaying">Movies</a>
                                 </li>
                                 <li>
-                                    <a href="/danfango/ticketselectpage.html">Movie Times + Tickets</a>
+                                    <a href="/danfango/ticketselectpage">Movie Times + Tickets</a>
                                 </li>
                                 <li>
-                                    <a href="/danfango/movienews.html">Movie News</a>
+                                    <a href="/danfango/movienews">Movie News</a>
                                 </li>
                                 <li>
 
