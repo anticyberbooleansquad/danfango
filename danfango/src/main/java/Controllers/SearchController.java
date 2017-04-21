@@ -34,10 +34,13 @@ public class SearchController {
         // here is where we call the search service
         SearchResults searchResults = searchService.search(searchString);
         ArrayList<ClientSearchResult> movies = searchResults.getMovies();
+        ArrayList<ClientSearchResult> crew = searchResults.getCrew();
+        ArrayList<ClientSearchResult> theatres = searchResults.getTheatres();
         System.out.println("We make it to the search controller");
-        System.out.print(Arrays.toString(movies.toArray()));
+        System.out.println("The crew is: " + Arrays.toString(crew.toArray()));
         request.setAttribute("movies", movies);
-                
+        request.setAttribute("crew", crew);
+        request.setAttribute("theatres", theatres);
         ModelAndView modelAndView = new ModelAndView("searchresultspage");
         return modelAndView;
     }

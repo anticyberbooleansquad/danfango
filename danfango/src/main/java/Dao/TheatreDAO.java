@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Theatre;
+import org.hibernate.criterion.Restrictions;
 /**
  *
  * @author charles
@@ -69,6 +70,12 @@ public class TheatreDAO{
                     session.delete(u);
             }
             logger.info("Theatre deleted successfully, person details="+u);
+    }
+    
+    public List<Theatre> getTheatresLikeName(String name){
+            Session session = this.sessionFactory.getCurrentSession();
+            List theatres = session.createCriteria(Theatre.class).add(Restrictions.like("name", name)).list();
+            return theatres;
     }
 
 }
