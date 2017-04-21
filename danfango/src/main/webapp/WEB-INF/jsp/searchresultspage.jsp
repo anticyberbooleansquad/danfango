@@ -30,11 +30,18 @@
 
             <h2 class="spacing movietitle">SEARCH <font color="EA6630"><b>RESULTS</b></font></h2>
             
+            <h1>Movies</h1>
             <c:forEach items="${movies}" var="movie">
                 <p>${movie.id} : ${movie.name}</p>
-                
             </c:forEach>
-
+            <h1>Actors</h1>
+            <c:forEach items="${crew}" var="crewMember">
+                <p>${crewMember.id} : ${crewMember.name}</p>
+            </c:forEach>
+                <h1>Theatres</h1>
+                <c:forEach items="${theatres}" var="theatre">
+                    <p>${theatre.id} : ${theatre.name}<p>
+                </c:forEach>
         </div>
 
 

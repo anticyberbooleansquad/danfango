@@ -50,5 +50,9 @@ public class TheatreService {
 	public void removeTheatre(int id) {
 		this.theatreDAO.removeTheatre(id);
 	}
+                @Transactional
+                public List<Theatre> getTheatresLikeName(String name){
+                    return this.theatreDAO.getTheatresLikeName(name);
+                }
 	
 }

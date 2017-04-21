@@ -4,6 +4,7 @@ Services/AuthenticationService.class
 Controllers/CheckOutController.class
 Dao/ReviewDAO.class
 Model/Advertisement.class
+Controllers/SeatSelectionController.class
 Dao/TheatreRoomDAO.class
 Services/TheatreRoomService.class
 Model/TheatreRoom.class
@@ -19,6 +20,7 @@ Services/ShowingService.class
 Controllers/HomeController.class
 Controllers/MoviePageController.class
 Controllers/SearchResultController.class
+Controllers/TicketSelectHeaderController.class
 Controllers/MovieNewsController.class
 Controllers/SignInController.class
 Services/AdvertisementService.class
@@ -43,6 +45,7 @@ Model/Showing.class
 Controllers/SignUpPageController.class
 Model/Genre.class
 Controllers/TestController.class
+.netbeans_automatic_build
 Model/Agency$type.class
 Controllers/MovieTrailerController.class
 Model/Ticket.class

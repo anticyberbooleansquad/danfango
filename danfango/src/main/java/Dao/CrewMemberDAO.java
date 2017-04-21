@@ -99,5 +99,11 @@ public class CrewMemberDAO{
             }
             logger.info("CrewMember deleted successfully, person details="+c);
     }
+    
+    public List<CrewMember> getCrewMembersLikeName(String name){
+        Session session = this.sessionFactory.getCurrentSession();
+        List crewMembers = session.createCriteria(CrewMember.class).add(Restrictions.like("fullName", name)).list();
+        return crewMembers;
+    }
 
 }
