@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Theatre;
+import java.util.ArrayList;
 import org.hibernate.criterion.Restrictions;
 /**
  *
@@ -75,6 +76,12 @@ public class TheatreDAO{
     public List<Theatre> getTheatresLikeName(String name){
             Session session = this.sessionFactory.getCurrentSession();
             List theatres = session.createCriteria(Theatre.class).add(Restrictions.like("name", name)).list();
+            return theatres;
+    }
+    
+    public List<Theatre> getTheatresInZipList(ArrayList<String> zipcodes){
+            Session session = this.sessionFactory.getCurrentSession();
+            List theatres = session.createCriteria(Theatre.class).add(Restrictions.in("zip", zipcodes)).list();
             return theatres;
     }
 

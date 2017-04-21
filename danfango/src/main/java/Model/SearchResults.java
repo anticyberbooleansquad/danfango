@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class SearchResults {
     ArrayList<ClientSearchResult> movies;
     ArrayList<ClientSearchResult> crew;
-    ArrayList<ClientSearchResult> theatres;
+    ArrayList<ClientSearchResult> theatresByName;
+    ArrayList<ClientSearchResult> theatresByLocation;
     ArrayList<LocationSearchResult> locations;
 
     public ArrayList<ClientSearchResult> getMovies() {
@@ -34,14 +35,23 @@ public class SearchResults {
         this.crew = crew;
     }
 
-    public ArrayList<ClientSearchResult> getTheatres() {
-        return theatres;
+    public ArrayList<ClientSearchResult> getTheatresByName() {
+        return theatresByName;
     }
 
-    public void setTheatres(ArrayList<ClientSearchResult> theatre) {
-        this.theatres = theatre;
+    public void setTheatresByName(ArrayList<ClientSearchResult> theatresByName) {
+        this.theatresByName = theatresByName;
     }
 
+    public ArrayList<ClientSearchResult> getTheatresByLocation() {
+        return theatresByLocation;
+    }
+
+    public void setTheatresByLocation(ArrayList<ClientSearchResult> theatresByLocation) {
+        this.theatresByLocation = theatresByLocation;
+    }
+
+       
     public ArrayList<LocationSearchResult> getLocations() {
         return locations;
     }
@@ -49,7 +59,7 @@ public class SearchResults {
     public void setLocations(ArrayList<LocationSearchResult> locations) {
         this.locations = locations;
     }
-            
+         
      
     
 

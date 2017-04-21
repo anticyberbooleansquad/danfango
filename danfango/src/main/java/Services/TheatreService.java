@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Dao.TheatreDAO;
 import Model.Theatre;
+import java.util.ArrayList;
 
 @Service
 public class TheatreService {
@@ -53,6 +54,10 @@ public class TheatreService {
                 @Transactional
                 public List<Theatre> getTheatresLikeName(String name){
                     return this.theatreDAO.getTheatresLikeName(name);
+                }
+                @Transactional
+                public List<Theatre> getTheatresInZipList(ArrayList<String> zipcodes){
+                    return this.theatreDAO.getTheatresInZipList(zipcodes);
                 }
 	
 }

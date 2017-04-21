@@ -38,8 +38,12 @@
             <c:forEach items="${crew}" var="crewMember">
                 <p>${crewMember.id} : ${crewMember.name}</p>
             </c:forEach>
-                <h1>Theatres</h1>
-                <c:forEach items="${theatres}" var="theatre">
+                <h1>Theatres by Name</h1>
+                <c:forEach items="${theatresByName}" var="theatre">
+                    <p>${theatre.id} : ${theatre.name}<p>
+                </c:forEach>
+                    <h1>Theatres by Location</h1>
+                    <c:forEach items="${theatresByLocation}" var="theatre">
                     <p>${theatre.id} : ${theatre.name}<p>
                 </c:forEach>
         </div>
