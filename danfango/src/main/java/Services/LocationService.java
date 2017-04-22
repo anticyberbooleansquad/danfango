@@ -25,8 +25,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * All of LocationServices methods expect an abbreviated version of a state's name as this is what we have in the database for theatres.
+ * The zipcodeapi also uses abbreviated state names.
+ * A bidirectional map is used to map abbreviations with full names.
+ * If you have the longer version of a state name, you can get the abbreviated version by passing it into 
+ * the getShortNameKey() method. 
+ * @author Konrad Juszkiewicz
  */
 @Service
 public class LocationService {
@@ -88,7 +92,7 @@ public class LocationService {
                 }
             }
         }
-        // if we make it down here this is not an exact, valid (city, state)
+        // if we make it down here this is not an exact, valid (city, state) combo
         return -1;
     }
 

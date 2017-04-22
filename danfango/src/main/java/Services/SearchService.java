@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * 
  * @author Konrad Juszkiewicz <kjuszkiewicz95 at gmail.com>
  */
 @Service
@@ -86,7 +86,7 @@ public class SearchService {
         }
         return crewResults;
     }
-
+    
     public ArrayList<ClientSearchResult> searchTheatresByName(String searchString) {
         ArrayList<ClientSearchResult> theatreResults = new ArrayList();
         List<Theatre> theatres = theatreService.getTheatresLikeName(searchString);
@@ -98,7 +98,16 @@ public class SearchService {
         }
         return theatreResults;
     }
-
+    
+    /** 
+     * The main method for theatre by location searches. 
+     * First checks to see if the user entered a potential zip code and if so calls searchTheatresByZipCode().
+     * If not it extracts and passes city and state from the zipcode to searchTheatresNearCityState() to see if the user
+     * entered an exact [city, state] location
+     * @param searchString
+     * @return 
+     * @throws IOException 
+     */
     public ArrayList<ClientSearchResult> searchTheatresByLocation(String searchString) throws IOException {
         ArrayList<ClientSearchResult> theatresByLocation = null;
         searchString = searchString.trim();
@@ -124,6 +133,14 @@ public class SearchService {
         return theatresByLocation;
     }
 
+    /**
+     * Retrieves a zipcode from the locationService based on (city, state) and then make use of the
+     * searchTheatresByZipcode() method
+     * @param city
+     * @param state
+     * @return
+     * @throws IOException 
+     */
     public ArrayList<ClientSearchResult> searchTheatresNearCityState(String city, String state) throws IOException {
         ArrayList<ClientSearchResult> theatreResults = null;
         int zipcode = locationService.getZipcodeByCityState(city, state);
@@ -132,7 +149,15 @@ public class SearchService {
         }
         return theatreResults;
     }
-
+    
+    /**
+     * Retrieves a list of nearby zipcodes from the locationSerivce and will return information on any
+     * theatres who have a zipcode in this list. 
+     * @param zipcode
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException 
+     */
     public ArrayList<ClientSearchResult> searchTheatresByZipcode(int zipcode) throws MalformedURLException, IOException {
         ArrayList<ClientSearchResult> theatreResults = new ArrayList();
         ArrayList<String> zipcodes = locationService.getNearbyZipCodes(zipcode);
@@ -145,7 +170,16 @@ public class SearchService {
         }
         return theatreResults;
     }
-
+    
+    /**
+     * The main method for location searches.
+     * We first call searchLocationsByState() in case the user entered just an exact state
+     * We then call searchLocationsByCityState() in case the user entered a city substring and a [state substring/exact state]
+     * If the user didn't enter an exact state or a comma separated potential city/state, we search for both cities and states 
+     * matching the entered subString.
+     * @param searchString
+     * @return 
+     */
     public ArrayList<LocationSearchResult> searchLocations(String searchString) {
         ArrayList<LocationSearchResult> locations = null;
         locations = searchLocationsByState(searchString);
@@ -163,7 +197,12 @@ public class SearchService {
         return locations;
     }
 
-    // search in the form: [abbrev./full state]
+    
+    /**
+     * // search in the form: [abbrev./full state]. This method checks for an exact state match
+     * @param searchString
+     * @return 
+     */
     public ArrayList<LocationSearchResult> searchLocationsByState(String searchString) {
         ArrayList<LocationSearchResult> locations = null;
         searchString = searchString.toLowerCase();
@@ -179,7 +218,12 @@ public class SearchService {
         return locations;
     }
 
-    // someone can potentially search in the form: [citySubstring], [abbrev./full state]
+    /** 
+     * search in the form: [citySubstring], [abbrev./full state]
+     * @param city
+     * @param state
+     * @return 
+     */
     public ArrayList<LocationSearchResult> searchLocationsByCityState(String city, String state) {
         ArrayList<LocationSearchResult> locations = null;
         if (isShortStateName(state)) {
@@ -193,15 +237,25 @@ public class SearchService {
         }
         return locations;
     }
-
-    // user did not enter a state as any part of the searchString 
-    // this means we do a very general location search, returning results where searchString is a substring of the cityname OR statename of the locations
+    /**
+     * search in the form: [some substring]
+     * user did not enter a state as any part of the searchString
+     * this means we do a very general location search, returning results where searchString 
+     * is a substring of the cityname OR statename of the locations
+     * @param searchString
+     * @return 
+     */
     public ArrayList<LocationSearchResult> searchLocationsBySubstring(String searchString) {
         ArrayList<LocationSearchResult> locations = null;
         locations = locationService.getLocationsLikeCityOrLikeState(searchString);
         return locations;
     }
 
+    /**
+     * Checks if the entered string is a full state name. Ex. new york
+     * @param stateName
+     * @return 
+     */
     public boolean isLongStateName(String stateName) {
         String longStateName = stateName;
         String shortStateName = locationService.getShortNameKey(longStateName);
@@ -212,6 +266,11 @@ public class SearchService {
         }
     }
 
+    /**
+     * Checks if the entered string is an abbreviated state name. Ex. ny
+     * @param stateName
+     * @return 
+     */
     public boolean isShortStateName(String stateName) {
         String shortStateName = stateName;
         String longStateName = locationService.getShortNameKey(shortStateName);
