@@ -47,7 +47,7 @@ public class SearchService {
     BiMap<String, String> states;
 
     public SearchService() {
-        // initialize BiMap
+        // fill/initialize BiMap
         Map<String, String> tempStates = new HashMap();
         fillStatesMap(tempStates);
         states = ImmutableBiMap.copyOf(Collections.unmodifiableMap(tempStates));
@@ -66,8 +66,8 @@ public class SearchService {
             ArrayList<ClientSearchResult> theatresByLocation = searchTheatresByLocation(searchString);
             results.setTheatresByLocation(theatresByLocation);
         }
+        // ArrayList<LocationSearchResult> locations = searchLocations(searchString);
 
-//        ArrayList<LocationSearchResult> locations = searchLocations(searchString);
         results.setMovies(movies);
         results.setCrew(crew);
         results.setTheatresByName(theatresByName);
@@ -144,65 +144,101 @@ public class SearchService {
 
     public ArrayList<LocationSearchResult> searchLocations(String searchString) {
         ArrayList<LocationSearchResult> locations = new ArrayList();
-        // someone can potentially pass in a city, if so show all city, state combos
+        // first set search string to lowercase 
+        searchString = searchString.toLowerCase();
         // someone can potentially pass in a full state name, if so show all city combos with that state
+        String state = states.inverse().get(searchString);
+        // state will be non-null if the search string was a statename
+        if(state != null){
+            
+        }
         // someone can potentially pass in an abbrev. state name, if so show all city combos with that state
-        // someone can potentially pass in a city, full state, if so show all city combos with that that state 
-        // someone can potentially pass in a city, abbrev. state, if so show all city combos with that state 
+        state = states.get(searchString);
+        // state will be non-null if the search string was an abbrev. state
+        if(state != null){
+            
+        }
+        // someone can potentially search in the form: [cityname], [abbrev./full state]
+        String[] names = searchString.split(",");
+        if(names != null){
+            String cityName = names[0];
+            String stateName = names[1];
+            // stateName may be either full name or abbrev.
+            // let's see if user typed an abbrev. state name
+            String shortStateName = stateName;
+            String longStateName = states.get(shortStateName);
+            if(longStateName != null){
+                // stateName is in fact an abbreviated state name and we can call theatre service method looking for theatres based on (city, abbrev. state) combo
+                // call theatreService
+            }
+            // user didn't type a shortStateName, let's see if he typed a longStateName
+            else{
+                longStateName = stateName;
+                shortStateName = states.inverse().get(longStateName);
+                if(shortStateName != null){
+                    // stateName is in fact a full state name and we can call theatre service method looking for theatres based on (city, abbrev. state) combo
+                    // call theatreService
+                }
+            }
+        }
+        // someone can potentially pass in a city, if so show all city, state combos
+        // call theatreService method to search based on city name 
+        
         return locations;
     }
 
     public final void fillStatesMap(Map<String, String> states) {
-        states.put("AL", "Alabama");
-        states.put("MT", "Montana");
-        states.put("AK", "Alaska");
-        states.put("NE", "Nebraska");
-        states.put("AZ", "Arizona");
-        states.put("NV", "Nevada");
-        states.put("AR", "Arkansas");
-        states.put("NH", "New Hampshire");
-        states.put("CA", "California");
-        states.put("NJ", "New Jersey");
-        states.put("CO", "Colorado");
-        states.put("NM", "New Mexico");
-        states.put("CT", "Connecticut");
-        states.put("NY", "New York");
-        states.put("DE", "Delaware");
-        states.put("NC", "North Carolina");
-        states.put("FL", "Florida");
-        states.put("ND", "North Dakota");
-        states.put("GA", "Georgia");
-        states.put("OH", "Ohio");
-        states.put("HI", "Hawaii");
-        states.put("OK", "Oklahoma");
-        states.put("ID", "Idaho");
-        states.put("OR", "Oregon");
-        states.put("IL", "Illinois");
-        states.put("PA", "Pennsylvania");
-        states.put("IN", "Indiana");
-        states.put("RI", "Rhode Island");
-        states.put("IA", "Iowa");
-        states.put("SC", "South Carolina");
-        states.put("KS", "Kansas");
-        states.put("SD", "South Dakota");
-        states.put("KY", "Kentucky");
-        states.put("TN", "Tennessee");
-        states.put("LA", "Louisiana");
-        states.put("TX", "Texas");
-        states.put("ME", "Maine");
-        states.put("UT", "Utah");
-        states.put("MD", "Maryland");
-        states.put("VT", "Vermont");
-        states.put("MA", "Massachusetts");
-        states.put("VA", "Virginia");
-        states.put("MI", "Michigan");
-        states.put("WA", "Washington");
-        states.put("MN", "Minnesota");
-        states.put("WV", "West Virginia");
-        states.put("MS", "Mississippi");
-        states.put("WI", "Wisconsin");
-        states.put("MO", "Missouri");
-        states.put("WY", "Wyoming");
+        states.put("al", "alabama");
+        states.put("mt", "montana");
+        states.put("ak", "alaska");
+        states.put("ne", "nebraska");
+        states.put("az", "arizona");
+        states.put("nv", "nevada");
+        states.put("ar", "arkansas");
+        states.put("nh", "new hampshire");
+        states.put("ca", "california");
+        states.put("nj", "new jersey");
+        states.put("co", "colorado");
+        states.put("nm", "new mexico");
+        states.put("ct", "connecticut");
+        states.put("ny", "new york");
+        states.put("de", "delaware");
+        states.put("nc", "north carolina");
+        states.put("fl", "florida");
+        states.put("nd", "north dakota");
+        states.put("ga", "georgia");
+        states.put("oh", "ohio");
+        states.put("hi", "hawaii");
+        states.put("ok", "oklahoma");
+        states.put("id", "idaho");
+        states.put("or", "oregon");
+        states.put("il", "illinois");
+        states.put("pa", "pennsylvania");
+        states.put("in", "indiana");
+        states.put("ri", "rhode island");
+        states.put("ia", "iowa");
+        states.put("sc", "south carolina");
+        states.put("ks", "kansas");
+        states.put("sd", "south dakota");
+        states.put("ky", "kentucky");
+        states.put("tn", "tennessee");
+        states.put("la", "louisiana");
+        states.put("tx", "texas");
+        states.put("me", "maine");
+        states.put("ut", "utah");
+        states.put("md", "maryland");
+        states.put("vt", "vermont");
+        states.put("ma", "massachusetts");
+        states.put("va", "virginia");
+        states.put("mi", "michigan");
+        states.put("wa", "washington");
+        states.put("mn", "minnesota");
+        states.put("wv", "west virginia");
+        states.put("ms", "mississippi");
+        states.put("wi", "wisconsin");
+        states.put("mo", "missouri");
+        states.put("wy", "wyoming");
+
     }
 
 }
