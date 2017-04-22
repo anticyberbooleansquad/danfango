@@ -11,6 +11,8 @@ import Model.LocationSearchResult;
 import Model.Movie;
 import Model.SearchResults;
 import Model.Theatre;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.ImmutableBiMap;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,7 +20,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +43,15 @@ public class SearchService {
     CrewMemberService crewMemberService;
     @Autowired
     TheatreService theatreService;
+
+    BiMap<String, String> states;
+
+    public SearchService() {
+        // initialize BiMap
+        Map<String, String> tempStates = new HashMap();
+        fillStatesMap(tempStates);
+        states = ImmutableBiMap.copyOf(Collections.unmodifiableMap(tempStates));
+    }
 
     public SearchResults search(String searchString) throws MalformedURLException, IOException {
         System.out.println("Seach string is: " + searchString);
@@ -123,15 +137,72 @@ public class SearchService {
                     theatreResult.setName(theatre.getName());
                     theatreResults.add(theatreResult);
                 }
-
-            } 
+            }
         }
         return theatreResults;
     }
 
     public ArrayList<LocationSearchResult> searchLocations(String searchString) {
         ArrayList<LocationSearchResult> locations = new ArrayList();
+        // someone can potentially pass in a city, if so show all city, state combos
+        // someone can potentially pass in a full state name, if so show all city combos with that state
+        // someone can potentially pass in an abbrev. state name, if so show all city combos with that state
+        // someone can potentially pass in a city, full state, if so show all city combos with that that state 
+        // someone can potentially pass in a city, abbrev. state, if so show all city combos with that state 
         return locations;
+    }
+
+    public final void fillStatesMap(Map<String, String> states) {
+        states.put("AL", "Alabama");
+        states.put("MT", "Montana");
+        states.put("AK", "Alaska");
+        states.put("NE", "Nebraska");
+        states.put("AZ", "Arizona");
+        states.put("NV", "Nevada");
+        states.put("AR", "Arkansas");
+        states.put("NH", "New Hampshire");
+        states.put("CA", "California");
+        states.put("NJ", "New Jersey");
+        states.put("CO", "Colorado");
+        states.put("NM", "New Mexico");
+        states.put("CT", "Connecticut");
+        states.put("NY", "New York");
+        states.put("DE", "Delaware");
+        states.put("NC", "North Carolina");
+        states.put("FL", "Florida");
+        states.put("ND", "North Dakota");
+        states.put("GA", "Georgia");
+        states.put("OH", "Ohio");
+        states.put("HI", "Hawaii");
+        states.put("OK", "Oklahoma");
+        states.put("ID", "Idaho");
+        states.put("OR", "Oregon");
+        states.put("IL", "Illinois");
+        states.put("PA", "Pennsylvania");
+        states.put("IN", "Indiana");
+        states.put("RI", "Rhode Island");
+        states.put("IA", "Iowa");
+        states.put("SC", "South Carolina");
+        states.put("KS", "Kansas");
+        states.put("SD", "South Dakota");
+        states.put("KY", "Kentucky");
+        states.put("TN", "Tennessee");
+        states.put("LA", "Louisiana");
+        states.put("TX", "Texas");
+        states.put("ME", "Maine");
+        states.put("UT", "Utah");
+        states.put("MD", "Maryland");
+        states.put("VT", "Vermont");
+        states.put("MA", "Massachusetts");
+        states.put("VA", "Virginia");
+        states.put("MI", "Michigan");
+        states.put("WA", "Washington");
+        states.put("MN", "Minnesota");
+        states.put("WV", "West Virginia");
+        states.put("MS", "Mississippi");
+        states.put("WI", "Wisconsin");
+        states.put("MO", "Missouri");
+        states.put("WY", "Wyoming");
     }
 
 }
