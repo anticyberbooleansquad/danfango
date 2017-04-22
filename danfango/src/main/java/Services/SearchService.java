@@ -141,52 +141,70 @@ public class SearchService {
         }
         return theatreResults;
     }
+    
+    public ArrayList<ClientSearchResult> searchTheatresByCityState(String searchString){
+        
+    }
 
     public ArrayList<LocationSearchResult> searchLocations(String searchString) {
         ArrayList<LocationSearchResult> locations = new ArrayList();
         // first set search string to lowercase 
         searchString = searchString.toLowerCase();
+        // |||||||||||||| STATE NAME ONLY |||||||||||||||||
         // someone can potentially pass in a full state name, if so show all city combos with that state
-        String longStateName = searchString;
-        String shortStateName = states.inverse().get(longStateName);
-        // state will be non-null if the search string was a statename
-        if(shortStateName != null){
+        if(isLongStateName(searchString)){
             
         }
         // someone can potentially pass in an abbrev. state name, if so show all city combos with that state
-        shortStateName = searchString;
-        longStateName = states.get(shortStateName);
-        // state will be non-null if the search string was an abbrev. state
-        if(longStateName != null){
+        if(isShortStateName(searchString)){
             
         }
+        // |||||||||||||| CITY, STATE  |||||||||||||||||
         // someone can potentially search in the form: [cityname], [abbrev./full state]
         String[] names = searchString.split(",");
         if(names != null){
             String cityName = names[0];
             String stateName = names[1];
-            // stateName may be either full name or abbrev.
-            // let's see if user typed an abbrev. state name
-            shortStateName = stateName;
-            longStateName = states.get(shortStateName);
-            if(longStateName != null){
-                // stateName is in fact an abbreviated state name and we can call theatre service method looking for theatres based on (city, abbrev. state) combo
-                // call theatreService
+            if(isShortStateName(stateName)){
+                // call location service method looking for locations containing cityName in this state
             }
-            // user didn't type a shortStateName, let's see if he typed a longStateName
+            else if(isLongStateName(stateName)){
+                    String shortName = states.inverse().get(stateName);
+                    //  locations containg cityName in this state
+                    // call location service
+            }
+            // state is not exact, can do our best with a like on cityname AND state
             else{
-                longStateName = stateName;
-                shortStateName = states.inverse().get(longStateName);
-                if(shortStateName != null){
-                    // stateName is in fact a full state name and we can call theatre service method looking for theatres based on (city, abbrev. state) combo
-                    // call theatreService
-                }
+                // call location service
             }
         }
-        // someone can potentially pass in a city, if so show all city, state combos
-        // call theatreService method to search based on city name 
+        // if we get down here than user did not enter a state as any part of the searchString and did not input a comma
+        // this means we do a very general location search, returning results where searchString is a part of the cityname OR statename of the locations
+        // call location service
         
         return locations;
+    }
+    
+    public boolean isLongStateName(String stateName){
+        String longStateName = stateName;
+        String shortStateName = states.inverse().get(longStateName);
+        if(shortStateName != null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public boolean isShortStateName(String stateName){
+        String shortStateName = stateName;
+        String longStateName = states.get(shortStateName);
+        if(longStateName != null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public final void fillStatesMap(Map<String, String> states) {
