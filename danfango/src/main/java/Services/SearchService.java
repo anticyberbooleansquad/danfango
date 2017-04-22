@@ -147,15 +147,17 @@ public class SearchService {
         // first set search string to lowercase 
         searchString = searchString.toLowerCase();
         // someone can potentially pass in a full state name, if so show all city combos with that state
-        String state = states.inverse().get(searchString);
+        String longStateName = searchString;
+        String shortStateName = states.inverse().get(longStateName);
         // state will be non-null if the search string was a statename
-        if(state != null){
+        if(shortStateName != null){
             
         }
         // someone can potentially pass in an abbrev. state name, if so show all city combos with that state
-        state = states.get(searchString);
+        shortStateName = searchString;
+        longStateName = states.get(shortStateName);
         // state will be non-null if the search string was an abbrev. state
-        if(state != null){
+        if(longStateName != null){
             
         }
         // someone can potentially search in the form: [cityname], [abbrev./full state]
@@ -165,8 +167,8 @@ public class SearchService {
             String stateName = names[1];
             // stateName may be either full name or abbrev.
             // let's see if user typed an abbrev. state name
-            String shortStateName = stateName;
-            String longStateName = states.get(shortStateName);
+            shortStateName = stateName;
+            longStateName = states.get(shortStateName);
             if(longStateName != null){
                 // stateName is in fact an abbreviated state name and we can call theatre service method looking for theatres based on (city, abbrev. state) combo
                 // call theatreService
