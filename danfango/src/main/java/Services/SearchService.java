@@ -35,10 +35,17 @@ public class SearchService {
     @Autowired
     TheatreService theatreService;
 
-    public SearchService() {
-        
-    }
-
+    
+    /**
+     * The main search method. 
+     * theatresByLocation are only included in the search results if the user enters a zipcode or exact (city, state) combo.
+     * Otherwise theatresByLocation will be null and danfango will attempt to provide location suggestions based on the
+     * entered searchString.
+     * @param searchString
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException 
+     */
     public SearchResults search(String searchString) throws MalformedURLException, IOException {
         System.out.println("Seach string is: " + searchString);
         SearchResults results = new SearchResults();
