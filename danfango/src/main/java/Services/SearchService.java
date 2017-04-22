@@ -63,21 +63,37 @@ public class SearchService {
         ArrayList<ClientSearchResult> crew = searchCrew(queryString);
         ArrayList<ClientSearchResult> theatresByName = searchTheatresByName(queryString);
         ArrayList<ClientSearchResult> theatresByLocation = null;
-
+        
+        boolean zipcodeEntered = false;
+        // try to match on exact zipcode
         searchString = searchString.trim();
         if (StringUtils.isNumeric(searchString) && searchString.length() == 5) {
+            zipcodeEntered = true;
             int zipcode = Integer.valueOf(searchString);
-             theatresByLocation = searchTheatresByZipcode(zipcode);
-            results.setTheatresByLocation(theatresByLocation);
-        }
-        else{
-            theatresByLocation = searchTheatresByCityState(searchString);
+            theatresByLocation = searchTheatresByZipcode(zipcode);
+        } 
+        // exact (city, state) combo
+        else {
+            String[] names = searchString.split(",");
+            if (names != null) {
+                String city = names[0];
+                String state = names[1];
+                if(isShortStateName(state)){
+                    theatresByLocation = searchTheatresByCityState(city, state);
+                }
+                else if(isLongStateName(state)){
+                    state = states.inverse().get(state);
+                    theatresByLocation = searchTheatresByCityState(city, state);
+                }
+            }
         }
         // if we have no theatres by location we have to return suggested locations
-        if(theatresByLocation == null){
-            // ArrayList<LocationSearchResult> locations = searchLocations(searchString);
-        }
-        else{
+        if (theatresByLocation == null) {
+            if(!zipcodeEntered){
+                // ArrayList<LocationSearchResult> locations = searchLocations(searchString);
+            }  
+        } 
+        else {
             results.setTheatresByLocation(theatresByLocation);
         }
         results.setMovies(movies);
@@ -123,86 +139,81 @@ public class SearchService {
         }
         return theatreResults;
     }
-    
-    public ArrayList<ClientSearchResult> searchTheatresByCityState(String locationString) throws IOException{
+
+    public ArrayList<ClientSearchResult> searchTheatresByCityState(String city, String state) throws IOException {
         ArrayList<ClientSearchResult> theatreResults = null;
-        int zipcode = locationService.getZipcodeByCityState(locationString);
-        if(zipcode != -1){
+        int zipcode = locationService.getZipcodeByCityState(city, state);
+        if (zipcode != -1) {
             theatreResults = searchTheatresByZipcode(zipcode);
         }
         return theatreResults;
     }
-    
+
     public ArrayList<ClientSearchResult> searchTheatresByZipcode(int zipcode) throws MalformedURLException, IOException {
         ArrayList<ClientSearchResult> theatreResults = new ArrayList();
         ArrayList<String> zipcodes = locationService.getNearbyZipCodes(zipcode);
-                List<Theatre> theatres = theatreService.getTheatresInZipList(zipcodes);
-                for (Theatre theatre : theatres) {
-                    ClientSearchResult theatreResult = new ClientSearchResult();
-                    theatreResult.setId(theatre.getId());
-                    theatreResult.setName(theatre.getName());
-                    theatreResults.add(theatreResult);
-                }
+        List<Theatre> theatres = theatreService.getTheatresInZipList(zipcodes);
+        for (Theatre theatre : theatres) {
+            ClientSearchResult theatreResult = new ClientSearchResult();
+            theatreResult.setId(theatre.getId());
+            theatreResult.setName(theatre.getName());
+            theatreResults.add(theatreResult);
+        }
         return theatreResults;
     }
-    
+
     public ArrayList<LocationSearchResult> searchLocations(String searchString) {
         ArrayList<LocationSearchResult> locations = new ArrayList();
-        // first set search string to lowercase 
         searchString = searchString.toLowerCase();
         // |||||||||||||| STATE NAME ONLY |||||||||||||||||
         // someone can potentially pass in a full state name, if so show all city combos with that state
-        if(isLongStateName(searchString)){
-            
+        if (isLongStateName(searchString)) {
+
         }
         // someone can potentially pass in an abbrev. state name, if so show all city combos with that state
-        if(isShortStateName(searchString)){
-            
+        if (isShortStateName(searchString)) {
+
         }
         // |||||||||||||| CITY, STATE  |||||||||||||||||
-        // someone can potentially search in the form: [cityname], [abbrev./full state]
+        // someone can potentially search in the form: [citySubstring], [abbrev./full state]
         String[] names = searchString.split(",");
-        if(names != null){
+        if (names != null) {
             String cityName = names[0];
             String stateName = names[1];
-            if(isShortStateName(stateName)){
+            if (isShortStateName(stateName)) {
                 // call location service method looking for locations containing cityName in this state
-            }
-            else if(isLongStateName(stateName)){
-                    String shortName = states.inverse().get(stateName);
-                    //  locations containg cityName in this state
-                    // call location service
-            }
-            // state is not exact, can do our best with a like on cityname AND state
-            else{
+            } else if (isLongStateName(stateName)) {
+                String shortName = states.inverse().get(stateName);
+                //  locations containg cityName in this state
+                // call location service
+            } // state is not exact, can do our best with a like on cityname AND state
+            else {
                 // call location service
             }
         }
-        // if we get down here than user did not enter a state as any part of the searchString and did not input a comma
-        // this means we do a very general location search, returning results where searchString is a part of the cityname OR statename of the locations
+        // if we get down here than user did not enter a state as any part of the searchString 
+        // this means we do a very general location search, returning results where searchString is a substring of the cityname OR statename of the locations
         // call location service
-        
+
         return locations;
     }
-    
-    public boolean isLongStateName(String stateName){
+
+    public boolean isLongStateName(String stateName) {
         String longStateName = stateName;
         String shortStateName = states.inverse().get(longStateName);
-        if(shortStateName != null){
+        if (shortStateName != null) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-    
-    public boolean isShortStateName(String stateName){
+
+    public boolean isShortStateName(String stateName) {
         String shortStateName = stateName;
         String longStateName = states.get(shortStateName);
-        if(longStateName != null){
+        if (longStateName != null) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
