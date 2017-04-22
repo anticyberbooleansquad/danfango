@@ -63,18 +63,18 @@ public class SearchService {
         ArrayList<ClientSearchResult> crew = searchCrew(queryString);
         ArrayList<ClientSearchResult> theatresByName = searchTheatresByName(queryString);
         ArrayList<ClientSearchResult> theatresByLocation = searchTheatresByLocation(searchString);
-        
-        // if we have no theatres by location we have to return suggested locations
-        if (theatresByLocation == null && !StringUtils.isNumeric(searchString)){    
-           // ArrayList<LocationSearchResult> locations = searchLocations(searchString);
-        } 
-        else {
+
+        if (theatresByLocation == null && !StringUtils.isNumeric(searchString)) {
+            ArrayList<LocationSearchResult> locations = searchLocations(searchString);
+            if (locations != null) {
+                results.setLocations(locations);
+            }
+        } else {
             results.setTheatresByLocation(theatresByLocation);
         }
         results.setMovies(movies);
         results.setCrew(crew);
         results.setTheatresByName(theatresByName);
-//        results.setLocations(locations);
         System.out.println("Returned from searchservice search");
         return results;
     }
@@ -114,26 +114,24 @@ public class SearchService {
         }
         return theatreResults;
     }
-    
-    public ArrayList<ClientSearchResult> searchTheatresByLocation(String searchString) throws IOException{
+
+    public ArrayList<ClientSearchResult> searchTheatresByLocation(String searchString) throws IOException {
         ArrayList<ClientSearchResult> theatresByLocation = null;
-        // try to match on exact zipcode
         searchString = searchString.trim();
+        // try to match on exact zipcode
         if (StringUtils.isNumeric(searchString) && searchString.length() == 5) {
-            
             int zipcode = Integer.valueOf(searchString);
             theatresByLocation = searchTheatresByZipcode(zipcode);
         } 
-        // exact (city, state) combo
+        // try to match on exact (city, state) combo
         else {
             String[] names = searchString.split(",");
             if (names != null) {
                 String city = names[0];
                 String state = names[1];
-                if(isShortStateName(state)){
+                if (isShortStateName(state)) {
                     theatresByLocation = searchTheatresByCityState(city, state);
-                }
-                else if(isLongStateName(state)){
+                } else if (isLongStateName(state)) {
                     state = states.inverse().get(state);
                     theatresByLocation = searchTheatresByCityState(city, state);
                 }
@@ -165,7 +163,24 @@ public class SearchService {
     }
 
     public ArrayList<LocationSearchResult> searchLocations(String searchString) {
-        ArrayList<LocationSearchResult> locations = new ArrayList();
+        ArrayList<LocationSearchResult> locations = null;
+        locations = searchLocationsByState(searchString);
+        if (locations == null) {
+            String[] names = searchString.split(",");
+            if (names != null) {
+                String city = names[0];
+                String state = names[1];
+                locations = searchLocationsByCityState(city, state);
+            }
+        }
+        if (locations == null) {
+            locations = searchLocationsBySubstring(searchString);
+        }
+        return locations;
+    }
+
+    public ArrayList<LocationSearchResult> searchLocationsByState(String searchString) {
+        ArrayList<LocationSearchResult> locations = null;
         searchString = searchString.toLowerCase();
         // |||||||||||||| STATE NAME ONLY |||||||||||||||||
         // someone can potentially pass in a full state name, if so show all city combos with that state
@@ -176,27 +191,30 @@ public class SearchService {
         if (isShortStateName(searchString)) {
 
         }
-        // |||||||||||||| CITY, STATE  |||||||||||||||||
-        // someone can potentially search in the form: [citySubstring], [abbrev./full state]
-        String[] names = searchString.split(",");
-        if (names != null) {
-            String cityName = names[0];
-            String stateName = names[1];
-            if (isShortStateName(stateName)) {
-                // call location service method looking for locations containing cityName in this state
-            } else if (isLongStateName(stateName)) {
-                String shortName = states.inverse().get(stateName);
-                //  locations containg cityName in this state
-                // call location service
-            } // state is not exact, can do our best with a like on cityname AND state
-            else {
-                // call location service
-            }
-        }
-        // if we get down here than user did not enter a state as any part of the searchString 
-        // this means we do a very general location search, returning results where searchString is a substring of the cityname OR statename of the locations
-        // call location service
+        return locations;
+    }
 
+    // someone can potentially search in the form: [citySubstring], [abbrev./full state]
+    public ArrayList<LocationSearchResult> searchLocationsByCityState(String city, String state) {
+        ArrayList<LocationSearchResult> locations = null;
+        if (isShortStateName(state)) {
+            // call location service method looking for locations containing cityName in this state
+        } else if (isLongStateName(state)) {
+            String shortStateName = states.inverse().get(state);
+            //  locations containg cityName in this state
+            // call location service
+        } // state is not exact, can do our best with a like on cityname AND state
+        else {
+            // call location service
+        }
+        return locations;
+    }
+
+    // if we get down here than user did not enter a state as any part of the searchString 
+    // this means we do a very general location search, returning results where searchString is a substring of the cityname OR statename of the locations
+    public ArrayList<LocationSearchResult> searchLocationsBySubstring(String searchString) {
+        ArrayList<LocationSearchResult> locations = null;
+        // call location service
         return locations;
     }
 
@@ -271,7 +289,6 @@ public class SearchService {
         states.put("wi", "wisconsin");
         states.put("mo", "missouri");
         states.put("wy", "wyoming");
-
     }
 
 }
