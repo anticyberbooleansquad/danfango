@@ -185,11 +185,12 @@ public class SearchService {
         // |||||||||||||| STATE NAME ONLY |||||||||||||||||
         // someone can potentially pass in a full state name, if so show all city combos with that state
         if (isLongStateName(searchString)) {
-
+            String shortStateName = states.inverse().get(searchString);
+            locations = locationService.getLocationsByState(shortStateName);
         }
         // someone can potentially pass in an abbrev. state name, if so show all city combos with that state
-        if (isShortStateName(searchString)) {
-
+        else if (isShortStateName(searchString)) {
+            locations = locationService.getLocationsByState(searchString);
         }
         return locations;
     }

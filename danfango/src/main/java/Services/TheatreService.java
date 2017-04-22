@@ -59,5 +59,9 @@ public class TheatreService {
                 public List<Theatre> getTheatresInZipList(ArrayList<String> zipcodes){
                     return this.theatreDAO.getTheatresInZipList(zipcodes);
                 }
+                @Transactional
+                public List<Theatre> getTheatresByState(String state){
+                    return this.theatreDAO.getTheatresByState(state);
+                }
 	
 }

@@ -5,12 +5,15 @@
  */
 package Services;
 
+import Model.LocationSearchResult;
+import Model.Theatre;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +52,6 @@ public class LocationService {
     }
 
     public int getZipcodeByCityState(String city, String state) throws MalformedURLException, IOException {
-
         String zipcodeAPIUrl = "https://www.zipcodeapi.com/rest/" + apiKey + "/city-zips.json/" + city + "/" + state;
         URL zipcodeAPI = new URL(zipcodeAPIUrl);
         try (BufferedReader in = new BufferedReader(new InputStreamReader(zipcodeAPI.openStream()))) {
@@ -64,9 +66,27 @@ public class LocationService {
                 }
             }
         }
-
-        // if we make it down here this is not a valid (city, state)
+        // if we make it down here this is not an exact, valid (city, state)
         return -1;
+    }
+    
+    public ArrayList<LocationSearchResult> getLocationsByState(String shortStateName){
+        ArrayList<LocationSearchResult> locations = null;
+        List<Theatre> theatres = theatreService.getTheatresByState(shortStateName);
+        if(theatres.size() > 0){
+            locations = new ArrayList();
+            for(Theatre theatre: theatres){
+                String state = theatre.getState();
+                String city = theatre.getCity();
+                String zip = theatre.getZip();
+                LocationSearchResult location = new LocationSearchResult();
+                location.setState(state);
+                location.setCity(city);
+                location.setZipcode(Integer.valueOf(zip));
+                locations.add(location);
+            }
+        }
+        return locations;
     }
 
 }
