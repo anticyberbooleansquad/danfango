@@ -38,6 +38,8 @@ import org.json.JSONObject;
 public class SearchService {
 
     @Autowired
+    LocationService locationService;
+    @Autowired
     MovieService movieService;
     @Autowired
     CrewMemberService crewMemberService;
@@ -60,14 +62,24 @@ public class SearchService {
         ArrayList<ClientSearchResult> movies = searchMovies(queryString);
         ArrayList<ClientSearchResult> crew = searchCrew(queryString);
         ArrayList<ClientSearchResult> theatresByName = searchTheatresByName(queryString);
+        ArrayList<ClientSearchResult> theatresByLocation = null;
 
         searchString = searchString.trim();
         if (StringUtils.isNumeric(searchString) && searchString.length() == 5) {
-            ArrayList<ClientSearchResult> theatresByLocation = searchTheatresByLocation(searchString);
+            int zipcode = Integer.valueOf(searchString);
+             theatresByLocation = searchTheatresByZipcode(zipcode);
             results.setTheatresByLocation(theatresByLocation);
         }
-        // ArrayList<LocationSearchResult> locations = searchLocations(searchString);
-
+        else{
+            theatresByLocation = searchTheatresByCityState(searchString);
+        }
+        // if we have no theatres by location we have to return suggested locations
+        if(theatresByLocation == null){
+            // ArrayList<LocationSearchResult> locations = searchLocations(searchString);
+        }
+        else{
+            results.setTheatresByLocation(theatresByLocation);
+        }
         results.setMovies(movies);
         results.setCrew(crew);
         results.setTheatresByName(theatresByName);
@@ -111,25 +123,19 @@ public class SearchService {
         }
         return theatreResults;
     }
-
-    public ArrayList<ClientSearchResult> searchTheatresByLocation(String searchString) throws MalformedURLException, IOException {
+    
+    public ArrayList<ClientSearchResult> searchTheatresByCityState(String locationString) throws IOException{
+        ArrayList<ClientSearchResult> theatreResults = null;
+        int zipcode = locationService.getZipcodeByCityState(locationString);
+        if(zipcode != -1){
+            theatreResults = searchTheatresByZipcode(zipcode);
+        }
+        return theatreResults;
+    }
+    
+    public ArrayList<ClientSearchResult> searchTheatresByZipcode(int zipcode) throws MalformedURLException, IOException {
         ArrayList<ClientSearchResult> theatreResults = new ArrayList();
-        int zipcode = Integer.valueOf(searchString);
-        String zipcodeAPIUrl = "https://www.zipcodeapi.com/rest/eu4HRGl5AWyldlyCHjdvzMAjYzzLrbNFFSnxyIC9EbuSx2vemIKWulftVOemZ22F/radius.json/"
-                + Integer.toString(zipcode) + "/30/miles?minimal";
-        ArrayList<String> zipcodes = new ArrayList();
-        URL zipcodeAPI = new URL(zipcodeAPIUrl);
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(zipcodeAPI.openStream()))) {
-            String inputLine = in.readLine();
-            JSONObject jsonObj = null;
-            if (inputLine != null) {
-                jsonObj = new JSONObject(inputLine);
-                JSONArray jsonZipCodes = jsonObj.getJSONArray("zip_codes");
-                for (int i = 0; i < jsonZipCodes.length(); i++) {
-                    String zip = jsonZipCodes.getString(i);
-                    zipcodes.add(zip);
-                }
-                System.out.println("Zip codes is: " + Arrays.toString(zipcodes.toArray()));
+        ArrayList<String> zipcodes = locationService.getNearbyZipCodes(zipcode);
                 List<Theatre> theatres = theatreService.getTheatresInZipList(zipcodes);
                 for (Theatre theatre : theatres) {
                     ClientSearchResult theatreResult = new ClientSearchResult();
@@ -137,15 +143,9 @@ public class SearchService {
                     theatreResult.setName(theatre.getName());
                     theatreResults.add(theatreResult);
                 }
-            }
-        }
         return theatreResults;
     }
     
-    public ArrayList<ClientSearchResult> searchTheatresByCityState(String searchString){
-        
-    }
-
     public ArrayList<LocationSearchResult> searchLocations(String searchString) {
         ArrayList<LocationSearchResult> locations = new ArrayList();
         // first set search string to lowercase 

@@ -29,6 +29,7 @@
     <bean id="authenticationService" class="Services.AuthenticationService"/>
     <bean id="agencyService" class="Services.AgencyService"/>
     <bean id="searchService" class="Services.SearchService"/>
+    <bean id="locationService" class="Services.LocationService"/>
     <bean id="movieService" class="Services.MovieService">
         <property name="movieDAO" ref="movieDAO"></property>
     </bean>
