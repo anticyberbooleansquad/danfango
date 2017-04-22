@@ -62,36 +62,11 @@ public class SearchService {
         ArrayList<ClientSearchResult> movies = searchMovies(queryString);
         ArrayList<ClientSearchResult> crew = searchCrew(queryString);
         ArrayList<ClientSearchResult> theatresByName = searchTheatresByName(queryString);
-        ArrayList<ClientSearchResult> theatresByLocation = null;
+        ArrayList<ClientSearchResult> theatresByLocation = searchTheatresByLocation(searchString);
         
-        boolean zipcodeEntered = false;
-        // try to match on exact zipcode
-        searchString = searchString.trim();
-        if (StringUtils.isNumeric(searchString) && searchString.length() == 5) {
-            zipcodeEntered = true;
-            int zipcode = Integer.valueOf(searchString);
-            theatresByLocation = searchTheatresByZipcode(zipcode);
-        } 
-        // exact (city, state) combo
-        else {
-            String[] names = searchString.split(",");
-            if (names != null) {
-                String city = names[0];
-                String state = names[1];
-                if(isShortStateName(state)){
-                    theatresByLocation = searchTheatresByCityState(city, state);
-                }
-                else if(isLongStateName(state)){
-                    state = states.inverse().get(state);
-                    theatresByLocation = searchTheatresByCityState(city, state);
-                }
-            }
-        }
         // if we have no theatres by location we have to return suggested locations
-        if (theatresByLocation == null) {
-            if(!zipcodeEntered){
-                // ArrayList<LocationSearchResult> locations = searchLocations(searchString);
-            }  
+        if (theatresByLocation == null && !StringUtils.isNumeric(searchString)){    
+           // ArrayList<LocationSearchResult> locations = searchLocations(searchString);
         } 
         else {
             results.setTheatresByLocation(theatresByLocation);
@@ -138,6 +113,33 @@ public class SearchService {
             theatreResults.add(result);
         }
         return theatreResults;
+    }
+    
+    public ArrayList<ClientSearchResult> searchTheatresByLocation(String searchString) throws IOException{
+        ArrayList<ClientSearchResult> theatresByLocation = null;
+        // try to match on exact zipcode
+        searchString = searchString.trim();
+        if (StringUtils.isNumeric(searchString) && searchString.length() == 5) {
+            
+            int zipcode = Integer.valueOf(searchString);
+            theatresByLocation = searchTheatresByZipcode(zipcode);
+        } 
+        // exact (city, state) combo
+        else {
+            String[] names = searchString.split(",");
+            if (names != null) {
+                String city = names[0];
+                String state = names[1];
+                if(isShortStateName(state)){
+                    theatresByLocation = searchTheatresByCityState(city, state);
+                }
+                else if(isLongStateName(state)){
+                    state = states.inverse().get(state);
+                    theatresByLocation = searchTheatresByCityState(city, state);
+                }
+            }
+        }
+        return theatresByLocation;
     }
 
     public ArrayList<ClientSearchResult> searchTheatresByCityState(String city, String state) throws IOException {
