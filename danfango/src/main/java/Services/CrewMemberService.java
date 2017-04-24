@@ -56,5 +56,10 @@ public class CrewMemberService {
 	public void removeCrewMember(int id) {
 		this.crewMemberDAO.removeCrewMember(id);
 	}
+        
+                @Transactional
+                public List<CrewMember> getCrewMembersLikeName(String name){
+                    return this.crewMemberDAO.getCrewMembersLikeName(name);
+                }
 	
 }

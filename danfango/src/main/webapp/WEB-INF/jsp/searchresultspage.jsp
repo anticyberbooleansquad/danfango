@@ -29,7 +29,23 @@
         <div class="spacing container">
 
             <h2 class="spacing movietitle">SEARCH <font color="EA6630"><b>RESULTS</b></font></h2>
-
+            
+            <h1>Movies</h1>
+            <c:forEach items="${movies}" var="movie">
+                <p>${movie.id} : ${movie.name}</p>
+            </c:forEach>
+            <h1>Actors</h1>
+            <c:forEach items="${crew}" var="crewMember">
+                <p>${crewMember.id} : ${crewMember.name}</p>
+            </c:forEach>
+                <h1>Theatres by Name</h1>
+                <c:forEach items="${theatresByName}" var="theatre">
+                    <p>${theatre.id} : ${theatre.name}<p>
+                </c:forEach>
+                    <h1>Theatres by Location</h1>
+                    <c:forEach items="${theatresByLocation}" var="theatre">
+                    <p>${theatre.id} : ${theatre.name}<p>
+                </c:forEach>
         </div>
 
 

@@ -44,6 +44,25 @@
     padding-bottom:20px;
 }
 
+.seatButton{
+    height: 35px;
+    width: 50px;
+}
+
+.screen{
+    height: 40px;
+    width: 100%;
+    background-color: white;
+}
+
+.seat-selected{
+    opacity: 1.0; 
+}
+
+.seat-unselected{
+    opacity:0.5; 
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -192,6 +211,26 @@
     z-index: 10000000;
 }
 
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.hide{
+    visibility: hidden;
+}
+
+.seatPadding{
+    padding-left: 20px;
+}
 
 #main-slide .slider-content h2 {
     font-size: 76px;
