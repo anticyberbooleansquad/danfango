@@ -14,61 +14,70 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Theatre;
+import org.hibernate.criterion.Restrictions;
+
 /**
  *
  * @author charles
  */
 @Repository
-public class TheatreDAO{
-   
+public class TheatreDAO {
+
     private static final Logger logger = LoggerFactory.getLogger(TheatreDAO.class);
-    
+
     private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sf){
-            this.sessionFactory = sf;
+    public void setSessionFactory(SessionFactory sf) {
+        this.sessionFactory = sf;
     }
 
-    
     public void addTheatre(Theatre u) {
-            Session session = this.sessionFactory.getCurrentSession();
-            session.persist(u);
-            logger.info("Theatre saved successfully, Theatre Details="+u);
+        Session session = this.sessionFactory.getCurrentSession();
+        session.persist(u);
+        logger.info("Theatre saved successfully, Theatre Details=" + u);
     }
 
-    
     public void updateTheatre(Theatre u) {
-            Session session = this.sessionFactory.getCurrentSession();
-            session.update(u);
-            logger.info("Theatre updated successfully, Theatre Details="+u);
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(u);
+        logger.info("Theatre updated successfully, Theatre Details=" + u);
     }
 
     @SuppressWarnings("unchecked")
     public List<Theatre> listTheatres() {
-            Session session = this.sessionFactory.getCurrentSession();
-            List<Theatre> theatresList = session.createQuery("from Theatre").list();
-            for(Theatre u : theatresList){
-                    logger.info("Theatre List::"+u);
-            }
-            return theatresList;
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Theatre> theatresList = session.createQuery("from Theatre").list();
+        for (Theatre u : theatresList) {
+            logger.info("Theatre List::" + u);
+        }
+        return theatresList;
     }
 
-    
     public Theatre getTheatreById(int id) {
-            Session session = this.sessionFactory.getCurrentSession();		
-            Theatre u = (Theatre) session.load(Theatre.class, new Integer(id));
-            logger.info("Theatre loaded successfully, Theatre details="+u);
-            return u;
+        Session session = this.sessionFactory.getCurrentSession();
+        Theatre u = (Theatre) session.load(Theatre.class, new Integer(id));
+        logger.info("Theatre loaded successfully, Theatre details=" + u);
+        return u;
     }
 
-    
     public void removeTheatre(int id) {
-            Session session = this.sessionFactory.getCurrentSession();
-            Theatre u = (Theatre) session.load(Theatre.class, new Integer(id));
-            if(null != u){
-                    session.delete(u);
-            }
-            logger.info("Theatre deleted successfully, person details="+u);
+        Session session = this.sessionFactory.getCurrentSession();
+        Theatre u = (Theatre) session.load(Theatre.class, new Integer(id));
+        if (null != u) {
+            session.delete(u);
+        }
+        logger.info("Theatre deleted successfully, person details=" + u);
+    }
+
+    public Theatre getTheatreByAgencyTheatreId(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List theatres = session.createCriteria(Theatre.class).add(Restrictions.eq("agencyTheatreId", id)).list();
+        if (theatres.isEmpty()) {
+            return null;
+        }
+        Theatre u = (Theatre) theatres.get(0);
+        logger.info("Theatre loaded successfully, Theatre details=" + u);
+        return u;
     }
 
 }
