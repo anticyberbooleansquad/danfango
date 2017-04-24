@@ -29,7 +29,6 @@
 
         <div class="spacing container">
 
-
             <div class ="seats">
                 <div class="row row-centered">
                     <button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A1</button>
@@ -243,6 +242,15 @@
             <div class ="row row-centered">
                 <button type="button" class="btn btn-default changeSeats">CHANGE SEATS</button>
             </div>
+            <div class ="row row-centered">
+                <a href="/danfango/paymentpage">
+                    <button type="button" class="btn btn-default changeSeats">Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </a>
+            </div>
+            <div class="row row-centered">
+                <div id="timer" class="timerPosition"></div>
+            </div>
+
 
         </div>
 
