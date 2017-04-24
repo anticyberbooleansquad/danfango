@@ -228,6 +228,10 @@
     visibility: hidden;
 }
 
+.timerPosition{
+    font-size: 50px;
+}
+
 .seatPadding{
     padding-left: 20px;
 }
