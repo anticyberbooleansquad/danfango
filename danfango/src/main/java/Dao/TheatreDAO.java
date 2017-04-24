@@ -102,7 +102,11 @@ public class TheatreDAO {
         Session session = this.sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(Theatre.class);
         criteria.add(Restrictions.like("city", city));
+        // AND (
         criteria.add(Restrictions.like("state", state));
+        // OR 
+        // criteria.add(Restrictions.like("full_State", state));
+        
         List theatres = criteria.list();
         return theatres;
     }

@@ -38,7 +38,7 @@ public class LocationService {
     @Autowired
     TheatreService theatreService;
 
-    String apiKey = "eu4HRGl5AWyldlyCHjdvzMAjYzzLrbNFFSnxyIC9EbuSx2vemIKWulftVOemZ22F";
+    String apiKey = "1ac500S6OXybF1emODD1bUC95DqOi4Yjfbofbhm0fVcUWqgL4UNfOqpU3PIlTHE8";
 
     private BiMap<String, String> states;
 
@@ -50,7 +50,7 @@ public class LocationService {
     }
     
     public String getShortNameKey(String fullNameValue){
-        return states.inverse().get(fullNameValue);
+        return states.get(fullNameValue);
     }
     
     public String getFullNameValue(String shortNameKey){
