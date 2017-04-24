@@ -50,7 +50,7 @@ public class LocationService {
     }
     
     public String getShortNameKey(String fullNameValue){
-        return states.inverse().get(fullNameValue);
+        return states.get(fullNameValue);
     }
     
     public String getFullNameValue(String shortNameKey){

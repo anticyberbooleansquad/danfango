@@ -126,7 +126,7 @@ public class SearchService {
         // try to match on exact (city, state) combo
         else {
             String[] names = searchString.split(",");
-            if (names != null) {
+            if (names != null && names.length > 1) {
                 String city = names[0];
                 String state = names[1];
                 if (isShortStateName(state)) {
@@ -192,14 +192,14 @@ public class SearchService {
         locations = searchLocationsByState(searchString);
         if (locations == null) {
             String[] names = searchString.split(",");
-            if (names != null) {
-                String city = names[0];
-                String state = names[1];
+            if (names != null && names.length > 1) {
+                String city = names[0]; // babylon
+                String state = names[1]; // new yor
                 locations = searchLocationsByCityState(city, state);
             }
         }
         if (locations == null) {
-            locations = searchLocationsBySubstring(searchString);
+            locations = searchLocationsBySubstring(searchString); // linde
         }
         return locations;
     }
@@ -226,7 +226,7 @@ public class SearchService {
     }
 
     /** 
-     * search in the form: [citySubstring], [abbrev./full state]
+     * search in the form: [citySubstring], [potential abbrev./full state]
      * @param city
      * @param state
      * @return 
@@ -240,6 +240,8 @@ public class SearchService {
             locations = locationService.getLocationsLikeCityByState(city, shortStateName);
         } // state is not exact, can do our best with a like on cityname AND state
         else {
+            // right now this works only with abbreviations since theatre database only has abbreviated statename
+            // we should make it so that, 'lindenurst, new yo' will work too 
             locations = locationService.getLocationsLikeCityAndLikeState(city, state);
         }
         return locations;
@@ -280,7 +282,7 @@ public class SearchService {
      */
     public boolean isShortStateName(String stateName) {
         String shortStateName = stateName;
-        String longStateName = locationService.getShortNameKey(shortStateName);
+        String longStateName = locationService.getFullNameValue(shortStateName);
         if (longStateName != null) {
             return true;
         } else {
