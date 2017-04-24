@@ -125,13 +125,17 @@ public class SearchService {
         } 
         // try to match on exact (city, state) combo
         else {
+            System.out.println("IN SEARCH THEATRES BY LOCATION");
             String[] names = searchString.split(",");
             if (names != null && names.length > 1) {
                 String city = names[0];
-                String state = names[1];
+                String state = names[1].trim();
+                System.out.println("state is: " + state);
                 if (isShortStateName(state)) {
+                    System.out.println("we make it here and have abbrev.");
                     theatresByLocation = searchTheatresNearCityState(city, state);
                 } else if (isLongStateName(state)) {
+                    System.out.println("we make it below and have full state name");
                     state = locationService.getShortNameKey(state);
                     theatresByLocation = searchTheatresNearCityState(city, state);
                 }
@@ -194,7 +198,7 @@ public class SearchService {
             String[] names = searchString.split(",");
             if (names != null && names.length > 1) {
                 String city = names[0]; // babylon
-                String state = names[1]; // new yor
+                String state = names[1].trim(); // new yor
                 locations = searchLocationsByCityState(city, state);
             }
         }
@@ -232,6 +236,7 @@ public class SearchService {
      * @return 
      */
     public ArrayList<LocationSearchResult> searchLocationsByCityState(String city, String state) {
+        System.out.println("WE MAKE IT TO CITY STATE:   City: "+city+" State: "+ state);
         ArrayList<LocationSearchResult> locations = null;
         if (isShortStateName(state)) {
             locations = locationService.getLocationsLikeCityByState(city, state);
@@ -283,6 +288,7 @@ public class SearchService {
     public boolean isShortStateName(String stateName) {
         String shortStateName = stateName;
         String longStateName = locationService.getFullNameValue(shortStateName);
+        System.out.println("longStateName is: " + stateName);
         if (longStateName != null) {
             return true;
         } else {

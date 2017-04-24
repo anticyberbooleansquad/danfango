@@ -50,11 +50,11 @@ public class LocationService {
     }
     
     public String getShortNameKey(String fullNameValue){
-        return states.get(fullNameValue);
+        return states.inverse().get(fullNameValue);
     }
     
     public String getFullNameValue(String shortNameKey){
-        return states.inverse().get(shortNameKey);
+        return states.get(shortNameKey);
     }
 
     public ArrayList<String> getNearbyZipCodes(int zipcode) throws MalformedURLException, IOException {
@@ -78,6 +78,7 @@ public class LocationService {
     }
 
     public int getZipcodeByCityState(String city, String state) throws MalformedURLException, IOException {
+        city = city.replace(" ", "%20");
         String zipcodeAPIUrl = "https://www.zipcodeapi.com/rest/" + apiKey + "/city-zips.json/" + city + "/" + state;
         URL zipcodeAPI = new URL(zipcodeAPIUrl);
         try (BufferedReader in = new BufferedReader(new InputStreamReader(zipcodeAPI.openStream()))) {
