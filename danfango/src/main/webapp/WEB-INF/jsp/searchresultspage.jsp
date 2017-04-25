@@ -30,28 +30,65 @@
 
             <h2 class="spacing movietitle">SEARCH <font color="EA6630"><b>RESULTS</b></font></h2>
 
-            <h1>Movies</h1>
-            <c:forEach items="${movies}" var="movie">
-                <div class="col-md-3">
-                    <a class="" href="movieinfopage/${movie.id}">
-                        <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movie.poster}">
-                    </a>
+            <h1 class="spacing accountfont underline">Movies</h1>
+        
+            
+            <c:forEach var="movie" items="${movies}" step="4" varStatus="loop">
+                <div class="row spacing">
+                    <div class = col-md-3>
+                        <a class="" href="movieinfopage/${movie.id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movie.poster}">
+                        </a>
+                    </div>
+                    <div class = col-md-3>
+                        <a class="" href="movieinfopage/${movies[loop.index+1].id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+1].poster}">
+                        </a>
+                    </div>
+                    <div class = col-md-3>
+                        <a class="" href="movieinfopage/${movies[loop.index+2].id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+2].poster}">
+                        </a>
+                    </div>
+                    <div class = col-md-3>
+                        <a class="" href="movieinfopage/${movies[loop.index+3].id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+3].poster}">
+                        </a>
+                    </div>
                 </div>
             </c:forEach>
-            <h1>Actors</h1>
-            <c:forEach items="${crew}" var="crewMember">
-                <p>${crewMember.id} : ${crewMember.name}</p>
-                <div class="col-md-3">
-                    <a class="" href="actorinfopage/${crewMember.id}">
-                        <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crewMember.poster}">
-                    </a>
+            
+            <h1 class="spacing accountfont underline">Actors</h1>
+            <c:forEach items="${crew}" var="crewMember" step="4" varStatus="loop">
+                <div class="row spacing">
+                    <div class = col-md-3>
+                        <a class="" href="actorinfopage/${crewMember.id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crewMember.poster}">
+                        </a>
+                    </div>
+                    <div class = col-md-3>
+                        <a class="" href="actorinfopage/${crew[loop.index+1].id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crew[loop.index+1].poster}">
+                        </a>
+                    </div>
+                    <div class = col-md-3>
+                        <a class="" href="actorinfopage/${crew[loop.index+2].id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crew[loop.index+2].poster}">
+                        </a>
+                    </div>
+                    <div class = col-md-3>
+                        <a class="" href="actorinfopage/${crew[loop.index+3].id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crew[loop.index+3].poster}">
+                        </a>
+                    </div>
                 </div>
             </c:forEach>
-            <h1>Theatres by Name</h1>
+         
+            <h1 class="spacing accountfont underline">Theatres by Name</h1>
             <c:forEach items="${theatresByName}" var="theatre">
                 <p>${theatre.id} : ${theatre.name}<p>
                 </c:forEach>
-            <h1>Theatres by Location</h1>
+            <h1 class="spacing accountfont underline">Theatres by Location</h1>
             <c:forEach items="${theatresByLocation}" var="theatre">
                 <p>${theatre.id} : ${theatre.name}<p>
                 </c:forEach>

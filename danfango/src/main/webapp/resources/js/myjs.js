@@ -10,10 +10,10 @@ $(function () {
     $('.fa-heart').on('click', function () {
         if ($(this).hasClass('favoriteState')) {
             $(this).removeClass('favoriteState');
-            $.notify("Removed From Favorites")
+            $.notify("Removed From Favorites");
         } else {
             $(this).addClass('favoriteState');
-            $.notify("Added To Favorites")
+            $.notify("Added To Favorites");
 
         }
     });
@@ -46,7 +46,7 @@ $(function () {
             button.addClass("seat-selected");
             // change the class on the button to 'seat-selected' from 'seat-unselected'
             // how do we do this because button has multiple classes
-            userSelectedSeats.push(buttonId)
+            userSelectedSeats.push(buttonId);
         } else {
             button.removeClass("seat-selected");
             button.addClass("seat-unselected");
@@ -92,30 +92,26 @@ function startTimer() {
     var timeArray = presentTime.split(/[:]+/);
     var m = timeArray[0];
     var s = checkSecond((timeArray[1] - 1));
-    if (s == 59) {
-        m = m - 1
+    if (s === 59) {
+        m = m - 1;
     }
     //if(m<0){alert('timer completed')}
 
     document.getElementById('timer').innerHTML = m + ":" + s;
     setTimeout(startTimer, 1000);
     
-    if(m == 0 && s == 0){
+    if(m === 0 && s === 0){
         document.getElementById('timer').innerHTML = "Done";
-<<<<<<< HEAD
-        
-=======
->>>>>>> 78bc93163c5022f067dea9d1ac878eb9335aa2cb
     }
 }
 
 function checkSecond(sec) {
     if (sec < 10 && sec >= 0) {
-        sec = "0" + sec
+        sec = "0" + sec;
     }
     ; // add zero in front of numbers < 10
     if (sec < 0) {
-        sec = "59"
+        sec = "59";
     }
     ;
     return sec;
