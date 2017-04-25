@@ -42,6 +42,12 @@
     <bean id="theatreService" class="Services.TheatreService">
         <property name="theatreDAO" ref="theatreDAO"></property>
     </bean>
+    <bean id="crewMemberMovieService" class="Services.CrewMemberMovieService">
+        <property name="crewMemberMovieDAO" ref="crewMemberMovieDAO"></property>
+    </bean>
+    <bean id="MovieTrailerService" class="Services.MovieTrailerService">
+        <property name="MovieTrailerDAO" ref="MovieTrailerDAO"></property>
+    </bean>
     <bean id="userDAO" class="Dao.UserDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
@@ -54,10 +60,9 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
-     <bean id="theatreDAO" class="Dao.TheatreDAO">
+    <bean id="theatreDAO" class="Dao.TheatreDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
-    
     
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver"
