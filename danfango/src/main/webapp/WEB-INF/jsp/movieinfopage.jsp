@@ -50,7 +50,7 @@
                     <img class="movieposter" src="https://image.tmdb.org/t/p/w500/${movie.poster}"/>
                     <div class="movieInfo">
                         <p><b>Release Date:</b> ${movie.releaseDate}</p>
-                        <p><b>Rating:</b> </p>
+                        <p><b>Rating:</b> ${movie.rating}</p>
                         <p><b>Runtime:</b> ${movie.runTime}</p>
                         <p><b>Genre:</b> Comedy, Action, Adventure</p>
                         <p><b>Score:</b> ${movie.movieScore}</p>

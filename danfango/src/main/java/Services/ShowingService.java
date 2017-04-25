@@ -11,7 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Dao.ShowingDAO;
+import Model.Movie;
 import Model.Showing;
+import Model.Theatre;
+import Model.TheatreRoom;
+import java.sql.Timestamp;
 
 @Service
 public class ShowingService {
@@ -45,6 +49,12 @@ public class ShowingService {
 	public Showing getShowingById(int id) {
 		return this.showingDAO.getShowingById(id);
 	}
+        
+        @Transactional
+        public Showing getShowingByJoe(Movie movie, Theatre theatre, TheatreRoom theatreRoom, Timestamp time)
+        {
+            return this.showingDAO.getShowingByJoe(movie, theatre, theatreRoom, time);
+        }
 	
 	@Transactional
 	public void removeShowing(int id) {

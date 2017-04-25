@@ -96,7 +96,7 @@
                 <h1 id="moviesheader">
                     <b>
                         <i class="fa fa-film" aria-hidden="true"></i>
-                        Top Box Office 
+                        Top Rated Movies
                         <i class="fa fa-film" aria-hidden="true"></i>
                     </b>
                 </h1>
@@ -108,78 +108,85 @@
 
                     <div class = col-md-3>
                         <a class="" href="movieinfopage/${movie.id}">
-                            <img class ="posters" src=${movie.poster}>
-                        </a>
-                        <a class="" href="movieinfopage/${movies[loop.index+1].id}">
-                            <img class ="posters" src=${movies[loop.index+1].poster}>
-                        </a>
-                        <a class="" href="movieinfopage/${movies[loop.index+2].id}">
-                            <img class ="posters" src=${movies[loop.index+2].poster}>
-                        </a>
-                        <a class="" href="movieinfopage/${movies[loop.index+3].id}">
-                            <img class ="posters" src=${movies[loop.index+3].poster}>
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movie.poster}">
                         </a>
                     </div>
-             </c:forEach>
+                    <div class = col-md-3>
+                        <a class="" href="movieinfopage/${movies[loop.index+1].id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+1].poster}">
+                        </a>
+                    </div>
+                    <div class = col-md-3>
+                        <a class="" href="movieinfopage/${movies[loop.index+2].id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+2].poster}">
+                        </a>
+                    </div>
+                    <div class = col-md-3>
+                        <a class="" href="movieinfopage/${movies[loop.index+3].id}">
+                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+3].poster}">
+                        </a>
+                    </div>
+                </div>
+            </c:forEach>
 
 
-            </div><!--row-->
-
-        </div>
+        </div><!--row-->
 
     </div>
-    <!-- End Portfolio Section -->
 
-    <!-- Start Footer Section -->
-    <footer class="itemcenter">
-        <div class="container">
-            <div class="footer-widget social-widget">
-                <h4>Anti-Graduation Squad</h4>
-                <h6>ft. John Legutko, Joseph Giardina, Konrad Juszkiewicz, Charles Bendernagel</h6>
+</div>
+<!-- End Portfolio Section -->
 
-                <h4>Follow Us<span class="head-line"></span></h4>
-                <ul class="social-icons">
-                    <li>
-                        <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
-                    </li>
-                    <li>
-                        <a class="instgram" href="#"><i class="fa fa-instagram"></i></a>
-                    </li>
-                </ul>
+<!-- Start Footer Section -->
+<footer class="itemcenter">
+    <div class="container">
+        <div class="footer-widget social-widget">
+            <h4>Anti-Graduation Squad</h4>
+            <h6>ft. John Legutko, Joseph Giardina, Konrad Juszkiewicz, Charles Bendernagel</h6>
+
+            <h4>Follow Us<span class="head-line"></span></h4>
+            <ul class="social-icons">
+                <li>
+                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li>
+                    <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
+                </li>
+                <li>
+                    <a class="instgram" href="#"><i class="fa fa-instagram"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- .row -->
+        <!-- Start Copyright -->
+        <div class="copyright-section">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
+                </div>
+                <!-- .col-md-6 -->
+                <div class="col-md-6">
+                    <ul class="footer-nav">
+                        <li><a href="/danfango/#">Sitemap</a>
+                        </li>
+                        <li><a href="/danfango/#">Privacy Policy</a>
+                        </li>
+                        <li><a href="/danfango/#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- .col-md-6 -->
             </div>
             <!-- .row -->
-            <!-- Start Copyright -->
-            <div class="copyright-section">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
-                    </div>
-                    <!-- .col-md-6 -->
-                    <div class="col-md-6">
-                        <ul class="footer-nav">
-                            <li><a href="/danfango/#">Sitemap</a>
-                            </li>
-                            <li><a href="/danfango/#">Privacy Policy</a>
-                            </li>
-                            <li><a href="/danfango/#">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- .col-md-6 -->
-                </div>
-                <!-- .row -->
-            </div>
-            <!-- End Copyright -->
-
         </div>
-    </footer>
-    <!-- End Footer Section -->
+        <!-- End Copyright -->
+
+    </div>
+</footer>
+<!-- End Footer Section -->
 
 </div>
 <!-- End Full Body Container -->

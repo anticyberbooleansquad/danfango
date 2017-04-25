@@ -130,15 +130,6 @@ public class CrewMember implements Serializable{
         this.dob = dob;
     }
 
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
-
     public String getPoster() {
         return poster;
     }

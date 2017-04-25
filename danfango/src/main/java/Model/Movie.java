@@ -68,7 +68,7 @@ public class Movie implements Serializable {
     }
 
     /**
-     * @param agencyId the agencyId to set
+     * @param agency the agencyId to set
      */
     public void setAgency(Agency agency) {
         this.agency = agency;

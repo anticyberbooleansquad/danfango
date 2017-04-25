@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Dao.TheatreRoomDAO;
+import Model.Theatre;
 import Model.TheatreRoom;
 
 @Service
@@ -45,6 +46,11 @@ public class TheatreRoomService {
 	public TheatreRoom getTheatreRoomById(int id) {
 		return this.theatreRoomDAO.getTheatreRoomById(id);
 	}
+        
+        public TheatreRoom getTheatreRoomByTheatre(Theatre theatre)
+        {
+                return this.theatreRoomDAO.getTheatreRoomByTheatre(theatre);
+        }
 	
 	@Transactional
 	public void removeTheatreRoom(int id) {

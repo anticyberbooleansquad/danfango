@@ -76,4 +76,10 @@ public class MovieService {
     public Movie getMovieByTitle(String title) {
         return this.movieDAO.getMovieByTitle(title);
     }
+
+    @Transactional
+    public List<Movie> getMoviesTopRated() {
+        return this.movieDAO.getMoviesTopRated();
+    }
+
 }

@@ -51,9 +51,11 @@ public class AgencyService {
     @Autowired
     TheatreService theatreService;
     @Autowired
-    CrewMemberMovie crewMemberMovie;
-    //@Autowired
-    //ShowingService showingService;
+    CrewMemberMovieService crewMemberMovieService;
+    @Autowired
+    ShowingService showingService;
+    @Autowired
+    TheatreRoomService theatreRoomService;
 
     private AgencyDAO agencyDAO;
 
@@ -124,7 +126,7 @@ public class AgencyService {
                 String agencyId = eElement.getElementsByTagName("agencyID").item(0).getTextContent();
                 String name = eElement.getElementsByTagName("name").item(0).getTextContent();
                 String address = eElement.getElementsByTagName("address").item(0).getTextContent();
-                String city = eElement.getElementsByTagName("address").item(0).getTextContent();
+                String city = eElement.getElementsByTagName("city").item(0).getTextContent();
                 String state = eElement.getElementsByTagName("state").item(0).getTextContent();
                 String zipcode = eElement.getElementsByTagName("zipcode").item(0).getTextContent();
                 theatre.setAgencyTheatreId(Integer.parseInt(agencyId));
@@ -255,15 +257,13 @@ public class AgencyService {
                     crewService.updateCrewMember(actor);
                 }
 
-                // add/updateCrewmembermovies table
+                // check if relation exists if not add 
                 for (int i = 0; i < crewMember_movies.size(); i++) {
                     CrewMemberMovie relation = new CrewMemberMovie();
-                    if (/*not exists*/) {
-                        relation.setMovie(crewMember_movies(i));
+                    if (crewMemberMovieService.getCrewMemberMovieByJoe(crewMember_movies.get(i), actor) == null) {
+                        relation.setMovie(crewMember_movies.get(i));
                         relation.setCrewMember(actor);
-                        //add
-                    } else {
-                        //update
+                        crewMemberMovieService.addCrewMemberMovie(relation);
                     }
                 }
 
@@ -299,14 +299,15 @@ public class AgencyService {
                         Date parsedDate = dateFormat.parse(showtime);
                         Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                         showing.setTime(timestamp);
-
-//                        if(showingService.getshowingByRoomTheatreNameAndTime,andmovie){
-//                            showing.setId(showingservice.existing);
-//                            crewService.updateCrewMember(actor);
-//                        }
-//                        else{
-//                            showingService.addShowing(showing);
-//                        }
+                        TheatreRoom room = theatreRoomService.getTheatreRoomByTheatre(theatre);
+                        Showing existingShowing = showingService.getShowingByJoe(mov, theatre, room,timestamp);
+                        if(existingShowing != null){
+                            showing.setId(existingShowing.getId());
+                            showingService.updateShowing(showing);
+                        }
+                        else{
+                            showingService.addShowing(showing);
+                        }
                     }
 
                 }
@@ -315,13 +316,13 @@ public class AgencyService {
         }
     }
 
-    public static void createTheatreRoom(Theatre theatre) {
+    public  void createTheatreRoom(Theatre theatre) {
         TheatreRoom room = new TheatreRoom();
         double seatingType = Math.random();
         boolean[][] layout = new boolean[2][2];
 
         // >25 reservation type 1 >.5 reservation type 2>.75 reservationtype 3 <.75 no reservation
-        if (seatingType >= .25) {
+        if (seatingType <= .25) {
             // 132 seats
             room.setTotalSeats(2);
             room.setTotalSeatsRemaining(2);
@@ -332,7 +333,7 @@ public class AgencyService {
             layout[1][0] = false;
             layout[1][1] = false;
             room.setLayout(layout);
-        } else if (seatingType >= .50) {
+        } else if (seatingType <= .50 && seatingType >.25) {
             // 132 seats
             room.setTotalSeats(2);
             room.setTotalSeatsRemaining(2);
@@ -344,7 +345,7 @@ public class AgencyService {
             layout[1][1] = false;
             room.setLayout(layout);
 
-        } else if (seatingType >= .75) {
+        } else if (seatingType <= .75 && seatingType >.5) {
             // 132 seats
             room.setTotalSeats(2);
             room.setTotalSeatsRemaining(2);
@@ -360,6 +361,7 @@ public class AgencyService {
             room.setTotalSeats(200);
             room.setTotalSeatsRemaining(200);
         }
+        theatreRoomService.addTheatreRoom(room);
 
     }
 

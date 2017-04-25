@@ -38,7 +38,7 @@ public class LocationService {
     @Autowired
     TheatreService theatreService;
 
-    String apiKey = "1ac500S6OXybF1emODD1bUC95DqOi4Yjfbofbhm0fVcUWqgL4UNfOqpU3PIlTHE8";
+    String apiKey = "XSmGopQ0TI6n9nuaM8IduVB69KhgtklqcI6B7XC0GIoP6T0T2I6wEIDNsV4Vgpms";
 
     private BiMap<String, String> states;
 
@@ -117,6 +117,7 @@ public class LocationService {
     }
 
     public ArrayList<LocationSearchResult> getLocationsLikeCityByState(String city, String state) {
+        city = "%" + city + "%";
         ArrayList<LocationSearchResult> locations = null;
         List<Theatre> theatres = theatreService.getTheatresLikeCityByState(city, state);
         if (theatres.size() > 0) {
@@ -136,6 +137,8 @@ public class LocationService {
     }
 
     public ArrayList<LocationSearchResult> getLocationsLikeCityAndLikeState(String city, String state) {
+        city = "%" + city + "%"; 
+        state = "%" + state + "%";
         ArrayList<LocationSearchResult> locations = null;
         List<Theatre> theatres = theatreService.getTheatresLikeCityAndLikeState(city, state);
         if (theatres.size() > 0) {
@@ -155,6 +158,7 @@ public class LocationService {
     }
 
     public ArrayList<LocationSearchResult> getLocationsLikeCityOrLikeState(String substring) {
+        substring = "%" + substring + "%";
         ArrayList<LocationSearchResult> locations = null;
         List<Theatre> theatres = theatreService.getTheatresLikeCityOrLikeState(substring);
         System.out.println("Num theatres returned: " + theatres.size());

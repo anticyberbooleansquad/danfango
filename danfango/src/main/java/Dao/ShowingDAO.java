@@ -5,6 +5,7 @@
  */
 package Dao;
 
+import Model.Movie;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -14,6 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Showing;
+import Model.Theatre;
+import Model.TheatreRoom;
+import java.sql.Timestamp;
+import org.hibernate.criterion.Restrictions;
 /**
  *
  * @author charles
@@ -61,6 +66,18 @@ public class ShowingDAO{
             return u;
     }
 
+    public Showing getShowingByJoe(Movie movie, Theatre theatre, TheatreRoom theatreRoom, Timestamp time) {
+            Session session = this.sessionFactory.getCurrentSession();		
+            List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).add(Restrictions.eq("theatreRoom", theatreRoom)).add(Restrictions.eq("time", time)).list();
+            if(showings.isEmpty())
+            {
+                return null;
+            }
+            else
+            {
+                return (Showing) showings.get(0);
+            }
+    }
     
     public void removeShowing(int id) {
             Session session = this.sessionFactory.getCurrentSession();
