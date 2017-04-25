@@ -39,6 +39,7 @@ public class CrewMember implements Serializable{
     @ManyToMany
     private List<Movie> movies= new ArrayList<Movie>();
 
+
     /**
      * @return the id
      */
@@ -131,6 +132,7 @@ public class CrewMember implements Serializable{
         this.dob = dob;
     }
 
+
     public List<Movie> getMovies() {
         return movies;
     }
@@ -147,6 +149,7 @@ public class CrewMember implements Serializable{
         this.poster = poster;
     }
     
+
     
     
 }

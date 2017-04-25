@@ -49,6 +49,7 @@ public class AgencyService {
     //@Autowired
     //ShowingService showingService;
 
+
     private AgencyDAO agencyDAO;
 
     public AgencyService() {
@@ -162,25 +163,14 @@ public class AgencyService {
                     movie.setMovieScore(Double.parseDouble(eElement.getElementsByTagName("imdbRating").item(0).getTextContent()));
                 }
 
-//                String agencyMovieId = (eElement.getElementsByTagName("imdbID").item(0).getTextContent());
-//                String movieTitle = (eElement.getElementsByTagName("title").item(0).getTextContent());
-//                String movieSynopsis = (eElement.getElementsByTagName("plot").item(0).getTextContent());
-//                String movieRunTime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
-//                String posterLink = (eElement.getElementsByTagName("poster").item(0).getTextContent());
-//                movie.setAgencyMovieId(agencyMovieId);
-//                movie.setTitle(movieTitle);
-//                movie.setSynopsis(movieSynopsis);
-//                movie.setRunTime(movieRunTime);
-//                movie.setPoster(posterLink);
-
                 String imdbID = (eElement.getElementsByTagName("imdbID").item(0).getTextContent());
                 movie.setImdbID(imdbID);
                 String tmdbID = (eElement.getElementsByTagName("tmbdID").item(0).getTextContent());
                 movie.setTmdbID(tmdbID);
                 String title = (eElement.getElementsByTagName("title").item(0).getTextContent());
                 movie.setTitle(title);
-//                String rated = (eElement.getElementsByTagName("rated").item(0).getTextContent());
-//                movie.setRating(rated);
+                String rated = (eElement.getElementsByTagName("rated").item(0).getTextContent());
+                movie.setRating(rated);
                 String plot = (eElement.getElementsByTagName("plot").item(0).getTextContent());
                 movie.setSynopsis(plot);
                 String poster = (eElement.getElementsByTagName("poster").item(0).getTextContent());
@@ -222,6 +212,8 @@ public class AgencyService {
                 actor.setFullName(fullName);
                 String biography = eElement.getElementsByTagName("biography").item(0).getTextContent();
                 actor.setBiography(biography);
+                String poster = eElement.getElementsByTagName("poster").item(0).getTextContent();
+                actor.setPoster(poster);
 
                 if (!eElement.getElementsByTagName("birthday").item(0).getTextContent().equals("") && eElement.getElementsByTagName("birthday").item(0).getTextContent().length() > 4) {
                     String dob = eElement.getElementsByTagName("birthday").item(0).getTextContent();
@@ -243,7 +235,7 @@ public class AgencyService {
                     System.out.println("MOVIEID: " + movieid);
                     Movie m = movieService.getMovieByAgencyMovieId(movieid);
                     if (m != null) {
-                        actor.getMovies().add(m);
+                        //actor.getMovies().add(m);
                     }
                 }
 //                  crewService.addCrewMember(actor);

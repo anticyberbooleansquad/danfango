@@ -102,7 +102,10 @@ function startTimer() {
     
     if(m == 0 && s == 0){
         document.getElementById('timer').innerHTML = "Done";
+<<<<<<< HEAD
         
+=======
+>>>>>>> 78bc93163c5022f067dea9d1ac878eb9335aa2cb
     }
 }
 

@@ -114,7 +114,7 @@ public class MovieDAO {
     public List<Movie> getMoviesComingSoon() {
         Session session = this.sessionFactory.getCurrentSession();
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, 240);
+        cal.add(Calendar.DATE, 750);
         Date date = cal.getTime();
         Timestamp today = new Timestamp(System.currentTimeMillis());
         Timestamp comingSoon = new Timestamp(date.getTime());
