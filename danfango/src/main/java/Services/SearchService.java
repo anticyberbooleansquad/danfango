@@ -264,6 +264,7 @@ public class SearchService {
      * @return 
      */
     public ArrayList<LocationSearchResult> searchLocationsBySubstring(String searchString) {
+        System.out.println("We make it to searchLocationsBySubstring() | searchString is: " + searchString);
         ArrayList<LocationSearchResult> locations = null;
         locations = locationService.getLocationsLikeCityOrLikeState(searchString);
         return locations;
