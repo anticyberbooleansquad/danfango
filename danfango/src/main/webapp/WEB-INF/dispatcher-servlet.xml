@@ -82,6 +82,14 @@
             <list>
                     <value>Model.User</value>
                     <value>Model.Movie</value>
+                    <value>Model.Advertisement</value>
+                    <value>Model.Agency</value>
+                    <value>Model.CrewMember</value>
+                    <value>Model.CrewMemberMovie</value>
+                    <value>Model.Genre</value>
+                    <value>Model.Review</value>
+                    <value>Model.Theatre</value>
+                    <value>Model.TheatreRoom</value>
             </list>
         </property>
         <property name="hibernateProperties">

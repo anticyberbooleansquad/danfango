@@ -13,6 +13,7 @@ package Model;
 public class ClientSearchResult {
         private int id; 
         private String name;
+        private String poster;
 
     public int getId() {
         return id;
@@ -29,5 +30,15 @@ public class ClientSearchResult {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+    
+    
         
 }

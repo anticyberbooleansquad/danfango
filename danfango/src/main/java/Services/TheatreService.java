@@ -91,7 +91,7 @@ public class TheatreService {
                 }
                 @Transactional
                 public List<Theatre> getTheatresLikeState(String state){
-                    return this.theatreDAO.getTheatresLikeCity(state);
+                    return this.theatreDAO.getTheatresLikeState(state);
                 }
 	
 }

@@ -65,7 +65,7 @@ public class MovieDAO {
 
     public Movie getMovieByAgencyMovieId(String agencyMovieId) {
         Session session = this.sessionFactory.getCurrentSession();
-        List movies = session.createCriteria(Movie.class).add(Restrictions.eq("agencyMovieId", agencyMovieId)).list();
+        List movies = session.createCriteria(Movie.class).add(Restrictions.eq("imdbID", agencyMovieId)).list();
         if (movies.isEmpty()) {
             return null;
         }
@@ -81,6 +81,10 @@ public class MovieDAO {
         Date date = cal.getTime();
         Timestamp today = new Timestamp(System.currentTimeMillis());
         Timestamp nextWeek = new Timestamp(date.getTime());
+        
+        System.out.println("TODAY: "+ today);
+        System.out.println("NextWeeK: "+ nextWeek);
+
 
         List movies = session.createCriteria(Movie.class).add(Restrictions.between("releaseDate", today, nextWeek)).list();
         if (movies.isEmpty()) {
@@ -110,7 +114,7 @@ public class MovieDAO {
     public List<Movie> getMoviesComingSoon() {
         Session session = this.sessionFactory.getCurrentSession();
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, 240);
+        cal.add(Calendar.DATE, 750);
         Date date = cal.getTime();
         Timestamp today = new Timestamp(System.currentTimeMillis());
         Timestamp comingSoon = new Timestamp(date.getTime());

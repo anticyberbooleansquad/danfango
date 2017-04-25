@@ -28,10 +28,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Dao.AgencyDAO;
 import Model.Agency;
+import Model.CrewMemberMovie;
 import Model.Movie;
 import Model.Showing;
 import Model.Theatre;
 import Model.TheatreRoom;
+import java.util.ArrayList;
 import java.util.Random;
 import org.w3c.dom.Document;
 
@@ -49,7 +51,9 @@ public class AgencyService {
     @Autowired
     TheatreService theatreService;
     @Autowired
-    ShowingService showingService;
+    CrewMemberMovie crewMemberMovie;
+    //@Autowired
+    //ShowingService showingService;
 
     private AgencyDAO agencyDAO;
 
@@ -129,12 +133,11 @@ public class AgencyService {
                 theatre.setCity(city);
                 theatre.setState(state);
                 theatre.setZip(zipcode);
-                
-                if(theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()) == null){
+
+                if (theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()) == null) {
                     theatreService.addTheatre(theatre);
                     createTheatreRoom(theatre);
-                }
-                else{
+                } else {
                     theatre.setId(theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()).getId());
                     theatreService.updateTheatre(theatre);
                 }
@@ -145,7 +148,7 @@ public class AgencyService {
     }
 
     public void parseMovieFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("movieAgency.xml");
+        Document doc = prepareDoc("movieAgency3.xml");
         NodeList nList = doc.getElementsByTagName("movie");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
@@ -153,8 +156,10 @@ public class AgencyService {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
                 Movie movie = new Movie();
+
                 if (!eElement.getElementsByTagName("released").item(0).getTextContent().equals("N/A")) {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+                    System.out.println("RELEASE: " + eElement.getElementsByTagName("released").item(0).getTextContent());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     Date parsedDate = dateFormat.parse(eElement.getElementsByTagName("released").item(0).getTextContent());
                     Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                     movie.setReleaseDate(timestamp);
@@ -163,24 +168,31 @@ public class AgencyService {
                     movie.setMovieScore(Double.parseDouble(eElement.getElementsByTagName("imdbRating").item(0).getTextContent()));
                 }
 
-                String agencyMovieId = (eElement.getElementsByTagName("imdbID").item(0).getTextContent());
-                String movieTitle = (eElement.getElementsByTagName("title").item(0).getTextContent());
-                String movieSynopsis = (eElement.getElementsByTagName("plot").item(0).getTextContent());
-                String movieRunTime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
-                String posterLink = (eElement.getElementsByTagName("poster").item(0).getTextContent());
-                movie.setAgencyMovieId(agencyMovieId);
-                movie.setTitle(movieTitle);
-                movie.setSynopsis(movieSynopsis);
-                movie.setRunTime(movieRunTime);
-                movie.setPoster(posterLink);
+                String imdbID = (eElement.getElementsByTagName("imdbID").item(0).getTextContent());
+                movie.setImdbID(imdbID);
+                String tmdbID = (eElement.getElementsByTagName("tmbdID").item(0).getTextContent());
+                movie.setTmdbID(tmdbID);
+                String title = (eElement.getElementsByTagName("title").item(0).getTextContent());
+                movie.setTitle(title);
+                String rated = (eElement.getElementsByTagName("rated").item(0).getTextContent());
+                movie.setRating(rated);
+                String plot = (eElement.getElementsByTagName("plot").item(0).getTextContent());
+                movie.setSynopsis(plot);
+                String poster = (eElement.getElementsByTagName("poster").item(0).getTextContent());
+                movie.setPoster(poster);
+                String backdrop = (eElement.getElementsByTagName("backdrop").item(0).getTextContent());
+                movie.setBackdrop(backdrop);
+                String runtime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
+                movie.setRunTime(runtime);
 
-                if (movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()) == null) {
+                //NEED TO SET TRAILERS
+                if (movieService.getMovieByAgencyMovieId(movie.getImdbID()) == null) {
                     movieService.addMovie(movie);
                 } // if the movie does exist then we update that movie oobject
                 else {
 //                    Movie mov = movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()) ;
 //                    mov=movie;
-                    movie.setId(movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()).getId());
+                    movie.setId(movieService.getMovieByAgencyMovieId(movie.getImdbID()).getId());
                     movieService.updateMovie(movie);
                 }
 
@@ -189,7 +201,7 @@ public class AgencyService {
     }
 
     public void parseCrewFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("actorAgency.xml");
+        Document doc = prepareDoc("actorAgency2.xml");
         NodeList nList = doc.getElementsByTagName("actor");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
@@ -202,8 +214,10 @@ public class AgencyService {
                 actor.setFullName(fullName);
                 String biography = eElement.getElementsByTagName("biography").item(0).getTextContent();
                 actor.setBiography(biography);
+                String poster = eElement.getElementsByTagName("poster").item(0).getTextContent();
+                actor.setPoster(poster);
 
-                if (!eElement.getElementsByTagName("birthday").item(0).getTextContent().equals("")) {
+                if (!eElement.getElementsByTagName("birthday").item(0).getTextContent().equals("") && eElement.getElementsByTagName("birthday").item(0).getTextContent().length() > 4) {
                     String dob = eElement.getElementsByTagName("birthday").item(0).getTextContent();
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     Date parsedDate = dateFormat.parse(dob);
@@ -216,25 +230,41 @@ public class AgencyService {
                 }
                 NodeList movies = eElement.getElementsByTagName("movie");
 
+                ArrayList<Movie> crewMember_movies = new ArrayList();
                 for (int i = 0; i < movies.getLength(); i++) {
                     Node movie = movies.item(i);
                     Element movieElement = (Element) movie;
                     String movieid = movieElement.getTextContent();
                     System.out.println("MOVIEID: " + movieid);
                     Movie m = movieService.getMovieByAgencyMovieId(movieid);
+                    // list of movies per crew member
                     if (m != null) {
-                        actor.getMovies().add(m);
+                        crewMember_movies.add(m);
+                        //actor.getMovies().add(m); 
                     }
                 }
 //                  crewService.addCrewMember(actor);
 
                 if (crewService.getCrewMemberByNameAndDOB(actor.getFullName(), actor.getDob()) == null) {
                     crewService.addCrewMember(actor);
+
                 } // if the movie does exist then we update that movie oobject
                 else {
                     System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ " + actor.getFullName());
                     actor.setId(crewService.getCrewMemberByNameAndDOB(actor.getFullName(), actor.getDob()).getId());
                     crewService.updateCrewMember(actor);
+                }
+
+                // add/updateCrewmembermovies table
+                for (int i = 0; i < crewMember_movies.size(); i++) {
+                    CrewMemberMovie relation = new CrewMemberMovie();
+                    if (/*not exists*/) {
+                        relation.setMovie(crewMember_movies(i));
+                        relation.setCrewMember(actor);
+                        //add
+                    } else {
+                        //update
+                    }
                 }
 
             }
@@ -262,15 +292,14 @@ public class AgencyService {
                         Element showingElement = (Element) showingelemnt;
                         String moviename = showingElement.getElementsByTagName("moviename").item(0).getTextContent();
                         String showtime = showingElement.getElementsByTagName("datetime").item(0).getTextContent();
-                        
+
                         Movie mov = (Movie) movieService.getMovieByTitle(moviename);
-                        
-                        
+
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm");
                         Date parsedDate = dateFormat.parse(showtime);
                         Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                         showing.setTime(timestamp);
-                        
+
 //                        if(showingService.getshowingByRoomTheatreNameAndTime,andmovie){
 //                            showing.setId(showingservice.existing);
 //                            crewService.updateCrewMember(actor);
@@ -278,7 +307,6 @@ public class AgencyService {
 //                        else{
 //                            showingService.addShowing(showing);
 //                        }
-
                     }
 
                 }
@@ -286,28 +314,53 @@ public class AgencyService {
             }
         }
     }
-    
-    public static void createTheatreRoom(Theatre theatre){
+
+    public static void createTheatreRoom(Theatre theatre) {
         TheatreRoom room = new TheatreRoom();
         double seatingType = Math.random();
-        double roomLayout = Math.random();
-        
+        boolean[][] layout = new boolean[2][2];
+
         // >25 reservation type 1 >.5 reservation type 2>.75 reservationtype 3 <.75 no reservation
-        if (seatingType >=.25){
-        
-        }
-        else if(seatingType >=.50){
-        
-        }
-        else if (seatingType >=.75){
-        
-        }
-        else{
+        if (seatingType >= .25) {
+            // 132 seats
+            room.setTotalSeats(2);
+            room.setTotalSeatsRemaining(2);
+            room.setSeatingType(TheatreRoom.SeatingType.Reserved);
+            // basic seats at first 
+            layout[0][0] = true;
+            layout[0][1] = true;
+            layout[1][0] = false;
+            layout[1][1] = false;
+            room.setLayout(layout);
+        } else if (seatingType >= .50) {
+            // 132 seats
+            room.setTotalSeats(2);
+            room.setTotalSeatsRemaining(2);
+            room.setSeatingType(TheatreRoom.SeatingType.Reserved);
+            // basic seats at first 
+            layout[0][0] = true;
+            layout[0][1] = false;
+            layout[1][0] = true;
+            layout[1][1] = false;
+            room.setLayout(layout);
+
+        } else if (seatingType >= .75) {
+            // 132 seats
+            room.setTotalSeats(2);
+            room.setTotalSeatsRemaining(2);
+            room.setSeatingType(TheatreRoom.SeatingType.Reserved);
+            // basic seats at first 
+            layout[0][0] = false;
+            layout[0][1] = true;
+            layout[1][0] = false;
+            layout[1][1] = true;
+            room.setLayout(layout);
+
+        } else {
             room.setTotalSeats(200);
             room.setTotalSeatsRemaining(200);
         }
-        
-        
+
     }
 
 }

@@ -14,6 +14,7 @@ import Model.Theatre;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,7 @@ public class SearchService {
             ClientSearchResult movieResult = new ClientSearchResult();
             movieResult.setId(m.getId());
             movieResult.setName(m.getTitle());
+            movieResult.setPoster(m.getPoster());
             movieResults.add(movieResult);
         }
         return movieResults;
@@ -89,6 +91,7 @@ public class SearchService {
             ClientSearchResult result = new ClientSearchResult();
             result.setId(member.getId());
             result.setName(member.getFullName());
+            result.setPoster(member.getPoster());
             crewResults.add(result);
         }
         return crewResults;
@@ -193,6 +196,7 @@ public class SearchService {
      */
     public ArrayList<LocationSearchResult> searchLocations(String searchString) {
         ArrayList<LocationSearchResult> locations = null;
+        System.out.println("We make it to searchLocations");
         locations = searchLocationsByState(searchString);
         if (locations == null) {
             String[] names = searchString.split(",");
@@ -288,7 +292,6 @@ public class SearchService {
     public boolean isShortStateName(String stateName) {
         String shortStateName = stateName;
         String longStateName = locationService.getFullNameValue(shortStateName);
-        System.out.println("longStateName is: " + stateName);
         if (longStateName != null) {
             return true;
         } else {
