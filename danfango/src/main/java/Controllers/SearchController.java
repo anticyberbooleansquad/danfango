@@ -6,6 +6,7 @@
 package Controllers;
 
 import Model.ClientSearchResult;
+import Model.LocationSearchResult;
 import Model.SearchResults;
 import Services.SearchService;
 import java.io.IOException;
@@ -37,12 +38,14 @@ public class SearchController {
         ArrayList<ClientSearchResult> crew = searchResults.getCrew();
         ArrayList<ClientSearchResult> theatresByName = searchResults.getTheatresByName();
         ArrayList<ClientSearchResult> theatresByLocation = searchResults.getTheatresByLocation();
+        ArrayList<LocationSearchResult> locations = searchResults.getLocations();
         System.out.println("We make it to the search controller");
         System.out.println("The crew is: " + Arrays.toString(crew.toArray()));
         request.setAttribute("movies", movies);
         request.setAttribute("crew", crew);
         request.setAttribute("theatresByName", theatresByName);
         request.setAttribute("theatresByLocation", theatresByLocation);
+        request.setAttribute("locations", locations);
         ModelAndView modelAndView = new ModelAndView("searchresultspage");
         return modelAndView;
     }

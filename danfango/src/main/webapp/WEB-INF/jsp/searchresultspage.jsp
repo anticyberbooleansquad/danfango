@@ -46,6 +46,11 @@
                     <c:forEach items="${theatresByLocation}" var="theatre">
                     <p>${theatre.id} : ${theatre.name}<p>
                 </c:forEach>
+                <h1>Suggestions</h1>
+                    <c:forEach items="${locations}" var="location">
+                    <p>${location.city}, ${location.state}<p>
+                </c:forEach>
+                    
         </div>
 
 

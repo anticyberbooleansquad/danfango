@@ -157,6 +157,7 @@ public class LocationService {
     public ArrayList<LocationSearchResult> getLocationsLikeCityOrLikeState(String substring) {
         ArrayList<LocationSearchResult> locations = null;
         List<Theatre> theatres = theatreService.getTheatresLikeCityOrLikeState(substring);
+        System.out.println("Num theatres returned: " + theatres.size());
         if (theatres.size() > 0) {
             locations = new ArrayList();
             for (Theatre theatre : theatres) {
