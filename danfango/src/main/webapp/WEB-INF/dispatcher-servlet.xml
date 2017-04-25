@@ -46,7 +46,7 @@
         <property name="crewMemberMovieDAO" ref="crewMemberMovieDAO"></property>
     </bean>
     <bean id="MovieTrailerService" class="Services.MovieTrailerService">
-        <property name="MovieTrailerDAO" ref="MovieTrailerDAO"></property>
+        <property name="movieTrailerDAO" ref="movieTrailerDAO"></property>
     </bean>
     <bean id="userDAO" class="Dao.UserDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
@@ -57,6 +57,14 @@
     </bean>
     
     <bean id="crewMemberDAO" class="Dao.CrewMemberDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+    <bean id="crewMemberMovieDAO" class="Dao.CrewMemberMovieDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+    <bean id="movieTrailerDAO" class="Dao.MovieTrailerDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     

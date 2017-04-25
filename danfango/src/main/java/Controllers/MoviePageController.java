@@ -9,12 +9,14 @@ package Controllers;
  *
  * @author johnlegutko
  */
+import Model.CrewMemberMovie;
 import Model.Movie;
 import Services.AuthenticationService;
 import Services.CrewMemberMovieService;
 import Services.MovieService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +42,10 @@ public class MoviePageController{
         
         Movie movie = movieService.getMovieById(id);
         request.setAttribute("movie", movie);
+       
+//        List<CrewMemberMovie> crewMemberMovie = crewMemberMovieService.getCrewMemberMovieByMovie(movie);
+//        request.setAttribute("crewMemberMovie",crewMemberMovie);
+        
         ModelAndView modelandview = new ModelAndView("movieinfopage");        
         return modelandview;
     }
