@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import Model.Showing;
 import Model.Theatre;
 import Model.TheatreRoom;
+import java.sql.Timestamp;
 import org.hibernate.criterion.Restrictions;
 /**
  *
@@ -65,9 +66,9 @@ public class ShowingDAO{
             return u;
     }
 
-    public Showing getShowingByJoe(Movie movie, Theatre theatre, TheatreRoom theatreRoom) {
+    public Showing getShowingByJoe(Movie movie, Theatre theatre, TheatreRoom theatreRoom, Timestamp time) {
             Session session = this.sessionFactory.getCurrentSession();		
-            List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).add(Restrictions.eq("theatreRoom", theatreRoom)).list();
+            List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).add(Restrictions.eq("theatreRoom", theatreRoom)).add(Restrictions.eq("time", time)).list();
             if(showings.isEmpty())
             {
                 return null;

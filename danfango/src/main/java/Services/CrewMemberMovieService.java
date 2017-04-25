@@ -57,6 +57,11 @@ public class CrewMemberMovieService {
 	public List<CrewMemberMovie> getCrewMemberMovieByMovie(Movie movie) {
 		return this.crewMemberMovieDAO.getCrewMemberMovieByMovie(movie);
 	}
+        
+        @Transactional
+	public CrewMemberMovie getCrewMemberMovieByJoe(Movie movie, CrewMember crewMember) {
+		return this.crewMemberMovieDAO.getCrewMemberMovieByJoe(movie, crewMember);
+	}
 	
 	@Transactional
 	public void removeCrewMemberMovie(int id) {

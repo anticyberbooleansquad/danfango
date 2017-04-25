@@ -5,6 +5,7 @@
  */
 package Dao;
 
+import Model.Theatre;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.TheatreRoom;
+import org.hibernate.criterion.Restrictions;
 /**
  *
  * @author charles
@@ -61,11 +63,17 @@ public class TheatreRoomDAO{
             return u;
     }
     
-    public TheatreRoom getTheatreRoomByEmail(String email) {
+    public TheatreRoom getTheatreRoomByTheatre(Theatre theatre) {
             Session session = this.sessionFactory.getCurrentSession();		
-            TheatreRoom u = (TheatreRoom) session.load(TheatreRoom.class, new String(email));
-            logger.info("TheatreRoom loaded successfully, TheatreRoom details="+u);
-            return u;
+            List theatreRooms = session.createCriteria(TheatreRoom.class).add(Restrictions.eq("theatre", theatre)).list();
+            if(theatreRooms.isEmpty())
+            {
+                return null;
+            }
+            else
+            {
+                return (TheatreRoom) theatreRooms.get(0);
+            }
     }
 
     

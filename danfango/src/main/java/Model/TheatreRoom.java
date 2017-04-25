@@ -36,6 +36,7 @@ public class TheatreRoom implements Serializable{
     private SeatingType seatingType;
     private int totalSeats;
     private int totalSeatsRemaining;
+    private boolean [][] layout;
 
     public Integer getId() {
         return id;
@@ -75,6 +76,14 @@ public class TheatreRoom implements Serializable{
 
     public void setTotalSeatsRemaining(int totalSeatsRemaining) {
         this.totalSeatsRemaining = totalSeatsRemaining;
+    }
+    
+    public boolean [][] getLayout() {
+        return layout;
+    }
+
+    public void setLayout(boolean [][] layout) {
+        this.layout = layout;
     }
 
   /**
