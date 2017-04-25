@@ -11,6 +11,7 @@ package Controllers;
  */
 import Model.Movie;
 import Services.AuthenticationService;
+import Services.CrewMemberMovieService;
 import Services.MovieService;
 
 import java.util.HashMap;
@@ -31,6 +32,8 @@ public class MoviePageController{
     
     @Autowired
     MovieService movieService;
+//    @Autowired
+//    CrewMemberMovieService crewMemberMovieService;
     
     @RequestMapping(value = "/movieinfopage/{movieId}")
     protected ModelAndView getMovieInfoPage(@PathVariable(value="movieId") int id, HttpServletRequest request){

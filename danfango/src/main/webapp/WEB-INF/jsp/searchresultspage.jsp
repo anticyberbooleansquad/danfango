@@ -36,24 +36,36 @@
             <c:forEach var="movie" items="${movies}" step="4" varStatus="loop">
                 <div class="row spacing">
                     <div class = col-md-3>
-                        <a class="" href="movieinfopage/${movie.id}">
-                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movie.poster}">
-                        </a>
+                        <h6>${movie.name}</h6>
+                        <c:if test="${movie.poster != null && movie.poster != 'null'}">
+                            <a class="" href="movieinfopage/${movie.id}">
+                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movie.poster}">
+                            </a>
+                        </c:if>
                     </div>
                     <div class = col-md-3>
-                        <a class="" href="movieinfopage/${movies[loop.index+1].id}">
-                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+1].poster}">
-                        </a>
+                        <h6>${movies[loop.index+1].name}</h6>
+                        <c:if test="${movies[loop.index+1].poster != null && movies[loop.index+1].poster != 'null'}">
+                            <a class="" href="movieinfopage/${movies[loop.index+1].id}">
+                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+1].poster}">
+                            </a>
+                        </c:if>
                     </div>
                     <div class = col-md-3>
-                        <a class="" href="movieinfopage/${movies[loop.index+2].id}">
-                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+2].poster}">
-                        </a>
+                        <h6>${movies[loop.index+2].name}</h6>
+                        <c:if test="${movies[loop.index+2].poster != null && movies[loop.index+2].poster != 'null'}">
+                            <a class="" href="movieinfopage/${movies[loop.index+2].id}">
+                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+2].poster}">
+                            </a>
+                        </c:if>
                     </div>
                     <div class = col-md-3>
-                        <a class="" href="movieinfopage/${movies[loop.index+3].id}">
-                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+3].poster}">
-                        </a>
+                        <h6>${movies[loop.index+3].name}</h6>
+                        <c:if test="${movies[loop.index+3].poster != null && movies[loop.index+3].poster != 'null'}">
+                            <a class="" href="movieinfopage/${movies[loop.index+3].id}">
+                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+3].poster}">
+                            </a>
+                        </c:if>
                     </div>
                 </div>
             </c:forEach>
@@ -62,21 +74,25 @@
             <c:forEach items="${crew}" var="crewMember" step="4" varStatus="loop">
                 <div class="row spacing">
                     <div class = col-md-3>
+                        <h6>${crewMember.name}</h6>
                         <a class="" href="actorinfopage/${crewMember.id}">
                             <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crewMember.poster}">
                         </a>
                     </div>
                     <div class = col-md-3>
+                        <h6>${crew[loop.index+1].name}</h6>
                         <a class="" href="actorinfopage/${crew[loop.index+1].id}">
                             <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crew[loop.index+1].poster}">
                         </a>
                     </div>
                     <div class = col-md-3>
+                        <h6>${crew[loop.index+2].name}</h6>
                         <a class="" href="actorinfopage/${crew[loop.index+2].id}">
                             <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crew[loop.index+2].poster}">
                         </a>
                     </div>
                     <div class = col-md-3>
+                        <h6>${crew[loop.index+3].name}</h6>
                         <a class="" href="actorinfopage/${crew[loop.index+3].id}">
                             <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crew[loop.index+3].poster}">
                         </a>
@@ -95,7 +111,7 @@
             <h1 class="spacing accountfont underline">Suggestions</h1>
             <c:forEach items="${locations}" var="location">
                 <p>${location.city}, ${location.state}<p>
-            </c:forEach>
+                </c:forEach>
         </div>
 
 
