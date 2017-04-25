@@ -43,7 +43,7 @@
 <!--                            <input type="text" id="search" placeholder="Enter City + State, ZIP Code, or Movie" required data-error="Please enter valid info">-->
 
                             <form role="form" id="searchForm" method="POST" action="/danfango/search">                                           
-                                <input type="text" name= "searchString" id="searchString" placeholder="Enter City + State, ZIP Code, or Movie">
+                                <input type="text" name= "searchString" id="searchString" class="search" placeholder="Enter City + State, ZIP Code, or Movie">
                                 <input type="submit" value="search" class="btn-system btn-mini border-btn btn-gray">
 
                             </form>

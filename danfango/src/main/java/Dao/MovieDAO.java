@@ -126,6 +126,17 @@ public class MovieDAO {
         logger.info("Coming Soon successfully, Movie details=" + movies);
         return movies;
     }
+    
+    public List<Movie> getMoviesTopRated() {
+        Session session = this.sessionFactory.getCurrentSession();
+        
+        List movies = session.createCriteria(Movie.class).add(Restrictions.gt("movieScore", 7.5)).list();
+        if (movies.isEmpty()) {
+            return null;
+        }
+        logger.info("Top Rated successfully, Movie details=" + movies);
+        return movies;
+    }
 
     public void removeMovie(int id) {
         Session session = this.sessionFactory.getCurrentSession();

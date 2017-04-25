@@ -65,6 +65,11 @@ public class MovieService {
 	public List<Movie> getMoviesComingSoon() {
 		return this.movieDAO.getMoviesComingSoon();
 	}
+        
+        @Transactional
+	public List<Movie> getMoviesTopRated() {
+		return this.movieDAO.getMoviesTopRated();
+	}
 	
 	@Transactional
 	public void removeMovie(int id) {

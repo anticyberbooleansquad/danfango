@@ -394,9 +394,9 @@ biography {
     border: 10px;
 }
 
-
-
-
+.search{
+    width: 25%;
+}
 
 /* IDs */
 #buyticketbutton{
@@ -443,7 +443,4 @@ biography {
     border-bottom-width: medium;
 }
 
-#search{
-    width: 25%;
-}
 
