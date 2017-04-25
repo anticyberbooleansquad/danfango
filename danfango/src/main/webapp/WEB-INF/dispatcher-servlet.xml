@@ -42,6 +42,12 @@
     <bean id="theatreService" class="Services.TheatreService">
         <property name="theatreDAO" ref="theatreDAO"></property>
     </bean>
+    <bean id="showingService" class="Services.ShowingService">
+        <property name="showingDAO" ref="showingDAO"></property>
+    </bean>
+    <bean id="theatreRoomService" class="Services.TheatreRoomService">
+        <property name="theatreRoomDAO" ref="theatreRoomDAO"></property>
+    </bean>
     <bean id="crewMemberMovieService" class="Services.CrewMemberMovieService">
         <property name="crewMemberMovieDAO" ref="crewMemberMovieDAO"></property>
     </bean>
@@ -69,6 +75,14 @@
     </bean>
     
     <bean id="theatreDAO" class="Dao.TheatreDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+    <bean id="showingDAO" class="Dao.ShowingDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+     <bean id="theatreRoomDAO" class="Dao.TheatreRoomDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
@@ -110,7 +124,7 @@
         <property name="hibernateProperties">
                 <props>
                         <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                        <prop key="hibernate.hbm2ddl.auto">update</prop>
+                        <prop key="hibernate.hbm2ddl.auto">create</prop>
                         <prop key="hibernate.show_sql">true</prop>
                 </props>
         </property>

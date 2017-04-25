@@ -138,7 +138,7 @@ public class AgencyService {
 
                 if (theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()) == null) {
                     theatreService.addTheatre(theatre);
-                    createTheatreRoom(theatre);
+                    //createTheatreRoom(theatre);
                 } else {
                     theatre.setId(theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()).getId());
                     theatreService.updateTheatre(theatre);
