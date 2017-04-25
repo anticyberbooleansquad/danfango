@@ -77,6 +77,20 @@ public class CrewMemberMovieDAO{
             logger.info("CrewMemberMovie loaded successfully, CrewMemberMovie details="+crewMemberMovies);
             return crewMemberMovies;
     }
+    
+    public CrewMemberMovie getCrewMemberMovieByJoe(Movie movie, CrewMember crewMember) {
+            Session session = this.sessionFactory.getCurrentSession();	
+            List crewMemberMovies = session.createCriteria(CrewMemberMovie.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("crewMember", crewMember)).list();
+            logger.info("CrewMemberMovie loaded successfully, CrewMemberMovie details="+crewMemberMovies);
+            if(crewMemberMovies.isEmpty())
+            {
+                return null;
+            }
+            else
+            {
+                return (CrewMemberMovie) (crewMemberMovies.get(0));
+            }
+    }
    
     public void removeCrewMemberMovie(int id) {
             Session session = this.sessionFactory.getCurrentSession();
