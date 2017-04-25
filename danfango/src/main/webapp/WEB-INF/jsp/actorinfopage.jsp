@@ -58,82 +58,21 @@
                 <h1 class="spacing movietitle">FILMOGRAPHY</h1>
                 <div class="spacing projects-carousel touch-carousel">
 
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
+                    <c:forEach items="${crewMemberMovie}" var="movie" varStatus="loop">
+                        <a href="/danfango/movieinfopage/${movie.movie.id}">
+                            <div class="portfolio-item item">
+                                <div class="portfolio-border">
+                                    <div class="portfolio-thumb">
+                                        <div class="thumb-overlay"></div>
+                                        <img alt="" src="https://image.tmdb.org/t/p/w500/${movie.movie.poster}" />
+                                    </div>
+                                    <div class="portfolio-details">
+                                        <h4>${movie.movie.title}</h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-
+                        </a>
+                    </c:forEach>
                 </div>
             </div>
             <!-- End Recent Projects Carousel -->

@@ -10,10 +10,13 @@ package Controllers;
  * @author johnlegutko
  */
 import Model.CrewMember;
+import Model.CrewMemberMovie;
 import Model.Movie;
+import Services.CrewMemberMovieService;
 import Services.CrewMemberService;
 import Services.MovieService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +32,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class CrewController{
     @Autowired
     CrewMemberService crewMemberService;
+    @Autowired
+    CrewMemberMovieService crewMemberMovieService;
     
     @RequestMapping(value = "/actorinfopage/{crewId}")
     protected ModelAndView getCrewPage(@PathVariable(value="crewId") int id, HttpServletRequest request){
         
         CrewMember crewMember = crewMemberService.getCrewMemberById(id);
         request.setAttribute("crewMember", crewMember);
+        
+        List<CrewMemberMovie> crewMemberMovie = crewMemberMovieService.getCrewMemberMovieByCrewMember(crewMember);
+        request.setAttribute("crewMemberMovie",crewMemberMovie);
     
         ModelAndView modelandview = new ModelAndView("actorinfopage");        
         return modelandview;

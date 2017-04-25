@@ -40,9 +40,8 @@
             <ul class="spacing nav nav-pills">
                 <li class="active" role="presentation"><a href="/danfango/movieinfopage/${movie.id}"><h3>Overview</h3></a></li>
                 <li role="presentation"><a href="/danfango/ticketselectpage/${movie.id}"><h3>Movie Times + Tickets</h3></a></li>
-                <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Synopsis</h3></a></li>
                 <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Movie Reviews</h3></a></li>
-                <li role="presentation"><a href="/danfango/movietrailerpage.html"><h3>Trailers</h3></a></li>
+                <li role="presentation"><a href="/danfango/movietrailerpage/${movie.id}"><h3>Trailers</h3></a></li>
             </ul>
 
             <div class="row">
@@ -78,81 +77,21 @@
                 <h1 class="spacing movietitle">CAST + CREW</h1>
                 <div class="spacing projects-carousel touch-carousel">
 
-                    <a href="/danfango/actorinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/actors/zach.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Name</h4>
-                                    <h5>Role</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/actorinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/actors/willarnet.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Name</h4>
-                                    <h5>Role</h5>
+                    <c:forEach items="${crewMemberMovie}" var="crewMember" varStatus="loop">
+                        <a href="/danfango/actorinfopage/${crewMember.crewMember.id}">
+                            <div class="portfolio-item item">
+                                <div class="portfolio-border">
+                                    <div class="portfolio-thumb">
+                                        <div class="thumb-overlay"></div>
+                                        <img alt="" src="https://image.tmdb.org/t/p/w500/${crewMember.crewMember.poster}" />
+                                    </div>
+                                    <div class="portfolio-details">
+                                        <h4>${crewMember.crewMember.fullName}</h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/actorinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/actors/zach.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Name</h4>
-                                    <h5>Role</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/actorinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/actors/willarnet.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Name</h4>
-                                    <h5>Role</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/actorinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/actors/zach.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Name</h4>
-                                    <h5>Role</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
+                        </a>
+                    </c:forEach>
 
                 </div>
             </div>

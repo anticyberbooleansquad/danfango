@@ -32,15 +32,17 @@
             <h1 class="spacing movietitle">MOVIE TRAILERS</h1>
 
             <ul class="spacing nav nav-pills">
-                <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Overview</h3></a></li>
-                <li role="presentation"><a href="/danfango/ticketselectpage.html"><h3>Movie Times + Tickets</h3></a></li>
-                <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Synopsis</h3></a></li>
-                <li role="presentation"><a href="/danfango/#"><h3>Movie Reviews</h3></a></li>
-                <li role="presentation"><a href="/danfango/movietrailerpage.html"><h3>Trailers</h3></a></li>
+                <li class="active" role="presentation"><a href="/danfango/movieinfopage/${movie.id}"><h3>Overview</h3></a></li>
+                <li role="presentation"><a href="/danfango/ticketselectpage/${movie.id}"><h3>Movie Times + Tickets</h3></a></li>
+                <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Movie Reviews</h3></a></li>
+                <li role="presentation"><a href="/danfango/movietrailerpage/${movie.id}"><h3>Trailers</h3></a></li>
             </ul>
 
 
-            <iframe src="https://www.youtube.com/embed/djlsDykmZ_c""></iframe>
+            <iframe src="https://www.youtube.com/embed/Wji-BZ0oCwg"></iframe>
+            <br>
+            <iframe src="https://www.youtube.com/embed/Wji-BZ0oCwg"></iframe>
+           
 
 
         </div>

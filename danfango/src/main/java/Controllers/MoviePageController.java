@@ -34,8 +34,8 @@ public class MoviePageController{
     
     @Autowired
     MovieService movieService;
-//    @Autowired
-//    CrewMemberMovieService crewMemberMovieService;
+    @Autowired
+    CrewMemberMovieService crewMemberMovieService;
     
     @RequestMapping(value = "/movieinfopage/{movieId}")
     protected ModelAndView getMovieInfoPage(@PathVariable(value="movieId") int id, HttpServletRequest request){
@@ -43,8 +43,8 @@ public class MoviePageController{
         Movie movie = movieService.getMovieById(id);
         request.setAttribute("movie", movie);
        
-//        List<CrewMemberMovie> crewMemberMovie = crewMemberMovieService.getCrewMemberMovieByMovie(movie);
-//        request.setAttribute("crewMemberMovie",crewMemberMovie);
+        List<CrewMemberMovie> crewMemberMovie = crewMemberMovieService.getCrewMemberMovieByMovie(movie);
+        request.setAttribute("crewMemberMovie",crewMemberMovie);
         
         ModelAndView modelandview = new ModelAndView("movieinfopage");        
         return modelandview;
