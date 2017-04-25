@@ -51,6 +51,11 @@ public class TheatreService {
 	public void removeTheatre(int id) {
 		this.theatreDAO.removeTheatre(id);
 	}
+        
+        @Transactional
+	public Theatre getTheatreByAgencyTheatreId(int id) {
+		return this.theatreDAO.getTheatreByAgencyTheatreId(id);
+	}
                 @Transactional
                 public List<Theatre> getTheatresLikeName(String name){
                     return this.theatreDAO.getTheatresLikeName(name);

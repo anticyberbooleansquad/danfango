@@ -47,7 +47,7 @@
 
             <div class="row">
                 <div class="col-sm-3 leftpadding">
-                    <img class="movieposter" src=${movie.poster}/>
+                    <img class="movieposter" src="https://image.tmdb.org/t/p/w500/${movie.poster}"/>
                     <div class="movieInfo">
                         <p><b>Release Date:</b> ${movie.releaseDate}</p>
                         <p><b>Rating:</b> </p>

@@ -30,7 +30,7 @@ public class Showing {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer id;
-    private Time time;
+    private Timestamp time;
     @OneToOne
     private Theatre theatre;
     @OneToOne
@@ -47,11 +47,11 @@ public class Showing {
         this.id = id;
     }
 
-    public Time getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
     

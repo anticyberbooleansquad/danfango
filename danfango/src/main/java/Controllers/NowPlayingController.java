@@ -37,6 +37,7 @@ public class NowPlayingController {
 
         request.setAttribute("openingThisWeek", openingThisWeek);
         request.setAttribute("nowPlaying", nowPlaying);
+        
 
 
         ModelAndView modelandview = new ModelAndView("nowplaying");

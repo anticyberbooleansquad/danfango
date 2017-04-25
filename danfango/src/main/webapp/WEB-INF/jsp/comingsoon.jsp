@@ -53,7 +53,7 @@
 
 
             <h1 class="spacing accountfont underline">COMING SOON</h1>
-            
+
             <div class = "slider2">
 
                 <c:forEach items="${comingSoon}" var="movie" varStatus="loop" step="4">
@@ -63,7 +63,9 @@
                                 <c:if test="${not empty comingSoon[loop.index+loop2.index]}">
                                     <div class = "col-md-3">
                                         <a class="" href="movieinfopage/${comingSoon[loop.index + loop2.index].id}">
-                                            <img class ="posters" src=${comingSoon[loop.index+ loop2.index].poster}>
+                                            <c:if test="${comingSoon[loop.index + loop2.index].poster != null}">
+                                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${comingSoon[loop.index + loop2.index].poster}">
+                                            </c:if>
                                         </a>
                                     </div>
                                 </c:if>

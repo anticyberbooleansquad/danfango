@@ -74,6 +74,7 @@ public class SignInController {
         ModelAndView modelandview;
         agencyService.parseFile("movie");
         agencyService.parseFile("actor");
+        agencyService.parseFile("theatre");
         modelandview = new ModelAndView("index");
         return modelandview;
 

@@ -78,6 +78,7 @@ public class SearchService {
             ClientSearchResult movieResult = new ClientSearchResult();
             movieResult.setId(m.getId());
             movieResult.setName(m.getTitle());
+            movieResult.setPoster(m.getPoster());
             movieResults.add(movieResult);
         }
         return movieResults;
@@ -90,6 +91,7 @@ public class SearchService {
             ClientSearchResult result = new ClientSearchResult();
             result.setId(member.getId());
             result.setName(member.getFullName());
+            result.setPoster(member.getPoster());
             crewResults.add(result);
         }
         return crewResults;

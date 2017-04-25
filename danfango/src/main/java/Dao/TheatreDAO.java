@@ -71,6 +71,17 @@ public class TheatreDAO {
         logger.info("Theatre deleted successfully, person details=" + u);
     }
 
+    public Theatre getTheatreByAgencyTheatreId(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List theatres = session.createCriteria(Theatre.class).add(Restrictions.eq("agencyTheatreId", id)).list();
+        if (theatres.isEmpty()) {
+            return null;
+        }
+        Theatre u = (Theatre) theatres.get(0);
+        logger.info("Theatre loaded successfully, Theatre details=" + u);
+        return u;
+    }
+
     public List<Theatre> getTheatresLikeName(String name) {
         Session session = this.sessionFactory.getCurrentSession();
         List theatres = session.createCriteria(Theatre.class).add(Restrictions.like("name", name)).list();
@@ -88,8 +99,8 @@ public class TheatreDAO {
         List theatres = session.createCriteria(Theatre.class).add(Restrictions.eq("state", state)).list();
         return theatres;
     }
-    
-    public List<Theatre> getTheatresLikeCityByState(String city, String state){
+
+    public List<Theatre> getTheatresLikeCityByState(String city, String state) {
         Session session = this.sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(Theatre.class);
         criteria.add(Restrictions.like("city", city));
@@ -97,8 +108,8 @@ public class TheatreDAO {
         List theatres = criteria.list();
         return theatres;
     }
-    
-    public List<Theatre> getTheatresLikeCityAndLikeState(String city, String state){
+
+    public List<Theatre> getTheatresLikeCityAndLikeState(String city, String state) {
         Session session = this.sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(Theatre.class);
         criteria.add(Restrictions.like("city", city));
@@ -106,18 +117,18 @@ public class TheatreDAO {
         criteria.add(Restrictions.like("state", state));
         // OR 
         // criteria.add(Restrictions.like("full_State", state));
-        
+
         List theatres = criteria.list();
         return theatres;
     }
-    
-    public List<Theatre> getTheatresLikeCity(String city){
+
+    public List<Theatre> getTheatresLikeCity(String city) {
         Session session = this.sessionFactory.getCurrentSession();
         List theatres = session.createCriteria(Theatre.class).add(Restrictions.like("city", city)).list();
         return theatres;
     }
-    
-     public List<Theatre> getTheatresLikeState(String state){
+
+    public List<Theatre> getTheatresLikeState(String state) {
         Session session = this.sessionFactory.getCurrentSession();
         List theatres = session.createCriteria(Theatre.class).add(Restrictions.like("state", state)).list();
         return theatres;

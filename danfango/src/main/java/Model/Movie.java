@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Table
 public class Movie implements Serializable {
     
-    private enum rating {G, PG, PG_13, R, NC_17};
+    //private enum rating {G, PG, PG_13, R, NC_17};
   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,16 +31,20 @@ public class Movie implements Serializable {
     private Integer id;
     @OneToOne
     private Agency agency;
-    private String agencyMovieId;
+    private String imdbID;
+    private String tmdbID;
     private String title;
-    private rating rating;
+    private String rating;
     private double movieScore;
     private Timestamp releaseDate;
+    @Column(name = "synopsis", nullable = false, length = 10000)
     private String synopsis;
     private String runTime;
     private String poster;
+    private String backdrop;
     @ManyToMany
     private List<CrewMember> crewMembers = new ArrayList<CrewMember>();
+
     @OneToMany
     private List<Genre> genres;
 
@@ -70,20 +74,6 @@ public class Movie implements Serializable {
      */
     public void setAgency(Agency agency) {
         this.agency = agency;
-    }
-
-    /**
-     * @return the agencyMovieId
-     */
-    public String getAgencyMovieId() {
-        return agencyMovieId;
-    }
-
-    /**
-     * @param agencyMovieId the agencyMovieId to set
-     */
-    public void setAgencyMovieId(String agencyMovieId) {
-        this.agencyMovieId = agencyMovieId;
     }
 
     /**
@@ -151,46 +141,27 @@ public class Movie implements Serializable {
     public String getPoster() {
         return poster;
     }
-    
-    public void setRating() {
-      this.setRating(getRating().G);
-    }
-    
-
+   
     /**
-     * @return the crewMembers
+     * @return the rating
      */
-    public List<CrewMember> getCrewMembers() {
-        return crewMembers;
+    public String getRating() {
+      return rating;
     }
 
     /**
-     * @param crewMembers the crewMembers to set
+     * @param rating the rating to set
      */
-    public void setCrewMembers(List<CrewMember> crewMembers) {
-        this.crewMembers = crewMembers;
+    public void setRating(String rating) {
+      this.rating = rating;
     }
 
-  /**
-   * @return the rating
-   */
-  public rating getRating() {
-    return rating;
-  }
-
-  /**
-   * @param rating the rating to set
-   */
-  public void setRating(rating rating) {
-    this.rating = rating;
-  }
-
-  /**
-   * @return the genres
-   */
-  public List<Genre> getGenres() {
-    return genres;
-  }
+    /**
+     * @return the genres
+     */
+    public List<Genre> getGenres() {
+      return genres;
+    }
 
   /**
    * @param genres the genres to set
@@ -198,6 +169,39 @@ public class Movie implements Serializable {
   public void setGenres(List<Genre> genres) {
     this.genres = genres;
   }
-    
-    
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
+    }
+
+    public String getTmdbID() {
+        return tmdbID;
+    }
+
+    public void setTmdbID(String tmdbID) {
+        this.tmdbID = tmdbID;
+    }
+
+    public String getBackdrop() {
+        return backdrop;
+    }
+
+    public void setBackdrop(String backdrop) {
+        this.backdrop = backdrop;
+    }
+
+//    public List<Trailer> getTrailers() {
+//        return trailers;
+//    }
+//
+//    public void setTrailers(List<Trailer> trailers) {
+//        this.trailers = trailers;
+//    }
+//    
+
+  
 }
