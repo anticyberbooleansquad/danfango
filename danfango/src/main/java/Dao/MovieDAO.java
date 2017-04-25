@@ -137,5 +137,16 @@ public class MovieDAO {
         List movies = session.createCriteria(Movie.class).add(Restrictions.like("title", title)).list();
         return movies;
     }
+    
+    public Movie getMovieByTitle(String title) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List movies = session.createCriteria(Movie.class).add(Restrictions.eq("title", title)).list();
+        if (movies.isEmpty()) {
+            return null;
+        }
+        Movie m = (Movie) movies.get(0);
+        logger.info("Movie loaded successfully, Movie details=" + m);
+        return m;
+    }
 
 }

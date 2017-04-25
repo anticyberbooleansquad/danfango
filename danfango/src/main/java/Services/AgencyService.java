@@ -31,6 +31,8 @@ import Model.Agency;
 import Model.Movie;
 import Model.Showing;
 import Model.Theatre;
+import Model.TheatreRoom;
+import java.util.Random;
 import org.w3c.dom.Document;
 
 /**
@@ -130,6 +132,7 @@ public class AgencyService {
                 
                 if(theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()) == null){
                     theatreService.addTheatre(theatre);
+                    createTheatreRoom(theatre);
                 }
                 else{
                     theatre.setId(theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()).getId());
@@ -260,18 +263,21 @@ public class AgencyService {
                         String moviename = showingElement.getElementsByTagName("moviename").item(0).getTextContent();
                         String showtime = showingElement.getElementsByTagName("datetime").item(0).getTextContent();
                         
+                        Movie mov = (Movie) movieService.getMovieByTitle(moviename);
+                        
+                        
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm");
                         Date parsedDate = dateFormat.parse(showtime);
                         Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                         showing.setTime(timestamp);
                         
-                        if(showingService.getshowingByRoomTheatreNameAndTime){
-                            showing.setId(showingservice.existing);
-                            crewService.updateCrewMember(actor);
-                        }
-                        else{
-                            showingService.addShowing(showing);
-                        }
+//                        if(showingService.getshowingByRoomTheatreNameAndTime,andmovie){
+//                            showing.setId(showingservice.existing);
+//                            crewService.updateCrewMember(actor);
+//                        }
+//                        else{
+//                            showingService.addShowing(showing);
+//                        }
 
                     }
 
@@ -280,4 +286,28 @@ public class AgencyService {
             }
         }
     }
+    
+    public static void createTheatreRoom(Theatre theatre){
+        TheatreRoom room = new TheatreRoom();
+        double seatingType = Math.random();
+        double roomLayout = Math.random();
+        
+        // >25 reservation type 1 >.5 reservation type 2>.75 reservationtype 3 <.75 no reservation
+        if (seatingType >=.25){
+        
+        }
+        else if(seatingType >=.50){
+        
+        }
+        else if (seatingType >=.75){
+        
+        }
+        else{
+            room.setTotalSeats(200);
+            room.setTotalSeatsRemaining(200);
+        }
+        
+        
+    }
+
 }
