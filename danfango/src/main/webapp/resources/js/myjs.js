@@ -84,7 +84,7 @@ $(function () {
 });
 
 
-document.getElementById('timer').innerHTML = 01 + ":" + 00;
+document.getElementById('timer').innerHTML = 05 + ":" + 00;
 startTimer();
 
 function startTimer() {
@@ -102,7 +102,7 @@ function startTimer() {
     
     if(m == 0 && s == 0){
         document.getElementById('timer').innerHTML = "Done";
-        break;
+        
     }
 }
 

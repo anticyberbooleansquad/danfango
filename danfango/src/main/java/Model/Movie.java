@@ -22,6 +22,10 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Movie implements Serializable {
+
+    public void setRating(String rated) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     private enum rating {G, PG, PG_13, R, NC_17};
   
@@ -31,14 +35,17 @@ public class Movie implements Serializable {
     private Integer id;
     @OneToOne
     private Agency agency;
-    private String agencyMovieId;
+    private String imdbID;
+    private String tmdbID;
     private String title;
     private rating rating;
     private double movieScore;
     private Timestamp releaseDate;
+    @Column(name = "synopsis", nullable = false, length = 10000)
     private String synopsis;
     private String runTime;
     private String poster;
+    private String backdrop;
     @ManyToMany
     private List<CrewMember> crewMembers = new ArrayList<CrewMember>();
     @OneToMany
@@ -70,20 +77,6 @@ public class Movie implements Serializable {
      */
     public void setAgency(Agency agency) {
         this.agency = agency;
-    }
-
-    /**
-     * @return the agencyMovieId
-     */
-    public String getAgencyMovieId() {
-        return agencyMovieId;
-    }
-
-    /**
-     * @param agencyMovieId the agencyMovieId to set
-     */
-    public void setAgencyMovieId(String agencyMovieId) {
-        this.agencyMovieId = agencyMovieId;
     }
 
     /**
@@ -198,6 +191,40 @@ public class Movie implements Serializable {
   public void setGenres(List<Genre> genres) {
     this.genres = genres;
   }
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
+    }
+
+    public String getTmdbID() {
+        return tmdbID;
+    }
+
+    public void setTmdbID(String tmdbID) {
+        this.tmdbID = tmdbID;
+    }
+
+    public String getBackdrop() {
+        return backdrop;
+    }
+
+    public void setBackdrop(String backdrop) {
+        this.backdrop = backdrop;
+    }
+
+//    public List<Trailer> getTrailers() {
+//        return trailers;
+//    }
+//
+//    public void setTrailers(List<Trailer> trailers) {
+//        this.trailers = trailers;
+//    }
+//    
     
-    
+  
+  
 }

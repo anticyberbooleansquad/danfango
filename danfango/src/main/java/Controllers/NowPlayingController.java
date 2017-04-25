@@ -34,9 +34,12 @@ public class NowPlayingController {
 
         List<Movie> openingThisWeek = movieService.getMoviesOpeningThisWeek();
         List<Movie> nowPlaying = movieService.getMoviesNowPlaying();
+        Movie movie = movieService.getMovieByAgencyMovieId("tt3501632");
 
+        request.setAttribute("movie", movie);
         request.setAttribute("openingThisWeek", openingThisWeek);
         request.setAttribute("nowPlaying", nowPlaying);
+        
 
 
         ModelAndView modelandview = new ModelAndView("nowplaying");

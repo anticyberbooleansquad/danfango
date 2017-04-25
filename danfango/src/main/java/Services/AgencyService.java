@@ -46,8 +46,8 @@ public class AgencyService {
     CrewMemberService crewService;
     @Autowired
     TheatreService theatreService;
-    @Autowired
-    ShowingService showingService;
+    //@Autowired
+    //ShowingService showingService;
 
     private AgencyDAO agencyDAO;
 
@@ -142,7 +142,7 @@ public class AgencyService {
     }
 
     public void parseMovieFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("movieAgency.xml");
+        Document doc = prepareDoc("movieAgency3.xml");
         NodeList nList = doc.getElementsByTagName("movie");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
@@ -150,8 +150,10 @@ public class AgencyService {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
                 Movie movie = new Movie();
+                
                 if (!eElement.getElementsByTagName("released").item(0).getTextContent().equals("N/A")) {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+                    System.out.println("RELEASE: "+ eElement.getElementsByTagName("released").item(0).getTextContent());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     Date parsedDate = dateFormat.parse(eElement.getElementsByTagName("released").item(0).getTextContent());
                     Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                     movie.setReleaseDate(timestamp);
@@ -160,24 +162,45 @@ public class AgencyService {
                     movie.setMovieScore(Double.parseDouble(eElement.getElementsByTagName("imdbRating").item(0).getTextContent()));
                 }
 
-                String agencyMovieId = (eElement.getElementsByTagName("imdbID").item(0).getTextContent());
-                String movieTitle = (eElement.getElementsByTagName("title").item(0).getTextContent());
-                String movieSynopsis = (eElement.getElementsByTagName("plot").item(0).getTextContent());
-                String movieRunTime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
-                String posterLink = (eElement.getElementsByTagName("poster").item(0).getTextContent());
-                movie.setAgencyMovieId(agencyMovieId);
-                movie.setTitle(movieTitle);
-                movie.setSynopsis(movieSynopsis);
-                movie.setRunTime(movieRunTime);
-                movie.setPoster(posterLink);
+//                String agencyMovieId = (eElement.getElementsByTagName("imdbID").item(0).getTextContent());
+//                String movieTitle = (eElement.getElementsByTagName("title").item(0).getTextContent());
+//                String movieSynopsis = (eElement.getElementsByTagName("plot").item(0).getTextContent());
+//                String movieRunTime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
+//                String posterLink = (eElement.getElementsByTagName("poster").item(0).getTextContent());
+//                movie.setAgencyMovieId(agencyMovieId);
+//                movie.setTitle(movieTitle);
+//                movie.setSynopsis(movieSynopsis);
+//                movie.setRunTime(movieRunTime);
+//                movie.setPoster(posterLink);
 
-                if (movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()) == null) {
+                String imdbID = (eElement.getElementsByTagName("imdbID").item(0).getTextContent());
+                movie.setImdbID(imdbID);
+                String tmdbID = (eElement.getElementsByTagName("tmbdID").item(0).getTextContent());
+                movie.setTmdbID(tmdbID);
+                String title = (eElement.getElementsByTagName("title").item(0).getTextContent());
+                movie.setTitle(title);
+//                String rated = (eElement.getElementsByTagName("rated").item(0).getTextContent());
+//                movie.setRating(rated);
+                String plot = (eElement.getElementsByTagName("plot").item(0).getTextContent());
+                movie.setSynopsis(plot);
+                String poster = (eElement.getElementsByTagName("poster").item(0).getTextContent());
+                movie.setPoster(poster);
+                String backdrop = (eElement.getElementsByTagName("backdrop").item(0).getTextContent());
+                movie.setBackdrop(backdrop);
+                String runtime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
+                movie.setRunTime(runtime);
+                
+                //NEED TO SET TRAILERS
+                
+              
+
+                if (movieService.getMovieByAgencyMovieId(movie.getImdbID()) == null) {
                     movieService.addMovie(movie);
                 } // if the movie does exist then we update that movie oobject
                 else {
 //                    Movie mov = movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()) ;
 //                    mov=movie;
-                    movie.setId(movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()).getId());
+                    movie.setId(movieService.getMovieByAgencyMovieId(movie.getImdbID()).getId());
                     movieService.updateMovie(movie);
                 }
 
@@ -186,7 +209,7 @@ public class AgencyService {
     }
 
     public void parseCrewFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("actorAgency.xml");
+        Document doc = prepareDoc("actorAgency2.xml");
         NodeList nList = doc.getElementsByTagName("actor");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
@@ -200,7 +223,7 @@ public class AgencyService {
                 String biography = eElement.getElementsByTagName("biography").item(0).getTextContent();
                 actor.setBiography(biography);
 
-                if (!eElement.getElementsByTagName("birthday").item(0).getTextContent().equals("")) {
+                if (!eElement.getElementsByTagName("birthday").item(0).getTextContent().equals("") && eElement.getElementsByTagName("birthday").item(0).getTextContent().length() > 4) {
                     String dob = eElement.getElementsByTagName("birthday").item(0).getTextContent();
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     Date parsedDate = dateFormat.parse(dob);
@@ -265,13 +288,13 @@ public class AgencyService {
                         Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                         showing.setTime(timestamp);
                         
-                        if(showingService.getshowingByRoomTheatreNameAndTime){
-                            showing.setId(showingservice.existing);
-                            crewService.updateCrewMember(actor);
-                        }
-                        else{
-                            showingService.addShowing(showing);
-                        }
+//                        if(showingService.getshowingByRoomTheatreNameAndTime){
+//                            showing.setId(showingservice.existing);
+//                            crewService.updateCrewMember(actor);
+//                        }
+//                        else{
+//                            showingService.addShowing(showing);
+//                        }
 
                     }
 

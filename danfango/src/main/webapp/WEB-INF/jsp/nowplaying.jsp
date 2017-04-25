@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,11 +39,15 @@
                 <li role="presentation"><a href="/danfango/athomedvd.html"><h3>At Home</h3></a></li>
             </ul>
 
-
             <h1 class="spacing accountfont underline">OPENING THIS WEEK</h1>
 
             <div class = "slider2">
 
+                <div class = "col-md-3">
+                    <a class="" href="movieinfopage/${movie.id}">
+                        <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movie.poster}">
+                    </a>
+                </div>
                 <c:forEach items="${openingThisWeek}" var="movie" varStatus="loop" step="4">
                     <div class="slide"> 
                         <div class="row spacing">
@@ -51,7 +55,7 @@
                                 <c:if test="${not empty openingThisWeek[loop.index+loop2.index]}">
                                     <div class = "col-md-3">
                                         <a class="" href="movieinfopage/${openingThisWeek[loop.index + loop2.index].id}">
-                                            <img class ="posters" src=${openingThisWeek[loop.index+ loop2.index].poster}>
+                                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${openingThisWeek[loop.index + loop2.index].poster}">
                                         </a>
                                     </div>
                                 </c:if>
