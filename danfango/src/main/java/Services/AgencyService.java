@@ -46,7 +46,7 @@ public class AgencyService {
     CrewMemberService crewService;
     @Autowired
     TheatreService theatreService;
-    @Autowired
+    //@Autowired
     ShowingService showingService;
 
     private AgencyDAO agencyDAO;
@@ -220,7 +220,7 @@ public class AgencyService {
                     System.out.println("MOVIEID: " + movieid);
                     Movie m = movieService.getMovieByAgencyMovieId(movieid);
                     if (m != null) {
-                        actor.getMovies().add(m);
+                        //actor.getMovies().add(m);
                     }
                 }
 //                  crewService.addCrewMember(actor);
@@ -265,13 +265,13 @@ public class AgencyService {
                         Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                         showing.setTime(timestamp);
                         
-                        if(showingService.getshowingByRoomTheatreNameAndTime){
-                            showing.setId(showingservice.existing);
-                            crewService.updateCrewMember(actor);
-                        }
-                        else{
-                            showingService.addShowing(showing);
-                        }
+//                        if(showingService.getshowingByRoomTheatreNameAndTime){
+//                            showing.setId(showingservice.existing);
+//                            crewService.updateCrewMember(actor);
+//                        }
+//                        else{
+//                            showingService.addShowing(showing);
+//                        }
 
                     }
 

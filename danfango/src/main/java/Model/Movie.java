@@ -39,8 +39,6 @@ public class Movie implements Serializable {
     private String synopsis;
     private String runTime;
     private String poster;
-    @ManyToMany
-    private List<CrewMember> crewMembers = new ArrayList<CrewMember>();
     @OneToMany
     private List<Genre> genres;
 
@@ -151,53 +149,34 @@ public class Movie implements Serializable {
     public String getPoster() {
         return poster;
     }
-    
-    public void setRating() {
-      this.setRating(getRating().G);
-    }
-    
-
+   
     /**
-     * @return the crewMembers
+     * @return the rating
      */
-    public List<CrewMember> getCrewMembers() {
-        return crewMembers;
+    public rating getRating() {
+      return rating;
     }
 
     /**
-     * @param crewMembers the crewMembers to set
+     * @param rating the rating to set
      */
-    public void setCrewMembers(List<CrewMember> crewMembers) {
-        this.crewMembers = crewMembers;
+    public void setRating(rating rating) {
+      this.rating = rating;
     }
 
-  /**
-   * @return the rating
-   */
-  public rating getRating() {
-    return rating;
-  }
+    /**
+     * @return the genres
+     */
+    public List<Genre> getGenres() {
+      return genres;
+    }
 
-  /**
-   * @param rating the rating to set
-   */
-  public void setRating(rating rating) {
-    this.rating = rating;
-  }
-
-  /**
-   * @return the genres
-   */
-  public List<Genre> getGenres() {
-    return genres;
-  }
-
-  /**
-   * @param genres the genres to set
-   */
-  public void setGenres(List<Genre> genres) {
-    this.genres = genres;
-  }
+    /**
+     * @param genres the genres to set
+     */
+    public void setGenres(List<Genre> genres) {
+      this.genres = genres;
+    }
     
     
 }
