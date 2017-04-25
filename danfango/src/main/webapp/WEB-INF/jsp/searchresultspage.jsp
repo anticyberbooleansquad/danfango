@@ -31,8 +31,8 @@
             <h2 class="spacing movietitle">SEARCH <font color="EA6630"><b>RESULTS</b></font></h2>
 
             <h1 class="spacing accountfont underline">Movies</h1>
-        
-            
+
+
             <c:forEach var="movie" items="${movies}" step="4" varStatus="loop">
                 <div class="row spacing">
                     <div class = col-md-3>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </c:forEach>
-            
+
             <h1 class="spacing accountfont underline">Actors</h1>
             <c:forEach items="${crew}" var="crewMember" step="4" varStatus="loop">
                 <div class="row spacing">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </c:forEach>
-         
+
             <h1 class="spacing accountfont underline">Theatres by Name</h1>
             <c:forEach items="${theatresByName}" var="theatre">
                 <p>${theatre.id} : ${theatre.name}<p>
@@ -92,11 +92,10 @@
             <c:forEach items="${theatresByLocation}" var="theatre">
                 <p>${theatre.id} : ${theatre.name}<p>
                 </c:forEach>
-                <h1>Suggestions</h1>
-                    <c:forEach items="${locations}" var="location">
-                    <p>${location.city}, ${location.state}<p>
-                </c:forEach>
-                    
+            <h1 class="spacing accountfont underline">Suggestions</h1>
+            <c:forEach items="${locations}" var="location">
+                <p>${location.city}, ${location.state}<p>
+            </c:forEach>
         </div>
 
 

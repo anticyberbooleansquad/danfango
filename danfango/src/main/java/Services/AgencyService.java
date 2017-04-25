@@ -119,7 +119,7 @@ public class AgencyService {
                 String agencyId = eElement.getElementsByTagName("agencyID").item(0).getTextContent();
                 String name = eElement.getElementsByTagName("name").item(0).getTextContent();
                 String address = eElement.getElementsByTagName("address").item(0).getTextContent();
-                String city = eElement.getElementsByTagName("address").item(0).getTextContent();
+                String city = eElement.getElementsByTagName("city").item(0).getTextContent();
                 String state = eElement.getElementsByTagName("state").item(0).getTextContent();
                 String zipcode = eElement.getElementsByTagName("zipcode").item(0).getTextContent();
                 theatre.setAgencyTheatreId(Integer.parseInt(agencyId));
