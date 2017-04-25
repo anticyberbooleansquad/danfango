@@ -36,8 +36,6 @@ public class CrewMember implements Serializable{
     private int age;
     private Timestamp dob;
     private String poster;
-    @ManyToMany
-    private List<Movie> movies= new ArrayList<Movie>();
 
 
     /**
@@ -130,15 +128,6 @@ public class CrewMember implements Serializable{
      */
     public void setDob(Timestamp dob) {
         this.dob = dob;
-    }
-
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
     }
 
     public String getPoster() {

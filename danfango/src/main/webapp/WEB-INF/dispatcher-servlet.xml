@@ -90,6 +90,8 @@
                     <value>Model.Review</value>
                     <value>Model.Theatre</value>
                     <value>Model.TheatreRoom</value>
+                    <value>Model.MovieTrailer</value>
+
             </list>
         </property>
         <property name="hibernateProperties">

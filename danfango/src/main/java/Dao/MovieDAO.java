@@ -129,7 +129,7 @@ public class MovieDAO {
     
     public List<Movie> getMoviesTopRated() {
         Session session = this.sessionFactory.getCurrentSession();
-        
+
         List movies = session.createCriteria(Movie.class).add(Restrictions.gt("movieScore", 7.5)).list();
         if (movies.isEmpty()) {
             return null;
