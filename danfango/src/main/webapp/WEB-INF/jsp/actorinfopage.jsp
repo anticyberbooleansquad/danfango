@@ -27,7 +27,7 @@
 
         <div class="container">
 
-            <h1 class="spacing movietitle">Actor Name <font color="EA6630"><b>Overview</b></font></h1>
+            <h1 class="spacing movietitle">${crewMember.fullName} <font color="EA6630"><b>Overview</b></font></h1>
 
             <ul class="spacing nav nav-pills">
 
@@ -41,11 +41,13 @@
             </ul>
 
             <div class="row">
-                <div class="col-sm-3">
-                    <img class="spacing movieposter" src="resources/images/actors/willarnet.jpg"/>
+                <div class="col-sm-3 leftpadding">
+                    <img class ="posters" src="https://image.tmdb.org/t/p/w500/${crewMember.poster}">
                 </div>
                 <div class="col-md-4">
-                    <div class="synopsis"></div>
+                    <div class="synopsis">
+                        <p class="synopsisFont">${crewMember.biography}</p> 
+                    </div>
                 </div>
             </div>
 
