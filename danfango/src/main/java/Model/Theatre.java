@@ -33,6 +33,7 @@ public class Theatre implements Serializable {
     private String city;
     private String zip;
     private String state;
+    private String stateName;
 
     /**
      * @return the id
@@ -144,6 +145,14 @@ public class Theatre implements Serializable {
      */
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
     
 }
