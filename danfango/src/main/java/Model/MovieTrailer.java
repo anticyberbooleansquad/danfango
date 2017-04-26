@@ -49,6 +49,9 @@ public class MovieTrailer implements Serializable{
         this.movie = movie;
     }
 
+  
+
+  
     public String getAgencyId() {
         return agencyId;
     }

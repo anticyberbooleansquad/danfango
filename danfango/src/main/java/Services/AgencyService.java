@@ -30,6 +30,7 @@ import Dao.AgencyDAO;
 import Model.Agency;
 import Model.CrewMemberMovie;
 import Model.Movie;
+import Model.MovieTrailer;
 import Model.Showing;
 import Model.Theatre;
 import Model.TheatreRoom;
@@ -56,6 +57,8 @@ public class AgencyService {
     ShowingService showingService;
     @Autowired
     TheatreRoomService theatreRoomService;
+    @Autowired
+    MovieTrailerService movieTrailerService;
 
     private AgencyDAO agencyDAO;
 
@@ -94,6 +97,8 @@ public class AgencyService {
     public void parseFile(String agency) throws Exception {
         if (agency.equals("movie")) {
             parseMovieFile();
+        } else if (agency.equals("trailers")) {
+            parseTrailersFile();
         } else if (agency.equals("actor")) {
             parseCrewFile();
         } else if (agency.equals("theatre")) {
@@ -157,6 +162,7 @@ public class AgencyService {
             Node nNode = nList.item(counter);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
+                System.out.println("MOVIE ELEMT : " + eElement);
                 Movie movie = new Movie();
 
                 if (!eElement.getElementsByTagName("released").item(0).getTextContent().equals("N/A")) {
@@ -192,10 +198,44 @@ public class AgencyService {
                     movieService.addMovie(movie);
                 } // if the movie does exist then we update that movie oobject
                 else {
-//                    Movie mov = movieService.getMovieByAgencyMovieId(movie.getAgencyMovieId()) ;
-//                    mov=movie;
                     movie.setId(movieService.getMovieByAgencyMovieId(movie.getImdbID()).getId());
                     movieService.updateMovie(movie);
+                }
+
+            }
+        }
+    }
+
+    public void parseTrailersFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
+        Document doc = prepareDoc("movieAgency3.xml");
+        NodeList nList = doc.getElementsByTagName("movie");
+
+        for (int counter = 0; counter < nList.getLength(); counter++) {
+            Node nNode = nList.item(counter);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+
+                NodeList trailers = eElement.getElementsByTagName("trailer");
+                String imdbID = (eElement.getElementsByTagName("imdbID").item(0).getTextContent());
+
+                System.out.println("TRAILERS NODE LIST " + trailers);
+                for (int i = 0; i < trailers.getLength(); i++) {
+                    Node trailer = trailers.item(i);
+                    Element trailerElement = (Element) trailer;
+                    System.out.println("Trailer Element: " + trailerElement);
+                    String trailerId = trailerElement.getElementsByTagName("id").item(0).getTextContent();
+                    System.out.println("Trailer ID: " + trailerId);
+                    String trailerKey = trailerElement.getElementsByTagName("key").item(0).getTextContent();
+                    System.out.println("Trailer KEY: " + trailerKey);
+
+                    MovieTrailer mt = new MovieTrailer();
+                    mt.setAgencyId(trailerId);
+                    Movie m = movieService.getMovieByAgencyMovieId(imdbID);
+                    if (m != null) {
+                        mt.setMovie(m);
+                    }
+                    mt.setYoutubeKey(trailerKey);
+                    movieTrailerService.addMovieTrailer(mt);
                 }
 
             }
@@ -252,7 +292,7 @@ public class AgencyService {
 
                 } // if the movie does exist then we update that movie oobject
                 else {
-                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ " + actor.getFullName());
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$ " + actor.getFullName());
                     actor.setId(crewService.getCrewMemberByNameAndDOB(actor.getFullName(), actor.getDob()).getId());
                     crewService.updateCrewMember(actor);
                 }
@@ -264,6 +304,9 @@ public class AgencyService {
                         relation.setMovie(crewMember_movies.get(i));
                         relation.setCrewMember(actor);
                         crewMemberMovieService.addCrewMemberMovie(relation);
+                    } else {
+                        relation.setId(crewMemberMovieService.getCrewMemberMovieByJoe(crewMember_movies.get(i), actor).getId());
+                        crewMemberMovieService.updateCrewMemberMovie(relation);
                     }
                 }
 
@@ -300,12 +343,11 @@ public class AgencyService {
                         Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                         showing.setTime(timestamp);
                         TheatreRoom room = theatreRoomService.getTheatreRoomByTheatre(theatre);
-                        Showing existingShowing = showingService.getShowingByJoe(mov, theatre, room,timestamp);
-                        if(existingShowing != null){
+                        Showing existingShowing = showingService.getShowingByJoe(mov, theatre, room, timestamp);
+                        if (existingShowing != null) {
                             showing.setId(existingShowing.getId());
                             showingService.updateShowing(showing);
-                        }
-                        else{
+                        } else {
                             showingService.addShowing(showing);
                         }
                     }
@@ -316,7 +358,7 @@ public class AgencyService {
         }
     }
 
-    public  void createTheatreRoom(Theatre theatre) {
+    public void createTheatreRoom(Theatre theatre) {
         TheatreRoom room = new TheatreRoom();
         double seatingType = Math.random();
         boolean[][] layout = new boolean[2][2];
@@ -333,7 +375,7 @@ public class AgencyService {
             layout[1][0] = false;
             layout[1][1] = false;
             room.setLayout(layout);
-        } else if (seatingType <= .50 && seatingType >.25) {
+        } else if (seatingType <= .50 && seatingType > .25) {
             // 132 seats
             room.setTotalSeats(2);
             room.setTotalSeatsRemaining(2);
@@ -345,7 +387,7 @@ public class AgencyService {
             layout[1][1] = false;
             room.setLayout(layout);
 
-        } else if (seatingType <= .75 && seatingType >.5) {
+        } else if (seatingType <= .75 && seatingType > .5) {
             // 132 seats
             room.setTotalSeats(2);
             room.setTotalSeatsRemaining(2);
