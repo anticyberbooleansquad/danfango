@@ -29,7 +29,7 @@ public class CrewMember implements Serializable{
     private Integer id;
     @OneToOne
     private Agency agency;
-    private int agencyCrewId;
+    private String agencyCrewId;
     private String fullName;
     @Column(name = "biography", nullable = false, length = 10000)
     private String biography ;
@@ -69,14 +69,14 @@ public class CrewMember implements Serializable{
     /**
      * @return the agencyCrewId
      */
-    public int getAgencyCrewId() {
+    public String getAgencyCrewId() {
         return agencyCrewId;
     }
 
     /**
      * @param agencyCrewId the agencyCrewId to set
      */
-    public void setAgencyCrewId(int agencyCrewId) {
+    public void setAgencyCrewId(String agencyCrewId) {
         this.agencyCrewId = agencyCrewId;
     }
 
