@@ -59,6 +59,8 @@ public class AgencyService {
     TheatreRoomService theatreRoomService;
     @Autowired
     MovieTrailerService movieTrailerService;
+    @Autowired
+    LocationService locationService;
 
     private AgencyDAO agencyDAO;
 
@@ -133,12 +135,14 @@ public class AgencyService {
                 String address = eElement.getElementsByTagName("address").item(0).getTextContent();
                 String city = eElement.getElementsByTagName("city").item(0).getTextContent();
                 String state = eElement.getElementsByTagName("state").item(0).getTextContent();
+                String stateName = locationService.getFullNameValue(state.toLowerCase());
                 String zipcode = eElement.getElementsByTagName("zipcode").item(0).getTextContent();
                 theatre.setAgencyTheatreId(Integer.parseInt(agencyId));
                 theatre.setName(name);
                 theatre.setAddress(address);
                 theatre.setCity(city);
                 theatre.setState(state);
+                theatre.setStateName(stateName);
                 theatre.setZip(zipcode);
 
                 if (theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()) == null) {
@@ -155,7 +159,7 @@ public class AgencyService {
     }
 
     public void parseMovieFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("movieAgency3.xml");
+        Document doc = prepareDoc("newMovie.xml");
         NodeList nList = doc.getElementsByTagName("movie");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
@@ -165,7 +169,7 @@ public class AgencyService {
                 System.out.println("MOVIE ELEMT : " + eElement);
                 Movie movie = new Movie();
 
-                if (!eElement.getElementsByTagName("released").item(0).getTextContent().equals("N/A")) {
+                if (!eElement.getElementsByTagName("released").item(0).getTextContent().equals("N/A") && !eElement.getElementsByTagName("released").item(0).getTextContent().equals("")) {
                     System.out.println("RELEASE: " + eElement.getElementsByTagName("released").item(0).getTextContent());
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     Date parsedDate = dateFormat.parse(eElement.getElementsByTagName("released").item(0).getTextContent());
@@ -213,7 +217,7 @@ public class AgencyService {
     }
 
     public void parseTrailersFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("movieAgency3.xml");
+        Document doc = prepareDoc("newMovie.xml");
         NodeList nList = doc.getElementsByTagName("movie");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
@@ -249,7 +253,7 @@ public class AgencyService {
     }
 
     public void parseCrewFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("actorAgency2.xml");
+        Document doc = prepareDoc("newCrew.xml");
         NodeList nList = doc.getElementsByTagName("actor");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
@@ -264,6 +268,8 @@ public class AgencyService {
                 actor.setBiography(biography);
                 String poster = eElement.getElementsByTagName("poster").item(0).getTextContent();
                 actor.setPoster(poster);
+                //String imdbId = eElement.getElementsByTagName("imdbID").item(0).getTextContent();
+                //actor.setAgencyCrewId(imdbId);
 
                 if (!eElement.getElementsByTagName("birthday").item(0).getTextContent().equals("") && eElement.getElementsByTagName("birthday").item(0).getTextContent().length() > 4) {
                     String dob = eElement.getElementsByTagName("birthday").item(0).getTextContent();

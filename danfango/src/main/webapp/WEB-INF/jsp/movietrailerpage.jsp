@@ -39,10 +39,11 @@
             </ul>
 
 
-            <iframe src="https://www.youtube.com/embed/Wji-BZ0oCwg"></iframe>
-            <br>
-            <iframe src="https://www.youtube.com/embed/Wji-BZ0oCwg"></iframe>
-           
+            <c:forEach items="${trailers}" var="trailer">
+                <iframe src="https://www.youtube.com/embed/${trailer.youtubeKey}"></iframe>
+                <br>
+            </c:forEach>
+
 
 
         </div>
