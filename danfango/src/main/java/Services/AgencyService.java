@@ -59,6 +59,8 @@ public class AgencyService {
     TheatreRoomService theatreRoomService;
     @Autowired
     MovieTrailerService movieTrailerService;
+    @Autowired
+    LocationService locationService;
 
     private AgencyDAO agencyDAO;
 
@@ -133,12 +135,14 @@ public class AgencyService {
                 String address = eElement.getElementsByTagName("address").item(0).getTextContent();
                 String city = eElement.getElementsByTagName("city").item(0).getTextContent();
                 String state = eElement.getElementsByTagName("state").item(0).getTextContent();
+                String stateName = locationService.getFullNameValue(state.toLowerCase());
                 String zipcode = eElement.getElementsByTagName("zipcode").item(0).getTextContent();
                 theatre.setAgencyTheatreId(Integer.parseInt(agencyId));
                 theatre.setName(name);
                 theatre.setAddress(address);
                 theatre.setCity(city);
                 theatre.setState(state);
+                theatre.setStateName(stateName);
                 theatre.setZip(zipcode);
 
                 if (theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()) == null) {

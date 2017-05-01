@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import Model.Theatre;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -111,14 +112,12 @@ public class TheatreDAO {
 
     public List<Theatre> getTheatresLikeCityAndLikeState(String city, String state) {
         Session session = this.sessionFactory.getCurrentSession();
-        Criteria criteria = session.createCriteria(Theatre.class);
-        criteria.add(Restrictions.like("city", city));
-        // AND (
-        criteria.add(Restrictions.like("state", state));
-        // OR 
-        // criteria.add(Restrictions.like("full_State", state));
-
-        List theatres = criteria.list();
+        String queryString = "SELECT t.zip FROM Theatre t JOIN t.states s on t.state = s.short_name";
+//        String cityClause = "UPPER(t.city) LIKE UPPER(" + city + ")";
+//        String stateClause = "(UPPER(t.state) LIKE UPPER(" + state +  ") OR UPPER(s.full_name) LIKE UPPER(" + state +  "))";
+//        queryString = queryString + " WHERE  " + cityClause + " AND " + stateClause;
+        Query query = session.createQuery(queryString);
+        List theatres = query.list();
         return theatres;
     }
 
@@ -130,7 +129,11 @@ public class TheatreDAO {
 
     public List<Theatre> getTheatresLikeState(String state) {
         Session session = this.sessionFactory.getCurrentSession();
-        List theatres = session.createCriteria(Theatre.class).add(Restrictions.like("state", state)).list();
+        String queryString = "SELECT t.zip FROM Theatre t JOIN t.states s on t.state = s.short_name";
+//        String stateClause = "(UPPER(t.state) LIKE UPPER(" + state +  ") OR UPPER(s.full_name) LIKE UPPER(" + state +  "))";
+//        queryString = queryString + " WHERE " +stateClause;
+        Query query = session.createQuery(queryString);
+        List theatres = query.list();
         return theatres;
     }
 
