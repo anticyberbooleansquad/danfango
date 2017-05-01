@@ -54,7 +54,7 @@
                         <p><b>Genre:</b> Comedy, Action, Adventure</p>
                         <p><b>Score:</b> ${movie.movieScore}</p>
                     </div>
-                    <a href="/danfango/ticketselectpage.html" id="buyticketbutton" class="spacing btn-system btn-mini border-btn btn-gray">
+                    <a href="/danfango/ticketselectpage/${movie.id}" id="buyticketbutton" class="spacing btn-system btn-mini border-btn btn-gray">
                         <i class="fa fa-ticket" aria-hidden="true"></i><b>
                             BUY MOVIE TICKETS
                         </b><i class="fa fa-ticket" aria-hidden="true"></i>

@@ -33,10 +33,10 @@
             <h1 class="spacing movietitle">MOVIES <font color="EA6630"><b>NOW PLAYING</b></font></h1>
 
             <ul class="spacing nav nav-pills">
-                <li class="active" role="presentation"><a href="/danfango/nowplaying.html"><h3>Now Playing</h3></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h3>Coming Soon</h3></a></li>
+                <li class="active" role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
                 <li role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
-                <li role="presentation"><a href="/danfango/athomedvd.html"><h3>At Home</h3></a></li>
+                <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
             </ul>
 
             <h1 class="spacing accountfont underline">OPENING THIS WEEK</h1>

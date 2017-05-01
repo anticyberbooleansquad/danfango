@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import Dao.MovieDAO;
 import Model.Movie;
 
@@ -31,12 +30,12 @@ public class MovieService {
     public void updateMovie(Movie u) {
         this.movieDAO.updateMovie(u);
     }
-
+    
     @Transactional
     public List<Movie> listMovies() {
         return this.movieDAO.listMovies();
     }
-
+    
     @Transactional
     public Movie getMovieById(int id) {
         return this.movieDAO.getMovieById(id);
@@ -60,6 +59,11 @@ public class MovieService {
     @Transactional
     public List<Movie> getMoviesComingSoon() {
         return this.movieDAO.getMoviesComingSoon();
+    }
+    
+    @Transactional
+    public List<Movie> getOldMovies() {
+        return this.movieDAO.getOldMovies();
     }
 
     @Transactional

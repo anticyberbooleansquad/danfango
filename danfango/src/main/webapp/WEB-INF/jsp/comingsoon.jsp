@@ -32,10 +32,10 @@
             <h1 class="spacing movietitle">MOVIES <font color="EA6630"><b>COMING SOON</b></font></h1>
 
             <ul class="spacing nav nav-pills">
-                <li role="presentation"><a href="/danfango/nowplaying.html"><h3>Now Playing</h3></a></li>
-                <li class="active" role="presentation"><a href="/danfango/comingsoon.html"><h3>Coming Soon</h3></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
+                <li class="active" role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
                 <li role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
-                <li role="presentation"><a href="/danfango/athomedvd.html"><h3>At Home</h3></a></li>
+                <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
             </ul>
 
             <h1 class="spacing genretitle">FILTER MOVIES BY GENRE</h1>
@@ -56,15 +56,21 @@
 
             <div class = "slider2">
 
-                <c:forEach items="${comingSoon}" var="movie" varStatus="loop" step="4">
+                <c:forEach items="${comingSoon}" var="movie" varStatus="loop" step="8">
                     <div class="slide"> 
                         <div class="row spacing">
-                            <c:forEach begin="0" end="3" varStatus="loop2"> 
+                            <c:forEach begin="0" end="7" step="2" varStatus="loop2"> 
                                 <c:if test="${not empty comingSoon[loop.index+loop2.index]}">
                                     <div class = "col-md-3">
                                         <a class="" href="movieinfopage/${comingSoon[loop.index + loop2.index].id}">
                                             <c:if test="${comingSoon[loop.index + loop2.index].poster != null}">
                                                 <img class ="posters" src="https://image.tmdb.org/t/p/w500/${comingSoon[loop.index + loop2.index].poster}">
+                                            </c:if>
+                                        </a>
+                                            
+                                            <a class="" href="movieinfopage/${comingSoon[loop.index + loop2.index + 1].id}">
+                                            <c:if test="${comingSoon[loop.index + loop2.index+1].poster != null}">
+                                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${comingSoon[loop.index + loop2.index+1].poster}">
                                             </c:if>
                                         </a>
                                     </div>
