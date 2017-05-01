@@ -316,10 +316,7 @@ public class AgencyService {
                         relation.setMovie(crewMember_movies.get(i));
                         relation.setCrewMember(actor);
                         crewMemberMovieService.addCrewMemberMovie(relation);
-                    } else {
-                        relation.setId(crewMemberMovieService.getCrewMemberMovieByJoe(crewMember_movies.get(i), actor).getId());
-                        crewMemberMovieService.updateCrewMemberMovie(relation);
-                    }
+                    } 
                 }
 
             }

@@ -72,10 +72,10 @@ public class SignInController {
     protected ModelAndView submitAgencyCredentials() throws Exception {
         //protected ModelAndView submitAgencyCredentials(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) throws Exception{
         ModelAndView modelandview;
-        //agencyService.parseFile("movie");
+        agencyService.parseFile("movie");
         agencyService.parseFile("trailers");
         agencyService.parseFile("actor");
-        agencyService.parseFile("theatre");
+        //agencyService.parseFile("theatre");
         modelandview = new ModelAndView("index");
         return modelandview;
 
