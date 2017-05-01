@@ -70,15 +70,32 @@ public class SignInController {
     //this is temporary we will make this function fully and not hard code it 
     @RequestMapping(value = "/submitAgencyCredentials")
     protected ModelAndView submitAgencyCredentials() throws Exception {
-        //protected ModelAndView submitAgencyCredentials(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) throws Exception{
         ModelAndView modelandview;
-        //agencyService.parseFile("movie");
+        agencyService.parseFile("movie");
         agencyService.parseFile("trailers");
         agencyService.parseFile("actor");
         agencyService.parseFile("theatre");
         modelandview = new ModelAndView("index");
         return modelandview;
 
+    }
+    
+      //this is temporary we will make this function fully and not hard code it 
+    @RequestMapping(value = "/updateTheatres")
+    protected ModelAndView updateTheatres() throws Exception {
+        ModelAndView modelandview;
+        agencyService.parseFile("theatre");
+        modelandview = new ModelAndView("index");
+        return modelandview;
+    }
+    
+    //this is temporary we will make this function fully and not hard code it 
+    @RequestMapping(value = "/updateShowings")
+    protected ModelAndView updateShowings() throws Exception {
+        ModelAndView modelandview;
+        agencyService.parseFile("showing");
+        modelandview = new ModelAndView("index");
+        return modelandview;
     }
 
     @RequestMapping(value = "/logout")

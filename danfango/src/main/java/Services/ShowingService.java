@@ -51,9 +51,9 @@ public class ShowingService {
 	}
         
         @Transactional
-        public Showing getShowingByJoe(Movie movie, Theatre theatre, TheatreRoom theatreRoom, Timestamp time)
+        public Showing getShowingByJoe(Movie movie, Theatre theatre, Timestamp time)
         {
-            return this.showingDAO.getShowingByJoe(movie, theatre, theatreRoom, time);
+            return this.showingDAO.getShowingByJoe(movie, theatre, time);
         }
 	
 	@Transactional
