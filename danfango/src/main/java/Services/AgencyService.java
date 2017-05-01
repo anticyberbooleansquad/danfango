@@ -192,6 +192,7 @@ public class AgencyService {
                 movie.setBackdrop(backdrop);
                 String runtime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
                 movie.setRunTime(runtime);
+                String genres= eElement.getElementsByTagName("genre").item(0).getTextContent();
 
                 //NEED TO SET TRAILERS
                 if (movieService.getMovieByAgencyMovieId(movie.getImdbID()) == null) {
@@ -201,6 +202,11 @@ public class AgencyService {
                     movie.setId(movieService.getMovieByAgencyMovieId(movie.getImdbID()).getId());
                     movieService.updateMovie(movie);
                 }
+//                //populate movie_genre table
+//                if(genres.contains("")){
+//                
+//                }
+                
 
             }
         }
