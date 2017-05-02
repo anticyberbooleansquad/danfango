@@ -25,7 +25,9 @@
     </head>
     <body>
 
-        <jsp:include page="header.jsp" />
+        <jsp:include page="header.jsp" >
+            <jsp:param name="contextPath" value="${contextPath}"/>
+        </jsp:include>
 
         <div class="spacing container">
 
@@ -89,7 +91,7 @@
                         </ul>
                     </div>
 
-                    <a href="/danfango/seatselection.html" class="btn-system btn-large btn-gray joinbutton spacing">BUY TICKETS!</a> 
+                    <a href="/danfango/seatselection" class="btn-system btn-large btn-gray joinbutton spacing">BUY TICKETS!</a> 
 
                 </div>
             </div>

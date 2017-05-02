@@ -38,6 +38,10 @@ public class CrewController{
     @RequestMapping(value = "/actorinfopage/{crewId}")
     protected ModelAndView getCrewPage(@PathVariable(value="crewId") int id, HttpServletRequest request){
         
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
         CrewMember crewMember = crewMemberService.getCrewMemberById(id);
         request.setAttribute("crewMember", crewMember);
         

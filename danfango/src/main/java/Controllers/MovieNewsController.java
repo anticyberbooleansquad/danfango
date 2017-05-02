@@ -23,7 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class MovieNewsController{
     
     @RequestMapping(value = "/movienews")
-    protected ModelAndView getMovieNewsPage(){
+    protected ModelAndView getMovieNewsPage(HttpServletRequest request){
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
     
         ModelAndView modelandview = new ModelAndView("movienews");        
         return modelandview;

@@ -25,14 +25,19 @@
     </head>
     <body>
 
-        <jsp:include page="header.jsp" />
+        <%--<jsp:include page="header.jsp" />--%>
+
+        <jsp:include page="header.jsp" >
+            <jsp:param name="contextPath" value="${contextPath}"/>
+        </jsp:include>
+        
         <div class="container">
 
             <c:if test="${favoriteState == 1}">
                 <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true"></i> </h1>
             </c:if>
 
-
+                
             <c:if test="${favoriteState != 1}">
                 <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse hi" aria-hidden="true"></i> </h1>
             </c:if>
@@ -97,7 +102,7 @@
             </div>
             <!-- End Recent Projects Carousel -->
 
-            <h1 class="spacing movietitle">MOVIE NEWS</h1>
+<!--            <h1 class="spacing movietitle">MOVIE NEWS</h1>-->
             <hr>
 
             <h1 class="spacing movietitle">MOVIE REVIEWS</h1>
@@ -156,7 +161,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row spacing">
                 <div class="col-md-12">
                     <div class="reviewCard">
@@ -166,7 +171,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row spacing">
                 <div class="col-md-12">
                     <div class="reviewCard">
@@ -176,7 +181,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row spacing">
                 <div class="col-md-12">
                     <div class="reviewCard">

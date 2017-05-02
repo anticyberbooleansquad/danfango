@@ -23,7 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class SeatSelectionController{
     
     @RequestMapping(value = "/seatselection")
-    protected ModelAndView getSeatSelectionPage(){
+    protected ModelAndView getSeatSelectionPage(HttpServletRequest request){
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
     
         ModelAndView modelandview = new ModelAndView("seatselection");        
         return modelandview;

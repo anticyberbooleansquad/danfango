@@ -23,19 +23,21 @@
     </head>
     <body>
 
-        <jsp:include page="header.jsp" />
+        <jsp:include page="header.jsp" >
+            <jsp:param name="contextPath" value="${contextPath}"/>
+        </jsp:include>
 
         <div class="container">
 
-            <h1 class="spacing movietitle">${crewMember.fullName} <font color="EA6630"><b>Overview</b></font></h1>
+            <h1 class="spacing bottompadding movietitle">${crewMember.fullName} <font color="EA6630"><b>Overview</b></font></h1>
 
             <ul class="spacing nav nav-pills">
+                    
 
-
-                <li class="active" role="presentation"><a href="/danfango/actorinfopage.html"><h3>Overview</h3></a></li>
-                <li role="presentation"><a href="/danfango/actorinfopage.html"><h3>Biography</h3></a></li>
+                <!--<li class="active" role="presentation"><a href="/danfango/actorinfopage"><h3>Overview</h3></a></li>-->
+<!--            <li role="presentation"><a href="/danfango/actorinfopage.html"><h3>Biography</h3></a></li>
                 <li role="presentation"><a href="/danfango/actorinfopage.html"><h3>Filmography</h3></a></li>
-                <li role="presentation"><a href="/danfango/actorinfopage.html"><h3>Photos</h3></a></li>
+                <li role="presentation"><a href="/danfango/actorinfopage.html"><h3>Photos</h3></a></li>-->
 
 
             </ul>

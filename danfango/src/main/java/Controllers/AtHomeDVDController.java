@@ -34,6 +34,11 @@ public class AtHomeDVDController{
     
     @RequestMapping(value = "/athomedvd")
     protected ModelAndView getDVDPage(HttpServletRequest request){
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
     
         List<Movie> dvds = Lists.reverse(movieService.getOldMovies());
          

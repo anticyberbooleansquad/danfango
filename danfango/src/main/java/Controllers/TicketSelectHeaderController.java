@@ -31,6 +31,11 @@ public class TicketSelectHeaderController {
 
     @RequestMapping(value = "/ticketselectpage")
     protected ModelAndView getTicketSelectPage(HttpServletRequest request) {
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
 
         ModelAndView modelandview = new ModelAndView("ticketselectpage");
         return modelandview;

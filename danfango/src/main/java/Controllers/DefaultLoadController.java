@@ -28,6 +28,11 @@ public class DefaultLoadController{
     @RequestMapping(value = "/")
     protected ModelAndView getHomePage(HttpServletRequest request){
         
+        String contextPath = "/danfango";
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
+        
         List<Movie> movies = movieService.getMoviesTopRated();
             
         request.setAttribute("movies", movies);
