@@ -102,8 +102,11 @@
 
             <h1 class="spacing movietitle">MOVIE REVIEWS</h1>
 
-            <a href="" data-toggle="modal" data-target="#myModalMessage" id="leavereviewbutton"  class="spacing btn-system btn-mini border-btn btn-gray"><b>LEAVE A REVIEW</b></a>
-            <br>
+            <div class="spacing row">
+                <div class="col-md-7">
+                    <a href="" data-toggle="modal" data-target="#myModalMessage" id="leavereviewbutton"  class="spacing btn-system btn-mini border-btn btn-gray"><b>LEAVE A REVIEW</b></a>
+                </div>
+            </div>
 
             <div class="modal fade" id="myModalMessage" role="dialog">
                 <div class="modal-dialog">
@@ -144,27 +147,43 @@
                 </div>
             </div>
 
-            <div class="row toppadding">
-                <div class="col-md-4">
-                    <div class="review"></div>
-                </div>
-                <div class="col-md-4">
-                    <div class="review"></div>
-                </div>
-                <div class="col-md-4">
-                    <div class="review"></div>
+            <div class="row spacing">
+                <div class="col-md-12">
+                    <div class="reviewCard">
+                        <h4 class="theatreTimeCardsName">Name</h4>
+                        <p class="theatreTimeCardsAddress">Star Rating Display</p>
+                        <p class ="ticketInfo">Review</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="row toppadding bottompadding">
-                <div class="col-md-4">
-                    <div class="review"></div>
+            
+            <div class="row spacing">
+                <div class="col-md-12">
+                    <div class="reviewCard">
+                        <h4 class="theatreTimeCardsName">Name</h4>
+                        <p class="theatreTimeCardsAddress">Star Rating Display</p>
+                        <p class ="ticketInfo">Review</p>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="review"></div>
+            </div>
+            
+            <div class="row spacing">
+                <div class="col-md-12">
+                    <div class="reviewCard">
+                        <h4 class="theatreTimeCardsName">Name</h4>
+                        <p class="theatreTimeCardsAddress">Star Rating Display</p>
+                        <p class ="ticketInfo">Review</p>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="review"></div>
+            </div>
+            
+            <div class="row spacing">
+                <div class="col-md-12">
+                    <div class="reviewCard">
+                        <h4 class="theatreTimeCardsName">Name</h4>
+                        <p class="theatreTimeCardsAddress">Star Rating Display</p>
+                        <p class ="ticketInfo">Review</p>
+                    </div>
                 </div>
             </div>
 
