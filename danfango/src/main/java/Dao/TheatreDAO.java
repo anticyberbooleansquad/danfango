@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import Model.Theatre;
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
@@ -112,12 +113,16 @@ public class TheatreDAO {
 
     public List<Theatre> getTheatresLikeCityAndLikeState(String city, String state) {
         Session session = this.sessionFactory.getCurrentSession();
-        String queryString = "SELECT t.zip FROM Theatre t JOIN t.states s on t.state = s.short_name";
-//        String cityClause = "UPPER(t.city) LIKE UPPER(" + city + ")";
-//        String stateClause = "(UPPER(t.state) LIKE UPPER(" + state +  ") OR UPPER(s.full_name) LIKE UPPER(" + state +  "))";
-//        queryString = queryString + " WHERE  " + cityClause + " AND " + stateClause;
+        String queryString = "FROM Theatre t";
+        String cityClause = "UPPER(t.city) LIKE UPPER('" + city + "')";
+        String stateClause = "(UPPER(t.state) LIKE UPPER('" + state +  "') OR UPPER(t.stateName) LIKE UPPER('" + state +  "'))";
+        queryString = queryString + " WHERE  " + cityClause + " AND " + stateClause;
         Query query = session.createQuery(queryString);
         List theatres = query.list();
+        
+        System.out.println("MY THEATRES FROM CITYANDLIKESTATE");
+        System.out.println(Arrays.toString(theatres.toArray()));
+        
         return theatres;
     }
 
@@ -129,9 +134,9 @@ public class TheatreDAO {
 
     public List<Theatre> getTheatresLikeState(String state) {
         Session session = this.sessionFactory.getCurrentSession();
-        String queryString = "SELECT t.zip FROM Theatre t JOIN t.states s on t.state = s.short_name";
-//        String stateClause = "(UPPER(t.state) LIKE UPPER(" + state +  ") OR UPPER(s.full_name) LIKE UPPER(" + state +  "))";
-//        queryString = queryString + " WHERE " +stateClause;
+        String queryString = "FROM Theatre t";
+        String stateClause = "(UPPER(t.state) LIKE UPPER('" + state +  "') OR UPPER(t.stateName) LIKE UPPER('" + state +  "'))";
+        queryString = queryString + " WHERE " +stateClause;
         Query query = session.createQuery(queryString);
         List theatres = query.list();
         return theatres;

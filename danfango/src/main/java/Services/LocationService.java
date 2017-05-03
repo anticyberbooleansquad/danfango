@@ -38,7 +38,7 @@ public class LocationService {
     @Autowired
     TheatreService theatreService;
 
-    String apiKey = "XSmGopQ0TI6n9nuaM8IduVB69KhgtklqcI6B7XC0GIoP6T0T2I6wEIDNsV4Vgpms";
+    String apiKey = "t6iMOqBUYrkSGbuFwSegmdNy5LgjER18XjUMKwHIY2BEd5kJYzZlNNTSyacd1dmZ";
 
     private BiMap<String, String> states;
 
