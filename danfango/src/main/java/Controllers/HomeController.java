@@ -28,6 +28,10 @@ public class HomeController{
     @RequestMapping(value = "/index")
     protected ModelAndView getHomePage(HttpServletRequest request){
         
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
         List<Movie> movies = movieService.getMoviesTopRated();
             
         request.setAttribute("movies", movies);

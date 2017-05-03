@@ -31,7 +31,10 @@ public class ComingSoonController{
     
     @RequestMapping(value = "/comingsoon")
     protected ModelAndView getComingSoonPage(HttpServletRequest request){
-    
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
         
         List<Movie> comingSoon = movieService.getMoviesComingSoon();
 

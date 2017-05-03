@@ -32,6 +32,12 @@ public class SearchController {
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     protected ModelAndView getSearchResultPage(@RequestParam("searchString") String searchString, HttpServletRequest request) throws IOException {
+       
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
+
         // here is where we call the search service
         SearchResults searchResults = searchService.search(searchString);
         ArrayList<ClientSearchResult> movies = searchResults.getMovies();

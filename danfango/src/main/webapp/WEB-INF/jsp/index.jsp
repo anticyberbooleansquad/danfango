@@ -26,7 +26,9 @@
     </head>
     <body>
 
-        <jsp:include page="header.jsp" /> 
+        <jsp:include page="header.jsp" >
+            <jsp:param name="contextPath" value="${contextPath}"/>
+        </jsp:include>
 
         <!-- Start Home Page Slider -->
         <section id="home">
@@ -43,7 +45,7 @@
                 <!-- Carousel inner -->
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img class="img-responsive myFade" src="resources/images/slider/movietheater2.jpg" alt="slider">
+                        <img class="img-responsive myFade" src="${contextPath}/resources/images/slider/movietheater2.jpg" alt="slider">
                         <div class="slider-content">
                             <div class="col-md-12 text-center">
                                 <h2 class="animated2">
@@ -58,7 +60,7 @@
                     </div>
                     <!--/ Carousel item end -->
                     <div class="item">
-                        <img class="img-responsive" src="resources/images/slider/people.jpg" alt="slider">
+                        <img class="img-responsive" src="${contextPath}/resources/images/slider/people.jpg" alt="slider">
                         <div class="slider-content">
                             <div class="col-md-12 text-center">
                                 <h2 class="animated4">
@@ -67,7 +69,7 @@
                                 <h3 class="animated5">
                                     <span>For awesome benefits and rewards</span>
                                 </h3>
-                                <p class="animated6"><a href="/danfango/signuppage.html" class="slider btn btn-system btn-large">Join Now</a>
+                                <p class="animated6"><a href="/danfango/signuppage" class="slider btn btn-system btn-large">Join Now</a>
                                 </p>
                             </div>
                         </div>
@@ -107,24 +109,32 @@
                 <div class="row spacing">
 
                     <div class = col-md-3>
-                        <a class="" href="movieinfopage/${movie.id}">
-                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movie.poster}">
-                        </a>
+                        <c:if test="${movie.poster != null}">
+                            <a class="" href="movieinfopage/${movie.id}">
+                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movie.poster}">
+                            </a>
+                        </c:if>
                     </div>
                     <div class = col-md-3>
-                        <a class="" href="movieinfopage/${movies[loop.index+1].id}">
-                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+1].poster}">
-                        </a>
+                        <c:if test="${movies[loop.index+1].poster != null}">
+                            <a class="" href="movieinfopage/${movies[loop.index+1].id}">
+                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+1].poster}">
+                            </a>
+                        </c:if>
                     </div>
                     <div class = col-md-3>
-                        <a class="" href="movieinfopage/${movies[loop.index+2].id}">
-                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+2].poster}">
-                        </a>
+                        <c:if test="${movies[loop.index+2].poster != null}">
+                            <a class="" href="movieinfopage/${movies[loop.index+2].id}">
+                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+2].poster}">
+                            </a>
+                        </c:if>
                     </div>
                     <div class = col-md-3>
-                        <a class="" href="movieinfopage/${movies[loop.index+3].id}">
-                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+3].poster}">
-                        </a>
+                        <c:if test="${movies[loop.index+3].poster != null}">
+                            <a class="" href="movieinfopage/${movies[loop.index+3].id}">
+                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index+3].poster}">
+                            </a>
+                        </c:if>
                     </div>
                 </div>
             </c:forEach>

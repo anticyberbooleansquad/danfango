@@ -40,6 +40,11 @@ public class MoviePageController{
     @RequestMapping(value = "/movieinfopage/{movieId}")
     protected ModelAndView getMovieInfoPage(@PathVariable(value="movieId") int id, HttpServletRequest request){
         
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
+        
         Movie movie = movieService.getMovieById(id);
         request.setAttribute("movie", movie);
        

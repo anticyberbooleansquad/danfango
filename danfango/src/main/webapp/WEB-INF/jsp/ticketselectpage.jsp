@@ -28,13 +28,15 @@
     </head>
     <body>
 
-        <jsp:include page="header.jsp" />
+        <jsp:include page="header.jsp" >
+            <jsp:param name="contextPath" value="${contextPath}"/>
+        </jsp:include>
 
         <div class="spacing container">
 
             <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES</h2>
 
-            <div class="spacing dropdown">
+<!--            <div class="spacing dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nearby Theatres
                     <span class="caret"></span>
                 </button>
@@ -46,11 +48,18 @@
                     <li><a href="/danfango/#">Theatre</a></li>
                     <li><a href="/danfango/#">Theatre</a></li>
                 </ul>
-            </div>
+            </div>-->
 
             <div class="row form-group">
                 <div class="col-sm-3">
-                    <img class="spacing movieposter" src=${movie.poster}/>
+                    <img class="spacing movieposter" src="https://image.tmdb.org/t/p/w500/${movie.poster}"/>
+                    <div class="spacing movieInfo">
+                        <p><b>Release Date:</b> ${movie.releaseDate}</p>
+                        <p><b>Rating:</b> ${movie.rating}</p>
+                        <p><b>Runtime:</b> ${movie.runTime}</p>
+                        <p><b>Genre:</b> Comedy, Action, Adventure</p>
+                        <p><b>Score:</b> ${movie.movieScore}</p>
+                    </div>
                 </div>
 
 

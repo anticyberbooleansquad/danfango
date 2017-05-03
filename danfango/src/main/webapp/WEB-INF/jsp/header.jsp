@@ -2,8 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-    <c:set var="contextPath" value="resources/images"/>
-
+    
     <head>
         <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/settings.css"/>" rel="stylesheet">
@@ -34,8 +33,8 @@
                                 <i class="fa fa-bars"></i>
                             </button>
                             <!-- End Toggle Nav Link For Mobiles -->
-                            <a href="/danfango/index.html">
-                                <img id="danfangologo" alt="" src="${contextPath}/danfango-site-logo.jpg">
+                            <a href="/danfango/index">
+                                <img id="danfangologo" alt="" src="${contextPath}/resources/images/danfango-site-logo.jpg">
                             </a>
                         </div>
                         <div class="navbar-collapse collapse toppadding">
@@ -47,23 +46,6 @@
                                 <input type="submit" value="search" class="btn-system btn-mini border-btn btn-gray">
 
                             </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            <!--                            <a href="/danfango/searchresultspage.html" class="btn-system btn-mini border-btn btn-gray"><i class="icon-heart-4"></i>Search</a>-->
-
                             <!-- End Search -->
 
                             <!-- Start Navigation List -->
@@ -74,28 +56,28 @@
                                 <li>
                                     <a href="/danfango/ticketselectpage">Movie Times + Tickets</a>
                                 </li>
-                                <li>
+<!--                                <li>
                                     <a href="/danfango/movienews">Movie News</a>
-                                </li>
+                                </li>-->
                                 <li>
 
 
                                     <c:if test="${sessionScope.user  != null}">
-                                        <a href="/danfango/signuppage.html">DanfangoVIP (Welcome ${user.firstName})</a>
+                                        <a href="/danfango/signuppage">DanfangoVIP (Welcome ${user.firstName})</a>
                                         <ul class="dropdown">
-                                            <li><a href="/danfango/userpage.html">My Account</a>
+                                            <li><a href="/danfango/userpage">My Account</a>
                                             </li>
-                                            <li><a href="/danfango/logout.html">Sign-Out</a>
+                                            <li><a href="/danfango/logout">Sign-Out</a>
                                             </li>
                                         </c:if>
 
 
                                         <c:if test="${sessionScope.user  == null}">
-                                            <a href="/danfango/signuppage.html">DanfangoVIP</a>
+                                            <a href="/danfango/signuppage">DanfangoVIP</a>
                                             <ul class="dropdown">
-                                                <li><a href="/danfango/signuppage.html">Join Now</a>
+                                                <li><a href="/danfango/signuppage">Join Now</a>
                                                 </li>
-                                                <li><a href="/danfango/signinpage.html">Sign-In</a>
+                                                <li><a href="/danfango/signinpage">Sign-In</a>
                                                 </li>
                                             </c:if>
 

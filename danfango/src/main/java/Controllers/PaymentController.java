@@ -23,7 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class PaymentController{
     
     @RequestMapping(value = "/paymentpage")
-    protected ModelAndView getHomePage(){
+    protected ModelAndView getPaymentPage(HttpServletRequest request){
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
     
         ModelAndView modelandview = new ModelAndView("paymentpage");        
         return modelandview;

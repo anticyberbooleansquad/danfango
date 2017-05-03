@@ -23,7 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class SearchResultController{
     
     @RequestMapping(value = "/searchresultspage")
-    protected ModelAndView getSearchResultPage(){
+    protected ModelAndView getSearchResultPage(HttpServletRequest request){
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
     
         ModelAndView modelandview = new ModelAndView("searchresultspage");        
         return modelandview;

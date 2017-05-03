@@ -23,7 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class MovieGenreController{
     
     @RequestMapping(value = "/moviegenres")
-    protected ModelAndView getMovieGenrePage(){
+    protected ModelAndView getMovieGenrePage(HttpServletRequest request){
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
     
         ModelAndView modelandview = new ModelAndView("moviegenres");        
         return modelandview;

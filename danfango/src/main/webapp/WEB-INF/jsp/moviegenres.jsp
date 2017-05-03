@@ -24,17 +24,19 @@
     </head>
     <body>
 
-        <jsp:include page="header.jsp" />
+        <jsp:include page="header.jsp" >
+            <jsp:param name="contextPath" value="${contextPath}"/>
+        </jsp:include>
 
         <div class="spacing container">
 
             <h2 class="spacing movietitle">MOVIE <font color="EA6630"><b>GENRES</b></font></h2>
 
             <ul class="spacing nav nav-pills">
-                <li role="presentation"><a href="/danfango/nowplaying.html"><h3>Now Playing</h3></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h3>Coming Soon</h3></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
                 <li class="active" role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
-                <li role="presentation"><a href="/danfango/athomedvd.html"><h3>At Home</h3></a></li>
+                <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
             </ul>
 
             <div class="row">

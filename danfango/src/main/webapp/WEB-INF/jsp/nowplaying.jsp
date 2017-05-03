@@ -26,18 +26,40 @@
     </head>
     <body>
 
-        <jsp:include page="header.jsp" />
+        <jsp:include page="header.jsp" >
+            <jsp:param name="contextPath" value="${contextPath}"/>
+        </jsp:include>
 
         <div class="container">
 
             <h1 class="spacing movietitle">MOVIES <font color="EA6630"><b>NOW PLAYING</b></font></h1>
 
             <ul class="spacing nav nav-pills">
-                <li class="active" role="presentation"><a href="/danfango/nowplaying.html"><h3>Now Playing</h3></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h3>Coming Soon</h3></a></li>
+                <li class="active" role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
                 <li role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
-                <li role="presentation"><a href="/danfango/athomedvd.html"><h3>At Home</h3></a></li>
+                <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
             </ul>
+            
+            <h1 class="spacing accountfont underline">NOW PLAYING</h1>
+
+            <div class = "slider2">
+                <c:forEach items="${nowPlaying}" var="movie" varStatus="loop" step="4">
+                    <div class="slide"> 
+                        <div class="row spacing">
+                            <c:forEach begin="0" end="3" varStatus="loop2"> 
+                                <c:if test="${not empty nowPlaying[loop.index+loop2.index]}">
+                                    <div class = "col-md-3">
+                                        <a class="" href="movieinfopage/${nowPlaying[loop.index + loop2.index].id}">
+                                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${nowPlaying[loop.index + loop2.index].poster}">
+                                        </a>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </div><!--row-->
+                    </div><!-- END SLIDER -->
+                </c:forEach>
+            </div> <!--END MOVIE SLIDER -->
 
             <h1 class="spacing accountfont underline">OPENING THIS WEEK</h1>
 
@@ -51,26 +73,6 @@
                                     <div class = "col-md-3">
                                         <a class="" href="movieinfopage/${openingThisWeek[loop.index + loop2.index].id}">
                                             <img class ="posters" src="https://image.tmdb.org/t/p/w500/${openingThisWeek[loop.index + loop2.index].poster}">
-                                        </a>
-                                    </div>
-                                </c:if>
-                            </c:forEach>
-                        </div><!--row-->
-                    </div><!-- END SLIDER -->
-                </c:forEach>
-            </div> <!--END MOVIE SLIDER -->
-
-            <h1 class="spacing accountfont underline">NOW PLAYING</h1>
-
-            <div class = "slider2">
-                <c:forEach items="${nowPlaying}" var="movie" varStatus="loop" step="4">
-                    <div class="slide"> 
-                        <div class="row spacing">
-                            <c:forEach begin="0" end="3" varStatus="loop2"> 
-                                <c:if test="${not empty nowPlaying[loop.index+loop2.index]}">
-                                    <div class = "col-md-3">
-                                        <a class="" href="movieinfopage/${nowPlaying[loop.index + loop2.index].id}">
-                                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${nowPlaying[loop.index + loop2.index].poster}">
                                         </a>
                                     </div>
                                 </c:if>

@@ -14,9 +14,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Movie;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.year;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -81,10 +85,9 @@ public class MovieDAO {
         Date date = cal.getTime();
         Timestamp today = new Timestamp(System.currentTimeMillis());
         Timestamp nextWeek = new Timestamp(date.getTime());
-        
-        System.out.println("TODAY: "+ today);
-        System.out.println("NextWeeK: "+ nextWeek);
 
+        System.out.println("TODAY: " + today);
+        System.out.println("NextWeeK: " + nextWeek);
 
         List movies = session.createCriteria(Movie.class).add(Restrictions.between("releaseDate", today, nextWeek)).list();
         if (movies.isEmpty()) {
@@ -93,7 +96,7 @@ public class MovieDAO {
         logger.info("Opening This Week loaded successfully, Movie details=" + movies);
         return movies;
     }
-    
+
     public List<Movie> getMoviesNowPlaying() {
         Session session = this.sessionFactory.getCurrentSession();
         Calendar cal = Calendar.getInstance();
@@ -106,11 +109,11 @@ public class MovieDAO {
         if (movies.isEmpty()) {
             return null;
         }
-        
+
         logger.info("Now Playing loaded successfully, Movie details=" + movies);
         return movies;
     }
-    
+
     public List<Movie> getMoviesComingSoon() {
         Session session = this.sessionFactory.getCurrentSession();
         Calendar cal = Calendar.getInstance();
@@ -126,11 +129,44 @@ public class MovieDAO {
         logger.info("Coming Soon successfully, Movie details=" + movies);
         return movies;
     }
-    
+
+    public List<Movie> getOldMovies() {
+        Session session = this.sessionFactory.getCurrentSession();
+        Calendar cal2000 = Calendar.getInstance();
+        cal2000.add(Calendar.DATE, -6330);
+        Calendar cal2016 = Calendar.getInstance();
+        cal2016.add(Calendar.DATE, -486);
+
+        Date date = cal2000.getTime();
+        Date date2 = cal2016.getTime();
+
+        Timestamp year2000 = new Timestamp(date.getTime());
+        Timestamp year2016 = new Timestamp(date2.getTime());
+
+      
+        List movies = session.createCriteria(Movie.class).add(Restrictions.between("releaseDate", year2000,year2016)).add(Restrictions.ge("movieScore", 7.5)).list();
+
+
+        if (movies.isEmpty()) {
+            return null;
+        }
+        logger.info("Old Movies successfully, Movie details=" + movies);
+        return movies;
+    }
+
+  
+
     public List<Movie> getMoviesTopRated() {
         Session session = this.sessionFactory.getCurrentSession();
+        Calendar cal2016 = Calendar.getInstance();
+        cal2016.add(Calendar.DATE, -486);
+        Date date = cal2016.getTime();
+        Timestamp year2016 = new Timestamp(date.getTime());
+        Timestamp today = new Timestamp(System.currentTimeMillis());
 
-        List movies = session.createCriteria(Movie.class).add(Restrictions.gt("movieScore", 7.5)).list();
+        
+        List movies = session.createCriteria(Movie.class).add(Restrictions.between("releaseDate", year2016,today)).add(Restrictions.ge("movieScore", 7.5)).list();
+        
         if (movies.isEmpty()) {
             return null;
         }
@@ -146,13 +182,13 @@ public class MovieDAO {
         }
         logger.info("Movie deleted successfully, person details=" + m);
     }
-    
-    public List<Movie> getMoviesLikeTitle(String title){
+
+    public List<Movie> getMoviesLikeTitle(String title) {
         Session session = this.sessionFactory.getCurrentSession();
         List movies = session.createCriteria(Movie.class).add(Restrictions.like("title", title)).list();
         return movies;
     }
-    
+
     public Movie getMovieByTitle(String title) {
         Session session = this.sessionFactory.getCurrentSession();
         List movies = session.createCriteria(Movie.class).add(Restrictions.eq("title", title)).list();

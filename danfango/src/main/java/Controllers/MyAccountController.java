@@ -34,7 +34,12 @@ public class MyAccountController{
     AuthenticationService authenticationService;
     
     @RequestMapping(value = "/userpage")
-    protected ModelAndView getSearchResultPage(){
+    protected ModelAndView getSearchResultPage(HttpServletRequest request){
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
     
         ModelAndView modelandview = new ModelAndView("userpage");        
         return modelandview;

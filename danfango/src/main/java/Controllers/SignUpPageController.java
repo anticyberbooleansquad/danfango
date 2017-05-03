@@ -33,7 +33,12 @@ public class SignUpPageController{
     AuthenticationService authenticationService;
     
     @RequestMapping(value = "/signuppage")
-    protected ModelAndView getSignUpPage(){
+    protected ModelAndView getSignUpPage(HttpServletRequest request){
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
     
         ModelAndView modelandview = new ModelAndView("signuppage");        
         return modelandview;
@@ -42,6 +47,10 @@ public class SignUpPageController{
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     protected ModelAndView register(@RequestParam("email") String email, @RequestParam("password") String password,@RequestParam("firstname") String firstname,@RequestParam("lastname") String lastname, HttpServletRequest request){
         ModelAndView modelandview;
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
         
         if (userService.getUserByEmail(email) != null){
             request.setAttribute("UsedEmail", "The email You have selected is already attached to an account");

@@ -31,6 +31,11 @@ public class NowPlayingController {
 
     @RequestMapping(value = "/nowplaying")
     protected ModelAndView getNowPlayingPage(HttpServletRequest request) {
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
 
         List<Movie> openingThisWeek = movieService.getMoviesOpeningThisWeek();
         List<Movie> nowPlaying = movieService.getMoviesNowPlaying();
