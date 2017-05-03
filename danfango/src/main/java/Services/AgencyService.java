@@ -31,6 +31,7 @@ import Model.Agency;
 import Model.CrewMemberMovie;
 import Model.Movie;
 import Model.MovieTrailer;
+import Model.Seat;
 import Model.Showing;
 import Model.Theatre;
 import Model.TheatreRoom;
@@ -105,8 +106,9 @@ public class AgencyService {
             parseCrewFile();
         } else if (agency.equals("theatre")) {
             parseTheatreFile();
+        } else if (agency.equals("showing")) {
+            parseShowingFile();
         }
-
     }
 
     public Document prepareDoc(String fileName) throws SAXException, IOException, ParserConfigurationException {
@@ -196,7 +198,7 @@ public class AgencyService {
                 movie.setBackdrop(backdrop);
                 String runtime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
                 movie.setRunTime(runtime);
-                String genres= eElement.getElementsByTagName("genre").item(0).getTextContent();
+                String genres = eElement.getElementsByTagName("genre").item(0).getTextContent();
 
                 //NEED TO SET TRAILERS
                 if (movieService.getMovieByAgencyMovieId(movie.getImdbID()) == null) {
@@ -210,7 +212,6 @@ public class AgencyService {
 //                if(genres.contains("")){
 //                
 //                }
-                
 
             }
         }
@@ -316,16 +317,17 @@ public class AgencyService {
                         relation.setMovie(crewMember_movies.get(i));
                         relation.setCrewMember(actor);
                         crewMemberMovieService.addCrewMemberMovie(relation);
-                    } 
-                }
 
+                    }
+
+                }
             }
         }
     }
 
     public void parseShowingFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
         Document doc = prepareDoc("showingAgency.xml");
-        NodeList nList = doc.getElementsByTagName("movie");
+        NodeList nList = doc.getElementsByTagName("theatre");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
             Node nNode = nList.item(counter);
@@ -335,6 +337,7 @@ public class AgencyService {
 
                 int agencyTheatreId = Integer.parseInt(eElement.getAttribute("id"));
                 String theatreName = eElement.getAttribute("name");
+
                 Theatre theatre = theatreService.getTheatreByAgencyTheatreId(agencyTheatreId);
                 if (theatre != null) {
                     NodeList showings = eElement.getElementsByTagName("showtime");
@@ -347,17 +350,23 @@ public class AgencyService {
 
                         Movie mov = (Movie) movieService.getMovieByTitle(moviename);
 
-                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm");
+                        showtime = showtime.replace("T", " ");
+
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                         Date parsedDate = dateFormat.parse(showtime);
                         Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                         showing.setTime(timestamp);
-                        TheatreRoom room = theatreRoomService.getTheatreRoomByTheatre(theatre);
-                        Showing existingShowing = showingService.getShowingByJoe(mov, theatre, room, timestamp);
+                        showing.setMovie(mov);
+
+                        Showing existingShowing = showingService.getShowingByJoe(mov, theatre, timestamp);
                         if (existingShowing != null) {
                             showing.setId(existingShowing.getId());
                             showingService.updateShowing(showing);
                         } else {
+                            TheatreRoom room = createTheatreRoom();
+                            showing.setTheatreRoom(room);
                             showingService.addShowing(showing);
+
                         }
                     }
 
@@ -367,53 +376,42 @@ public class AgencyService {
         }
     }
 
-    public void createTheatreRoom(Theatre theatre) {
+    public TheatreRoom createTheatreRoom() {
         TheatreRoom room = new TheatreRoom();
         double seatingType = Math.random();
-        boolean[][] layout = new boolean[2][2];
 
-        // >25 reservation type 1 >.5 reservation type 2>.75 reservationtype 3 <.75 no reservation
-        if (seatingType <= .25) {
+        if (seatingType <= .5) {
             // 132 seats
-            room.setTotalSeats(2);
-            room.setTotalSeatsRemaining(2);
+            room.setTotalSeats(200);
+            room.setTotalSeatsRemaining(200);
             room.setSeatingType(TheatreRoom.SeatingType.Reserved);
-            // basic seats at first 
-            layout[0][0] = true;
-            layout[0][1] = true;
-            layout[1][0] = false;
-            layout[1][1] = false;
-            room.setLayout(layout);
-        } else if (seatingType <= .50 && seatingType > .25) {
-            // 132 seats
-            room.setTotalSeats(2);
-            room.setTotalSeatsRemaining(2);
-            room.setSeatingType(TheatreRoom.SeatingType.Reserved);
-            // basic seats at first 
-            layout[0][0] = true;
-            layout[0][1] = false;
-            layout[1][0] = true;
-            layout[1][1] = false;
-            room.setLayout(layout);
-
-        } else if (seatingType <= .75 && seatingType > .5) {
-            // 132 seats
-            room.setTotalSeats(2);
-            room.setTotalSeatsRemaining(2);
-            room.setSeatingType(TheatreRoom.SeatingType.Reserved);
-            // basic seats at first 
-            layout[0][0] = false;
-            layout[0][1] = true;
-            layout[1][0] = false;
-            layout[1][1] = true;
-            room.setLayout(layout);
+            // MAKE LAYOUT
+            createSeats(room);
 
         } else {
             room.setTotalSeats(200);
             room.setTotalSeatsRemaining(200);
+            room.setSeatingType(TheatreRoom.SeatingType.Nonreserved);
         }
         theatreRoomService.addTheatreRoom(room);
+        return room;
+    }
+ 
+    public void createSeats(TheatreRoom room) {
 
+        boolean[][] test = new boolean[2][2];
+//        room.layout
+        Seat seat = new Seat();
+        for (int h = 0; h < test[0].length; h++) {//this should go for each row
+            char character = (char) ('A' + h);
+            for (int w = 0; w < test.length; w++) {    
+                seat.setRow(Character.toString(character));
+                seat.setSeatNumber(w+1);
+                //need seat service
+
+            }
+
+        }
     }
 
 }

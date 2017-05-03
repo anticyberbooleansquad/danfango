@@ -66,9 +66,9 @@ public class ShowingDAO{
             return u;
     }
 
-    public Showing getShowingByJoe(Movie movie, Theatre theatre, TheatreRoom theatreRoom, Timestamp time) {
+    public Showing getShowingByJoe(Movie movie, Theatre theatre, Timestamp time) {
             Session session = this.sessionFactory.getCurrentSession();		
-            List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).add(Restrictions.eq("theatreRoom", theatreRoom)).add(Restrictions.eq("time", time)).list();
+            List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).add(Restrictions.eq("time", time)).list();
             if(showings.isEmpty())
             {
                 return null;
