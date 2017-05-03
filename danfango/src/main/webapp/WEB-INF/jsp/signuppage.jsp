@@ -30,13 +30,13 @@
         </jsp:include>
 
         <div class="spacing container joinmargin">
-
             <div class="row">
                 <div class="col-md-6 spacing border">
 
                     <h1 class="spacing">JOIN DANFANGO<font color="EA6630"><b>VIP</b></font></h1>
                     
                     <h2>${UsedEmail}</h2>
+                    
                     <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/register">
 
                         <div class="controls">
