@@ -12,7 +12,8 @@ import javax.persistence.*;
  *
  * @author johnlegutko
  */
-//@Embeddable
+@Entity
+@Table
 public class Ticket implements Serializable{
     
     public enum TicketType {Child, Adult, Senior, Veteran};
@@ -22,7 +23,7 @@ public class Ticket implements Serializable{
     private Integer id;
     private double price;
     private TicketType ticketType;
-    @OneToOne(targetEntity=Seat.class, mappedBy="seat", fetch=FetchType.EAGER)
+    @OneToOne
     private Seat seat;
     @OneToOne
     private Showing showing;

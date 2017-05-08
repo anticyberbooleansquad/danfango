@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.persistence.*;
 
@@ -12,17 +14,17 @@ import javax.persistence.*;
  *
  * @author johnlegutko
  */
-//@Entity
-public class Order {
+@Entity
+@Table
+public class Order implements Serializable{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne
-    private User user;
-    private double totalPrice;
-    private ArrayList<Ticket> tickets;
+    private String email;
+    private double price;
+    private Timestamp orderDate;
 
-    
     public Integer getId() {
         return id;
     }
@@ -30,31 +32,30 @@ public class Order {
     public void setId(Integer id) {
         this.id = id;
     }
-    
-    public User getUser() {
-        return user;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public double getPrice() {
+        return price;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public ArrayList<Ticket> getTickets() {
-        return tickets;
+    public Timestamp getOrderDate() {
+        return orderDate;
     }
 
-    public void setTickets(ArrayList<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setOrderDate(Timestamp orderDate) {
+        this.orderDate = orderDate;
     }
-    
-    
+
     
 }
