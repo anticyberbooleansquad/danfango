@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -13,15 +14,15 @@ import javax.persistence.*;
  */
 @Entity
 @Table
-public class Seat {
+public class Seat implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @OneToOne
     private TheatreRoom theatreRoom;
     private String row;
     private int seatNumber;
-    private boolean reserved;
 
     public Integer getId()
     {
@@ -47,14 +48,6 @@ public class Seat {
 
     public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
-    }
-
-    public boolean isReserved() {
-        return reserved;
-    }
-
-    public void setReserved(boolean reserved) {
-        this.reserved = reserved;
     }
     
     
