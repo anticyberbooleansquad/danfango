@@ -5,6 +5,8 @@
  */
 package Dao;
 
+import Model.Genre;
+import Model.Movie;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -62,15 +64,24 @@ public class MovieGenreDAO{
             return u;
     }
     
-    public MovieGenre getMovieGenreByEmail(String email) {
+    public List<MovieGenre> getMovieGenresByMovie(Movie movie) {
             Session session = this.sessionFactory.getCurrentSession();	
-            List movieGenres = session.createCriteria(MovieGenre.class).add(Restrictions.eq("email", email)).list();
+            List movieGenres = session.createCriteria(MovieGenre.class).add(Restrictions.eq("movie", movie)).list();
             if (movieGenres.isEmpty()){
                 return null;
             }
-            MovieGenre u = (MovieGenre) movieGenres.get(0);
-            logger.info("MovieGenre loaded successfully, MovieGenre details="+u);
-            return u;
+            logger.info("MovieGenre loaded successfully, MovieGenre details="+movieGenres);
+            return movieGenres;
+    }
+    
+    public List<MovieGenre> getMovieGenresByGenre(Genre genre) {
+            Session session = this.sessionFactory.getCurrentSession();	
+            List movieGenres = session.createCriteria(MovieGenre.class).add(Restrictions.eq("genre", genre)).list();
+            if (movieGenres.isEmpty()){
+                return null;
+            }
+            logger.info("MovieGenre loaded successfully, MovieGenre details="+movieGenres);
+            return movieGenres;
     }
 
     
