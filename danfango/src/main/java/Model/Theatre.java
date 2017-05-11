@@ -21,6 +21,8 @@ import javax.persistence.Table;
 @Table
 public class Theatre implements Serializable {
     
+    public enum SeatingType {Reserved, Nonreserved}
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
@@ -28,6 +30,7 @@ public class Theatre implements Serializable {
     @OneToOne
     private Agency agency;
     private int agencyTheatreId;
+    private SeatingType seatingType;
     private String name;
     private String address;
     private String city;
@@ -153,6 +156,14 @@ public class Theatre implements Serializable {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
+    }
+    
+    public SeatingType getSeatingType() {
+        return seatingType;
+    }
+
+    public void setSeatingType(SeatingType seatingType) {
+        this.seatingType = seatingType;
     }
     
 }

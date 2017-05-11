@@ -23,7 +23,6 @@ import javax.persistence.Table;
 @Table
 public class TheatreRoom implements Serializable{
     
-    public enum SeatingType {Reserved, Nonreserved}
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,9 +30,6 @@ public class TheatreRoom implements Serializable{
     private Integer id;
     @OneToOne
     private Theatre theatre;
-    //@OneToMany
-    //private ArrayList<Seat> seats;
-    private SeatingType seatingType;
     private int totalSeats;
     private int totalSeatsRemaining;
 
@@ -43,22 +39,6 @@ public class TheatreRoom implements Serializable{
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-//    public ArrayList<Seat> getSeats() {
-//        return seats;
-//    }
-//
-//    public void setSeats(ArrayList<Seat> seats) {
-//        this.seats = seats;
-//    }
-
-    public SeatingType getSeatingType() {
-        return seatingType;
-    }
-
-    public void setSeatingType(SeatingType seatingType) {
-        this.seatingType = seatingType;
     }
 
     public int getTotalSeats() {

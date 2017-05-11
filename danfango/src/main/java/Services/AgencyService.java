@@ -356,9 +356,9 @@ public class AgencyService {
                             showing.setId(existingShowing.getId());
                             showingService.updateShowing(showing);
                         } else {
-                            TheatreRoom room = createTheatreRoom();
-                            showing.setTheatreRoom(room);
-                            showingService.addShowing(showing);
+                            //TheatreRoom room = createTheatreRoom();
+                            //showing.setTheatreRoom(room);
+                            //showingService.addShowing(showing);
                             
                         }
                     }
@@ -369,24 +369,24 @@ public class AgencyService {
         }
     }
 
-    public TheatreRoom createTheatreRoom() {
-        TheatreRoom room = new TheatreRoom();
-        double seatingType = Math.random();
-
-         if (seatingType <= .5) {
-            // 132 seats
-            room.setTotalSeats(200);
-            room.setTotalSeatsRemaining(200);
-            room.setSeatingType(TheatreRoom.SeatingType.Reserved);
-
-        } else {
-            room.setTotalSeats(200);
-            room.setTotalSeatsRemaining(200);
-            room.setSeatingType(TheatreRoom.SeatingType.Nonreserved);
-        }
-        theatreRoomService.addTheatreRoom(room);
-        return room;
-    }
+//    public TheatreRoom createTheatreRoom() {
+//        TheatreRoom room = new TheatreRoom();
+//        double seatingType = Math.random();
+//
+//         if (seatingType <= .5) {
+//            // 132 seats
+//            room.setTotalSeats(200);
+//            room.setTotalSeatsRemaining(200);
+//            room.setSeatingType(TheatreRoom.SeatingType.Reserved);
+//
+//        } else {
+//            room.setTotalSeats(200);
+//            room.setTotalSeatsRemaining(200);
+//            room.setSeatingType(TheatreRoom.SeatingType.Nonreserved);
+//        }
+//        theatreRoomService.addTheatreRoom(room);
+//        return room;
+//    }
     
     
 
