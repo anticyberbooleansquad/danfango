@@ -14,13 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Movie;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.year;
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 /**

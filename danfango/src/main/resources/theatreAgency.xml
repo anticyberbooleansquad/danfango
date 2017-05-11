@@ -6,6 +6,13 @@
         <city>West Babylon</city>
         <state>NY</state>
         <zipcode>11704</zipcode>
+
+        <reserved>true</reserved>
+        <rooms>
+            <roomID>2935</roomID>
+            <roomID>5000</roomID>
+        </rooms>
+
     </theatre>
     <theatre>
         <agencyID>7587</agencyID>

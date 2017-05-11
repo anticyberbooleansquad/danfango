@@ -19,7 +19,6 @@
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
-
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
     </head>
 
