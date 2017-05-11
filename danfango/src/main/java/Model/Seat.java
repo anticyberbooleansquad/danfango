@@ -24,7 +24,7 @@ public class Seat implements Serializable{
     @OneToOne
     private Showing showing;
     private String row;
-    private int seatNumber;
+    private String seatNumber;
 
     public Integer getId()
     {
@@ -44,11 +44,11 @@ public class Seat implements Serializable{
         this.row = row;
     }
 
-    public int getSeatNumber() {
+    public String getSeatNumber() {
         return seatNumber;
     }
 
-    public void setSeatNumber(int seatNumber) {
+    public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
     }
     

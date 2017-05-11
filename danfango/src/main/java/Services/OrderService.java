@@ -11,21 +11,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Dao.OrderDAO;
+import Model.LiveOrders;
 import Model.Order;
 
 @Service
 public class OrderService {
 
-        private List<Order> LiveOrders;
+        private LiveOrders liveOrders;
 	private OrderDAO orderDAO;
 
 	public void setOrderDAO(OrderDAO orderDAO) {
 		this.orderDAO = orderDAO;
 	}
         
-        public void setLiveOrders(List<Order> liveOrders)
+        public void setLiveOrders(LiveOrders liveOrders)
         {
-                this.LiveOrders = liveOrders;
+                this.liveOrders = liveOrders;
         }
 
 	
