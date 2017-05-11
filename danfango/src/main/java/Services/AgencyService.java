@@ -65,6 +65,8 @@ public class AgencyService {
     LocationService locationService;
     @Autowired
     GenreService genreService;
+    @Autowired
+    MovieGenreService movieGenreService;
 
     private AgencyDAO agencyDAO;
 
@@ -211,7 +213,7 @@ public class AgencyService {
                     movie.setId(movieService.getMovieByAgencyMovieId(movie.getImdbID()).getId());
                     movieService.updateMovie(movie);
                 }
-                
+                //set all genres on movie
                 addMovieGenre(movie, genres);
 
             }
@@ -224,6 +226,7 @@ public class AgencyService {
         for(String genre : splitgenres){
             Genre g = genreService.getGenreByName(genre);
             // add to movie genre table 
+            movieGenreService.
             
         }
         
