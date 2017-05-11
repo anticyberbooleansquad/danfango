@@ -27,6 +27,7 @@ public class Ticket implements Serializable{
     private Seat seat;
     @OneToOne
     private Showing showing;
+    
 
     public Integer getId() {
         return id;
