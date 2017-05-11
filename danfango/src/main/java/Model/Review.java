@@ -26,7 +26,7 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer id;
-    @ManyToOne
+    @OneToOne
     private Movie movie;
     private String title;
     private String content;

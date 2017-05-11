@@ -21,6 +21,8 @@ public class Seat implements Serializable{
     private Integer id;
     @OneToOne
     private TheatreRoom theatreRoom;
+    @OneToOne
+    private Showing showing;
     private String row;
     private int seatNumber;
 

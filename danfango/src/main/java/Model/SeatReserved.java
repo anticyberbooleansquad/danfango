@@ -27,7 +27,7 @@ public class SeatReserved implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne
+    @OneToOne
     private Showing showing;
     @OneToOne
     private Seat seat;
