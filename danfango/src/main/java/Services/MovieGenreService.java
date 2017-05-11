@@ -10,50 +10,57 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import Dao.UserDAO;
-import Model.User;
+import Dao.MovieGenreDAO;
+import Model.Genre;
+import Model.Movie;
+import Model.MovieGenre;
 
 @Service
 public class MovieGenreService {
 
-	private UserDAO userDAO;
+	private MovieGenreDAO movieGenreDAO;
 
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
+	public void setMovieGenreDAO(MovieGenreDAO movieGenreDAO) {
+		this.movieGenreDAO = movieGenreDAO;
 	}
 
 	
 	@Transactional
-	public void addUser(User u) {
-		this.userDAO.addUser(u);
+	public void addMovieGenre(MovieGenre u) {
+		this.movieGenreDAO.addMovieGenre(u);
 	}
 
 	
 	@Transactional
-	public void updateUser(User u) {
-		this.userDAO.updateUser(u);
+	public void updateMovieGenre(MovieGenre u) {
+		this.movieGenreDAO.updateMovieGenre(u);
 	}
 
 	
 	@Transactional
-	public List<User> listUsers() {
-		return this.userDAO.listUsers();
+	public List<MovieGenre> listMovieGenres() {
+		return this.movieGenreDAO.listMovieGenres();
 	}
 
 	
 	@Transactional
-	public User getUserById(int id) {
-		return this.userDAO.getUserById(id);
+	public MovieGenre getMovieGenreById(int id) {
+		return this.movieGenreDAO.getMovieGenreById(id);
 	}
         
         @Transactional
-	public User getUserByEmail(String email) {
-		return this.userDAO.getUserByEmail(email);
+	public List<MovieGenre> getMovieGenresByMovie(Movie movie) {
+		return this.movieGenreDAO.getMovieGenresByMovie(movie);
 	}
-	
+        
+        @Transactional
+	public List<MovieGenre> getMovieGenresByGenre(Genre genre) {
+		return this.movieGenreDAO.getMovieGenresByGenre(genre);
+	}
+       
 	@Transactional
-	public void removeUser(int id) {
-		this.userDAO.removeUser(id);
+	public void removeMovieGenre(int id) {
+		this.movieGenreDAO.removeMovieGenre(id);
 	}
         	
 }
