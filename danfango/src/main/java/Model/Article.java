@@ -30,7 +30,7 @@ public class Article {
     private String movieName;
     private Long movieID;
     private Date publishDate;
-    @ManyToOne
+    @OneToOne
     private Agency agency;
     private Long agencyArticleID;
 

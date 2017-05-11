@@ -30,7 +30,8 @@
     <bean id="agencyService" class="Services.AgencyService"/>
     <bean id="searchService" class="Services.SearchService"/>
     <bean id="locationService" class="Services.LocationService"/>
-    <bean id="movieService" class="Services.MovieService">
+    <bean id="liveOrders" class="Services.OrderService.liveOrders">
+    <bean id="movieService" class="Services.MovieService"/>
         <property name="movieDAO" ref="movieDAO"></property>
     </bean>
     <bean id="crewMemberService" class="Services.CrewMemberService">
@@ -54,6 +55,11 @@
     <bean id="MovieTrailerService" class="Services.MovieTrailerService">
         <property name="movieTrailerDAO" ref="movieTrailerDAO"></property>
     </bean>
+    <bean id="orderService" class="Services.orderService">
+        <property name="orderDAO" ref="orderDAO"></property>
+        <property name="liveOrders" ref="liveOrders"></property>
+    </bean>
+    
     <bean id="userDAO" class="Dao.UserDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
@@ -107,18 +113,24 @@
         <property name="dataSource" ref="dataSource" ></property>
         <property name="annotatedClasses">
             <list>
-                    <value>Model.User</value>
-                    <value>Model.Movie</value>
                     <value>Model.Advertisement</value>
                     <value>Model.Agency</value>
+                    <value>Model.Article</value>
                     <value>Model.CrewMember</value>
                     <value>Model.CrewMemberMovie</value>
                     <value>Model.Genre</value>
+                    <value>Model.Movie</value>
+                    <value>Model.MovieTrailer</value>
+                    <value>Model.Order</value>
+                    <value>Model.OrderTicket</value>
                     <value>Model.Review</value>
+                    <value>Model.Seat</value>
+                    <value>Model.SeatReserved</value>
+                    <value>Model.Showing</value>
                     <value>Model.Theatre</value>
                     <value>Model.TheatreRoom</value>
-                    <value>Model.MovieTrailer</value>
-
+                    <value>Model.Ticket</value>
+                    <value>Model.User</value>
             </list>
         </property>
         <property name="hibernateProperties">

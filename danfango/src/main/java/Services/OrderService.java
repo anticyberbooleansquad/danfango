@@ -16,11 +16,17 @@ import Model.Order;
 @Service
 public class OrderService {
 
+        private List<Order> LiveOrders;
 	private OrderDAO orderDAO;
 
 	public void setOrderDAO(OrderDAO orderDAO) {
 		this.orderDAO = orderDAO;
 	}
+        
+        public void setLiveOrders(List<Order> liveOrders)
+        {
+                this.LiveOrders = liveOrders;
+        }
 
 	
 	@Transactional

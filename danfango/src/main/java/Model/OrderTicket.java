@@ -29,7 +29,7 @@ public class OrderTicket implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne
+    @OneToOne
     private Order order;
     @OneToOne
     private Ticket ticket;
