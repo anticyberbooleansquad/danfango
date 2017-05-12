@@ -42,14 +42,14 @@
             <h1 class="spacing genretitle">FILTER MOVIES BY GENRE</h1>
 
             <ul class="spacing nav nav-pills">
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Action</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Drama</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Comedy</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Kids</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Horror</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Romance</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Sci-Fi</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Animated</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon/Action"><h5>Action</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon/Drama"><h5>Drama</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon/Comedy"><h5>Comedy</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon/Kids"><h5>Kids</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon/Horror"><h5>Horror</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon/Romance"><h5>Romance</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon/Sci-Fi"><h5>Sci-Fi</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon/Animation"><h5>Animation</h5></a></li>
             </ul>
 
 
@@ -63,13 +63,13 @@
                             <c:forEach begin="0" end="7" step="2" varStatus="loop2"> 
                                 <c:if test="${not empty comingSoon[loop.index+loop2.index]}">
                                     <div class = "col-md-3">
-                                        <a class="" href="movieinfopage/${comingSoon[loop.index + loop2.index].id}">
+                                        <a class="" href="${goUp}movieinfopage/${comingSoon[loop.index + loop2.index].id}">
                                             <c:if test="${comingSoon[loop.index + loop2.index].poster != null}">
                                                 <img class ="posters" src="https://image.tmdb.org/t/p/w500/${comingSoon[loop.index + loop2.index].poster}">
                                             </c:if>
                                         </a>
-                                            
-                                            <a class="" href="movieinfopage/${comingSoon[loop.index + loop2.index + 1].id}">
+
+                                        <a class="" href="${goUp}movieinfopage/${comingSoon[loop.index + loop2.index + 1].id}">
                                             <c:if test="${comingSoon[loop.index + loop2.index+1].poster != null}">
                                                 <img class ="posters" src="https://image.tmdb.org/t/p/w500/${comingSoon[loop.index + loop2.index+1].poster}">
                                             </c:if>
