@@ -71,6 +71,11 @@ public class MoviePageController {
         modelandview = new ModelAndView("index");
 
         return modelandview;
+    }
+
+    public String getFavorite(HttpServletRequest request) {
+
+        return "success";
 
     }
 

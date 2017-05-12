@@ -68,6 +68,8 @@ public class AgencyService {
     GenreService genreService;
     @Autowired
     MovieGenreService movieGenreService;
+    @Autowired
+    SeatService seatService;
 
     private AgencyDAO agencyDAO;
 
@@ -112,6 +114,8 @@ public class AgencyService {
             parseCrewFile();
         } else if (agency.equals("theatre")) {
             parseTheatreFile();
+        } else if (agency.equals("theatreRoom")) {
+            parseTheatreRoomFile();
         } else if (agency.equals("showing")) {
             parseShowingFile();
         }
@@ -185,6 +189,58 @@ public class AgencyService {
         }
     }
 
+    public void parseTheatreRoomFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
+        Document doc = prepareDoc("ROOMS.xml");
+        NodeList nList = doc.getElementsByTagName("rooms");
+
+        for (int counter = 0; counter < nList.getLength(); counter++) {
+            Node nNode = nList.item(counter);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                String roomId = eElement.getElementsByTagName("roomId").item(0).getTextContent();
+                String numSeats = eElement.getElementsByTagName("theatreId").item(0).getTextContent();
+                TheatreRoom room = theatreRoomService.getTheatreRoomByRoomNumber(roomId);
+                room.setTotalSeats(Integer.parseInt(numSeats));
+
+                String layoutString = "";
+                char seatRow = 'A';
+                NodeList seatingLayout = eElement.getElementsByTagName("seatingLayout");
+                for (int i = 0; i < seatingLayout.getLength(); i++) {
+                    Node row = seatingLayout.item(i);
+                    String rowContent = row.getTextContent();
+                    layoutString += rowContent;
+                    if (i < seatingLayout.getLength() - 1) {
+                        layoutString += "|";
+                    }
+                    String[] rowArray = rowContent.split(",");
+                    for (int seatIndex = 0; seatIndex < rowArray.length; seatIndex++) {
+                        int seatValue = Integer.parseInt(rowArray[seatIndex]);                       
+                        Seat seat = seatService.getSeat(String.valueOf(seatRow), Integer.toString(seatIndex + 1), room);
+                        // seat that was previously set to 1 could now be set to 0, if so we should remove this seat
+                        if (seatValue == 0) {
+                            if (seat != null) {
+                                seatService.removeSeat(seat.getId());
+                            }
+                        } // otherwise we're dealing with a 1 so create this seat if it doesn't already exist
+                        else {
+                            if (seat == null) {
+                                seat = new Seat();
+                                seat.setRow(String.valueOf(seatRow));
+                                seat.setSeatNumber(Integer.toString(seatIndex + 1));
+                                seat.setTheatreRoom(room);
+                                seatService.addSeat(seat);
+                            }
+                        }
+                    }
+                    seatRow = (char) (seatRow + 1);
+                }
+                room.setLayout(layoutString);
+                System.out.println("PRINTING THE LAYOUT STRING___________________");
+                System.out.println("layoutString: " + layoutString);   
+            }
+        }
+    }
+
     public void parseMovieFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
         Document doc = prepareDoc("newMovie.xml");
         NodeList nList = doc.getElementsByTagName("movie");
@@ -224,7 +280,7 @@ public class AgencyService {
                 String runtime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
                 movie.setRunTime(runtime);
                 String genres = eElement.getElementsByTagName("genre").item(0).getTextContent();
-                
+
                 //NEED TO SET TRAILERS
                 if (movieService.getMovieByAgencyMovieId(movie.getImdbID()) == null) {
                     movieService.addMovie(movie);
@@ -239,20 +295,20 @@ public class AgencyService {
             }
         }
     }
-    
-    public void addMovieGenre(Movie movie, String genres){
+
+    public void addMovieGenre(Movie movie, String genres) {
         genres = genres.replaceAll(" ", "");
-        String [] splitgenres = genres.split(",");
-        for(String genre : splitgenres){
+        String[] splitgenres = genres.split(",");
+        for (String genre : splitgenres) {
             Genre g = genreService.getGenreByName(genre);
             // add to movie genre table
             MovieGenre pair = new MovieGenre();
             pair.setGenre(g);
             pair.setMovie(movie);
             movieGenreService.addMovieGenre(pair);
-            
+
         }
-        
+
     }
 
     public void parseTrailersFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
@@ -388,21 +444,19 @@ public class AgencyService {
                         String theatreRoomId = showingElement.getElementsByTagName("theatreRoomID").item(0).getTextContent();
                         TheatreRoom theatreRoom = (TheatreRoom) theatreRoomService.getTheatreRoomByRoomNumber(theatreRoomId);
 
-                        
                         String showtime = showingElement.getElementsByTagName("datetime").item(0).getTextContent();
                         showtime = showtime.replace("T", " ");
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                         Date parsedDate = dateFormat.parse(showtime);
                         Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-                        
-                        if(mov != null){
+
+                        if (mov != null) {
                             showing.setTime(timestamp);
                             showing.setMovie(mov);
                             showing.setTheatre(theatre);
                             showing.setTheatreRoom(theatreRoom);
                         }
-                        
-                                      
+
                         Showing existingShowing = showingService.getShowingByJoe(mov, theatre, timestamp);
                         if (existingShowing != null) {
                             showing.setId(existingShowing.getId());
@@ -417,9 +471,5 @@ public class AgencyService {
             }
         }
     }
-
-
-
-
 
 }

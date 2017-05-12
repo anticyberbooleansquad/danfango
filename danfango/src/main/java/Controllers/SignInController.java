@@ -102,6 +102,15 @@ public class SignInController {
         modelandview = new ModelAndView("index");
         return modelandview;
     }
+    
+        @RequestMapping(value = "/updateTheatreRooms")
+    protected ModelAndView updateTheatreRooms() throws Exception {
+        ModelAndView modelandview;
+        agencyService.parseFile("theatreRoom");
+        modelandview = new ModelAndView("index");
+        return modelandview;
+    }
+    
 
     @RequestMapping(value = "/logout")
     protected ModelAndView logout(HttpServletRequest request) {
