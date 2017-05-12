@@ -17,75 +17,113 @@ import org.springframework.stereotype.Repository;
 import Model.Showing;
 import Model.Theatre;
 import Model.TheatreRoom;
+import Model.TheatreShowings;
 import java.sql.Timestamp;
 import org.hibernate.criterion.Restrictions;
+
 /**
  *
  * @author charles
  */
 @Repository
-public class ShowingDAO{
-   
+public class ShowingDAO {
+
     private static final Logger logger = LoggerFactory.getLogger(ShowingDAO.class);
-    
+
     private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sf){
-            this.sessionFactory = sf;
+    public void setSessionFactory(SessionFactory sf) {
+        this.sessionFactory = sf;
     }
 
-    
     public void addShowing(Showing u) {
-            Session session = this.sessionFactory.getCurrentSession();
-            session.merge(u);
-            logger.info("Showing saved successfully, Showing Details="+u);
+        Session session = this.sessionFactory.getCurrentSession();
+        session.merge(u);
+        logger.info("Showing saved successfully, Showing Details=" + u);
     }
 
-    
     public void updateShowing(Showing u) {
-            Session session = this.sessionFactory.getCurrentSession();
-            session.update(u);
-            logger.info("Showing updated successfully, Showing Details="+u);
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(u);
+        logger.info("Showing updated successfully, Showing Details=" + u);
     }
 
     @SuppressWarnings("unchecked")
     public List<Showing> listShowings() {
-            Session session = this.sessionFactory.getCurrentSession();
-            List<Showing> showingsList = session.createQuery("from Showing").list();
-            for(Showing u : showingsList){
-                    logger.info("Showing List::"+u);
-            }
-            return showingsList;
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Showing> showingsList = session.createQuery("from Showing").list();
+        for (Showing u : showingsList) {
+            logger.info("Showing List::" + u);
+        }
+        return showingsList;
     }
 
-    
     public Showing getShowingById(int id) {
-            Session session = this.sessionFactory.getCurrentSession();		
-            Showing u = (Showing) session.load(Showing.class, new Integer(id));
-            logger.info("Showing loaded successfully, Showing details="+u);
-            return u;
+        Session session = this.sessionFactory.getCurrentSession();
+        Showing u = (Showing) session.load(Showing.class, new Integer(id));
+        logger.info("Showing loaded successfully, Showing details=" + u);
+        return u;
     }
 
     public Showing getShowingByJoe(Movie movie, Theatre theatre, Timestamp time) {
-            Session session = this.sessionFactory.getCurrentSession();		
-            List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).add(Restrictions.eq("time", time)).list();
-            if(showings.isEmpty())
-            {
-                return null;
-            }
-            else
-            {
-                return (Showing) showings.get(0);
-            }
+        Session session = this.sessionFactory.getCurrentSession();
+        List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).add(Restrictions.eq("time", time)).list();
+        if (showings.isEmpty()) {
+            return null;
+        } else {
+            return (Showing) showings.get(0);
+        }
+    }
+
+    public List<Showing> getShowingByTimestamp() {
+
+        Timestamp today = new Timestamp(System.currentTimeMillis());
+        Session session = this.sessionFactory.getCurrentSession();
+        List showings = session.createCriteria(Showing.class).add(Restrictions.ge("time", today)).list();
+        if (showings.isEmpty()) {
+            return null;
+        } else {
+            return showings;
+        }
     }
     
+   public List<Showing> getShowingByMovieAndTheatre(Movie movie, Theatre theatre) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).list();
+        if (showings.isEmpty()) {
+            return null;
+        } else {
+            return showings;
+        }
+    }
+    
+    public List<Showing> getShowingByMovie(Movie movie) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).list();
+        if (showings.isEmpty()) {
+            return null;
+        } else {
+            return showings;
+        }
+    }
+    
+    public List<Showing> getShowingByTheatre(Theatre theatre) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List showings = session.createCriteria(Showing.class).add(Restrictions.eq("theatre", theatre)).list();
+        if (showings.isEmpty()) {
+            return null;
+        } else {
+            return showings;
+        }
+    }
+
     public void removeShowing(int id) {
-            Session session = this.sessionFactory.getCurrentSession();
-            Showing u = (Showing) session.load(Showing.class, new Integer(id));
-            if(null != u){
-                    session.delete(u);
-            }
-            logger.info("Showing deleted successfully, person details="+u);
+        Session session = this.sessionFactory.getCurrentSession();
+        Showing u = (Showing) session.load(Showing.class, new Integer(id));
+        if (null != u) {
+            session.delete(u);
+        }
+        logger.info("Showing deleted successfully, person details=" + u);
     }
 
 }

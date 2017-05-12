@@ -37,7 +37,7 @@ public class TicketSelectHeaderController {
         request.setAttribute("contextPath", contextPath);
         
 
-        ModelAndView modelandview = new ModelAndView("ticketselectpage");
+        ModelAndView modelandview = new ModelAndView("headerticketselectpage");
         return modelandview;
     }
 

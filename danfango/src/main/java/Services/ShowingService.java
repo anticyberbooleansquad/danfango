@@ -15,6 +15,7 @@ import Model.Movie;
 import Model.Showing;
 import Model.Theatre;
 import Model.TheatreRoom;
+import Model.TheatreShowings;
 import java.sql.Timestamp;
 
 @Service
@@ -51,9 +52,28 @@ public class ShowingService {
 	}
         
         @Transactional
-        public Showing getShowingByJoe(Movie movie, Theatre theatre, Timestamp time)
-        {
+        public Showing getShowingByJoe(Movie movie, Theatre theatre, Timestamp time){
             return this.showingDAO.getShowingByJoe(movie, theatre, time);
+        }
+        
+        @Transactional
+        public List<Showing> getShowingByTimestamp(){
+            return this.showingDAO.getShowingByTimestamp();
+        }
+        
+        @Transactional
+        public List<Showing> getShowingByMovieAndTheatre(Movie movie, Theatre theatre){
+            return this.showingDAO.getShowingByMovieAndTheatre(movie, theatre);
+        }
+        
+        @Transactional
+        public List<Showing> getShowingByMovie(Movie movie){
+            return this.showingDAO.getShowingByMovie(movie);
+        }
+        
+        @Transactional
+        public List<Showing> getShowingByTheatre(Theatre theatre){
+            return this.showingDAO.getShowingByTheatre(theatre);
         }
 	
 	@Transactional
