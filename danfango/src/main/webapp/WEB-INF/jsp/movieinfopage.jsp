@@ -33,14 +33,15 @@
         </jsp:include>
         
         <div class="container">
+            <c:if test="${user != null}">
+                <c:if test="${favoriteState == true}">
+                    <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true"></i> </h1>
+                </c:if>
 
-            <c:if test="${favoriteState == 1}">
-                <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true"></i> </h1>
-            </c:if>
 
-                
-            <c:if test="${favoriteState != 1}">
-                <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse hi" aria-hidden="true"></i> </h1>
+                <c:if test="${favoriteState == false}">
+                    <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse hi" aria-hidden="true"></i> </h1>
+                </c:if>
             </c:if>
 
             <ul class="spacing nav nav-pills">

@@ -25,6 +25,7 @@ public class Seat implements Serializable{
     private Showing showing;
     private String row;
     private String seatNumber;
+    private boolean available;
 
     public Integer getId()
     {
@@ -66,5 +67,13 @@ public class Seat implements Serializable{
 
     public void setShowing(Showing showing) {
         this.showing = showing;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

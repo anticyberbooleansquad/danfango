@@ -16,6 +16,17 @@ $(function () {
             $.notify("Added To Favorites");
 
         }
+        $.ajax({
+                url : '/danfango/changeFavorite', // Your Servlet mapping or JSP(not suggested)
+                //data :'movieid' + movieid, 
+                type : 'POST',
+                success : function(response) {
+                    alert("success");
+                },
+                error : function(request, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+        });
     });
 });
 
@@ -119,13 +130,14 @@ function checkSecond(sec) {
 
 function checkFavorite(movieid)
 {
+    
     $.ajax({
                 url : 'danfango/getFavorite', // Your Servlet mapping or JSP(not suggested)
                 data :movieid, 
                 type : 'POST',
                 dataType : 'text', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
                 success : function(response) {
-                    $(document.getElementById('favorite')).addClass('favoriteState')
+                    $(document.getElementById('favorite'))[0].addClass('favoriteState')
                 },
                 error : function(request, textStatus, errorThrown) {
                     alert(errorThrown);
