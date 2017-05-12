@@ -11,66 +11,80 @@ package Controllers;
  */
 import Model.CrewMemberMovie;
 import Model.Movie;
-import Services.AuthenticationService;
 import Services.CrewMemberMovieService;
 import Services.MovieService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class MoviePageController{
-    
+public class MoviePageController {
+
     @Autowired
     MovieService movieService;
     @Autowired
     CrewMemberMovieService crewMemberMovieService;
-    
+
     @RequestMapping(value = "/movieinfopage/{movieId}")
-    protected ModelAndView getMovieInfoPage(@PathVariable(value="movieId") int id, HttpServletRequest request){
-        
+    protected ModelAndView getMovieInfoPage(@PathVariable(value = "movieId") int id, HttpServletRequest request) {
+
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
-        
-        
+
         Movie movie = movieService.getMovieById(id);
+        movie.setRunTime(timeConvert(movie.getRunTime()));
         request.setAttribute("movie", movie);
-       
+
         List<CrewMemberMovie> crewMemberMovie = crewMemberMovieService.getCrewMemberMovieByMovie(movie);
-        request.setAttribute("crewMemberMovie",crewMemberMovie);
-        
-        ModelAndView modelandview = new ModelAndView("movieinfopage");        
+        request.setAttribute("crewMemberMovie", crewMemberMovie);
+
+        ModelAndView modelandview = new ModelAndView("movieinfopage");
         return modelandview;
     }
-    
+
     @RequestMapping(value = "/movieinfopage", method = RequestMethod.POST)
-    protected ModelAndView changeFavoriteState(HttpServletRequest request , HttpServletRequest response){
+    protected ModelAndView changeFavoriteState(HttpServletRequest request, HttpServletRequest response) {
         //ServletContext sc = request.getServletContext();
-        
+
         ModelAndView modelandview;
-        
+
         request.setAttribute("favorite", 1);
         modelandview = new ModelAndView("movieinfopage");
-      
+
         return modelandview;
     }
-    
+
     @RequestMapping(value = "/getFavorite", method = RequestMethod.POST)
-    public String getFavorite(HttpServletRequest request){
-        
-       return "success";
+    protected ModelAndView getFavorite(HttpServletRequest request, HttpServletRequest response) {
+        //ServletContext sc = request.getServletContext();
+
+        ModelAndView modelandview;
+
+        //request.setAttribute("favorite", 1);
+        modelandview = new ModelAndView("index");
+
+        return modelandview;
+    }
+
+    public String getFavorite(HttpServletRequest request) {
+
+        return "success";
+
+    }
+
+    public String timeConvert(String timeString) {
+        int time = Integer.parseInt(timeString);
+        if (time == 0) {
+            return "N/A";
+        } else {
+            return time / 60 % 24 + " hr " + time % 60 + " min";
+        }
     }
 }
-

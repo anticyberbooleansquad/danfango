@@ -458,7 +458,6 @@ public class AgencyService {
                         }
 
                         Showing existingShowing = showingService.getShowingByJoe(mov, theatre, timestamp);
-                        System.out.println("SHOWING: " + existingShowing);
                         if (existingShowing != null) {
                             showing.setId(existingShowing.getId());
                             showingService.updateShowing(showing);
