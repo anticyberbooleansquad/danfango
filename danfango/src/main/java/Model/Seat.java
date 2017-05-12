@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Entity
 @Table
 public class Seat implements Serializable{
-    
+  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -52,5 +52,19 @@ public class Seat implements Serializable{
         this.seatNumber = seatNumber;
     }
     
-    
+    public TheatreRoom getTheatreRoom() {
+        return theatreRoom;
+    }
+
+    public void setTheatreRoom(TheatreRoom theatreRoom) {
+        this.theatreRoom = theatreRoom;
+    }
+
+    public Showing getShowing() {
+        return showing;
+    }
+
+    public void setShowing(Showing showing) {
+        this.showing = showing;
+    }
 }
