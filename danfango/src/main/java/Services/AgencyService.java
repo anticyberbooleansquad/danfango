@@ -31,6 +31,7 @@ import Model.Agency;
 import Model.CrewMemberMovie;
 import Model.Genre;
 import Model.Movie;
+import Model.MovieGenre;
 import Model.MovieTrailer;
 import Model.Seat;
 import Model.Showing;
@@ -225,8 +226,11 @@ public class AgencyService {
         String [] splitgenres = genres.split(",");
         for(String genre : splitgenres){
             Genre g = genreService.getGenreByName(genre);
-            // add to movie genre table 
-            movieGenreService.
+            // add to movie genre table
+            MovieGenre pair = new MovieGenre();
+            pair.setGenre(g);
+            pair.setMovie(movie);
+            movieGenreService.addMovieGenre(pair);
             
         }
         
