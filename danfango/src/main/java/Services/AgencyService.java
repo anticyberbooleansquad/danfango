@@ -203,6 +203,7 @@ public class AgencyService {
                 String numSeats = eElement.getElementsByTagName("theatreId").item(0).getTextContent();
                 
                 TheatreRoom room = theatreRoomService.getTheatreRoomByRoomNumber(roomId);
+                
                 room.setTotalSeats(Integer.parseInt(numSeats));
                 
                 String layoutString = "";
@@ -219,10 +220,13 @@ public class AgencyService {
                     String[] rowArray = rowContent.split(",");
                     for(int seatIndex = 0; seatIndex < rowArray.length; seatIndex++){
                         Seat seat = new Seat();
+                        // get seat by row and column to see if we are updating this seat (if this seat exists)
+                        // MAKE SURE TO ACTUALLY CHECK IF THE VALUE IS 1 BEFORE CREATING AND ADDING A SEAT
+                        // ALSO IF VALUE IS 0, CHECK TO SEE IF THIS SEAT EXISTS, AND IF SO DELETE THIS SEAT
                         seat.setRow(String.valueOf(seatRow));
                         seat.setSeatNumber(Integer.toString(seatIndex + 1));
                         seat.setTheatreRoom(room);
-                        // seatservice must add seat
+                        seatService.addSeat(seat);
                     }                  
                     // increment seatRow at the end of every row
                     seatRow = (char)(seatRow + 1);
