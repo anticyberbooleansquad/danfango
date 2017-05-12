@@ -214,7 +214,7 @@ public class AgencyService {
                     }
                     String[] rowArray = rowContent.split(",");
                     for (int seatIndex = 0; seatIndex < rowArray.length; seatIndex++) {
-                        int seatValue = Integer.parseInt(rowArray[seatIndex]);                       
+                        int seatValue = Integer.parseInt(rowArray[seatIndex]);
                         Seat seat = seatService.getSeat(String.valueOf(seatRow), Integer.toString(seatIndex + 1), room);
                         // seat that was previously set to 1 could now be set to 0, if so we should remove this seat
                         if (seatValue == 0) {
@@ -236,7 +236,7 @@ public class AgencyService {
                 }
                 room.setLayout(layoutString);
                 System.out.println("PRINTING THE LAYOUT STRING___________________");
-                System.out.println("layoutString: " + layoutString);   
+                System.out.println("layoutString: " + layoutString);
             }
         }
     }
@@ -305,8 +305,11 @@ public class AgencyService {
             MovieGenre pair = new MovieGenre();
             pair.setGenre(g);
             pair.setMovie(movie);
-            movieGenreService.addMovieGenre(pair);
 
+            if (movieGenreService.getMovieGenresByGenreAndMovie(g, movie) == null) {
+                movieGenreService.addMovieGenre(pair);
+            }
+           
         }
 
     }
@@ -411,9 +414,7 @@ public class AgencyService {
                         relation.setMovie(crewMember_movies.get(i));
                         relation.setCrewMember(actor);
                         crewMemberMovieService.addCrewMemberMovie(relation);
-
                     }
-
                 }
             }
         }
