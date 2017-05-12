@@ -9,6 +9,7 @@ package Controllers;
  *
  * @author johnlegutko
  */
+import Model.Seat;
 import Model.Showing;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,16 +38,34 @@ public class SeatSelectionController {
         HttpSession session = request.getSession();
         Showing showing = (Showing) session.getAttribute("showing");
         String seatingLayout = showing.getTheatreRoom().getLayout();
+        
         if (seatingLayout != null) {
             String[] rowsArray = seatingLayout.split("|");
             int numRows = StringUtils.countMatches(seatingLayout, "|") + 1;
             int numColumns = rowsArray[0].length();
-            String[][] seatingMatrix = new String[numRows][numColumns];
-            for(String row: rowsArray){
-                
+            Seat[][] seatingMatrix = new Seat[numRows][numColumns];
+            
+            char seatRow = 'A';
+            int seatNum = 1;
+            for(int rowIndex = 0; rowIndex < rowsArray.length; rowIndex++){
+                String rowLayout = rowsArray[rowIndex];
+                String[] seatValuesArray = rowLayout.split(",");
+                for(int seatIndex = 0; seatIndex < seatValuesArray.length; seatIndex++){
+                    int seatValue = Integer.parseInt(seatValuesArray[seatIndex]);
+                    Seat seat = null;
+                    if(seatValue == 1){
+                        seat = new Seat();
+                        seat.setRow(String.valueOf(seatRow));
+                        seat.setSeatNumber(Integer.toString(seatNum));
+                        seat.setAvailable(true);
+                    }
+                    seatingMatrix[rowIndex][seatIndex] = seat;
+                }                 
+               seatRow = (char) (seatRow + 1); 
             }
+            request.setAttribute("seatingMatrix", seatingMatrix);
         }
-
+        
         ModelAndView modelandview = new ModelAndView("seatselection");
         return modelandview;
     }
