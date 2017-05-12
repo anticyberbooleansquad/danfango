@@ -76,9 +76,9 @@ public class SignInController {
     @RequestMapping(value = "/submitAgencyCredentials")
     protected ModelAndView submitAgencyCredentials() throws Exception {
         ModelAndView modelandview;
-        //agencyService.parseFile("movie");
-        //agencyService.parseFile("trailers");
-        //agencyService.parseFile("actor");
+//        agencyService.parseFile("movie");
+//        agencyService.parseFile("trailers");
+//        agencyService.parseFile("actor");
         //agencyService.parseFile("theatre");
         modelandview = new ModelAndView("index");
         return modelandview;

@@ -29,8 +29,11 @@ import org.springframework.transaction.annotation.Transactional;
 import Dao.AgencyDAO;
 import Model.Agency;
 import Model.CrewMemberMovie;
+import Model.Genre;
 import Model.Movie;
+import Model.MovieGenre;
 import Model.MovieTrailer;
+import Model.Seat;
 import Model.Showing;
 import Model.Theatre;
 import Model.TheatreRoom;
@@ -61,6 +64,10 @@ public class AgencyService {
     MovieTrailerService movieTrailerService;
     @Autowired
     LocationService locationService;
+    @Autowired
+    GenreService genreService;
+    @Autowired
+    MovieGenreService movieGenreService;
 
     private AgencyDAO agencyDAO;
 
@@ -216,7 +223,8 @@ public class AgencyService {
                 movie.setBackdrop(backdrop);
                 String runtime = (eElement.getElementsByTagName("runtime").item(0).getTextContent());
                 movie.setRunTime(runtime);
-
+                String genres = eElement.getElementsByTagName("genre").item(0).getTextContent();
+                
                 //NEED TO SET TRAILERS
                 if (movieService.getMovieByAgencyMovieId(movie.getImdbID()) == null) {
                     movieService.addMovie(movie);
@@ -225,9 +233,26 @@ public class AgencyService {
                     movie.setId(movieService.getMovieByAgencyMovieId(movie.getImdbID()).getId());
                     movieService.updateMovie(movie);
                 }
+                //set all genres on movie
+                addMovieGenre(movie, genres);
 
             }
         }
+    }
+    
+    public void addMovieGenre(Movie movie, String genres){
+        genres = genres.replaceAll(" ", "");
+        String [] splitgenres = genres.split(",");
+        for(String genre : splitgenres){
+            Genre g = genreService.getGenreByName(genre);
+            // add to movie genre table
+            MovieGenre pair = new MovieGenre();
+            pair.setGenre(g);
+            pair.setMovie(movie);
+            movieGenreService.addMovieGenre(pair);
+            
+        }
+        
     }
 
     public void parseTrailersFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
@@ -330,9 +355,10 @@ public class AgencyService {
                         relation.setMovie(crewMember_movies.get(i));
                         relation.setCrewMember(actor);
                         crewMemberMovieService.addCrewMemberMovie(relation);
-                    }
-                }
 
+                    }
+
+                }
             }
         }
     }
@@ -384,7 +410,6 @@ public class AgencyService {
                             showingService.updateShowing(showing);
                         } else {
                             showingService.addShowing(showing);
-
                         }
                     }
 
@@ -398,11 +423,13 @@ public class AgencyService {
 //        TheatreRoom room = new TheatreRoom();
 //        double seatingType = Math.random();
 //
-//         if (seatingType <= .5) {
+//        if (seatingType <= .5) {
 //            // 132 seats
 //            room.setTotalSeats(200);
 //            room.setTotalSeatsRemaining(200);
 //            room.setSeatingType(TheatreRoom.SeatingType.Reserved);
+//            // MAKE LAYOUT
+//            createSeats(room);
 //
 //        } else {
 //            room.setTotalSeats(200);
@@ -412,4 +439,23 @@ public class AgencyService {
 //        theatreRoomService.addTheatreRoom(room);
 //        return room;
 //    }
+
+//    public void createSeats(TheatreRoom room) {
+//
+//        boolean[][] test = new boolean[2][2];
+////        room.layout
+//        Seat seat = new Seat();
+//        for (int h = 0; h < test[0].length; h++) {//this should go for each row
+//            char character = (char) ('A' + h);
+//            for (int w = 0; w < test.length; w++) {    
+//                seat.setRow(Character.toString(character));
+//                seat.setSeatNumber(w+1);
+//                //need seat service
+//
+//            }
+//
+//        }
+//    }
+
+
 }

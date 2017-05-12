@@ -30,7 +30,7 @@
     <bean id="agencyService" class="Services.AgencyService"/>
     <bean id="searchService" class="Services.SearchService"/>
     <bean id="locationService" class="Services.LocationService"/>
-<!--    <bean id="liveOrders" class="Model.LiveOrders"/>-->
+    <bean id="liveOrders" class="Model.LiveOrders"/>
     <bean id="movieService" class="Services.MovieService">
         <property name="movieDAO" ref="movieDAO"></property>
     </bean>
@@ -55,18 +55,18 @@
     <bean id="MovieTrailerService" class="Services.MovieTrailerService">
         <property name="movieTrailerDAO" ref="movieTrailerDAO"></property>
     </bean>
-<!--    <bean id="orderService" class="Services.OrderService">
+    <bean id="orderService" class="Services.OrderService">
         <property name="orderDAO" ref="orderDAO"></property>
         <property name="liveOrders" ref="liveOrders"></property>
-    </bean>-->
+    </bean>
     
     <bean id="userDAO" class="Dao.UserDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
-<!--    <bean id="orderDAO" class="Dao.OrderDAO">
+    <bean id="orderDAO" class="Dao.OrderDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>-->
+    </bean>
     
     <bean id="movieDAO" class="Dao.MovieDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
