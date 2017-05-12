@@ -40,6 +40,9 @@
     <bean id="userService" class="Services.UserService">
         <property name="userDAO" ref="userDAO"></property>
     </bean>
+    <bean id="seatService" class="Services.SeatService">
+        <property name="seatDAO" ref="seatDAO"></property>
+    </bean>
     <bean id="theatreService" class="Services.TheatreService">
         <property name="theatreDAO" ref="theatreDAO"></property>
     </bean>
@@ -72,6 +75,10 @@
     </bean>
     
     <bean id="userDAO" class="Dao.UserDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+    <bean id="seatDAO" class="Dao.SeatDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
