@@ -68,6 +68,8 @@ public class AgencyService {
     GenreService genreService;
     @Autowired
     MovieGenreService movieGenreService;
+    @Autowired
+    SeatService seatService;
 
     private AgencyDAO agencyDAO;
 
@@ -112,7 +114,10 @@ public class AgencyService {
             parseCrewFile();
         } else if (agency.equals("theatre")) {
             parseTheatreFile();
-        } else if (agency.equals("showing")) {
+        } else if (agency.equals("theatreRoom")) {
+            parseTheatreRoomFile();
+        }
+        else if (agency.equals("showing")) {
             parseShowingFile();
         }
     }
@@ -181,6 +186,50 @@ public class AgencyService {
                     theatreService.updateTheatre(theatre);
                 }
 
+            }
+        }
+    }
+    
+    public void parseTheatreRoomFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
+        Document doc = prepareDoc("ROOMS.xml");
+        NodeList nList = doc.getElementsByTagName("rooms");
+        
+        for(int counter = 0; counter < nList.getLength(); counter++){
+            Node nNode = nList.item(counter);
+            if(nNode.getNodeType() == Node.ELEMENT_NODE){
+                Element eElement = (Element) nNode;
+                
+                String roomId = eElement.getElementsByTagName("roomId").item(0).getTextContent();
+                String numSeats = eElement.getElementsByTagName("theatreId").item(0).getTextContent();
+                
+                TheatreRoom room = theatreRoomService.getTheatreRoomByRoomNumber(roomId);
+                room.setTotalSeats(Integer.parseInt(numSeats));
+                
+                String layoutString = "";
+                char seatRow = 'A';
+                              
+                NodeList seatingLayout = eElement.getElementsByTagName("seatingLayout");
+                for (int i = 0; i < seatingLayout.getLength(); i++) {
+                    Node row = seatingLayout.item(i);
+                    String rowContent = row.getTextContent();
+                    layoutString += rowContent;
+                    if(i < seatingLayout.getLength() - 1){
+                        layoutString += "|";
+                    }
+                    String[] rowArray = rowContent.split(",");
+                    for(int seatIndex = 0; seatIndex < rowArray.length; seatIndex++){
+                        Seat seat = new Seat();
+                        seat.setRow(String.valueOf(seatRow));
+                        seat.setSeatNumber(Integer.toString(seatIndex + 1));
+                        seat.setTheatreRoom(room);
+                        // seatservice must add seat
+                    }                  
+                    // increment seatRow at the end of every row
+                    seatRow = (char)(seatRow + 1);
+                }
+                // at this point layoutString should be done
+                // MAKE SURE TO SET LAYOUT STRING ONTO THE THEATREROOM 
+                room.setLayout(layoutString);              
             }
         }
     }
@@ -418,44 +467,5 @@ public class AgencyService {
             }
         }
     }
-
-//    public TheatreRoom createTheatreRoom() {
-//        TheatreRoom room = new TheatreRoom();
-//        double seatingType = Math.random();
-//
-//        if (seatingType <= .5) {
-//            // 132 seats
-//            room.setTotalSeats(200);
-//            room.setTotalSeatsRemaining(200);
-//            room.setSeatingType(TheatreRoom.SeatingType.Reserved);
-//            // MAKE LAYOUT
-//            createSeats(room);
-//
-//        } else {
-//            room.setTotalSeats(200);
-//            room.setTotalSeatsRemaining(200);
-//            room.setSeatingType(TheatreRoom.SeatingType.Nonreserved);
-//        }
-//        theatreRoomService.addTheatreRoom(room);
-//        return room;
-//    }
-
-//    public void createSeats(TheatreRoom room) {
-//
-//        boolean[][] test = new boolean[2][2];
-////        room.layout
-//        Seat seat = new Seat();
-//        for (int h = 0; h < test[0].length; h++) {//this should go for each row
-//            char character = (char) ('A' + h);
-//            for (int w = 0; w < test.length; w++) {    
-//                seat.setRow(Character.toString(character));
-//                seat.setSeatNumber(w+1);
-//                //need seat service
-//
-//            }
-//
-//        }
-//    }
-
 
 }
