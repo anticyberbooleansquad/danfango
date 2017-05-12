@@ -33,6 +33,7 @@ public class TheatreRoom implements Serializable{
     private String roomNumber;
     private int totalSeats;
     private int totalSeatsRemaining;
+    private String layout;
 
     public Integer getId() {
         return id;
@@ -79,6 +80,14 @@ public class TheatreRoom implements Serializable{
 
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
+    }
+
+    public String getLayout() {
+        return layout;
+    }
+
+    public void setLayout(String layout) {
+        this.layout = layout;
     }
     
     
