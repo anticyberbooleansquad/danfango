@@ -10,13 +10,17 @@ package Controllers;
  * @author johnlegutko
  */
 import Model.CrewMemberMovie;
+import Model.Genre;
+import Model.MovieGenre;
+import Services.GenreService;
+import Services.MovieGenreService;
+import Services.MovieService;
+import java.util.ArrayList;
 import Model.FavoriteMovie;
 import Model.Movie;
 import Model.User;
-import Services.AuthenticationService;
 import Services.CrewMemberMovieService;
 import Services.FavoriteMovieService;
-import Services.MovieService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,6 +38,10 @@ public class MoviePageController {
 
     @Autowired
     MovieService movieService;
+    @Autowired
+    MovieGenreService movieGenreService;
+    @Autowired
+    GenreService genreService;
     @Autowired
     CrewMemberMovieService crewMemberMovieService;
     @Autowired
@@ -60,6 +68,17 @@ public class MoviePageController {
         }
         
         request.setAttribute("movie", movie);
+        
+        List<Genre> genres = new ArrayList<>();
+        
+        List<MovieGenre> movieGenres = movieGenreService.getMovieGenresByMovie(movie);
+        for(MovieGenre mg: movieGenres){
+            genres.add(mg.getGenre());
+        }
+        
+        System.out.println("GENRES LIST: "+ genres);
+        
+        request.setAttribute("genres", genres);
 
         List<CrewMemberMovie> crewMemberMovie = crewMemberMovieService.getCrewMemberMovieByMovie(movie);
         request.setAttribute("crewMemberMovie", crewMemberMovie);

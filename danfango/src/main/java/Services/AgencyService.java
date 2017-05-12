@@ -305,8 +305,11 @@ public class AgencyService {
             MovieGenre pair = new MovieGenre();
             pair.setGenre(g);
             pair.setMovie(movie);
-            movieGenreService.addMovieGenre(pair);
 
+            if (movieGenreService.getMovieGenresByGenreAndMovie(g, movie) == null) {
+                movieGenreService.addMovieGenre(pair);
+            }
+           
         }
 
     }
@@ -411,9 +414,7 @@ public class AgencyService {
                         relation.setMovie(crewMember_movies.get(i));
                         relation.setCrewMember(actor);
                         crewMemberMovieService.addCrewMemberMovie(relation);
-
                     }
-
                 }
             }
         }

@@ -59,7 +59,11 @@
                         <p><b>Release Date:</b> <fmt:formatDate value="${dateObject}" pattern="MM/dd/yyyy"/></p>
                         <p><b>Rating:</b> ${movie.rating}</p>
                         <p><b>Runtime:</b> ${movie.runTime}</p>
-                        <p><b>Genre:</b> Comedy, Action, Adventure</p>
+                        <p><b>Genre:</b> 
+                            <c:forEach items="${genres}" var="genre">
+                                ${genre.name} 
+                            </c:forEach>      
+                        </p>
                         <p><b>Score:</b> ${movie.movieScore}</p>
                     </div>
                     <a href="/danfango/ticketselectpage/${movie.id}" id="buyticketbutton" class="spacing btn-system btn-mini border-btn btn-gray">

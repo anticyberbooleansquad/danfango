@@ -35,12 +35,11 @@ public class SignInController {
 
     @RequestMapping(value = "/signinpage")
     protected ModelAndView getSignInPage(HttpServletRequest request) {
-        
+
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
-        
-        
+
         ModelAndView modelandview = new ModelAndView("signinpage");
         return modelandview;
     }
@@ -48,15 +47,6 @@ public class SignInController {
     @RequestMapping(value = "/submitCredentials", method = RequestMethod.POST)
     protected ModelAndView submitCredentials(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) {
         ModelAndView modelandview;
-
-        //for testing 
-//        User u = new User(); 
-//        u.setFirstName("first1");
-//        u.setLastName("last1");
-//        u.setEmail("email1");
-//        u.setPassword(authenticationService.hash("password1"));
-//        userService.addUser(u);
-        
 
         boolean authenticated = authenticationService.authenticate(email, password);
         if (authenticated) {
@@ -84,8 +74,15 @@ public class SignInController {
         return modelandview;
 
     }
-    
-      //this is temporary we will make this function fully and not hard code it 
+
+    @RequestMapping(value = "/updateMovies")
+    protected ModelAndView updateMovies() throws Exception {
+        ModelAndView modelandview;
+        agencyService.parseFile("movie");
+        modelandview = new ModelAndView("index");
+        return modelandview;
+    }
+
     @RequestMapping(value = "/updateTheatres")
     protected ModelAndView updateTheatres() throws Exception {
         ModelAndView modelandview;
@@ -93,8 +90,7 @@ public class SignInController {
         modelandview = new ModelAndView("index");
         return modelandview;
     }
-    
-    //this is temporary we will make this function fully and not hard code it 
+
     @RequestMapping(value = "/updateShowings")
     protected ModelAndView updateShowings() throws Exception {
         ModelAndView modelandview;
@@ -102,15 +98,14 @@ public class SignInController {
         modelandview = new ModelAndView("index");
         return modelandview;
     }
-    
-        @RequestMapping(value = "/updateTheatreRooms")
+
+    @RequestMapping(value = "/updateTheatreRooms")
     protected ModelAndView updateTheatreRooms() throws Exception {
         ModelAndView modelandview;
         agencyService.parseFile("theatreRoom");
         modelandview = new ModelAndView("index");
         return modelandview;
     }
-    
 
     @RequestMapping(value = "/logout")
     protected ModelAndView logout(HttpServletRequest request) {
