@@ -59,6 +59,17 @@
         <property name="orderDAO" ref="orderDAO"></property>
         <property name="liveOrders" ref="liveOrders"></property>
     </bean>
+    <bean id="genreService" class="Services.GenreService">
+        <property name="genreDAO" ref="genreDAO"></property>
+    </bean>
+    
+    <bean id="movieGenreService" class="Services.MovieGenreService">
+        <property name="movieGenreDAO" ref="movieGenreDAO"></property>
+    </bean>
+    
+    <bean id="movieGenreDAO" class="Dao.MovieGenreDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
     
     <bean id="userDAO" class="Dao.UserDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
@@ -69,6 +80,10 @@
     </bean>
     
     <bean id="movieDAO" class="Dao.MovieDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
+    <bean id="genreDAO" class="Dao.GenreDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     

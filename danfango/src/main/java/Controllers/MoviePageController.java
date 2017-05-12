@@ -66,5 +66,18 @@ public class MoviePageController{
       
         return modelandview;
     }
+    
+    @RequestMapping(value = "/getFavorite", method = RequestMethod.POST)
+    protected ModelAndView getFavorite(HttpServletRequest request , HttpServletRequest response){
+        //ServletContext sc = request.getServletContext();
+        
+        ModelAndView modelandview;
+        
+        //request.setAttribute("favorite", 1);
+        modelandview = new ModelAndView("index");
+        
+        return modelandview;
+      
+    }
 }
 

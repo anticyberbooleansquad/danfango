@@ -23,7 +23,7 @@
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
     </head>
-    <body>
+    <body onload="checkFavorite()">
 
         <%--<jsp:include page="header.jsp" />--%>
 
