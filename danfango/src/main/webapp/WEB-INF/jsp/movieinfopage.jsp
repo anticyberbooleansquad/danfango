@@ -23,7 +23,7 @@
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
     </head>
-    <body onload="checkFavorite()">
+    <body>
 
         <%--<jsp:include page="header.jsp" />--%>
 
@@ -289,7 +289,9 @@
 
 <script src="<c:url value="/resources/js/myjs.js" />"></script>
 <script src="<c:url value="/resources/js/script.js" />"></script>
-
+<script>
+        checkFavorite(${movie.id});
+</script>
 </body>
 
 </html>
