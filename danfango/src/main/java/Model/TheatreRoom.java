@@ -30,6 +30,7 @@ public class TheatreRoom implements Serializable{
     private Integer id;
     @OneToOne
     private Theatre theatre;
+    private String roomNumber;
     private int totalSeats;
     private int totalSeatsRemaining;
 
@@ -71,8 +72,16 @@ public class TheatreRoom implements Serializable{
   public void setTheatre(Theatre theatre) {
     this.theatre = theatre;
   }
+
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
     
     
-    
+  
     
 }

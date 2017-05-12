@@ -47,6 +47,13 @@ public class TheatreRoomService {
 		return this.theatreRoomDAO.getTheatreRoomById(id);
 	}
         
+        @Transactional
+	public TheatreRoom getTheatreRoomByRoomNumber(String roomNumber) {
+		return this.theatreRoomDAO.getTheatreRoomByRoomNumber(roomNumber);
+	}
+        
+       
+        
         public TheatreRoom getTheatreRoomByTheatre(Theatre theatre)
         {
                 return this.theatreRoomDAO.getTheatreRoomByTheatre(theatre);

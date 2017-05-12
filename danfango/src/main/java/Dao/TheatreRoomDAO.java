@@ -75,7 +75,21 @@ public class TheatreRoomDAO{
                 return (TheatreRoom) theatreRooms.get(0);
             }
     }
-
+    
+     public TheatreRoom getTheatreRoomByRoomNumber(String roomNumber) {
+            Session session = this.sessionFactory.getCurrentSession();		
+            List theatreRooms = session.createCriteria(TheatreRoom.class).add(Restrictions.eq("roomNumber", roomNumber)).list();
+            if(theatreRooms.isEmpty())
+            {
+                return null;
+            }
+            else
+            {
+                return (TheatreRoom) theatreRooms.get(0);
+            }
+    }
+    
+   
     
     public void removeTheatreRoom(int id) {
             Session session = this.sessionFactory.getCurrentSession();

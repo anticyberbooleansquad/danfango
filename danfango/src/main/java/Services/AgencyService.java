@@ -105,7 +105,7 @@ public class AgencyService {
             parseCrewFile();
         } else if (agency.equals("theatre")) {
             parseTheatreFile();
-        }else if (agency.equals("showing")) {
+        } else if (agency.equals("showing")) {
             parseShowingFile();
         }
     }
@@ -121,7 +121,7 @@ public class AgencyService {
     }
 
     public void parseTheatreFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("theatreAgency.xml");
+        Document doc = prepareDoc("newTheatre.xml");
 
         NodeList nList = doc.getElementsByTagName("theatre");
 
@@ -138,6 +138,8 @@ public class AgencyService {
                 String state = eElement.getElementsByTagName("state").item(0).getTextContent();
                 String stateName = locationService.getFullNameValue(state.toLowerCase());
                 String zipcode = eElement.getElementsByTagName("zipcode").item(0).getTextContent();
+                String reserved = eElement.getElementsByTagName("reserved").item(0).getTextContent();
+
                 theatre.setAgencyTheatreId(Integer.parseInt(agencyId));
                 theatre.setName(name);
                 theatre.setAddress(address);
@@ -146,15 +148,32 @@ public class AgencyService {
                 theatre.setStateName(stateName);
                 theatre.setZip(zipcode);
 
+                if (reserved.equals("true")) {
+                    theatre.setSeatingType(Theatre.SeatingType.Reserved);
+                } else {
+                    theatre.setSeatingType(Theatre.SeatingType.Nonreserved);
+                }
+
                 if (theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()) == null) {
                     theatreService.addTheatre(theatre);
-                    //createTheatreRoom(theatre);
+
+                    NodeList rooms = eElement.getElementsByTagName("rooms");
+
+                    for (int i = 0; i < rooms.getLength(); i++) {
+                        Node room = rooms.item(i);
+                        Element roomElement = (Element) room;
+                        String roomId = roomElement.getElementsByTagName("room").item(0).getTextContent();
+                        TheatreRoom tr = new TheatreRoom();
+                        tr.setTheatre(theatre);
+                        tr.setRoomNumber(roomId);
+                        theatreRoomService.addTheatreRoom(tr);
+                    }
+
                 } else {
                     theatre.setId(theatreService.getTheatreByAgencyTheatreId(theatre.getAgencyTheatreId()).getId());
                     theatreService.updateTheatre(theatre);
                 }
 
-                // use the theatre service to add the theatre here V 
             }
         }
     }
@@ -330,7 +349,7 @@ public class AgencyService {
 
                 int agencyTheatreId = Integer.parseInt(eElement.getAttribute("id"));
                 String theatreName = eElement.getAttribute("name");
-                
+
                 Theatre theatre = theatreService.getTheatreByAgencyTheatreId(agencyTheatreId);
                 if (theatre != null) {
                     NodeList showings = eElement.getElementsByTagName("showtime");
@@ -339,27 +358,33 @@ public class AgencyService {
                         Node showingelemnt = showings.item(i);
                         Element showingElement = (Element) showingelemnt;
                         String moviename = showingElement.getElementsByTagName("moviename").item(0).getTextContent();
-                        String showtime = showingElement.getElementsByTagName("datetime").item(0).getTextContent();
-
                         Movie mov = (Movie) movieService.getMovieByTitle(moviename);
+                        String theatreRoomId = showingElement.getElementsByTagName("theatreRoomID").item(0).getTextContent();
+                        TheatreRoom theatreRoom = (TheatreRoom) theatreRoomService.getTheatreRoomByRoomNumber(theatreRoomId);
+
                         
+                        String showtime = showingElement.getElementsByTagName("datetime").item(0).getTextContent();
                         showtime = showtime.replace("T", " ");
-                        
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                         Date parsedDate = dateFormat.parse(showtime);
                         Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-                        showing.setTime(timestamp);
-                        showing.setMovie(mov);
                         
+                        if(mov != null){
+                            showing.setTime(timestamp);
+                            showing.setMovie(mov);
+                            showing.setTheatre(theatre);
+                            showing.setTheatreRoom(theatreRoom);
+                        }
+                        
+                                      
                         Showing existingShowing = showingService.getShowingByJoe(mov, theatre, timestamp);
+                        System.out.println("SHOWING: " + existingShowing);
                         if (existingShowing != null) {
                             showing.setId(existingShowing.getId());
                             showingService.updateShowing(showing);
                         } else {
-                            //TheatreRoom room = createTheatreRoom();
-                            //showing.setTheatreRoom(room);
-                            //showingService.addShowing(showing);
-                            
+                            showingService.addShowing(showing);
+
                         }
                     }
 
@@ -387,7 +412,4 @@ public class AgencyService {
 //        theatreRoomService.addTheatreRoom(room);
 //        return room;
 //    }
-    
-    
-
 }

@@ -166,4 +166,6 @@ public class Theatre implements Serializable {
         this.seatingType = seatingType;
     }
     
+    
+    
 }

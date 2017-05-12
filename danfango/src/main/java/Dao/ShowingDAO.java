@@ -37,7 +37,7 @@ public class ShowingDAO{
     
     public void addShowing(Showing u) {
             Session session = this.sessionFactory.getCurrentSession();
-            session.persist(u);
+            session.merge(u);
             logger.info("Showing saved successfully, Showing Details="+u);
     }
 

@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theatres>
+   <theatre>
+      <agencyID>2935</agencyID>
+      <name>South Bay Cinemas</name>
+      <address>495 W. Montauk Hwy</address>
+      <city>West Babylon</city>
+      <state>NY</state>
+      <zipcode>11704</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>2935</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7587</agencyID>
+      <name>UA Farmingdale Stadium 10</name>
+      <address>20 Michael Avenue</address>
+      <city>Farmingdale</city>
+      <state>NY</state>
+      <zipcode>11735</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>7587</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6016</agencyID>
+      <name>Farmingdale Multiplex Cinemas</name>
+      <address>1001 Broad Hollow Rd.</address>
+      <city>Farmingdale</city>
+      <state>NY</state>
+      <zipcode>11735</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>6016</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5981</agencyID>
+      <name>Seaford Cinemas 8</name>
+      <address>3951 Merrick Road</address>
+      <city>Seaford</city>
+      <state>NY</state>
+      <zipcode>11783</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5981</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9692</agencyID>
+      <name>Regal Deer Park Stadium 16 IMAX &amp; RPX</name>
+      <address>455 Commack Rd.</address>
+      <city>Deer Park</city>
+      <state>NY</state>
+      <zipcode>11729</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>9692</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>1044</agencyID>
+      <name>YMCA Boulton Center for the Performing Arts</name>
+      <address>37 W Main St.</address>
+      <city>Bay Shore</city>
+      <state>NY</state>
+      <zipcode>11706</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>1044</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8982</agencyID>
+      <name>AMC Levittown 10</name>
+      <address>3585 Hempstead Tpke.</address>
+      <city>Levittown</city>
+      <state>NY</state>
+      <zipcode>11756</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>8982</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>3039</agencyID>
+      <name>Bellmore Playhouse</name>
+      <address>525 Bedford Ave.</address>
+      <city>Bellmore</city>
+      <state>NY</state>
+      <zipcode>11710</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>3039</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2539</agencyID>
+      <name>Bellmore Movies</name>
+      <address>222 Pettit Ave.</address>
+      <city>Bellmore</city>
+      <state>NY</state>
+      <zipcode>11710</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>2539</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>10810</agencyID>
+      <name>Islip Cinemas</name>
+      <address>410 W. Main St.</address>
+      <city>Islip</city>
+      <state>NY</state>
+      <zipcode>11751</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>10810</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6014</agencyID>
+      <name>Broadway Multiplex Cinemas</name>
+      <address>995 Broadway Mall</address>
+      <city>Hicksville</city>
+      <state>NY</state>
+      <zipcode>11801</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>6014</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2917</agencyID>
+      <name>Merrick Cinemas</name>
+      <address>15 Fisher Ave.</address>
+      <city>Merrick</city>
+      <state>NY</state>
+      <zipcode>11566</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>2917</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6463</agencyID>
+      <name>Elwood Cinemas</name>
+      <address>1950 East Jericho Turnpike</address>
+      <city>East Northport</city>
+      <state>NY</state>
+      <zipcode>11731</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>6463</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8058</agencyID>
+      <name>UA Westbury Stadium 12 IMAX &amp; RPX</name>
+      <address>7000 Brush Hollow Rd.</address>
+      <city>Westbury</city>
+      <state>NY</state>
+      <zipcode>11590</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>8058</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8395</agencyID>
+      <name>Planetarium &amp; Dome Theater at the Cradle of Aviation Museum</name>
+      <address>1 Davis Ave.</address>
+      <city>Garden City</city>
+      <state>NY</state>
+      <zipcode>11530</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>8395</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8686</agencyID>
+      <name>AMC Loews Raceway 10</name>
+      <address>1025 Corporate Drive</address>
+      <city>Westbury</city>
+      <state>NY</state>
+      <zipcode>11590</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>8686</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>11057</agencyID>
+      <name>Grand Avenue Cinema</name>
+      <address>1849 Grand Ave.</address>
+      <city>Baldwin</city>
+      <state>NY</state>
+      <zipcode>11510</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>11057</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2810</agencyID>
+      <name>Cinema Arts Centre</name>
+      <address>423 Park Ave.</address>
+      <city>Huntington</city>
+      <state>NY</state>
+      <zipcode>11743</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>2810</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7055</agencyID>
+      <name>AMC Loews Shore 8</name>
+      <address>37 Wall St.</address>
+      <city>Huntington</city>
+      <state>NY</state>
+      <zipcode>11743</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>7055</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7952</agencyID>
+      <name>AMC Roosevelt Field 8</name>
+      <address>630 Old Country Road</address>
+      <city>Garden City</city>
+      <state>NY</state>
+      <zipcode>11530</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>7952</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7633</agencyID>
+      <name>AMC Fantasy 5</name>
+      <address>18 N. Park Ave.</address>
+      <city>Rockville Centre</city>
+      <state>NY</state>
+      <zipcode>11570</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>7633</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6934</agencyID>
+      <name>Bow Tie Herricks Cinema</name>
+      <address>3324 Hillside Ave.</address>
+      <city>New Hyde Park</city>
+      <state>NY</state>
+      <zipcode>11040</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>6934</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2874</agencyID>
+      <name>Sayville Theatre</name>
+      <address>103 Railroad Ave.</address>
+      <city>Sayville</city>
+      <state>NY</state>
+      <zipcode>11782</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>2874</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8662</agencyID>
+      <name>UA Lynbrook 6</name>
+      <address>321 Merrick Rd.</address>
+      <city>Lynbrook</city>
+      <state>NY</state>
+      <zipcode>11563</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>8662</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5914</agencyID>
+      <name>Bow Tie Franklin Square Cinemas</name>
+      <address>989 Hempstead Turnpike</address>
+      <city>Franklin Square</city>
+      <state>NY</state>
+      <zipcode>11010</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5914</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5910</agencyID>
+      <name>Bow Tie Roslyn Cinemas</name>
+      <address>20 Tower Place</address>
+      <city>Roslyn</city>
+      <state>NY</state>
+      <zipcode>11576</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>5910</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5634</agencyID>
+      <name>Regal Ronkonkoma Stadium 9</name>
+      <address>565 Portion Road</address>
+      <city>Ronkonkoma</city>
+      <state>NY</state>
+      <zipcode>11779</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5634</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6737</agencyID>
+      <name>Glen Cove Cinemas</name>
+      <address>5 School St.</address>
+      <city>Glen Cove</city>
+      <state>NY</state>
+      <zipcode>11542</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>6737</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8239</agencyID>
+      <name>AMC Loews Stony Brook 17</name>
+      <address>2196 Nesconset Hwy.</address>
+      <city>Stony Brook</city>
+      <state>NY</state>
+      <zipcode>11790</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>8239</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6654</agencyID>
+      <name>North Shore Towers</name>
+      <address>27240 Grand Central Pkwy</address>
+      <city>Floral Park</city>
+      <state>NY</state>
+      <zipcode>11005</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>6654</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7463</agencyID>
+      <name>Bow Tie Manhasset Cinemas</name>
+      <address>430 Plandome Rd.</address>
+      <city>Manhasset</city>
+      <state>NY</state>
+      <zipcode>11030</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>7463</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5912</agencyID>
+      <name>Port Washington Cinemas</name>
+      <address>116 Main St.</address>
+      <city>Port Washington</city>
+      <state>NY</state>
+      <zipcode>11050</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>5912</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>10756</agencyID>
+      <name>Soundview Cinemas</name>
+      <address>7 Soundview Marketplace</address>
+      <city>Port Washington</city>
+      <state>NY</state>
+      <zipcode>11050</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>10756</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8537</agencyID>
+      <name>Island 16: Cinema de Lux</name>
+      <address>185 Morris Ave.</address>
+      <city>Holtsville</city>
+      <state>NY</state>
+      <zipcode>11742</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>8537</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>10570</agencyID>
+      <name>Plaza Cinema &amp; Media Arts Center</name>
+      <address>20 Terry St.</address>
+      <city>Patchogue</city>
+      <state>NY</state>
+      <zipcode>11772</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>10570</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5913</agencyID>
+      <name>Bow Tie Squire Cinemas</name>
+      <address>115 Middle Neck Rd.</address>
+      <city>Great Neck</city>
+      <state>NY</state>
+      <zipcode>11021</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5913</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8449</agencyID>
+      <name>Movieworld At Douglaston</name>
+      <address>242-02 61st Ave.</address>
+      <city>Douglaston</city>
+      <state>NY</state>
+      <zipcode>11362</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>8449</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5152</agencyID>
+      <name>Jamaica Multiplex Cinemas</name>
+      <address>159-02 Jamaica Ave.</address>
+      <city>Jamaica</city>
+      <state>NY</state>
+      <zipcode>11432</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5152</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8451</agencyID>
+      <name>AMC Bay Terrace 6</name>
+      <address>211-01  26th Ave.</address>
+      <city>Bayside</city>
+      <state>NY</state>
+      <zipcode>11360</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>8451</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9885</agencyID>
+      <name>Bombay Theatre</name>
+      <address>6825 Fresh Meadow Lane</address>
+      <city>Flushing</city>
+      <state>NY</state>
+      <zipcode>11365</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>9885</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6601</agencyID>
+      <name>AMC Fresh Meadows 7</name>
+      <address>190-02 Horace Harding Blvd.</address>
+      <city>Fresh Meadows</city>
+      <state>NY</state>
+      <zipcode>11365</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>6601</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>4135</agencyID>
+      <name>Main Street Cinemas</name>
+      <address>7266 Main St.</address>
+      <city>Flushing</city>
+      <state>NY</state>
+      <zipcode>11367</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>4135</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9245</agencyID>
+      <name>College Point Multiplex Cinemas</name>
+      <address>2855 Ulmer St.</address>
+      <city>Whitestone</city>
+      <state>NY</state>
+      <zipcode>11357</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>9245</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2597</agencyID>
+      <name>Emelin Theatre</name>
+      <address>153 Library Lane</address>
+      <city>Mamaroneck</city>
+      <state>NY</state>
+      <zipcode>10543</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>2597</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2597</agencyID>
+      <name>Emelin Theatre</name>
+      <address>153 Library Lane</address>
+      <city>Mamaroneck</city>
+      <state>NY</state>
+      <zipcode>10543</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>2597</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7575</agencyID>
+      <name>Regal New Roc Stadium 18 IMAX &amp; RPX</name>
+      <address>33 Le Count Place</address>
+      <city>New Rochelle</city>
+      <state>NY</state>
+      <zipcode>10801</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>7575</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9150</agencyID>
+      <name>AMC Loews Port Chester 14</name>
+      <address>40 Westchester Ave.</address>
+      <city>Port Chester</city>
+      <state>NY</state>
+      <zipcode>10573</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>9150</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7464</agencyID>
+      <name>Bow Tie Larchmont Playhouse</name>
+      <address>1975 Palmer Ave.</address>
+      <city>Larchmont</city>
+      <state>NY</state>
+      <zipcode>10538</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>7464</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5881</agencyID>
+      <name>Criterion Cinemas at Greenwich Plaza</name>
+      <address>2 Railroad Ave.</address>
+      <city>Greenwich</city>
+      <state>CT</state>
+      <zipcode>06830</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5881</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5885</agencyID>
+      <name>Bow Tie Cinemas Landmark 9</name>
+      <address>5 Landmark Sq.</address>
+      <city>Stamford</city>
+      <state>CT</state>
+      <zipcode>06905</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5885</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5882</agencyID>
+      <name>Bow Tie Cinemas Majestic 6</name>
+      <address>118 Summer St.</address>
+      <city>Stamford</city>
+      <state>CT</state>
+      <zipcode>06901</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>5882</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7336</agencyID>
+      <name>AMC Bay Plaza Cinema 13</name>
+      <address>2210 Bartow Ave.</address>
+      <city>Bronx</city>
+      <state>NY</state>
+      <zipcode>10475</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>7336</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5004</agencyID>
+      <name>Avon Theatre Film Center, Inc.</name>
+      <address>272 Bedford St</address>
+      <city>Stamford</city>
+      <state>CT</state>
+      <zipcode>06901</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5004</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2664</agencyID>
+      <name>Darien Playhouse</name>
+      <address>1077 Boston Post Rd.</address>
+      <city>Darien</city>
+      <state>CT</state>
+      <zipcode>06820</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>2664</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2465</agencyID>
+      <name>The Picture House</name>
+      <address>175 Wolfs Ln.</address>
+      <city>Pelham</city>
+      <state>NY</state>
+      <zipcode>10803</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>2465</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5884</agencyID>
+      <name>Bow Tie Cinemas SONO Regent 8</name>
+      <address>64 N. Main St.</address>
+      <city>Norwalk</city>
+      <state>CT</state>
+      <zipcode>06854</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5884</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5602</agencyID>
+      <name>IMAX Maritime Aquarium Norwalk</name>
+      <address>10 N. Water St.</address>
+      <city>Norwalk</city>
+      <state>CT</state>
+      <zipcode>06854</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5602</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5955</agencyID>
+      <name>State Cinema</name>
+      <address>990 Hope St.</address>
+      <city>Stamford</city>
+      <state>CT</state>
+      <zipcode>06907</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>5955</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5954</agencyID>
+      <name>Garden Cinemas Norwalk</name>
+      <address>26 Isaac St.</address>
+      <city>Norwalk</city>
+      <state>CT</state>
+      <zipcode>06850</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5954</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7034</agencyID>
+      <name>Bow Tie Bronxville Cinemas</name>
+      <address>84 Kraft Ave.</address>
+      <city>Bronxville</city>
+      <state>NY</state>
+      <zipcode>10708</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>7034</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9218</agencyID>
+      <name>Cross County Multiplex Cinemas</name>
+      <address>2 South Drive</address>
+      <city>Yonkers</city>
+      <state>NY</state>
+      <zipcode>10704</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>9218</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6015</agencyID>
+      <name>Concourse Plaza Multiplex Cinemas</name>
+      <address>214 E. 161st St.</address>
+      <city>Bronx</city>
+      <state>NY</state>
+      <zipcode>10451</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>6015</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>10421</agencyID>
+      <name>Showcase Cinema de Lux Ridge Hill</name>
+      <address>29 Fitzgerald St.</address>
+      <city>Yonkers</city>
+      <state>NY</state>
+      <zipcode>10710</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>10421</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>10705</agencyID>
+      <name>Alamo Drafthouse Yonkers</name>
+      <address>2548 Central Park Ave.</address>
+      <city>Yonkers</city>
+      <state>NY</state>
+      <zipcode>10710</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>10705</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8684</agencyID>
+      <name>City Center 15: Cinema de Lux</name>
+      <address>19 Mamaroneck Ave.</address>
+      <city>White Plains</city>
+      <state>NY</state>
+      <zipcode>10601</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>8684</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5880</agencyID>
+      <name>Bow Tie Cinemas New Canaan Playhouse</name>
+      <address>89 Elm St.</address>
+      <city>New Canaan</city>
+      <state>CT</state>
+      <zipcode>06840</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>5880</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>11387</agencyID>
+      <name>iPic Theaters Hudson Lights</name>
+      <address>2023 Hudson St.</address>
+      <city>Fort Lee</city>
+      <state>NJ</state>
+      <zipcode>07024</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>11387</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8677</agencyID>
+      <name>Bow Tie Cinema 100</name>
+      <address>93 Knollwood Road</address>
+      <city>White Plains</city>
+      <state>NY</state>
+      <zipcode>10607</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>8677</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>11507</agencyID>
+      <name>iPic Theater Rivertowns Square</name>
+      <address>1 Livingstone Ave</address>
+      <city>Dobbs Ferry</city>
+      <state>NY</state>
+      <zipcode>10522</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>11507</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9162</agencyID>
+      <name>Greenburgh Multiplex Cinemas</name>
+      <address>320 Saw Mill River Road</address>
+      <city>Elmsford</city>
+      <state>NY</state>
+      <zipcode>10523</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>9162</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5894</agencyID>
+      <name>Bow Tie Tenafly Cinema 4</name>
+      <address>4 1/2 W. Railroad Ave.</address>
+      <city>Tenafly</city>
+      <state>NJ</state>
+      <zipcode>07670</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>5894</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5892</agencyID>
+      <name>Bow Tie Closter Cinema 4</name>
+      <address>130 Closter Plaza</address>
+      <city>Closter</city>
+      <state>NJ</state>
+      <zipcode>07624</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>5892</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9219</agencyID>
+      <name>All Westchester Saw Mill Multiplex Cinemas</name>
+      <address>151 Saw Mill River Road</address>
+      <city>Hawthorne</city>
+      <state>NY</state>
+      <zipcode>10532</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>9219</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5899</agencyID>
+      <name>Bow Tie Bergenfield Cinema 5</name>
+      <address>58 S Washington Ave.</address>
+      <city>Bergenfield</city>
+      <state>NJ</state>
+      <zipcode>07621</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>5899</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>988</agencyID>
+      <name>Tarrytown Music Hall</name>
+      <address>13 Main St.</address>
+      <city>Tarrytown</city>
+      <state>NY</state>
+      <zipcode>10591</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>988</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2853</agencyID>
+      <name>Jacob Burns Film Center</name>
+      <address>364 Manville Rd</address>
+      <city>Pleasantville</city>
+      <state>NY</state>
+      <zipcode>10570</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>2853</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9620</agencyID>
+      <name>Riverspace Arts in Nyack</name>
+      <address>119 Main St.</address>
+      <city>Nyack</city>
+      <state>NY</state>
+      <zipcode>10960</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>9620</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5911</agencyID>
+      <name>Bow Tie Mt. Kisco Cinema</name>
+      <address>144 Main St.</address>
+      <city>Mount Kisco</city>
+      <state>NY</state>
+      <zipcode>10549</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5911</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>3900</agencyID>
+      <name>Westwood Theaters</name>
+      <address>182 Center Ave.</address>
+      <city>Westwood</city>
+      <state>NJ</state>
+      <zipcode>07675</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>3900</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9312</agencyID>
+      <name>AMC Garden State 16</name>
+      <address>4000 Garden State Plaza</address>
+      <city>Paramus</city>
+      <state>NJ</state>
+      <zipcode>07652</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>9312</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>11440</agencyID>
+      <name>Washington Township Cinemas</name>
+      <address>249 Pascack Road</address>
+      <city>Washington Township</city>
+      <state>NJ</state>
+      <zipcode>07676</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>11440</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5890</agencyID>
+      <name>Bow Tie Washington Township 3</name>
+      <address>249 Pascack Rd.</address>
+      <city>Washington Township</city>
+      <state>NJ</state>
+      <zipcode>07675</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5890</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5890</agencyID>
+      <name>Washington Township Cinemas</name>
+      <address>249 Pascack Rd.</address>
+      <city>Washington Township</city>
+      <state>NJ</state>
+      <zipcode>07675</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5890</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8756</agencyID>
+      <name>AMC Palisades 21</name>
+      <address>4403 Palisades Center Drive</address>
+      <city>West Nyack</city>
+      <state>NY</state>
+      <zipcode>10994</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>8756</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>8442</agencyID>
+      <name>Bow Tie Warner Quad</name>
+      <address>190 E. Ridgewood Ave.</address>
+      <city>Ridgewood</city>
+      <state>NJ</state>
+      <zipcode>07450</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>8442</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>10830</agencyID>
+      <name>Regal Nanuet Stadium 12 &amp; RPX</name>
+      <address>6201 Fashion Dr.</address>
+      <city>Nanuet</city>
+      <state>NY</state>
+      <zipcode>10954</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>10830</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5901</agencyID>
+      <name>Bow Tie Fine Arts</name>
+      <address>202 S. Main St.- Rt. 304</address>
+      <city>New City</city>
+      <state>NY</state>
+      <zipcode>10956</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5901</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2498</agencyID>
+      <name>Lafayette Theatre</name>
+      <address>97 Lafayette Ave.</address>
+      <city>Suffern</city>
+      <state>NY</state>
+      <zipcode>10901</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>2498</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7904</agencyID>
+      <name>UA Cortlandt Town Center Stadium 11</name>
+      <address>3131 E. Main St.</address>
+      <city>Mohegan Lake</city>
+      <state>NY</state>
+      <zipcode>10547</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>7904</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2515</agencyID>
+      <name>Paramount Hudson Valley Theater</name>
+      <address>1008 Brown St.</address>
+      <city>Peekskill</city>
+      <state>NY</state>
+      <zipcode>10566</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>2515</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>11172</agencyID>
+      <name>Monroe Cinema at TMACC</name>
+      <address>34 Millpond Parkway</address>
+      <city>Monroe</city>
+      <state>NY</state>
+      <zipcode>10950</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>11172</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6484</agencyID>
+      <name>Destinta New Windsor 12</name>
+      <address>215 Quassaick Ave.</address>
+      <city>New Windsor</city>
+      <state>NY</state>
+      <zipcode>12553</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>6484</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>6836</agencyID>
+      <name>Warwick Drive-In</name>
+      <address>5 Warwick Turnpike</address>
+      <city>Warwick</city>
+      <state>NY</state>
+      <zipcode>10990</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>6836</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>9775</agencyID>
+      <name>Downing Film Center</name>
+      <address>19 Front St.</address>
+      <city>Newburgh</city>
+      <state>NY</state>
+      <zipcode>12550</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>9775</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>3453</agencyID>
+      <name>Elite Cinema 6</name>
+      <address>78 Brookside Ave.</address>
+      <city>Chester</city>
+      <state>NY</state>
+      <zipcode>10918</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>3453</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2332</agencyID>
+      <name>Showtime Cinemas</name>
+      <address>1420 Route 300</address>
+      <city>Newburgh</city>
+      <state>NY</state>
+      <zipcode>12550</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>2332</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>5960</agencyID>
+      <name>Middletown Cinemas</name>
+      <address>130 Dolson Ave.</address>
+      <city>Middletown</city>
+      <state>NY</state>
+      <zipcode>10940</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>5960</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>10757</agencyID>
+      <name>Paramount Theatre</name>
+      <address>17 South St.</address>
+      <city>Middletown</city>
+      <state>NY</state>
+      <zipcode>10940</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>10757</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>7318</agencyID>
+      <name>AMC Crystal Run 16</name>
+      <address>1 N. Galleria Drive</address>
+      <city>Middletown</city>
+      <state>NY</state>
+      <zipcode>10940</zipcode>
+      <reserved>true</reserved>
+      <rooms>
+         <room>7318</room>
+      </rooms>
+   </theatre>
+   <theatre>
+      <agencyID>2759</agencyID>
+      <name>Fair Oaks Drive-In</name>
+      <address>365 Bloomingburg Rd</address>
+      <city>Middletown</city>
+      <state>NY</state>
+      <zipcode>10940</zipcode>
+      <reserved>false</reserved>
+      <rooms>
+         <room>2759</room>
+      </rooms>
+   </theatre>
+</theatres>
