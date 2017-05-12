@@ -21,7 +21,6 @@
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
-
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
     </head>
     <body>
@@ -39,6 +38,19 @@
                 <li role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
                 <li role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
                 <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
+            </ul>
+            
+            <h1 class="spacing genretitle">FILTER MOVIES BY GENRE</h1>
+
+            <ul class="spacing nav nav-pills">
+                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Action</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Drama</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Comedy</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Kids</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Horror</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Romance</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Sci-Fi</h5></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Animated</h5></a></li>
             </ul>
             
             <h1 class="spacing accountfont underline">NOW PLAYING</h1>
