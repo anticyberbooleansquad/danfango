@@ -52,17 +52,17 @@ public class SeatSelectionController {
                 String[] seatValuesArray = rowLayout.split(",");
                 for(int seatIndex = 0; seatIndex < seatValuesArray.length; seatIndex++){
                     int seatValue = Integer.parseInt(seatValuesArray[seatIndex]);
-                    Seat seat = null;
                     if(seatValue == 1){
-                        seat = new Seat();
+                        Seat seat = new Seat();
                         seat.setRow(String.valueOf(seatRow));
                         seat.setSeatNumber(Integer.toString(seatNum));
                         seat.setAvailable(true);
+                        seatingMatrix[rowIndex][seatIndex] = seat;
                     }
-                    seatingMatrix[rowIndex][seatIndex] = seat;
                 }                 
                seatRow = (char) (seatRow + 1); 
             }
+            // later have to make some of these seats unavailable
             request.setAttribute("seatingMatrix", seatingMatrix);
         }
         

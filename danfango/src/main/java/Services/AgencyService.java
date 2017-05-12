@@ -224,7 +224,7 @@ public class AgencyService {
                             if (seatValue == 1) {
                                 Seat seat = new Seat();
                                 seat.setRow(String.valueOf(seatRow));
-                                seat.setSeatNumber(Integer.toString(seatIndex + 1));
+                                seat.setSeatNumber(Integer.toString(seatNum));
                                 seat.setTheatreRoom(room);
                                 seatService.addSeat(seat);
                                 seatNum++;
