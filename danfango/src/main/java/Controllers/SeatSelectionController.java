@@ -29,6 +29,8 @@ public class SeatSelectionController{
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
         
+        
+        
     
         ModelAndView modelandview = new ModelAndView("seatselection");        
         return modelandview;
