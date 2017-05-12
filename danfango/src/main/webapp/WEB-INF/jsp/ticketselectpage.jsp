@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +24,7 @@
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/datepicker.css"/>" rel="stylesheet">
         <link href="<c:url value = "https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Work+Sans:200|Josefin+Sans:100i" /> rel="stylesheet">
-        <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
+              <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
     </head>
@@ -36,25 +38,26 @@
 
             <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES</h2>
 
-<!--            <div class="spacing dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nearby Theatres
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="/danfango/#">Theatre</a></li>
-                    <li><a href="/danfango/#">Theatre</a></li>
-                    <li><a href="/danfango/#">Theatre</a></li>
-                    <li><a href="/danfango/#">Theatre</a></li>
-                    <li><a href="/danfango/#">Theatre</a></li>
-                    <li><a href="/danfango/#">Theatre</a></li>
-                </ul>
-            </div>-->
+            <!--            <div class="spacing dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nearby Theatres
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                            </ul>
+                        </div>-->
 
             <div class="row form-group">
                 <div class="col-sm-3">
                     <img class="spacing movieposter" src="https://image.tmdb.org/t/p/w500/${movie.poster}"/>
                     <div class="spacing movieInfo">
-                        <p><b>Release Date:</b> ${movie.releaseDate}</p>
+                        <fmt:parseDate value="${movie.releaseDate}" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        <p><b>Release Date:</b> <fmt:formatDate value="${dateObject}" pattern="MM/dd/yyyy"/></p>
                         <p><b>Rating:</b> ${movie.rating}</p>
                         <p><b>Runtime:</b> ${movie.runTime}</p>
                         <p><b>Genre:</b> Comedy, Action, Adventure</p>
@@ -62,61 +65,44 @@
                     </div>
                 </div>
 
-
-
                 <div class ="spacing col-sm-6">
 
-                    <div class="theatreTimes">
-                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
-                        <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
-                        <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
-                        <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+                    <c:forEach items="${showingsPerTheatre}" var="theatreShowings">
 
-                        <div class="theatreTimeCardsTimes">
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:30PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:50PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">6:30PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">8:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">8:30PM</a>
+                        <div class="theatreTimes">
+                            <h4 class="theatreTimeCardsName">${theatreShowings.theatre.name} <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
+                            <p class="theatreTimeCardsAddress">${theatreShowings.theatre.address}, ${theatreShowings.theatre.city} ${theatreShowings.theatre.state}</p>
 
+                            <c:if test="${theatreShowings.theatre.seatingType eq 'Reserved'}">
+                                <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
+                            </c:if>
+
+                            <c:choose>
+                                <c:when test="${not empty theatreShowings.showings}">
+                                    <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>  
+                                </c:when>
+                                <c:otherwise>
+                                    <p class ="ticketInfo"> Sorry, there are no showings at this theatre :(</p>  
+                                </c:otherwise>
+                            </c:choose>
+
+                            <div class="theatreTimeCardsTimes">
+                                <c:forEach items="${theatreShowings.showings}" var="showing">
+                                    <fmt:parseDate value="${showing.time}" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss" />
+
+                                    <a href="/danfango/checkoutpage/${showing.id}" class="btn btn-primary timeButton">
+                                        <fmt:formatDate value="${dateObject}" pattern="hh:mm a"/>
+                                    </a>
+
+                                </c:forEach>
+                            </div>
                         </div>
-                    </div>
+                    </c:forEach>
 
-                    <div class="theatreTimes">
-                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
-                        <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
-                        <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
-                        <div class="theatreTimeCardsTimes">
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
-                        </div>
-                    </div>
 
-                    <div class="theatreTimes">
-                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
-                        <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
-                        <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
-                        <div class="theatreTimeCardsTimes">
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
-                        </div>
-                    </div>
 
-                    <div class="theatreTimes">
-                        <h4 class="theatreTimeCardsName">Movie Theatre Name <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true"></i></h4>
-                        <p class="theatreTimeCardsAddress">Movie Theatre Address</p>
-                        <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
-                        <div class="theatreTimeCardsTimes">
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">3:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">5:00PM</a>
-                            <a href="/danfango/checkoutpage.html" class="btn btn-primary timeButton">7:30PM</a>
-                        </div>
-                    </div>
+
+
 
 
                 </div>

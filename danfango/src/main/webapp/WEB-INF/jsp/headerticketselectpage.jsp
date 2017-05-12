@@ -1,15 +1,19 @@
 <%-- 
-    Document   : comingsoon
-    Created on : Apr 3, 2017, 6:54:24 PM
+    Document   : ticketselectpage
+    Created on : Apr 3, 2017, 7:22:00 PM
     Author     : johnlegutko
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
+
+        <link href="<c:url value="/resources/css/jquery-ui-1.10.1.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/settings.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/font-awesome.min.css"/>" rel="stylesheet">
@@ -18,7 +22,9 @@
         <link href="<c:url value="/resources/css/responsive.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
-        <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/css/datepicker.css"/>" rel="stylesheet">
+        <link href="<c:url value = "https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Work+Sans:200|Josefin+Sans:100i" /> rel="stylesheet">
+              <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
     </head>
@@ -28,61 +34,74 @@
             <jsp:param name="contextPath" value="${contextPath}"/>
         </jsp:include>
 
-        <div class="container">
+        <div class="spacing container">
 
-            <h1 class="spacing movietitle">MOVIES <font color="EA6630"><b>COMING SOON</b></font></h1>
+            <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES</h2>
 
-            <ul class="spacing nav nav-pills">
-                <li role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
-                <li class="active" role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
-                <li role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
-                <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
-            </ul>
+            <!--            <div class="spacing dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nearby Theatres
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                                <li><a href="/danfango/#">Theatre</a></li>
+                            </ul>
+                        </div>-->
 
-            <h1 class="spacing genretitle">FILTER MOVIES BY GENRE</h1>
+            <div class="row form-group">
+                <div class="col-sm-3"></div>
 
-            <ul class="spacing nav nav-pills">
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Action</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Drama</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Comedy</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Kids</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Horror</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Romance</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Sci-Fi</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Animated</h5></a></li>
-            </ul>
+                <div class ="spacing col-sm-6">
+
+                    <c:forEach items="${showingsPerTheatre}" var="theatreShowings">
+
+                        <div class="theatreTimes">
+                            <h4 class="theatreTimeCardsName">${theatreShowings.theatre.name} <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
+                            <p class="theatreTimeCardsAddress">${theatreShowings.theatre.address}, ${theatreShowings.theatre.city} ${theatreShowings.theatre.state}</p>
+
+                            <c:if test="${theatreShowings.theatre.seatingType eq 'Reserved'}">
+                                <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
+                            </c:if>
+
+                            <c:choose>
+                                <c:when test="${not empty theatreShowings.showings}">
+                                    <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>  
+                                </c:when>
+                                <c:otherwise>
+                                    <p class ="ticketInfo"> Sorry, there are no showings at this theatre :(</p>  
+                                </c:otherwise>
+                            </c:choose>
+
+                            <div class="theatreTimeCardsTimes">
+                                <c:forEach items="${theatreShowings.showings}" var="showing">
+                                    <fmt:parseDate value="${showing.time}" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss" />
+
+                                    <a href="/danfango/checkoutpage/${showing.id}" class="btn btn-primary timeButton">
+                                        <fmt:formatDate value="${dateObject}" pattern="hh:mm a"/>
+                                    </a>
+
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:forEach>
 
 
-            <h1 class="spacing accountfont underline">COMING SOON</h1>
 
-            <div class = "slider2">
 
-                <c:forEach items="${comingSoon}" var="movie" varStatus="loop" step="8">
-                    <div class="slide"> 
-                        <div class="row spacing">
-                            <c:forEach begin="0" end="7" step="2" varStatus="loop2"> 
-                                <c:if test="${not empty comingSoon[loop.index+loop2.index]}">
-                                    <div class = "col-md-3">
-                                        <a class="" href="movieinfopage/${comingSoon[loop.index + loop2.index].id}">
-                                            <c:if test="${comingSoon[loop.index + loop2.index].poster != null}">
-                                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${comingSoon[loop.index + loop2.index].poster}">
-                                            </c:if>
-                                        </a>
-                                            
-                                            <a class="" href="movieinfopage/${comingSoon[loop.index + loop2.index + 1].id}">
-                                            <c:if test="${comingSoon[loop.index + loop2.index+1].poster != null}">
-                                                <img class ="posters" src="https://image.tmdb.org/t/p/w500/${comingSoon[loop.index + loop2.index+1].poster}">
-                                            </c:if>
-                                        </a>
-                                    </div>
-                                </c:if>
-                            </c:forEach>
-                        </div><!--row-->
-                    </div><!-- END SLIDER -->
-                </c:forEach>
 
-            </div> <!--END MOVIE SLIDER -->
-        </div> <!-- END MOVIE SLIDER CONTAINER -->
+
+
+                </div>
+
+                <div class="col-sm-3"></div>
+
+            </div>
+        </div>
+
 
     </div>
 </div>
@@ -141,10 +160,6 @@
 </footer>
 <!-- End Footer Section -->
 
-</div>
-</footer>
-<!-- End Footer Section -->
-
 
 </div>
 <!-- End Full Body Container -->
@@ -180,10 +195,11 @@
 <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
 <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
 <script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
+<script src="<c:url value="/resources/js/notify.min.js" />"></script>
+
+
 <script src="<c:url value="/resources/js/myjs.js" />"></script>
 <script src="<c:url value="/resources/js/script.js" />"></script>
 
-
 </body>
-
 </html>

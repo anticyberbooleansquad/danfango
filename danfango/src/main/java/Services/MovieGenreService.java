@@ -57,6 +57,11 @@ public class MovieGenreService {
 	public List<MovieGenre> getMovieGenresByGenre(Genre genre) {
 		return this.movieGenreDAO.getMovieGenresByGenre(genre);
 	}
+        
+        @Transactional
+	public MovieGenre getMovieGenresByGenreAndMovie(Genre genre, Movie movie) {
+		return this.movieGenreDAO.getMovieGenresByGenreAndMovie(genre, movie);
+	}
        
 	@Transactional
 	public void removeMovieGenre(int id) {

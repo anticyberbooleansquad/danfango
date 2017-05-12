@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import Model.Seat;
 import Model.TheatreRoom;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 /**
  *
@@ -81,6 +82,21 @@ public class SeatDAO{
                     session.delete(u);
             }
             logger.info("Seat deleted successfully, person details="+u);
+    }
+    
+    public Seat getSeat(String row, String seatNumber, TheatreRoom theatreRoom){
+        Session session = this.sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Seat.class);
+        criteria.add(Restrictions.eq("row", row));
+        criteria.add(Restrictions.eq("seatNumber", seatNumber));
+        criteria.add(Restrictions.eq("theatreRoom", theatreRoom));
+        List seats = criteria.list();
+        if(seats.size() > 0){
+            return (Seat)seats.get(0);
+        }
+        else{
+            return null;
+        }
     }
     
 

@@ -83,6 +83,16 @@ public class MovieGenreDAO{
             logger.info("MovieGenre loaded successfully, MovieGenre details="+movieGenres);
             return movieGenres;
     }
+    
+    public MovieGenre getMovieGenresByGenreAndMovie(Genre genre,Movie movie) {
+            Session session = this.sessionFactory.getCurrentSession();	
+            List movieGenres = session.createCriteria(MovieGenre.class).add(Restrictions.eq("genre", genre)).add(Restrictions.eq("movie", movie)).list();
+            if (movieGenres.isEmpty()){
+                return null;
+            }
+            logger.info("MovieGenre loaded successfully, MovieGenre details="+movieGenres);
+            return (MovieGenre) movieGenres.get(0);
+    }
 
     
     public void removeMovieGenre(int id) {

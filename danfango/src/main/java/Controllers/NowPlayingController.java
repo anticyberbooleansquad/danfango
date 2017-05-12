@@ -10,8 +10,12 @@ package Controllers;
  * @author johnlegutko
  */
 import Model.Movie;
+import Model.Showing;
 import Services.MovieService;
+import Services.ShowingService;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +32,8 @@ public class NowPlayingController {
 
     @Autowired
     MovieService movieService;
+    @Autowired
+    ShowingService showingService;
 
     @RequestMapping(value = "/nowplaying")
     protected ModelAndView getNowPlayingPage(HttpServletRequest request) {
@@ -36,15 +42,25 @@ public class NowPlayingController {
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
         
-
+        HashSet<Movie> nowPlayingHS = new HashSet<>();
+        
+        List<Showing> showings = showingService.getShowingByTimestamp(); 
         List<Movie> openingThisWeek = movieService.getMoviesOpeningThisWeek();
-        List<Movie> nowPlaying = movieService.getMoviesNowPlaying();
+        List<Movie> nowPlayingTemp = movieService.getMoviesNowPlaying();
+        
+        for(Movie m: nowPlayingTemp){
+            for(Showing s: showings){
+                if(s.getMovie().getTitle().equals(m.getTitle())){
+                    nowPlayingHS.add(m);
+                }
+            }
+        }
+        
+        List<Movie> nowPlaying = new ArrayList<>(nowPlayingHS);
 
         request.setAttribute("openingThisWeek", openingThisWeek);
         request.setAttribute("nowPlaying", nowPlaying);
         
-
-
         ModelAndView modelandview = new ModelAndView("nowplaying");
         return modelandview;
     }

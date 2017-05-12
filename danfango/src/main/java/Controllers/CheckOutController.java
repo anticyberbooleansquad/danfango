@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,14 +23,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CheckOutController{
     
-    @RequestMapping(value = "/checkoutpage")
-    protected ModelAndView getCheckOutPage(HttpServletRequest request){
+    @RequestMapping(value = "/checkoutpage/{showingId}")
+    protected ModelAndView getCheckOutPage(@PathVariable(value = "showingId") int id, HttpServletRequest request){
         
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
         
-    
+        // lets start a session
+        // get showing and store on session 
         ModelAndView modelandview = new ModelAndView("checkoutpage");        
         return modelandview;
     }

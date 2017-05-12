@@ -56,6 +56,16 @@ public class TheatreDAO {
         }
         return theatresList;
     }
+    
+    public List<Integer> getTheatreIds() {
+        List<Theatre> theatres = listTheatres();
+        List<Integer> theatreIds = new ArrayList<>();
+        for(Theatre t: theatres){
+            int id = (t.getAgencyTheatreId());
+            theatreIds.add(id);
+        }
+        return theatreIds;
+    }
 
     public Theatre getTheatreById(int id) {
         Session session = this.sessionFactory.getCurrentSession();

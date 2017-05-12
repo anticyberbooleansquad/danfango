@@ -56,5 +56,9 @@ public class SeatService {
 	public void removeSeat(int id) {
 		this.seatDAO.removeSeat(id);
 	}
+        @Transactional
+        public Seat getSeat(String row, String seatNum, TheatreRoom theatreRoom){
+                return this.seatDAO.getSeat(row, seatNum, theatreRoom);
+        }
         	
 }

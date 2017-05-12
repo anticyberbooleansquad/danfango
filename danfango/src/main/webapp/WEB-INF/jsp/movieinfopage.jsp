@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +55,8 @@
                 <div class="col-sm-3 leftpadding">
                     <img class="movieposter" src="https://image.tmdb.org/t/p/w500/${movie.poster}"/>
                     <div class="movieInfo">
-                        <p><b>Release Date:</b> ${movie.releaseDate}</p>
+                        <fmt:parseDate value="${movie.releaseDate}" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        <p><b>Release Date:</b> <fmt:formatDate value="${dateObject}" pattern="MM/dd/yyyy"/></p>
                         <p><b>Rating:</b> ${movie.rating}</p>
                         <p><b>Runtime:</b> ${movie.runTime}</p>
                         <p><b>Genre:</b> Comedy, Action, Adventure</p>
