@@ -90,7 +90,13 @@
                             <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
                         </div>
 
-                        <input type="button" value="PAY NOW!" class="btn-system btn-large btn-gray joinbutton spacing">
+                        <input type="submit" value="PAY NOW!" class="btn-system btn-large btn-gray joinbutton spacing">
+
+                        
+                        <div class="row row-centered top-padding">
+                            <div id="time" class="timerPosition"></div>
+                        </div>
+
                     </form>
 
                 </div>
@@ -185,6 +191,7 @@
     <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
     <script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
     <script src="<c:url value="/resources/js/myjs.js" />"></script>
+    <script src="<c:url value="/resources/js/timer.js" />"></script>
     <script src="<c:url value="/resources/js/script.js" />"></script>
 
 </body>

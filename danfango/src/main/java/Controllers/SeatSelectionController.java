@@ -35,41 +35,49 @@ public class SeatSelectionController {
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
 
+        String seatingLayout = null;
         HttpSession session = request.getSession();
         Showing showing = (Showing) session.getAttribute("showing");
-        String seatingLayout = showing.getTheatreRoom().getLayout();
         
+        seatingLayout = showing.getTheatreRoom().getLayout();
+
         if (seatingLayout != null) {
             seatingLayout = seatingLayout.replaceAll(" ", "");
             String[] rowsArray = seatingLayout.split("R");
             int numColumns = rowsArray[0].replaceAll(",", "").length();
             int numRows = rowsArray.length;
             Seat[][] seatingMatrix = new Seat[numRows][numColumns];
-            
+            int seatValue = 0;
+
             char seatRow = 'A';
             int seatNum = 1;
             System.out.println("NumRows: " + numRows);
             System.out.println("NumColumns: " + numColumns);
-            for(int rowIndex = 0; rowIndex < rowsArray.length; rowIndex++){
+            for (int rowIndex = 0; rowIndex < rowsArray.length; rowIndex++) {
                 String rowLayout = rowsArray[rowIndex];
                 String[] seatValuesArray = rowLayout.split(",");
-                for(int seatIndex = 0; seatIndex < seatValuesArray.length; seatIndex++){
-                    int seatValue = Integer.parseInt(seatValuesArray[seatIndex]);
+                for (int seatIndex = 0; seatIndex < seatValuesArray.length; seatIndex++) {
+                    if (!seatValuesArray[seatIndex].equals("")) {
+                        seatValue = Integer.parseInt(seatValuesArray[seatIndex]);
+                    }
                     Seat seat = null;
-                    if(seatValue == 1){
+                    if (seatValue == 1) {
                         seat = new Seat();
                         seat.setRow(String.valueOf(seatRow));
                         seat.setSeatNumber(Integer.toString(seatNum));
-                        seat.setAvailable(true);       
+                        seat.setAvailable(true);
+                        seatNum++;
                     }
                     seatingMatrix[rowIndex][seatIndex] = seat;
-                }                 
-               seatRow = (char) (seatRow + 1); 
+
+                }
+                seatRow = (char) (seatRow + 1);
+                seatNum = 1;
             }
             // later have to make some of these seats unavailable
             request.setAttribute("seatingMatrix", seatingMatrix);
         }
-        
+
         ModelAndView modelandview = new ModelAndView("seatselection");
         return modelandview;
     }

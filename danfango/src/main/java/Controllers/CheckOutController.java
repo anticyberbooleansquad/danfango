@@ -38,7 +38,7 @@ public class CheckOutController{
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
         
-        // lets start a session
+         // lets start a session
         HttpSession session = request.getSession();
         // lets get the showing object
         Showing showing = showingService.getShowingById(id);

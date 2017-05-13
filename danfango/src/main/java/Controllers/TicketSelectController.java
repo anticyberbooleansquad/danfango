@@ -10,8 +10,10 @@ package Controllers;
  * @author johnlegutko
  */
 import Model.Movie;
+import Model.MovieShowings;
 import Model.Showing;
 import Model.Theatre;
+import Model.TheatreMovies;
 import Model.TheatreShowings;
 import Services.MovieService;
 import Services.ShowingService;
@@ -70,6 +72,51 @@ public class TicketSelectController {
         ModelAndView modelandview = new ModelAndView("ticketselectpage");
         return modelandview;
     }
+    
+    
+    
+    @RequestMapping(value = "/headerticketselectpage")
+    protected ModelAndView getHeaderTicketSelectPage(HttpServletRequest request) {
+        
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
+        List<TheatreMovies> theatreMovies = new ArrayList<>();
+        
+        
+//        List<Integer> theatreAgencyIds = theatreService.getTheatreIds();
+//        for(int tid: theatreAgencyIds){
+//            Theatre theatre = theatreService.getTheatreByAgencyTheatreId(tid);
+//            System.out.println("THEATRE NAME:" + theatre.getName());
+//            TheatreMovies tm = new TheatreMovies();
+//            tm.setTheatre(theatre);
+//            List<MovieShowings> allMovieShowings = new ArrayList<>();
+//
+//            //List<Showing> showingsForTheatre = showingService.getShowingByTheatre(theatre);
+//            List<Integer> movieAgencyIds = showingService.getMovieIdsByTheatre(theatre);
+//            for(int mid: movieAgencyIds){
+//                Movie movie = movieService.getMovieById(mid);
+//                List<Showing> movieShowings = showingService.getShowingByMovieAndTheatre(movie, theatre);
+//                MovieShowings  ms = new MovieShowings();
+//                ms.setMovie(movie);
+//                ms.setShowings(movieShowings);
+//                allMovieShowings.add(ms);
+//            }
+//            
+//            tm.setMovieShowings(allMovieShowings);
+//            theatreMovies.add(tm);
+//                    
+//        }
+        
+        request.setAttribute("theatreMovies", theatreMovies);
+
+        ModelAndView modelandview = new ModelAndView("headerticketselectpage");
+        return modelandview;
+    }
+    
+    
+    
 
     public String timeConvert(String timeString) {
         int time = Integer.parseInt(timeString);

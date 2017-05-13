@@ -19,6 +19,8 @@ import Model.Theatre;
 import Model.TheatreRoom;
 import Model.TheatreShowings;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -58,6 +60,19 @@ public class ShowingDAO {
         return showingsList;
     }
 
+    public List<Integer> getMovieIdsByTheatre(Theatre theatre) {
+        List<Showing> showings = getShowingByTheatre(theatre);
+        HashSet<Integer> movieIdsHS = new HashSet<>();
+        if (showings != null) {
+            for (Showing s : showings) {
+                int id = (s.getMovie().getId());
+                movieIdsHS.add(id);
+            }
+        }
+        List<Integer> movieIds = new ArrayList<>(movieIdsHS);
+        return movieIds;
+    }
+
     public Showing getShowingById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Showing u = (Showing) session.load(Showing.class, new Integer(id));
@@ -86,8 +101,8 @@ public class ShowingDAO {
             return showings;
         }
     }
-    
-   public List<Showing> getShowingByMovieAndTheatre(Movie movie, Theatre theatre) {
+
+    public List<Showing> getShowingByMovieAndTheatre(Movie movie, Theatre theatre) {
         Session session = this.sessionFactory.getCurrentSession();
         List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).list();
         if (showings.isEmpty()) {
@@ -96,7 +111,7 @@ public class ShowingDAO {
             return showings;
         }
     }
-    
+
     public List<Showing> getShowingByMovie(Movie movie) {
         Session session = this.sessionFactory.getCurrentSession();
         List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).list();
@@ -106,7 +121,7 @@ public class ShowingDAO {
             return showings;
         }
     }
-    
+
     public List<Showing> getShowingByTheatre(Theatre theatre) {
         Session session = this.sessionFactory.getCurrentSession();
         List showings = session.createCriteria(Showing.class).add(Restrictions.eq("theatre", theatre)).list();

@@ -45,7 +45,11 @@ public class ShowingService {
 		return this.showingDAO.listShowings();
 	}
 
-	
+	@Transactional
+	public List<Integer> getMovieIdsByTheatre(Theatre theatre) {
+		return this.showingDAO.getMovieIdsByTheatre(theatre);
+	}
+        
 	@Transactional
 	public Showing getShowingById(int id) {
 		return this.showingDAO.getShowingById(id);
