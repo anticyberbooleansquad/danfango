@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rooms>
    <room>
-      <theatreId>2935</theatreId>
-      <roomId>2935</roomId>
-      <numSeats>50</numSeats>
+      <theatreId>6016</theatreId>
+      <roomId>6016</roomId>
+      <numSeats>54</numSeats>
       <seatingLayout>
          <row row="a">0,0,0,0,1,1,0,0,0,0</row>
          <row row="b">0,0,0,1,1,1,1,0,0,0</row>

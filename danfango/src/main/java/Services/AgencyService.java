@@ -219,9 +219,9 @@ public class AgencyService {
                         System.out.println("ROW CONTENT IS: " + rowContent);
                         // append this rows seats to the layoutString
                         layoutString += rowContent;
-                        // don't add a "|" accidentally at the end
+                        // don't add a "R" accidentally at the end
                         if (i < seatingLayout.getLength() - 1) {
-                            layoutString += "|";
+                            layoutString += "R";
                         }
                         // create seat objects
                         String[] rowArray = rowContent.split(",");
