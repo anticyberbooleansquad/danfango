@@ -17,4 +17,8 @@
          <row row="j">0,0,0,0,1,1,0,0,0,0</row>
       </seatingLayout>
    </room>
+   <room><theatreId>7587</theatreId><roomId>7587</roomId><numSeats>72</numSeats><seatingLayout><row row="a">1,1,1,0,1,1,0,1,1,1</row><row row="b">1,1,1,0,1,1,0,1,1,1</row><row row="c">1,1,1,0,1,1,0,1,1,1</row><row row="d">1,1,1,0,1,1,0,1,1,1</row><row row="e">0,0,0,0,1,1,0,0,0,0</row><row row="f">1,1,1,1,1,1,1,1,1,1</row><row row="g">1,1,1,1,1,1,1,1,1,1</row><row row="h">1,1,1,1,1,1,1,1,1,1</row><row row="i">0,0,0,1,1,1,1,0,0,0</row><row row="j">0,0,0,1,1,1,1,0,0,0</row></seatingLayout></room>
 </rooms>
+
+
+

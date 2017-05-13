@@ -190,8 +190,9 @@ public class AgencyService {
     }
 
     public void parseTheatreRoomFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("ROOMS_simple.xml");
-        NodeList nList = doc.getElementsByTagName("rooms");
+        Document doc = prepareDoc("rooms.xml");
+        NodeList nList = doc.getElementsByTagName("room");
+        
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
             Node nNode = nList.item(counter);
