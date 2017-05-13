@@ -18,6 +18,7 @@ public class Seat implements Serializable{
   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Integer id;
     @OneToOne
     private TheatreRoom theatreRoom;

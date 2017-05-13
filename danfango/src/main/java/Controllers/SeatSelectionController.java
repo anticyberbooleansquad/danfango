@@ -40,25 +40,29 @@ public class SeatSelectionController {
         String seatingLayout = showing.getTheatreRoom().getLayout();
         
         if (seatingLayout != null) {
-            String[] rowsArray = seatingLayout.split("|");
-            int numRows = StringUtils.countMatches(seatingLayout, "|") + 1;
-            int numColumns = rowsArray[0].length();
+            seatingLayout = seatingLayout.replaceAll(" ", "");
+            String[] rowsArray = seatingLayout.split("R");
+            int numColumns = rowsArray[0].replaceAll(",", "").length();
+            int numRows = rowsArray.length;
             Seat[][] seatingMatrix = new Seat[numRows][numColumns];
             
             char seatRow = 'A';
             int seatNum = 1;
+            System.out.println("NumRows: " + numRows);
+            System.out.println("NumColumns: " + numColumns);
             for(int rowIndex = 0; rowIndex < rowsArray.length; rowIndex++){
                 String rowLayout = rowsArray[rowIndex];
                 String[] seatValuesArray = rowLayout.split(",");
                 for(int seatIndex = 0; seatIndex < seatValuesArray.length; seatIndex++){
                     int seatValue = Integer.parseInt(seatValuesArray[seatIndex]);
+                    Seat seat = null;
                     if(seatValue == 1){
-                        Seat seat = new Seat();
+                        seat = new Seat();
                         seat.setRow(String.valueOf(seatRow));
                         seat.setSeatNumber(Integer.toString(seatNum));
-                        seat.setAvailable(true);
-                        seatingMatrix[rowIndex][seatIndex] = seat;
+                        seat.setAvailable(true);       
                     }
+                    seatingMatrix[rowIndex][seatIndex] = seat;
                 }                 
                seatRow = (char) (seatRow + 1); 
             }
