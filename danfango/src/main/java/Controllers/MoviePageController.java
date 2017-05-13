@@ -54,6 +54,7 @@ public class MoviePageController {
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
         Movie movie = movieService.getMovieById(id);
+        movie.setRunTime(timeConvert(movie.getRunTime()));
         User user = (User)session.getAttribute("user");
         
         FavoriteMovie fav2 = favoriteMovieService.getFavoriteMovieByUserAndMovie(user, movie);

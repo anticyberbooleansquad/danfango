@@ -1,14 +1,13 @@
 <%-- 
-    Document   : moviegenres
-    Created on : Apr 3, 2017, 6:57:08 PM
+    Document   : athomedvd
+    Created on : Apr 3, 2017, 6:46:28 PM
     Author     : johnlegutko
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
     <head>
         <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/settings.css"/>" rel="stylesheet">
@@ -21,6 +20,7 @@
         <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
 
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
+
     </head>
     <body>
 
@@ -28,9 +28,9 @@
             <jsp:param name="contextPath" value="${contextPath}"/>
         </jsp:include>
 
-        <div class="spacing container">
+        <div class="container">
 
-            <h2 class="spacing movietitle">MOVIE <font color="EA6630"><b>GENRES</b></font></h2>
+            <h1 class="spacing movietitle">AT HOME <font color="EA6630"><b>GENRE FILTER RESULTS</b></font></h1>
 
             <ul class="spacing nav nav-pills">
                 <li role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
@@ -39,41 +39,34 @@
                 <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
             </ul>
 
-            <div class="row">
-
-                <div class="col-md-6 spacing list-group genretable">
-                    <a href="/danfango/moviegenres/Action" class="list-group-item list-group-item-action">Action</a>
-                    <a href="/danfango/moviegenres/Adventure" class="list-group-item list-group-item-action">Adventure</a>
-                    <a href="/danfango/moviegenres/Animation" class="list-group-item list-group-item-action">Animation</a>
-                    <a href="/danfango/moviegenres/Biography" class="list-group-item list-group-item-action">Biography</a>
-                    <a href="/danfango/moviegenres/Comedy" class="list-group-item list-group-item-action">Comedy</a>
-                    <a href="/danfango/moviegenres/Crime" class="list-group-item list-group-item-action">Crime</a>
-                    <a href="/danfango/moviegenres/Documentary" class="list-group-item list-group-item-action">Documentary</a>
-                    <a href="/danfango/moviegenres/Drama" class="list-group-item list-group-item-action">Drama</a>
-                    <a href="/danfango/moviegenres/Family" class="list-group-item list-group-item-action">Family</a>
-                    <a href="/danfango/moviegenres/Fantasy" class="list-group-item list-group-item-action">Fantasy</a>
-                    <a href="/danfango/moviegenres/Film-Noir" class="list-group-item list-group-item-action">Film-Noir</a>
-                </div>
-
-                <div class="col-md-6 spacing list-group genretable">
-                    <a href="/danfango/moviegenres/History" class="list-group-item list-group-item-action">History</a>
-                    <a href="/danfango/moviegenres/Horror" class="list-group-item list-group-item-action">Horror</a>
-                    <a href="/danfango/moviegenres/Music" class="list-group-item list-group-item-action">Music</a>
-                    <a href="/danfango/moviegenres/Musical" class="list-group-item list-group-item-action">Musical</a>
-                    <a href="/danfango/moviegenres/Mystery" class="list-group-item list-group-item-action">Mystery</a>
-                    <a href="/danfango/moviegenres/Romance" class="list-group-item list-group-item-action">Romance</a>
-                    <a href="/danfango/moviegenres/Sci-Fi" class="list-group-item list-group-item-action">Sci-Fi</a>
-                    <a href="/danfango/moviegenres/Sport" class="list-group-item list-group-item-action">Sport</a>
-                    <a href="/danfango/moviegenres/Thriller" class="list-group-item list-group-item-action">Thriller</a>
-                    <a href="/danfango/moviegenres/War" class="list-group-item list-group-item-action">War</a>
-                    <a href="/danfango/moviegenres/Western" class="list-group-item list-group-item-action">Western</a>
-                </div>
-
-            </div>
+            <div class = "slider2">
+                <c:forEach items="${movies}" var="dvd" varStatus="loop" step="12">
+                    <div class="slide"> 
+                        <div class="row spacing">
+                            <c:forEach begin="0" end="11" step="3" varStatus="loop2"> 
+                                <c:if test="${not empty movies[loop.index+loop2.index]}">
+                                    <div class = "col-md-3">
+                                        <a class="" href="movieinfopage/${movies[loop.index + loop2.index].id}">
+                                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index + loop2.index].poster}">
+                                        </a>
+                                        <a class="" href="movieinfopage/${movies[loop.index + loop2.index+1].id}">
+                                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index + loop2.index+1].poster}">
+                                        </a>
+                                        <a class="" href="movieinfopage/${movies[loop.index + loop2.index+2].id}">
+                                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index + loop2.index+2].poster}">
+                                        </a>
+                                    
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </div><!--row-->
+                    </div><!-- END SLIDER -->
+                </c:forEach>
+            </div> <!--END MOVIE SLIDER -->
 
 
-        </div>
 
+        </div> <!-- END MOVIE SLIDER CONTAINER -->
 
 
 
@@ -143,6 +136,8 @@
     </div>
 
 
+
+
     <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
     <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
     <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
@@ -167,5 +162,7 @@
     <script src="<c:url value="/resources/js/myjs.js" />"></script>
     <script src="<c:url value="/resources/js/script.js" />"></script>
 
+
 </body>
+
 </html>

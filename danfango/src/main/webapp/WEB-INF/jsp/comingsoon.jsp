@@ -35,7 +35,7 @@
             <ul class="spacing nav nav-pills">
                 <li role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
                 <li class="active" role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
-                <li role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
+                <li role="presentation"><a href="/danfango/moviegenres"><h3>Movie Genres</h3></a></li>
                 <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
             </ul>
 
@@ -63,13 +63,13 @@
                             <c:forEach begin="0" end="7" step="2" varStatus="loop2"> 
                                 <c:if test="${not empty comingSoon[loop.index+loop2.index]}">
                                     <div class = "col-md-3">
-                                        <a class="" href="${goUp}movieinfopage/${comingSoon[loop.index + loop2.index].id}">
+                                        <a class="" href="${path}movieinfopage/${comingSoon[loop.index + loop2.index].id}">
                                             <c:if test="${comingSoon[loop.index + loop2.index].poster != null}">
                                                 <img class ="posters" src="https://image.tmdb.org/t/p/w500/${comingSoon[loop.index + loop2.index].poster}">
                                             </c:if>
                                         </a>
 
-                                        <a class="" href="${goUp}movieinfopage/${comingSoon[loop.index + loop2.index + 1].id}">
+                                        <a class="" href="${path}movieinfopage/${comingSoon[loop.index + loop2.index + 1].id}">
                                             <c:if test="${comingSoon[loop.index + loop2.index+1].poster != null}">
                                                 <img class ="posters" src="https://image.tmdb.org/t/p/w500/${comingSoon[loop.index + loop2.index+1].poster}">
                                             </c:if>
