@@ -190,7 +190,7 @@ public class AgencyService {
     }
 
     public void parseTheatreRoomFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("ROOMS.xml");
+        Document doc = prepareDoc("ROOMS_simple.xml");
         NodeList nList = doc.getElementsByTagName("rooms");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
@@ -198,19 +198,25 @@ public class AgencyService {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
                 String roomId = eElement.getElementsByTagName("roomId").item(0).getTextContent();
-                String numSeats = eElement.getElementsByTagName("theatreId").item(0).getTextContent();
+                String numSeats = eElement.getElementsByTagName("numSeats").item(0).getTextContent();
                 TheatreRoom room = theatreRoomService.getTheatreRoomByRoomNumber(roomId);
                 room.setTotalSeats(Integer.parseInt(numSeats));
-
-                NodeList seatingLayout = eElement.getElementsByTagName("seatingLayout");
+                
+                // Element fElement = eElement.getElementsByTagName("seatingLayout");
+                
+                NodeList seatingLayout = eElement.getElementsByTagName("row");
+                // NodeList seatingLayout = eElement.getElementsByTagName("seatingLayout");
+                System.out.println("Number of rows is: " + seatingLayout.getLength());
                 // prevent adding duplicate seatss
-                if (room.getLayout() == null && seatingLayout != null) {
+//                if (room.getLayout() == null && seatingLayout != null) {
+                  if (seatingLayout != null) {
                     String layoutString = "";
                     char seatRow = 'A';
                     int seatNum = 1;
                     for (int i = 0; i < seatingLayout.getLength(); i++) {
                         Node row = seatingLayout.item(i);
                         String rowContent = row.getTextContent();
+                        System.out.println("ROW CONTENT IS: " + rowContent);
                         // append this rows seats to the layoutString
                         layoutString += rowContent;
                         // don't add a "|" accidentally at the end
@@ -220,7 +226,9 @@ public class AgencyService {
                         // create seat objects
                         String[] rowArray = rowContent.split(",");
                         for (int seatIndex = 0; seatIndex < rowArray.length; seatIndex++) {
-                            int seatValue = Integer.parseInt(rowArray[seatIndex]);
+                            String seatValueString = rowArray[seatIndex].replaceAll(" ", "");
+                            seatValueString = seatValueString.replaceAll("\n", "").replaceAll("\r", "");
+                            int seatValue = Integer.parseInt(seatValueString);
                             if (seatValue == 1) {
                                 Seat seat = new Seat();
                                 seat.setRow(String.valueOf(seatRow));
@@ -234,6 +242,7 @@ public class AgencyService {
                         seatNum = 1;
                     }
                     room.setLayout(layoutString);
+                    theatreRoomService.updateTheatreRoom(room);
                     System.out.println("PRINTING THE LAYOUT STRING___________________");
                     System.out.println("layoutString: " + layoutString);
                 }

@@ -52,13 +52,14 @@ public class SeatSelectionController {
                 String[] seatValuesArray = rowLayout.split(",");
                 for(int seatIndex = 0; seatIndex < seatValuesArray.length; seatIndex++){
                     int seatValue = Integer.parseInt(seatValuesArray[seatIndex]);
+                    Seat seat = null;
                     if(seatValue == 1){
-                        Seat seat = new Seat();
+                        seat = new Seat();
                         seat.setRow(String.valueOf(seatRow));
                         seat.setSeatNumber(Integer.toString(seatNum));
-                        seat.setAvailable(true);
-                        seatingMatrix[rowIndex][seatIndex] = seat;
+                        seat.setAvailable(true);       
                     }
+                    seatingMatrix[rowIndex][seatIndex] = seat;
                 }                 
                seatRow = (char) (seatRow + 1); 
             }
