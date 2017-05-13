@@ -46,9 +46,8 @@ public class ComingSoonController{
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
-        request.setAttribute("goUp", "/danfango/");
+        request.setAttribute("path", "/danfango/");
 
-        
         List<Movie> comingSoon = movieService.getMoviesComingSoon();
 
         request.setAttribute("comingSoon", comingSoon);
@@ -63,7 +62,7 @@ public class ComingSoonController{
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
         
-        request.setAttribute("goUp", "/danfango/");
+        request.setAttribute("path", "/danfango/");
         
         
         List<Movie> movs = new ArrayList<>();

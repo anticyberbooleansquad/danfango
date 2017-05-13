@@ -36,21 +36,21 @@
             <ul class="spacing nav nav-pills">
                 <li class="active" role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
                 <li role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
-                <li role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
+                <li role="presentation"><a href="/danfango/moviegenres"><h3>Movie Genres</h3></a></li>
                 <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
             </ul>
             
             <h1 class="spacing genretitle">FILTER MOVIES BY GENRE</h1>
 
             <ul class="spacing nav nav-pills">
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Action</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Drama</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Comedy</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Kids</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Horror</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Romance</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Sci-Fi</h5></a></li>
-                <li role="presentation"><a href="/danfango/comingsoon.html"><h5>Animated</h5></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying/Action"><h5>Action</h5></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying/Drama"><h5>Drama</h5></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying/Comedy"><h5>Comedy</h5></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying/Kids"><h5>Kids</h5></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying/Horror"><h5>Horror</h5></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying/Romance"><h5>Romance</h5></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying/Sci-Fi"><h5>Sci-Fi</h5></a></li>
+                <li role="presentation"><a href="/danfango/nowplaying/Animation"><h5>Animation</h5></a></li>
             </ul>
             
             <h1 class="spacing accountfont underline">NOW PLAYING</h1>
@@ -62,7 +62,7 @@
                             <c:forEach begin="0" end="3" varStatus="loop2"> 
                                 <c:if test="${not empty nowPlaying[loop.index+loop2.index]}">
                                     <div class = "col-md-3">
-                                        <a class="" href="movieinfopage/${nowPlaying[loop.index + loop2.index].id}">
+                                        <a class="" href="${path}movieinfopage/${nowPlaying[loop.index + loop2.index].id}">
                                             <img class ="posters" src="https://image.tmdb.org/t/p/w500/${nowPlaying[loop.index + loop2.index].poster}">
                                         </a>
                                     </div>
@@ -83,7 +83,7 @@
                             <c:forEach begin="0" end="3" varStatus="loop2"> 
                                 <c:if test="${not empty openingThisWeek[loop.index+loop2.index]}">
                                     <div class = "col-md-3">
-                                        <a class="" href="movieinfopage/${openingThisWeek[loop.index + loop2.index].id}">
+                                        <a class="" href="${path}movieinfopage/${openingThisWeek[loop.index + loop2.index].id}">
                                             <img class ="posters" src="https://image.tmdb.org/t/p/w500/${openingThisWeek[loop.index + loop2.index].poster}">
                                         </a>
                                     </div>

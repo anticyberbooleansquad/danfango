@@ -31,18 +31,18 @@
         <jsp:include page="header.jsp" >
             <jsp:param name="contextPath" value="${contextPath}"/>
         </jsp:include>
-        
+
         <div class="container">
-            <c:if test="${user != null}">
-                <c:if test="${favoriteState == true}">
-                    <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true"></i> </h1>
+            <h1 class="spacing movietitle">${movie.title}
+                <c:if test="${user != null}">
+                    <c:if test="${favoriteState == true}">
+                        <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true"></i>
+                    </c:if>
+                    <c:if test="${favoriteState == false}">
+                        <i id="favorite" class="fa fa-heart fa-inverse hi" aria-hidden="true"></i>
+                    </c:if>
                 </c:if>
-
-
-                <c:if test="${favoriteState == false}">
-                    <h1 class="spacing movietitle">${movie.title}  <i id="favorite" class="fa fa-heart fa-inverse hi" aria-hidden="true"></i> </h1>
-                </c:if>
-            </c:if>
+            </h1>
 
             <ul class="spacing nav nav-pills">
                 <li class="active" role="presentation"><a href="/danfango/movieinfopage/${movie.id}"><h3>Overview</h3></a></li>
@@ -109,7 +109,7 @@
             </div>
             <!-- End Recent Projects Carousel -->
 
-<!--            <h1 class="spacing movietitle">MOVIE NEWS</h1>-->
+            <!--            <h1 class="spacing movietitle">MOVIE NEWS</h1>-->
             <hr>
 
             <h1 class="spacing movietitle">MOVIE REVIEWS</h1>
@@ -297,7 +297,7 @@
 <script src="<c:url value="/resources/js/myjs.js" />"></script>
 <script src="<c:url value="/resources/js/script.js" />"></script>
 <script>
-        checkFavorite(${movie.id});
+    checkFavorite(${movie.id});
 </script>
 </body>
 
