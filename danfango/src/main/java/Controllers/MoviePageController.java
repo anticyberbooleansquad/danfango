@@ -17,11 +17,14 @@ import Services.AuthenticationService;
 import Services.CrewMemberMovieService;
 import Services.FavoriteMovieService;
 import Services.MovieService;
+import Services.ReviewService;
 import java.util.List;
+import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +41,8 @@ public class MoviePageController {
     CrewMemberMovieService crewMemberMovieService;
     @Autowired
     FavoriteMovieService favoriteMovieService;
+    //@Autowired
+    //ReviewService reviewService;
     
     @RequestMapping(value = "/movieinfopage/{movieId}")
     protected ModelAndView getMovieInfoPage(@PathVariable(value="movieId") int id, HttpServletRequest request){
@@ -80,10 +85,16 @@ public class MoviePageController {
 //        return modelandview;
 //    }
     
-    @RequestMapping(value = "/changeFavorite", method = RequestMethod.POST)
-    protected String changeFavoriteState(HttpServletRequest request){
+    @RequestMapping(value = "/changeFavorite")
+    public @ResponseBody String changeFavoriteState(HttpServletRequest request){
         System.out.println("fuck");
         return "success";
+    }
+    
+    @RequestMapping(value = "/submitReview", method = RequestMethod.POST)
+    protected void submitReview( @RequestParam("reviewSubject") String subject, @RequestParam("reviewContent") String content, HttpServletRequest request)
+    {
+        //System.out.println("star value: " + starValue);
     }
 
     public String timeConvert(String timeString) {

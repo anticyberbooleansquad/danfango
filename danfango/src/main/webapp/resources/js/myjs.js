@@ -17,7 +17,7 @@ $(function () {
 
         }
         $.ajax({
-                url : '/danfango/changeFavorite', // Your Servlet mapping or JSP(not suggested)
+                url : '${home}danfango/changeFavorite', // Your Servlet mapping or JSP(not suggested)
                 //data :'movieid' + movieid, 
                 type : 'POST',
                 success : function(response) {
@@ -126,21 +126,4 @@ function checkSecond(sec) {
     }
     ;
     return sec;
-}
-
-function checkFavorite(movieid)
-{
-    
-    $.ajax({
-                url : 'danfango/getFavorite', // Your Servlet mapping or JSP(not suggested)
-                data :movieid, 
-                type : 'POST',
-                dataType : 'text', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
-                success : function(response) {
-                    $(document.getElementById('favorite'))[0].addClass('favoriteState')
-                },
-                error : function(request, textStatus, errorThrown) {
-                    alert(errorThrown);
-                }
-            });
 }
