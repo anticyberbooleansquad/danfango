@@ -190,53 +190,63 @@ public class AgencyService {
     }
 
     public void parseTheatreRoomFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("ROOMS.xml");
-        NodeList nList = doc.getElementsByTagName("rooms");
+        Document doc = prepareDoc("rooms.xml");
+        NodeList nList = doc.getElementsByTagName("room");
+        
 
         for (int counter = 0; counter < nList.getLength(); counter++) {
             Node nNode = nList.item(counter);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
                 String roomId = eElement.getElementsByTagName("roomId").item(0).getTextContent();
-                String numSeats = eElement.getElementsByTagName("theatreId").item(0).getTextContent();
+                String numSeats = eElement.getElementsByTagName("numSeats").item(0).getTextContent();
                 TheatreRoom room = theatreRoomService.getTheatreRoomByRoomNumber(roomId);
                 room.setTotalSeats(Integer.parseInt(numSeats));
-
-                String layoutString = "";
-                char seatRow = 'A';
-                NodeList seatingLayout = eElement.getElementsByTagName("seatingLayout");
-                for (int i = 0; i < seatingLayout.getLength(); i++) {
-                    Node row = seatingLayout.item(i);
-                    String rowContent = row.getTextContent();
-                    layoutString += rowContent;
-                    if (i < seatingLayout.getLength() - 1) {
-                        layoutString += "|";
-                    }
-                    String[] rowArray = rowContent.split(",");
-                    for (int seatIndex = 0; seatIndex < rowArray.length; seatIndex++) {
-                        int seatValue = Integer.parseInt(rowArray[seatIndex]);                       
-                        Seat seat = seatService.getSeat(String.valueOf(seatRow), Integer.toString(seatIndex + 1), room);
-                        // seat that was previously set to 1 could now be set to 0, if so we should remove this seat
-                        if (seatValue == 0) {
-                            if (seat != null) {
-                                seatService.removeSeat(seat.getId());
-                            }
-                        } // otherwise we're dealing with a 1 so create this seat if it doesn't already exist
-                        else {
-                            if (seat == null) {
-                                seat = new Seat();
+                
+                // Element fElement = eElement.getElementsByTagName("seatingLayout");
+                
+                NodeList seatingLayout = eElement.getElementsByTagName("row");
+                // NodeList seatingLayout = eElement.getElementsByTagName("seatingLayout");
+                System.out.println("Number of rows is: " + seatingLayout.getLength());
+                // prevent adding duplicate seatss
+//                if (room.getLayout() == null && seatingLayout != null) {
+                  if (seatingLayout != null) {
+                    String layoutString = "";
+                    char seatRow = 'A';
+                    int seatNum = 1;
+                    for (int i = 0; i < seatingLayout.getLength(); i++) {
+                        Node row = seatingLayout.item(i);
+                        String rowContent = row.getTextContent();
+                        System.out.println("ROW CONTENT IS: " + rowContent);
+                        // append this rows seats to the layoutString
+                        layoutString += rowContent;
+                        // don't add a "R" accidentally at the end
+                        if (i < seatingLayout.getLength() - 1) {
+                            layoutString += "R";
+                        }
+                        // create seat objects
+                        String[] rowArray = rowContent.split(",");
+                        for (int seatIndex = 0; seatIndex < rowArray.length; seatIndex++) {
+                            String seatValueString = rowArray[seatIndex].replaceAll(" ", "");
+                            seatValueString = seatValueString.replaceAll("\n", "").replaceAll("\r", "");
+                            int seatValue = Integer.parseInt(seatValueString);
+                            if (seatValue == 1) {
+                                Seat seat = new Seat();
                                 seat.setRow(String.valueOf(seatRow));
-                                seat.setSeatNumber(Integer.toString(seatIndex + 1));
+                                seat.setSeatNumber(Integer.toString(seatNum));
                                 seat.setTheatreRoom(room);
                                 seatService.addSeat(seat);
+                                seatNum++;
                             }
                         }
+                        seatRow = (char) (seatRow + 1);
+                        seatNum = 1;
                     }
-                    seatRow = (char) (seatRow + 1);
+                    room.setLayout(layoutString);
+                    theatreRoomService.updateTheatreRoom(room);
+                    System.out.println("PRINTING THE LAYOUT STRING___________________");
+                    System.out.println("layoutString: " + layoutString);
                 }
-                room.setLayout(layoutString);
-                System.out.println("PRINTING THE LAYOUT STRING___________________");
-                System.out.println("layoutString: " + layoutString);   
             }
         }
     }
@@ -305,8 +315,11 @@ public class AgencyService {
             MovieGenre pair = new MovieGenre();
             pair.setGenre(g);
             pair.setMovie(movie);
-            movieGenreService.addMovieGenre(pair);
 
+            if (movieGenreService.getMovieGenresByGenreAndMovie(g, movie) == null) {
+                movieGenreService.addMovieGenre(pair);
+            }
+           
         }
 
     }
@@ -411,9 +424,7 @@ public class AgencyService {
                         relation.setMovie(crewMember_movies.get(i));
                         relation.setCrewMember(actor);
                         crewMemberMovieService.addCrewMemberMovie(relation);
-
                     }
-
                 }
             }
         }

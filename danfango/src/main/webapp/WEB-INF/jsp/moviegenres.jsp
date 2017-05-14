@@ -35,36 +35,38 @@
             <ul class="spacing nav nav-pills">
                 <li role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
                 <li role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
-                <li class="active" role="presentation"><a href="/danfango/moviegenres.html"><h3>Movie Genres</h3></a></li>
+                <li class="active" role="presentation"><a href="/danfango/moviegenres"><h3>Movie Genres</h3></a></li>
                 <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
             </ul>
 
             <div class="row">
 
                 <div class="col-md-6 spacing list-group genretable">
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Action</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Drama</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Comedy</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Kids</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Horror</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Romance</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Sci-Fi</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Animated</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Documentaries</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">3D</a>
+                    <a href="/danfango/moviegenres/Action" class="list-group-item list-group-item-action">Action</a>
+                    <a href="/danfango/moviegenres/Adventure" class="list-group-item list-group-item-action">Adventure</a>
+                    <a href="/danfango/moviegenres/Animation" class="list-group-item list-group-item-action">Animation</a>
+                    <a href="/danfango/moviegenres/Biography" class="list-group-item list-group-item-action">Biography</a>
+                    <a href="/danfango/moviegenres/Comedy" class="list-group-item list-group-item-action">Comedy</a>
+                    <a href="/danfango/moviegenres/Crime" class="list-group-item list-group-item-action">Crime</a>
+                    <a href="/danfango/moviegenres/Documentary" class="list-group-item list-group-item-action">Documentary</a>
+                    <a href="/danfango/moviegenres/Drama" class="list-group-item list-group-item-action">Drama</a>
+                    <a href="/danfango/moviegenres/Family" class="list-group-item list-group-item-action">Family</a>
+                    <a href="/danfango/moviegenres/Fantasy" class="list-group-item list-group-item-action">Fantasy</a>
+                    <a href="/danfango/moviegenres/Film-Noir" class="list-group-item list-group-item-action">Film-Noir</a>
                 </div>
 
                 <div class="col-md-6 spacing list-group genretable">
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Suspense</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Indie</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Foreign</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Special Events</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Western</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Historical</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">War</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Dance</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Film,TV,& Radio</a>
-                    <a href="/danfango/nowplaying.html" class="list-group-item list-group-item-action">Music/Performing Arts</a>
+                    <a href="/danfango/moviegenres/History" class="list-group-item list-group-item-action">History</a>
+                    <a href="/danfango/moviegenres/Horror" class="list-group-item list-group-item-action">Horror</a>
+                    <a href="/danfango/moviegenres/Music" class="list-group-item list-group-item-action">Music</a>
+                    <a href="/danfango/moviegenres/Musical" class="list-group-item list-group-item-action">Musical</a>
+                    <a href="/danfango/moviegenres/Mystery" class="list-group-item list-group-item-action">Mystery</a>
+                    <a href="/danfango/moviegenres/Romance" class="list-group-item list-group-item-action">Romance</a>
+                    <a href="/danfango/moviegenres/Sci-Fi" class="list-group-item list-group-item-action">Sci-Fi</a>
+                    <a href="/danfango/moviegenres/Sport" class="list-group-item list-group-item-action">Sport</a>
+                    <a href="/danfango/moviegenres/Thriller" class="list-group-item list-group-item-action">Thriller</a>
+                    <a href="/danfango/moviegenres/War" class="list-group-item list-group-item-action">War</a>
+                    <a href="/danfango/moviegenres/Western" class="list-group-item list-group-item-action">Western</a>
                 </div>
 
             </div>

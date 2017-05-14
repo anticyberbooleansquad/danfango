@@ -10,10 +10,15 @@ package Controllers;
  * @author johnlegutko
  */
 import Model.CrewMemberMovie;
+import Model.Genre;
+import Model.MovieGenre;
+import Services.GenreService;
+import Services.MovieGenreService;
+import Services.MovieService;
+import java.util.ArrayList;
 import Model.FavoriteMovie;
 import Model.Movie;
 import Model.User;
-import Services.AuthenticationService;
 import Services.CrewMemberMovieService;
 import Services.FavoriteMovieService;
 import Services.MovieService;
@@ -38,6 +43,10 @@ public class MoviePageController {
     @Autowired
     MovieService movieService;
     @Autowired
+    MovieGenreService movieGenreService;
+    @Autowired
+    GenreService genreService;
+    @Autowired
     CrewMemberMovieService crewMemberMovieService;
     @Autowired
     FavoriteMovieService favoriteMovieService;
@@ -51,6 +60,7 @@ public class MoviePageController {
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
         Movie movie = movieService.getMovieById(id);
+        movie.setRunTime(timeConvert(movie.getRunTime()));
         User user = (User)session.getAttribute("user");
         
         FavoriteMovie fav2 = favoriteMovieService.getFavoriteMovieByUserAndMovie(user, movie);
@@ -65,6 +75,17 @@ public class MoviePageController {
         }
         
         request.setAttribute("movie", movie);
+        
+        List<Genre> genres = new ArrayList<>();
+        
+        List<MovieGenre> movieGenres = movieGenreService.getMovieGenresByMovie(movie);
+        for(MovieGenre mg: movieGenres){
+            genres.add(mg.getGenre());
+        }
+        
+        System.out.println("GENRES LIST: "+ genres);
+        
+        request.setAttribute("genres", genres);
 
         List<CrewMemberMovie> crewMemberMovie = crewMemberMovieService.getCrewMemberMovieByMovie(movie);
         request.setAttribute("crewMemberMovie", crewMemberMovie);

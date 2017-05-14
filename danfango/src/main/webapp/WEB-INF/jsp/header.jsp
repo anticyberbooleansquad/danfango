@@ -54,7 +54,7 @@
                                     <a href="/danfango/nowplaying">Movies</a>
                                 </li>
                                 <li>
-                                    <a href="/danfango/ticketselectpage">Movie Times + Tickets</a>
+                                    <a href="/danfango/headerticketselectpage">Movie Times + Tickets</a>
                                 </li>
 <!--                                <li>
                                     <a href="/danfango/movienews">Movie News</a>

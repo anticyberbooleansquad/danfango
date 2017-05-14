@@ -73,7 +73,8 @@ public class MovieGenreController {
         }
 
         request.setAttribute("movies", movies);
-        ModelAndView modelandview = new ModelAndView("moviegenres");
+        
+        ModelAndView modelandview = new ModelAndView("genreresults");
         return modelandview;
     }
 

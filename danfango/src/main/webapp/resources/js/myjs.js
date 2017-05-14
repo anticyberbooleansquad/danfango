@@ -94,7 +94,6 @@ $(function () {
     });
 });
 
-
 document.getElementById('timer').innerHTML = 05 + ":" + 00;
 startTimer();
 

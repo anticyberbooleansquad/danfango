@@ -1,14 +1,13 @@
 <%-- 
-    Document   : movienews
-    Created on : Apr 3, 2017, 7:04:16 PM
+    Document   : athomedvd
+    Created on : Apr 3, 2017, 6:46:28 PM
     Author     : johnlegutko
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
     <head>
         <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/settings.css"/>" rel="stylesheet">
@@ -19,6 +18,7 @@
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
+
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
     </head>
@@ -28,41 +28,45 @@
             <jsp:param name="contextPath" value="${contextPath}"/>
         </jsp:include>
 
-        <div class="spacing container">
+        <div class="container">
 
-            <div class="spacing screen">Theatre Screen</div>
+            <h1 class="spacing movietitle">AT HOME <font color="EA6630"><b>GENRE FILTER RESULTS</b></font></h1>
 
-            <div class ="seats">
+            <ul class="spacing nav nav-pills">
+                <li role="presentation"><a href="/danfango/nowplaying"><h3>Now Playing</h3></a></li>
+                <li role="presentation"><a href="/danfango/comingsoon"><h3>Coming Soon</h3></a></li>
+                <li class="active" role="presentation"><a href="/danfango/moviegenres"><h3>Movie Genres</h3></a></li>
+                <li role="presentation"><a href="/danfango/athomedvd"><h3>At Home</h3></a></li>
+            </ul>
 
-
-                <c:forEach items="${seatingMatrix}" var="row">
-                    <div class="row row-centered spacing">
-                        <c:forEach items="${row}" var="seat">
-                            <c:choose>
-                                <c:when test="${seat.available eq true}">
-                                    <div class="col-md-1 col-centered"><button id="${seat.row}${seat.seatNumber}" type="button" class="btn btn-default seatButton seat-unselected">${seat.row}${seat.seatNumber}</button></div>
-                                    </c:when>
-                                    <c:otherwise>
-                                    <div class="col-md-1 col-centered"></div>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </div>
+            <div class = "slider2">
+                <c:forEach items="${movies}" var="dvd" varStatus="loop" step="12">
+                    <div class="slide"> 
+                        <div class="row spacing">
+                            <c:forEach begin="0" end="11" step="3" varStatus="loop2"> 
+                                <c:if test="${not empty movies[loop.index+loop2.index]}">
+                                    <div class = "col-md-3">
+                                        <a class="" href="movieinfopage/${movies[loop.index + loop2.index].id}">
+                                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index + loop2.index].poster}">
+                                        </a>
+                                        <a class="" href="movieinfopage/${movies[loop.index + loop2.index+1].id}">
+                                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index + loop2.index+1].poster}">
+                                        </a>
+                                        <a class="" href="movieinfopage/${movies[loop.index + loop2.index+2].id}">
+                                            <img class ="posters" src="https://image.tmdb.org/t/p/w500/${movies[loop.index + loop2.index+2].poster}">
+                                        </a>
+                                    
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </div><!--row-->
+                    </div><!-- END SLIDER -->
                 </c:forEach>
+            </div> <!--END MOVIE SLIDER -->
 
-            </div>
-            <br>
-            <div class ="row row-centered">
-                <button type="button" class="btn btn-default changeSeats">CHANGE SEATS</button>
-            </div>
-            <div class ="row row-centered">
-                <a href="/danfango/paymentpage">
-                    <button type="button" class="btn btn-default changeSeats">Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-                </a>
-            </div>
-            
-        </div>
 
+
+        </div> <!-- END MOVIE SLIDER CONTAINER -->
 
 
 
@@ -133,6 +137,7 @@
 
 
 
+
     <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
     <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
     <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
@@ -159,4 +164,5 @@
 
 
 </body>
+
 </html>

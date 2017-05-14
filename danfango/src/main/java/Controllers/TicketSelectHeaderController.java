@@ -29,7 +29,7 @@ public class TicketSelectHeaderController {
     @Autowired
     MovieService movieService;
 
-    @RequestMapping(value = "/ticketselectpage")
+    @RequestMapping(value = "/ticketselectpageheader")
     protected ModelAndView getTicketSelectPage(HttpServletRequest request) {
         
         String contextPath = request.getContextPath();

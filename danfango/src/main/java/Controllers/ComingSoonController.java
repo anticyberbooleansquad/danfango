@@ -46,7 +46,8 @@ public class ComingSoonController{
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
-        
+        request.setAttribute("path", "/danfango/");
+
         List<Movie> comingSoon = movieService.getMoviesComingSoon();
 
         request.setAttribute("comingSoon", comingSoon);
@@ -56,22 +57,28 @@ public class ComingSoonController{
     }
     
     @RequestMapping(value = "/comingsoon/{genre}")
-    protected ModelAndView getMovieGenrePage(HttpServletRequest request, @PathVariable(value="genre") String genre, List<Movie> movies){  
+    protected ModelAndView getMovieGenrePage(HttpServletRequest request, @PathVariable(value="genre") String genre){  
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
+        
+        request.setAttribute("path", "/danfango/");
+        
+        
         List<Movie> movs = new ArrayList<>();
+        List<Movie> comingSoon = movieService.getMoviesComingSoon();
         // have list of movies go through check genre if genre does not match then remove it from the list
         Genre g = genreService.getGenreByName(genre);
         
-        for(Movie movie : movies){
+        for(Movie movie : comingSoon){
             if (movieGenreService.getMovieGenresByGenreAndMovie(g, movie) != null){
                 movs.add(movie);
             }
         }
-        request.setAttribute("filteredmovies",movs);
-        request.setAttribute("comingsoon",movies);
-        ModelAndView modelandview = new ModelAndView("moviegenres");        
+        
+        request.setAttribute("comingSoon",movs);
+        
+        ModelAndView modelandview = new ModelAndView("comingsoon");        
         return modelandview;
     }
     
