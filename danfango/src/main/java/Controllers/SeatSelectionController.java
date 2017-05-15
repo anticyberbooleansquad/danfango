@@ -9,11 +9,13 @@ package Controllers;
  *
  * @author johnlegutko
  */
+import Model.LiveTickets;
 import Model.Seat;
 import Model.Showing;
 import Model.Ticket;
 import Services.OrderService;
 import Services.SeatService;
+import Services.TicketService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +38,8 @@ public class SeatSelectionController {
     @Autowired
     SeatService seatService;
     @Autowired
-    OrderService orderService;
+    TicketService ticketService;
+    
     
     @RequestMapping(value = "/seatselection")
     protected ModelAndView getSeatSelectionPage(HttpServletRequest request) {
@@ -100,6 +103,8 @@ public class SeatSelectionController {
                 }
             }
             // make all locked live seats unavailable
+            LiveTickets tickets = ticketService.getLiveTickets();
+            tickets.get
             TicketList = List<Ticket>; //getlistofTickets;
             Ticket T = new Ticket();
             for (Ticket : TicketList){
