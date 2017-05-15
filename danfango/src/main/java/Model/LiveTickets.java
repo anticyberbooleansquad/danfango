@@ -12,34 +12,34 @@ import java.util.List;
  *
  * @author charles
  */
-public class LiveOrders {
+public class LiveTickets {
     
-    private List<Order> liveOrders;
+    private List<Orders> liveOrders;
     
-    public LiveOrders(){}
+    public LiveTickets(){}
 
-    public List<Order> getLiveOrders() {
+    public List<Orders> getLiveOrders() {
         return this.liveOrders;
     }
 
-    public void setLiveOrders(List<Order> liveOrders) {
+    public void setLiveOrders(List<Orders> liveOrders) {
         this.liveOrders = liveOrders;
     }
     
-    public void addOrder(Order order)
+    public void addOrder(Orders order)
     {
         this.liveOrders.add(order);
     }
     
-    public void removeOrder(Order order)
+    public void removeOrder(Orders order)
     {
         this.liveOrders.remove(order);
     }
     
-    public List<Order> getOrderByShowing(Showing showing)
+    public List<Orders> getOrderByShowing(Showing showing)
     {
-        ArrayList orders = new ArrayList<Order>();
-        for(Order order : this.liveOrders)
+        ArrayList orders = new ArrayList<Orders>();
+        for(Orders order : this.liveOrders)
         {
             //
         }

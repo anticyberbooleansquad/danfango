@@ -100,9 +100,12 @@ public class MoviePageController {
     @RequestMapping(value = "/submitReview/{movieId}", method = RequestMethod.POST)
     protected ModelAndView submitReview(@PathVariable(value="movieId") int id, @RequestParam("rating") String rating, @RequestParam("reviewSubject") String subject, @RequestParam("reviewContent") String content, HttpServletRequest request)
     {
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         Review review = new Review();
+        review.setUser(user);
         review.setMovie(movieService.getMovieById(id));
         review.setRating(rating);
         review.setTitle(subject);

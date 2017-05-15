@@ -30,7 +30,7 @@
     <bean id="agencyService" class="Services.AgencyService"/>
     <bean id="searchService" class="Services.SearchService"/>
     <bean id="locationService" class="Services.LocationService"/>
-    <bean id="liveOrders" class="Model.LiveOrders"/>
+    <bean id="liveTickets" class="Model.LiveTickets"/>
     <bean id="movieService" class="Services.MovieService">
         <property name="movieDAO" ref="movieDAO"></property>
     </bean>
@@ -60,10 +60,13 @@
     </bean>
     <bean id="orderService" class="Services.OrderService">
         <property name="orderDAO" ref="orderDAO"></property>
-        <property name="liveOrders" ref="liveOrders"></property>
     </bean>
     <bean id="genreService" class="Services.GenreService">
         <property name="genreDAO" ref="genreDAO"></property>
+    </bean>
+    <bean id="ticketService" class="Services.TicketService">
+        <property name="ticketDAO" ref="ticketDAO"></property>
+        <property name="liveTickets" ref="liveTickets"></property>
     </bean>
     <bean id="favoriteMovieService" class="Services.FavoriteMovieService">
         <property name="favoriteMovieDAO" ref="favoriteMovieDAO"></property>
@@ -77,6 +80,9 @@
         <property name="reviewDAO" ref="reviewDAO"></property>
     </bean>
     <bean id="reviewDAO" class="Dao.ReviewDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="ticketDAO" class="Dao.TicketDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
