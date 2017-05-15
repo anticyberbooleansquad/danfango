@@ -10,16 +10,16 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import Dao.OrderDAO;
+import Dao.OrdersDAO;
 import Model.LiveTickets;
 import Model.Orders;
 
 @Service
-public class OrderService {
+public class OrdersService {
 
-	private OrderDAO orderDAO;
+	private OrdersDAO orderDAO;
 
-	public void setOrderDAO(OrderDAO orderDAO) {
+	public void setOrderDAO(OrdersDAO orderDAO) {
 		this.orderDAO = orderDAO;
 	}
 	

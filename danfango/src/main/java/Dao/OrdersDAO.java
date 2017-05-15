@@ -20,9 +20,9 @@ import org.hibernate.criterion.Restrictions;
  * @author charles
  */
 @Repository
-public class OrderDAO{
+public class OrdersDAO{
    
-    private static final Logger logger = LoggerFactory.getLogger(OrderDAO.class);
+    private static final Logger logger = LoggerFactory.getLogger(OrdersDAO.class);
     
     private SessionFactory sessionFactory;
 

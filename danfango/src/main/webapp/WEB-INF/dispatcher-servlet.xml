@@ -58,8 +58,8 @@
     <bean id="MovieTrailerService" class="Services.MovieTrailerService">
         <property name="movieTrailerDAO" ref="movieTrailerDAO"></property>
     </bean>
-    <bean id="orderService" class="Services.OrderService">
-        <property name="orderDAO" ref="orderDAO"></property>
+    <bean id="ordersService" class="Services.OrdersService">
+        <property name="ordersDAO" ref="ordersDAO"></property>
     </bean>
     <bean id="genreService" class="Services.GenreService">
         <property name="genreDAO" ref="genreDAO"></property>
@@ -100,7 +100,7 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
-    <bean id="orderDAO" class="Dao.OrderDAO">
+    <bean id="ordersDAO" class="Dao.OrdersDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     
@@ -166,7 +166,7 @@
                     <value>Model.Genre</value>
                     <value>Model.Movie</value>
                     <value>Model.MovieTrailer</value>
-                    <value>Model.Order</value>
+                    <value>Model.Orders</value>
                     <value>Model.OrderTicket</value>
                     <value>Model.Review</value>
                     <value>Model.Seat</value>
