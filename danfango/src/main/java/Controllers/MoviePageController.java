@@ -14,13 +14,15 @@ import Model.Genre;
 import Model.MovieGenre;
 import Services.GenreService;
 import Services.MovieGenreService;
-import Services.MovieService;
 import java.util.ArrayList;
 import Model.FavoriteMovie;
 import Model.Movie;
+import Model.Review;
 import Model.User;
 import Services.CrewMemberMovieService;
 import Services.FavoriteMovieService;
+import Services.MovieService;
+import Services.ReviewService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,6 +48,8 @@ public class MoviePageController {
     CrewMemberMovieService crewMemberMovieService;
     @Autowired
     FavoriteMovieService favoriteMovieService;
+    @Autowired
+    ReviewService reviewService;
     
     @RequestMapping(value = "/movieinfopage/{movieId}")
     protected ModelAndView getMovieInfoPage(@PathVariable(value="movieId") int id, HttpServletRequest request){
@@ -58,7 +62,6 @@ public class MoviePageController {
         User user = (User)session.getAttribute("user");
         
         FavoriteMovie fav2 = favoriteMovieService.getFavoriteMovieByUserAndMovie(user, movie);
-        
         if(fav2 != null)
         {
             request.setAttribute("favoriteState", true);
@@ -70,6 +73,8 @@ public class MoviePageController {
         
         request.setAttribute("movie", movie);
         
+        //Reviews
+        List reviews = reviewService.getReviewsByMovie(movie);
         List<Genre> genres = new ArrayList<>();
         
         List<MovieGenre> movieGenres = movieGenreService.getMovieGenresByMovie(movie);
@@ -78,32 +83,35 @@ public class MoviePageController {
         }
         
         System.out.println("GENRES LIST: "+ genres);
-        
         request.setAttribute("genres", genres);
-
         List<CrewMemberMovie> crewMemberMovie = crewMemberMovieService.getCrewMemberMovieByMovie(movie);
         request.setAttribute("crewMemberMovie", crewMemberMovie);
-
+        request.setAttribute("reviews", reviews);
         ModelAndView modelandview = new ModelAndView("movieinfopage");
         return modelandview;
     }
-    
-//    @RequestMapping(value = "/movieinfopage", method = RequestMethod.POST)
-//    protected ModelAndView changeFavoriteState(HttpServletRequest request , HttpServletRequest response){
-//        //ServletContext sc = request.getServletContext();
-//        
-//        ModelAndView modelandview;
-//        
-//        request.setAttribute("favorite", 1);
-//        modelandview = new ModelAndView("movieinfopage");
-//      
-//        return modelandview;
-//    }
-    
-    @RequestMapping(value = "/changeFavorite", method = RequestMethod.POST)
-    protected String changeFavoriteState(HttpServletRequest request){
+        
+    @RequestMapping(value = "/changeFavorite")
+    public @ResponseBody String changeFavoriteState(HttpServletRequest request){
         System.out.println("fuck");
         return "success";
+    }
+    
+    @RequestMapping(value = "/submitReview/{movieId}", method = RequestMethod.POST)
+    protected ModelAndView submitReview(@PathVariable(value="movieId") int id, @RequestParam("rating") String rating, @RequestParam("reviewSubject") String subject, @RequestParam("reviewContent") String content, HttpServletRequest request)
+    {
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        Review review = new Review();
+        review.setMovie(movieService.getMovieById(id));
+        review.setRating(rating);
+        review.setTitle(subject);
+        review.setContent(content);
+        reviewService.addReview(review);
+        String redirect = "redirect:/movieinfopage/" + id;
+        System.out.println("some shit: " + redirect);
+        ModelAndView modelandview = new ModelAndView(redirect);
+        return modelandview;
     }
 
     public String timeConvert(String timeString) {

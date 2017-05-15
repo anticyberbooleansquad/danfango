@@ -73,6 +73,13 @@
         <property name="movieGenreDAO" ref="movieGenreDAO"></property>
     </bean>
     
+    <bean id="reviewService" class="Services.ReviewService">
+        <property name="reviewDAO" ref="reviewDAO"></property>
+    </bean>
+    <bean id="reviewDAO" class="Dao.ReviewDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    
     <bean id="movieGenreDAO" class="Dao.MovieGenreDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>

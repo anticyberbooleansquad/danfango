@@ -29,133 +29,26 @@
         </jsp:include>
 
         <div class="spacing container">
-            
+
             <div class="spacing screen">Theatre Screen</div>
 
             <div class ="seats">
-                
 
-                <%--<c:forEach begin="0" end="10" varStatus="loop">--%>
+
+                <c:forEach items="${seatingMatrix}" var="row">
                     <div class="row row-centered spacing">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A1</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A2</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A3</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A4</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
+                        <c:forEach items="${row}" var="seat">
+                            <c:choose>
+                                <c:when test="${seat.available eq true}">
+                                    <div class="col-md-1 col-centered"><button id="${seat.row}${seat.seatNumber}" type="button" class="btn btn-default seatButton seat-unselected">${seat.row}${seat.seatNumber}</button></div>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <div class="col-md-1 col-centered"></div>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
                     </div>
-                    
-                    <div class="row row-centered">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A1</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A2</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A3</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A4</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A6</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"></div>
-                    </div>
-                    
-                    <div class="row row-centered">
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A1</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A2</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A4</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A7</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A8</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A9</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A11</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A12</button></div>
-                    </div>
-                    
-                    <div class="row row-centered">
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A1</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A2</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A4</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A7</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A8</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A9</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A11</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A12</button></div>
-                    </div>
-                    
-                    <div class="row row-centered">
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A1</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A2</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A4</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A7</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A8</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A9</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A11</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A12</button></div>
-                    </div>
-                    
-                    <div class="row row-centered">
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A1</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A2</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A4</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A7</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A8</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A9</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A11</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A12</button></div>
-                    </div>
-                    
-                    <div class="row row-centered">
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A1</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A2</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A4</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A7</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A8</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A9</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A11</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A12</button></div>
-                    </div>
-                    
-                    <div class="row row-centered">
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A1</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A2</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A4</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A5</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A7</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A8</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A9</button></div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A11</button></div>
-                        <div class="col-md-1"><button id="a1" type="button" class="btn btn-default seatButton seat-unselected">A12</button></div>
-                    </div>
-                <%--</c:forEach>--%>
+                </c:forEach>
 
             </div>
             <br>
@@ -167,11 +60,7 @@
                     <button type="button" class="btn btn-default changeSeats">Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                 </a>
             </div>
-            <div class="row row-centered">
-                <div id="timer" class="timerPosition"></div>
-            </div>
-
-
+            
         </div>
 
 
@@ -267,6 +156,7 @@
     <script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
     <script src="<c:url value="/resources/js/myjs.js" />"></script>
     <script src="<c:url value="/resources/js/script.js" />"></script>
+
 
 </body>
 </html>

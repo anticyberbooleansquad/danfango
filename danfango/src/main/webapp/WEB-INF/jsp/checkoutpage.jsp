@@ -19,7 +19,6 @@
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
-
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
     </head>
@@ -39,59 +38,57 @@
 
                     <h1 class="spacing">HOW MANY TICKETS?</h1>
 
-                    <div class="spacing dropdown">
-                        <p>Adult:</p>
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">0
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="/danfango/#">1</a></li>
-                            <li><a href="/danfango/#">2</a></li>
-                            <li><a href="/danfango/#">3</a></li>
-                            <li><a href="/danfango/#">4</a></li>
-                            <li><a href="/danfango/#">5</a></li>
-                            <li><a href="/danfango/#">6</a></li>
-                            <li><a href="/danfango/#">7</a></li>
-                            <li><a href="/danfango/#">8</a></li>
-                            <li><a href="/danfango/#">9</a></li>
-                            <li><a href="/danfango/#">10</a></li>
-                        </ul>
-                    </div>
+                    <form role="form" id="ticketForm" class="spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/seatselection">
+                        <div class="col-xs-3">
+                            <p>Adult:</p>
+                            <select class="form-control col-sm-2" name="adult" id="adult">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <p>Senior:</p>
+                            <select class="form-control col-sm-2" name="senior" id="senior">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <p>Child:</p>
+                            <select class="form-control col-sm-2" name="child" id="child">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        
+                        <input type="submit" value="BUY TICKETS!" class="btn-system btn-large btn-gray joinbutton spacing">
+                    </form>
 
-                    <div class="spacing dropdown">
-                        <p>Senior:</p>
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">0
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="/danfango/#">1</a></li>
-                            <li><a href="/danfango/#">2</a></li>
-                            <li><a href="/danfango/#">3</a></li>
-                            <li><a href="/danfango/#">4</a></li>
-                            <li><a href="/danfango/#">5</a></li>
-                            <li><a href="/danfango/#">6</a></li>
-                            <li><a href="/danfango/#">7</a></li>
-                            <li><a href="/danfango/#">8</a></li>
-                            <li><a href="/danfango/#">9</a></li>
-                            <li><a href="/danfango/#">10</a></li>
-                        </ul>
-                    </div>
 
-                    <div class="spacing dropdown">
-                        <p>Child:</p>
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">0
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="/danfango/#">1</a></li>
-                            <li><a href="/danfango/#">2</a></li>
-                            <li><a href="/danfango/#">3</a></li>
-                            <li><a href="/danfango/#">4</a></li>
-                            <li><a href="/danfango/#">5</a></li>
-                        </ul>
-                    </div>
 
-                    <a href="/danfango/seatselection" class="btn-system btn-large btn-gray joinbutton spacing">BUY TICKETS!</a> 
 
                 </div>
             </div>
