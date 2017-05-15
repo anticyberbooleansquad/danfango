@@ -11,13 +11,16 @@ package Controllers;
  */
 import Model.Seat;
 import Model.Showing;
+import Services.SeatService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +31,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SeatSelectionController {
 
+    @Autowired
+    SeatService seatService
+    
     @RequestMapping(value = "/seatselection")
     protected ModelAndView getSeatSelectionPage(HttpServletRequest request) {
 
@@ -70,12 +76,27 @@ public class SeatSelectionController {
                         seatNum++;
                     }
                     seatingMatrix[rowIndex][seatIndex] = seat;
-
                 }
                 seatRow = (char) (seatRow + 1);
                 seatNum = 1;
             }
-            // later have to make some of these seats unavailable
+            // make purchased seats unavailable
+            List<Seat> purchasedSeats = seatService.getPurchasedSeatsByShowing(showing);
+            for(Seat seat: purchasedSeats){
+                char purchasedSeatRow = seat.getRow().charAt(0);
+                int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
+                // now that we have the right row seat for this seat search all of the columns for it
+                for(int i = 0; i < numColumns; i++){
+                    Seat seatInMatrix = seatingMatrix[rowIndex][i];
+                    if(seatInMatrix != null){
+                        if(seatInMatrix.getId().equals(seat.getId())){
+                            seatInMatrix.setAvailable(false);
+                        }
+                    }
+                }
+            }
+            // make all locked live seats unavailable 
+            
             request.setAttribute("seatingMatrix", seatingMatrix);
             modelandview = new ModelAndView("seatselection");
         }

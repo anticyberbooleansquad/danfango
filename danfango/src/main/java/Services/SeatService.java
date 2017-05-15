@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Dao.SeatDAO;
 import Model.Seat;
+import Model.Showing;
 import Model.TheatreRoom;
 
 @Service
@@ -59,6 +60,11 @@ public class SeatService {
         @Transactional
         public Seat getSeat(String row, String seatNum, TheatreRoom theatreRoom){
                 return this.seatDAO.getSeat(row, seatNum, theatreRoom);
+        }
+        
+        @Transactional
+        public List<Seat> getPurchasedSeatsByShowing(Showing showing){
+                return this.seatDAO.getPurchasedSeatsByShowing(showing);
         }
         	
 }
