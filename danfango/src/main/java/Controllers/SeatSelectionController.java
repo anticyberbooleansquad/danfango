@@ -11,6 +11,8 @@ package Controllers;
  */
 import Model.Seat;
 import Model.Showing;
+import Model.Ticket;
+import Services.OrderService;
 import Services.SeatService;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +34,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class SeatSelectionController {
 
     @Autowired
-    SeatService seatService
+    SeatService seatService;
+    @Autowired
+    OrderService orderService;
     
     @RequestMapping(value = "/seatselection")
     protected ModelAndView getSeatSelectionPage(HttpServletRequest request) {
@@ -95,7 +99,22 @@ public class SeatSelectionController {
                     }
                 }
             }
-            // make all locked live seats unavailable 
+            // make all locked live seats unavailable
+            TicketList = List<Ticket>; //getlistofTickets;
+            Ticket T = new Ticket();
+            for (Ticket : TicketList){
+                if (T.getShowing() = showing){
+                    Seat seat = T.getSeat();
+                    char purchasedSeatRow = seat.getRow().charAt(0);
+                    int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
+                    Seat seatInMatrix = seatingMatrix[purchasedSeatRow][rowIndex];
+                    if(seatInMatrix != null){
+                        if(seatInMatrix.getId().equals(seat.getId())){
+                            seatInMatrix.setAvailable(false);
+                        }
+                    }          
+                }
+            }
             
             request.setAttribute("seatingMatrix", seatingMatrix);
             modelandview = new ModelAndView("seatselection");
