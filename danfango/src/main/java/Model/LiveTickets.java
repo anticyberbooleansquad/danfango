@@ -14,37 +14,37 @@ import java.util.List;
  */
 public class LiveTickets {
     
-    private List<Orders> liveOrders;
+    private List<Ticket> liveTicket;
     
     public LiveTickets(){}
 
-    public List<Orders> getLiveOrders() {
-        return this.liveOrders;
+    public List<Ticket> getLiveTicket() {
+        return this.liveTicket;
     }
 
-    public void setLiveOrders(List<Orders> liveOrders) {
-        this.liveOrders = liveOrders;
+    public void setLiveTicket(List<Ticket> liveTicket) {
+        this.liveTicket = liveTicket;
     }
     
-    public void addOrder(Orders order)
+    public void addTicket(Ticket ticket)
     {
-        this.liveOrders.add(order);
+        this.liveTicket.add(ticket);
     }
     
-    public void removeOrder(Orders order)
+    public void removeTicket(Ticket ticket)
     {
-        this.liveOrders.remove(order);
+        this.liveTicket.remove(ticket);
     }
     
-    public List<Orders> getOrderByShowing(Showing showing)
+    public List<Ticket> getOrderByShowing(Showing showing)
     {
-        ArrayList orders = new ArrayList<Orders>();
-        for(Orders order : this.liveOrders)
+        ArrayList tickets = new ArrayList<Ticket>();
+        for(Ticket ticket : this.liveTicket)
         {
             //
         }
         
-        return this.liveOrders;
+        return this.liveTicket;
     }
     
     
