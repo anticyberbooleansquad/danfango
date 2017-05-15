@@ -39,8 +39,7 @@ public class SeatSelectionController {
     SeatService seatService;
     @Autowired
     TicketService ticketService;
-    
-    
+
     @RequestMapping(value = "/seatselection")
     protected ModelAndView getSeatSelectionPage(HttpServletRequest request) {
 
@@ -51,7 +50,7 @@ public class SeatSelectionController {
         String seatingLayout = null;
         HttpSession session = request.getSession();
         Showing showing = (Showing) session.getAttribute("showing");
-        
+
         ModelAndView modelandview;
         seatingLayout = showing.getTheatreRoom().getLayout();
 
@@ -89,42 +88,38 @@ public class SeatSelectionController {
             }
             // make purchased seats unavailable
             List<Seat> purchasedSeats = seatService.getPurchasedSeatsByShowing(showing);
-            for(Seat seat: purchasedSeats){
+            for (Seat seat : purchasedSeats) {
                 char purchasedSeatRow = seat.getRow().charAt(0);
                 int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
                 // now that we have the right row seat for this seat search all of the columns for it
-                for(int i = 0; i < numColumns; i++){
+                for (int i = 0; i < numColumns; i++) {
                     Seat seatInMatrix = seatingMatrix[rowIndex][i];
-                    if(seatInMatrix != null){
-                        if(seatInMatrix.getId().equals(seat.getId())){
+                    if (seatInMatrix != null) {
+                        if (seatInMatrix.getId().equals(seat.getId())) {
                             seatInMatrix.setAvailable(false);
                         }
                     }
                 }
             }
             // make all locked live seats unavailable
-            LiveTickets tickets = ticketService.getLiveTickets();
-            tickets.get
-            TicketList = List<Ticket>; //getlistofTickets;
+            LiveTickets ts = ticketService.getLiveTickets();
+            List<Ticket> tickets = ts.getOrderByShowing(showing);
             Ticket T = new Ticket();
-            for (Ticket : TicketList){
-                if (T.getShowing() = showing){
-                    Seat seat = T.getSeat();
-                    char purchasedSeatRow = seat.getRow().charAt(0);
-                    int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
-                    Seat seatInMatrix = seatingMatrix[purchasedSeatRow][rowIndex];
-                    if(seatInMatrix != null){
-                        if(seatInMatrix.getId().equals(seat.getId())){
-                            seatInMatrix.setAvailable(false);
-                        }
-                    }          
+            for (Ticket ticket : tickets) {
+                Seat seat = ticket.getSeat();
+                char purchasedSeatRow = seat.getRow().charAt(0);
+                int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
+                Seat seatInMatrix = seatingMatrix[purchasedSeatRow][rowIndex];
+                if (seatInMatrix != null) {
+                    if (seatInMatrix.getId().equals(seat.getId())) {
+                        seatInMatrix.setAvailable(false);
+                    }
                 }
             }
-            
+
             request.setAttribute("seatingMatrix", seatingMatrix);
             modelandview = new ModelAndView("seatselection");
-        }
-        else{
+        } else {
             modelandview = new ModelAndView("paymentpage");
         }
         return modelandview;
