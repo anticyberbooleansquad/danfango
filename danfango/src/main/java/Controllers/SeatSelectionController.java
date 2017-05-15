@@ -39,6 +39,8 @@ public class SeatSelectionController {
         Showing showing = (Showing) session.getAttribute("showing");
         String seatingLayout = showing.getTheatreRoom().getLayout();
         
+        ModelAndView modelandview;
+        
         if (seatingLayout != null) {
             seatingLayout = seatingLayout.replaceAll(" ", "");
             String[] rowsArray = seatingLayout.split("R");
@@ -68,9 +70,11 @@ public class SeatSelectionController {
             }
             // later have to make some of these seats unavailable
             request.setAttribute("seatingMatrix", seatingMatrix);
+            modelandview = new ModelAndView("seatselection");
         }
-        
-        ModelAndView modelandview = new ModelAndView("seatselection");
+        else{
+            modelandview = new ModelAndView("paymentpage");
+        }
         return modelandview;
     }
 
