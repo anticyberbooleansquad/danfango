@@ -39,7 +39,7 @@ public class LiveTickets {
         this.liveTicket.remove(ticket);
     }
     
-    public List<Ticket> getOrderByShowing(Showing showing)
+    public List<Ticket> getTicketsByShowing(Showing showing)
     {
         ArrayList tickets = new ArrayList<Ticket>();
         for(Ticket ticket : this.liveTicket)

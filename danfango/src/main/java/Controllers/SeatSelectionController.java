@@ -103,7 +103,7 @@ public class SeatSelectionController {
             }
             // make all locked live seats unavailable
             LiveTickets ts = ticketService.getLiveTickets();
-            List<Ticket> tickets = ts.getOrderByShowing(showing);
+            List<Ticket> tickets = ts.getTicketsByShowing(showing);
             for (Ticket ticket : tickets) {
                 Seat seat = ticket.getSeat();
                 char purchasedSeatRow = seat.getRow().charAt(0);
