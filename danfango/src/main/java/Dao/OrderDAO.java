@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import Model.Order;
+import Model.Orders;
 import org.hibernate.criterion.Restrictions;
 /**
  *
@@ -31,44 +31,44 @@ public class OrderDAO{
     }
 
     
-    public void addOrder(Order u) {
+    public void addOrder(Orders u) {
             Session session = this.sessionFactory.getCurrentSession();
             session.persist(u);
             logger.info("Order saved successfully, Order Details="+u);
     }
 
     
-    public void updateOrder(Order u) {
+    public void updateOrder(Orders u) {
             Session session = this.sessionFactory.getCurrentSession();
             session.update(u);
             logger.info("Order updated successfully, Order Details="+u);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Order> listOrders() {
+    public List<Orders> listOrders() {
             Session session = this.sessionFactory.getCurrentSession();
-            List<Order> ordersList = session.createQuery("from Order").list();
-            for(Order u : ordersList){
+            List<Orders> ordersList = session.createQuery("from Order").list();
+            for(Orders u : ordersList){
                     logger.info("Order List::"+u);
             }
             return ordersList;
     }
 
     
-    public Order getOrderById(int id) {
+    public Orders getOrderById(int id) {
             Session session = this.sessionFactory.getCurrentSession();		
-            Order u = (Order) session.load(Order.class, new Integer(id));
+            Orders u = (Orders) session.load(Orders.class, new Integer(id));
             logger.info("Order loaded successfully, Order details="+u);
             return u;
     }
     
-    public Order getOrderByEmail(String email) {
+    public Orders getOrderByEmail(String email) {
             Session session = this.sessionFactory.getCurrentSession();	
-            List orders = session.createCriteria(Order.class).add(Restrictions.eq("email", email)).list();
+            List orders = session.createCriteria(Orders.class).add(Restrictions.eq("email", email)).list();
             if (orders.isEmpty()){
                 return null;
             }
-            Order u = (Order) orders.get(0);
+            Orders u = (Orders) orders.get(0);
             logger.info("Order loaded successfully, Order details="+u);
             return u;
     }
@@ -76,7 +76,7 @@ public class OrderDAO{
     
     public void removeOrder(int id) {
             Session session = this.sessionFactory.getCurrentSession();
-            Order u = (Order) session.load(Order.class, new Integer(id));
+            Orders u = (Orders) session.load(Orders.class, new Integer(id));
             if(null != u){
                     session.delete(u);
             }

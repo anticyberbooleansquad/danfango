@@ -115,9 +115,11 @@
             <h1 class="spacing movietitle">MOVIE REVIEWS</h1>
 
             <div class="spacing row">
-                <div class="col-md-7">
-                    <a href="" data-toggle="modal" data-target="#myModalMessage" id="leavereviewbutton"  class="spacing btn-system btn-mini border-btn btn-gray"><b>LEAVE A REVIEW</b></a>
-                </div>
+                <c:if test="${user != null}">
+                    <div class="col-md-7">
+                        <a href="" data-toggle="modal" data-target="#myModalMessage" id="leavereviewbutton"  class="spacing btn-system btn-mini border-btn btn-gray"><b>LEAVE A REVIEW</b></a>
+                    </div>
+                </c:if>
             </div>
 
             <div class="modal fade" id="myModalMessage" role="dialog">
@@ -161,7 +163,7 @@
                 <div class="row spacing">
                     <div class="col-md-12">
                         <div class="reviewCard">
-                            <h4 class="theatreTimeCardsName">${review.title}</h4>
+                            <h4 class="theatreTimeCardsName">${review.title} By ${review.user}</h4>
                             <p class="theatreTimeCardsAddress">${review.rating}</p>
                             <p class ="ticketInfo">${review.content}</p>
                         </div>

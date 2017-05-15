@@ -11,50 +11,43 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Dao.OrderDAO;
-import Model.LiveOrders;
-import Model.Order;
+import Model.LiveTickets;
+import Model.Orders;
 
 @Service
 public class OrderService {
 
-        private LiveOrders liveOrders;
 	private OrderDAO orderDAO;
 
 	public void setOrderDAO(OrderDAO orderDAO) {
 		this.orderDAO = orderDAO;
 	}
-        
-        public void setLiveOrders(LiveOrders liveOrders)
-        {
-                this.liveOrders = liveOrders;
-        }
-
 	
 	@Transactional
-	public void addOrder(Order u) {
+	public void addOrder(Orders u) {
 		this.orderDAO.addOrder(u);
 	}
 
 	
 	@Transactional
-	public void updateOrder(Order u) {
+	public void updateOrder(Orders u) {
 		this.orderDAO.updateOrder(u);
 	}
 
 	
 	@Transactional
-	public List<Order> listOrders() {
+	public List<Orders> listOrders() {
 		return this.orderDAO.listOrders();
 	}
 
 	
 	@Transactional
-	public Order getOrderById(int id) {
+	public Orders getOrderById(int id) {
 		return this.orderDAO.getOrderById(id);
 	}
         
         @Transactional
-	public Order getOrderByEmail(String email) {
+	public Orders getOrderByEmail(String email) {
 		return this.orderDAO.getOrderByEmail(email);
 	}
 	
