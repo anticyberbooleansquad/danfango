@@ -9,9 +9,13 @@ package Controllers;
  *
  * @author johnlegutko
  */
+import Model.LiveTickets;
 import Model.Seat;
 import Model.Showing;
+import Model.Ticket;
+import Services.OrderService;
 import Services.SeatService;
+import Services.TicketService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,8 +36,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class SeatSelectionController {
 
     @Autowired
-    SeatService seatService
-    
+    SeatService seatService;
+    @Autowired
+    TicketService ticketService;
+
     @RequestMapping(value = "/seatselection")
     protected ModelAndView getSeatSelectionPage(HttpServletRequest request) {
 
@@ -44,7 +50,7 @@ public class SeatSelectionController {
         String seatingLayout = null;
         HttpSession session = request.getSession();
         Showing showing = (Showing) session.getAttribute("showing");
-        
+
         ModelAndView modelandview;
         seatingLayout = showing.getTheatreRoom().getLayout();
 
@@ -82,25 +88,39 @@ public class SeatSelectionController {
             }
             // make purchased seats unavailable
             List<Seat> purchasedSeats = seatService.getPurchasedSeatsByShowing(showing);
-            for(Seat seat: purchasedSeats){
+            for (Seat seat : purchasedSeats) {
                 char purchasedSeatRow = seat.getRow().charAt(0);
                 int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
                 // now that we have the right row seat for this seat search all of the columns for it
-                for(int i = 0; i < numColumns; i++){
+                for (int i = 0; i < numColumns; i++) {
                     Seat seatInMatrix = seatingMatrix[rowIndex][i];
-                    if(seatInMatrix != null){
-                        if(seatInMatrix.getId().equals(seat.getId())){
+                    if (seatInMatrix != null) {
+                        if (seatInMatrix.getId().equals(seat.getId())) {
                             seatInMatrix.setAvailable(false);
                         }
                     }
                 }
             }
-            // make all locked live seats unavailable 
-            
+            // make all locked live seats unavailable
+            LiveTickets ts = ticketService.getLiveTickets();
+            List<Ticket> tickets = ts.getOrderByShowing(showing);
+            for (Ticket ticket : tickets) {
+                Seat seat = ticket.getSeat();
+                char purchasedSeatRow = seat.getRow().charAt(0);
+                int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
+                for (int i = 0; i < numColumns; i++) {
+                    Seat seatInMatrix = seatingMatrix[rowIndex][i];
+                    if (seatInMatrix != null) {
+                        if (seatInMatrix.getId().equals(seat.getId())) {
+                            seatInMatrix.setAvailable(false);
+                        }
+                    }
+                }
+            }
+
             request.setAttribute("seatingMatrix", seatingMatrix);
             modelandview = new ModelAndView("seatselection");
-        }
-        else{
+        } else {
             modelandview = new ModelAndView("paymentpage");
         }
         return modelandview;
