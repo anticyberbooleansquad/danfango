@@ -13,10 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import Dao.TicketDAO;
 import Model.LiveTickets;
 import Model.Ticket;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class TicketService {
-
+        @Autowired
         private LiveTickets liveTickets;
 	private TicketDAO ticketDAO;
 

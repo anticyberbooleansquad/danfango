@@ -16,7 +16,10 @@ public class LiveTickets {
     
     private List<Ticket> liveTicket;
     
-    public LiveTickets(){}
+    public LiveTickets(){
+        this.liveTicket = new ArrayList<>();
+
+    }
 
     public List<Ticket> getLiveTicket() {
         return this.liveTicket;
@@ -41,7 +44,9 @@ public class LiveTickets {
         ArrayList tickets = new ArrayList<Ticket>();
         for(Ticket ticket : this.liveTicket)
         {
-            //
+            if (ticket.getShowing().equals(showing)){
+                tickets.add(ticket);
+            }
         }
         
         return this.liveTicket;
