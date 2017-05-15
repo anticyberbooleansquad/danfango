@@ -17,43 +17,43 @@ import Model.Orders;
 @Service
 public class OrdersService {
 
-	private OrdersDAO orderDAO;
+	private OrdersDAO ordersDAO;
 
-	public void setOrderDAO(OrdersDAO orderDAO) {
-		this.orderDAO = orderDAO;
+	public void setOrdersDAO(OrdersDAO ordersDAO) {
+		this.ordersDAO = ordersDAO;
 	}
 	
 	@Transactional
 	public void addOrder(Orders u) {
-		this.orderDAO.addOrder(u);
+		this.ordersDAO.addOrder(u);
 	}
 
 	
 	@Transactional
 	public void updateOrder(Orders u) {
-		this.orderDAO.updateOrder(u);
+		this.ordersDAO.updateOrder(u);
 	}
 
 	
 	@Transactional
 	public List<Orders> listOrders() {
-		return this.orderDAO.listOrders();
+		return this.ordersDAO.listOrders();
 	}
 
 	
 	@Transactional
 	public Orders getOrderById(int id) {
-		return this.orderDAO.getOrderById(id);
+		return this.ordersDAO.getOrderById(id);
 	}
         
         @Transactional
 	public Orders getOrderByEmail(String email) {
-		return this.orderDAO.getOrderByEmail(email);
+		return this.ordersDAO.getOrderByEmail(email);
 	}
 	
 	@Transactional
 	public void removeOrder(int id) {
-		this.orderDAO.removeOrder(id);
+		this.ordersDAO.removeOrder(id);
 	}
         	
 }
