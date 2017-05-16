@@ -39,6 +39,26 @@ $(function () {
     });
 });
 
+$(function() {
+    $("#payment-button").click(function(){
+        // userSelectedSeats
+        // redirect using ajax to the payment controller where we will handle locking tickets
+        // obviously add the selected seats to the ajax call 
+        
+        $.ajax({
+                url : 'http://localhost:8080/danfango/paymentpage', // Your Servlet mapping or JSP(not suggested)
+                data: {seatIds: userSelectedSeats},
+                type : 'POST',
+                success : function(response) {
+                    alert("success");
+                },
+                error : function(request, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+        });
+    });
+});
+
 
 $(function () {
     $(".seatButton").click(function () {
