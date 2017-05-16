@@ -33,29 +33,44 @@
 
             <h2 class="spacing accountfont underline">Purchase History</h2>
             <hr>
+
+
             <h2 class="spacing accountfont underline">My Theaters</h2>
+
+            <c:forEach items="${favoriteTheatres}" var="favoriteTheatre">
+                <div class="row spacing">
+                    <div class="col-md-7">
+                        <div class="theatreTimes">
+                            <h4 class="theatreTimeCardsName">${favoriteTheatre.theatre.name}</h4>
+                            <p class="theatreTimeCardsAddress">${favoriteTheatre.theatre.address}, ${favoriteTheatre.theatre.city} ${favoriteTheatre.theatre.state}, ${favoriteTheatre.theatre.zip}</p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+
             <hr>
             <!-- Start My Movies Carousel -->
-            <div class="recent-projects">
-                <h2 class="spacing accountfont underline">My Movies</h2>
-                <div class="spacing projects-carousel touch-carousel">
+            <h2 class="spacing accountfont underline">My Movies</h2>
+            <div class="row">
+                <div class="recent-projects">   
+                    <div class="spacing projects-carousel touch-carousel">
 
-                    <c:forEach items="${favoriteMovies}" var="favoriteMovie">
-                        <a href="/danfango/movieinfopage/${favoriteMovie.movie.id}">
-                            <div class="portfolio-item item">
-                                <div class="portfolio-border">
-                                    <div class="portfolio-thumb">
-                                        <div class="thumb-overlay"></div>
-                                        <img alt="" src="https://image.tmdb.org/t/p/w500/${favoriteMovie.movie.poster}" />
-                                    </div>
-                                    <div class="portfolio-details">
-                                        <h4>${favoriteMovie.movie.title}</h4>
+                        <c:forEach items="${favoriteMovies}" var="favoriteMovie">
+                            <a href="/danfango/movieinfopage/${favoriteMovie.movie.id}">
+                                <div class="portfolio-item item">
+                                    <div class="portfolio-border">
+                                        <div class="portfolio-thumb">
+                                            <div class="thumb-overlay"></div>
+                                            <img alt="" src="https://image.tmdb.org/t/p/w500/${favoriteMovie.movie.poster}" />
+                                        </div>
+                                        <div class="portfolio-details">
+                                            <h4>${favoriteMovie.movie.title}</h4>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </c:forEach>
-
+                            </a>
+                        </c:forEach>
+                    </div>
                 </div>
             </div>
             <!-- End My Movies Carousel -->
@@ -67,10 +82,15 @@
                 <div class="row spacing">
                     <div class="col-md-12">
                         <div class="reviewCard">
+                            <h4 class="theatreTimeCardsName">${review.title}</h4>
                             <h3 class="theatreTimeCardsName">${review.movie.title}</h3>
-                            <h4 class="theatreTimeCardsName">${review.title} By ${review.user.firstName} ${review.user.lastName}</h4>
                             <p class="theatreTimeCardsAddress">${review.rating}/5</p>
-                            <p class ="ticketInfo">${review.content}</p>
+                            <p class ="ticketInfo">
+                                <img class="posters" alt="" src="https://image.tmdb.org/t/p/w500/${review.movie.poster}" />
+
+                                ${review.content}
+
+                            </p>
                         </div>
                     </div>
                 </div>
