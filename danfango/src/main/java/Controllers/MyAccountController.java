@@ -70,16 +70,17 @@ public class MyAccountController {
         List<Purchase> userPurchases = new ArrayList<>();
 
         List<Orders> orders = ordersService.getOrdersByEmail(user.getEmail());
-
-        for (Orders order : orders) {
-            List<OrderTicket> tickets = orderTicketService.getOrderTicketByOrder(order);
-            Purchase p = new Purchase();
-            p.setOrder(order);
-            p.setTickets(tickets);
-            userPurchases.add(p);
+        if (orders != null) {
+            for (Orders order : orders) {
+                List<OrderTicket> tickets = orderTicketService.getOrderTicketByOrder(order);
+                Purchase p = new Purchase();
+                p.setOrder(order);
+                p.setTickets(tickets);
+                userPurchases.add(p);
+            }
         }
-        
-        System.out.println("USER PURCHASES: "+ userPurchases);
+
+        System.out.println("USER PURCHASES: " + userPurchases);
 
         request.setAttribute("userPurchases", userPurchases);
 
