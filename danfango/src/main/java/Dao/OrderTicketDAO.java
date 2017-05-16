@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import Model.OrderTicket;
 import Model.Ticket;
-import org.hibernate.criterion.Order;
+import Model.Order;
 import org.hibernate.criterion.Restrictions;
 /**
  *

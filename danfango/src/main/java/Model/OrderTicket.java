@@ -30,17 +30,17 @@ public class OrderTicket implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @OneToOne
-    private Orders order;
+    private Order order;
     @OneToOne
     private Ticket ticket;
 
     public OrderTicket(){}
     
-    public Orders getOrder() {
+    public Order getOrder() {
         return order;
     }
 
-    public void setOrder(Orders order) {
+    public void setOrder(Order order) {
         this.order = order;
     }
 

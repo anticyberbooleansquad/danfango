@@ -32,6 +32,20 @@
             <h2 class="spacing movietitle padding" style="text-align: center;">Hello ${user.firstName}</h2>
 
             <h2 class="spacing accountfont underline">Purchase History</h2>
+            <c:forEach items="${userPurchases}" var="purchase" varStatus="loop">
+                <div class="row spacing">
+                    <div class="col-md-12">
+                        <div class="reviewCard">
+                            <h4 class="theatreTimeCardsName">${purchase.tickets.ticket.showing.movie.title}</h4>
+                            <h3 class="theatreTimeCardsName">${purchase.order.orderDate}</h3>
+                            <p class="theatreTimeCardsAddress">${purchase.tickets.ticket.showing.theatre.name}/5</p>
+                            <p class ="ticketInfo">
+                                <img class="posters" alt="" src="https://image.tmdb.org/t/p/w500/${purchase.tickets.ticket.showing.movie.poster}" />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
             <hr>
 
 
