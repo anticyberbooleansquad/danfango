@@ -5,9 +5,12 @@ package Controllers;
  * @author joeg332
  */
 import Model.Movie;
+import Model.Showing;
 import Services.MovieService;
+import Services.ShowingService;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +27,8 @@ public class HomeController{
     
     @Autowired
     MovieService movieService;
+    @Autowired 
+    ShowingService showingService;
     
     @RequestMapping(value = "/index")
     protected ModelAndView getHomePage(HttpServletRequest request){
@@ -32,7 +37,21 @@ public class HomeController{
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
         
-        List<Movie> movies = movieService.getMoviesTopRated();
+        HashSet<Movie> nowPlayingHS = new HashSet<>();
+
+        List<Showing> showings = showingService.getShowingByTimestamp();
+        List<Movie> nowPlayingTemp = movieService.getMoviesNowPlaying();
+
+        for (Movie m : nowPlayingTemp) {
+            for (Showing s : showings) {
+                if (s.getMovie().getTitle().equals(m.getTitle())) {
+                    nowPlayingHS.add(m);
+                }
+            }
+        }
+
+        List<Movie> movies = new ArrayList<>(nowPlayingHS);
+
             
         request.setAttribute("movies", movies);
       

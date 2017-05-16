@@ -51,7 +51,6 @@
             <ul class="spacing nav nav-pills">
                 <li class="active" role="presentation"><a href="/danfango/movieinfopage/${movie.id}"><h3>Overview</h3></a></li>
                 <li role="presentation"><a href="/danfango/ticketselectpage/${movie.id}"><h3>Movie Times + Tickets</h3></a></li>
-                <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Movie Reviews</h3></a></li>
                 <li role="presentation"><a href="/danfango/movietrailerpage/${movie.id}"><h3>Trailers</h3></a></li>
             </ul>
 
@@ -167,7 +166,7 @@
                 <div class="row spacing">
                     <div class="col-md-12">
                         <div class="reviewCard">
-                            <h4 class="theatreTimeCardsName">${review.title} By ${review.user}</h4>
+                            <h4 class="theatreTimeCardsName">${review.title} By ${review.user.firstName} ${review.user.lastName}</h4>
                             <p class="theatreTimeCardsAddress">${review.rating}/5</p>
                             <fieldset class="rating">
                                 <input type="radio" id="star${review.rating}" name="rating" value="${review.rating}" />
