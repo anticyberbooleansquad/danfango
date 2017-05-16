@@ -38,8 +38,12 @@ public class PaymentController{
     @Autowired
     SeatService seatService;
     
-    @RequestMapping(value = "/paymentpage", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
-    protected ModelAndView getPaymentPage(@RequestParam(value="seatNumbers[]") String[] seatNumbers, HttpServletRequest request){
+    @RequestMapping(value = "/lockSeats", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    protected ModelAndView lockSeats(@RequestParam(value="seatNumbers[]") String[] seatNumbers, HttpServletRequest request){
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);  
+        
         HttpSession session = request.getSession();
         Showing showing = (Showing) session.getAttribute("showing");
         TheatreRoom room = showing.getTheatreRoom();
@@ -59,6 +63,16 @@ public class PaymentController{
                 liveTickets.addTicket(ticket);   
             }
         }
+        
+        ModelAndView modelandview = new ModelAndView("paymentpage");
+        return modelandview;
+    }
+    
+    
+    
+    
+    @RequestMapping(value = "/paymentpage")
+    protected ModelAndView getPaymentPage(HttpServletRequest request){
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);  
