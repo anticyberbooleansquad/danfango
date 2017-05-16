@@ -40,15 +40,22 @@ public class SeatSelectionController {
     @Autowired
     TicketService ticketService;
 
-    @RequestMapping(value = "/seatselection")
-    protected ModelAndView getSeatSelectionPage(HttpServletRequest request) {
-
+    @RequestMapping(value = "/seatselection", method = RequestMethod.POST)
+    protected ModelAndView getSeatSelectionPage(@RequestParam("adult") int numAdults, @RequestParam("senior") int numSeniors, 
+            @RequestParam("child") int numChildren, HttpServletRequest request) {
+        
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
 
         String seatingLayout = null;
         HttpSession session = request.getSession();
+        session.setAttribute("numAdults", numAdults);
+        request.setAttribute("numAdults", numAdults);
+        session.setAttribute("numSeniors", numSeniors);
+        request.setAttribute("numSeniors", numSeniors);
+        session.setAttribute("numChildren", numChildren);
+        request.setAttribute("numChildren", numChildren);
         Showing showing = (Showing) session.getAttribute("showing");
 
         ModelAndView modelandview;
