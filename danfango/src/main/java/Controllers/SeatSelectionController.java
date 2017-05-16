@@ -95,15 +95,15 @@ public class SeatSelectionController {
                 seatNum = 1;
             }
             // make purchased seats unavailable
-            List<Seat> purchasedSeats = seatService.getPurchasedSeatsByShowing(showing);
-            for (Seat seat : purchasedSeats) {
-                char purchasedSeatRow = seat.getRow().charAt(0);
+            List<Ticket> purchasedTickets = ticketService.getTicketByShowing(showing);
+            for (Ticket ticket : purchasedTickets) {
+                char purchasedSeatRow = ticket.getSeat().getRow().charAt(0);
                 int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
                 // now that we have the right row seat for this seat search all of the columns for it
                 for (int i = 0; i < numColumns; i++) {
                     Seat seatInMatrix = seatingMatrix[rowIndex][i];
                     if (seatInMatrix != null) {
-                        if (seatInMatrix.getId().equals(seat.getId())) {
+                        if (seatInMatrix.getId().equals(ticket.getSeat().getId())) {
                             seatInMatrix.setAvailable(false);
                         }
                     }
