@@ -15,6 +15,7 @@ public class TheatreShowings {
     
     private Theatre theatre;
     private List<Showing> showings;
+    private boolean favorite = false;
 
     public Theatre getTheatre() {
         return theatre;
@@ -30,6 +31,14 @@ public class TheatreShowings {
 
     public void setShowings(List<Showing> showings) {
         this.showings = showings;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
     
     

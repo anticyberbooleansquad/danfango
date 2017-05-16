@@ -72,6 +72,10 @@
         <property name="favoriteMovieDAO" ref="favoriteMovieDAO"></property>
     </bean>
     
+    <bean id="favoriteTheatreService" class="Services.FavoriteTheatreService">
+        <property name="favoriteTheatreDAO" ref="favoriteTheatreDAO"></property>
+    </bean>
+    
     <bean id="movieGenreService" class="Services.MovieGenreService">
         <property name="movieGenreDAO" ref="movieGenreDAO"></property>
     </bean>
@@ -90,6 +94,9 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     <bean id="favoriteMovieDAO" class="Dao.FavoriteMovieDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="favoriteTheatreDAO" class="Dao.FavoriteTheatreDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     <bean id="userDAO" class="Dao.UserDAO">
