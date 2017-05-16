@@ -9,12 +9,16 @@ package Controllers;
  *
  * @author johnlegutko
  */
+import Model.FavoriteMovie;
+import Model.FavoriteTheatre;
 import Model.Movie;
 import Model.MovieShowings;
 import Model.Showing;
 import Model.Theatre;
 import Model.TheatreMovies;
 import Model.TheatreShowings;
+import Model.User;
+import Services.FavoriteTheatreService;
 import Services.MovieService;
 import Services.ShowingService;
 import Services.TheatreService;
@@ -23,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -41,10 +46,13 @@ public class TicketSelectController {
     ShowingService showingService;
     @Autowired
     TheatreService theatreService;
+    @Autowired
+    FavoriteTheatreService favoriteTheatreService;
 
     @RequestMapping(value = "/ticketselectpage/{movieId}")
     protected ModelAndView getTicketSelectPage(@PathVariable(value = "movieId") int id, HttpServletRequest request) {
-
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
@@ -62,6 +70,10 @@ public class TicketSelectController {
             TheatreShowings theatreShowings = new TheatreShowings();
             theatreShowings.setTheatre(theatre);
             theatreShowings.setShowings(showingsForTheatre);
+            if(user != null && favoriteTheatreService.getFavoriteTheatreByUserAndTheatre(user, theatre) != null)
+            {
+                theatreShowings.setFavorite(true);
+            }
             showingsPerTheatre.add(theatreShowings);
         }
 
@@ -115,7 +127,31 @@ public class TicketSelectController {
         return modelandview;
     }
     
+    @RequestMapping(value = "/addFavoriteTheatre/{theatreId}/{movieId}")
+    public ModelAndView addFavorite(@PathVariable(value="theatreId") int id, @PathVariable(value="movieId") int movId, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        Theatre theatre = theatreService.getTheatreById(id);
+        FavoriteTheatre favorite = new FavoriteTheatre();
+        favorite.setTheatre(theatre);
+        favorite.setUser(user);
+        favoriteTheatreService.addFavoriteTheatre(favorite);
+        String redirect = "redirect:/ticketselectpage/" + movId;
+        ModelAndView modelandview = new ModelAndView(redirect);
+        return modelandview;
+    }
     
+    @RequestMapping(value = "/remFavoriteTheatre/{theatreId}/{movieId}")
+    public ModelAndView removeFavorite(@PathVariable(value="theatreId") int id, @PathVariable(value="movieId") int movId, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        Theatre theatre = theatreService.getTheatreById(id);
+        FavoriteTheatre favorite = favoriteTheatreService.getFavoriteTheatreByUserAndTheatre(user, theatre);
+        favoriteTheatreService.removeFavoriteTheatre(favorite.getId());
+        String redirect = "redirect:/ticketselectpage/" + movId;
+        ModelAndView modelandview = new ModelAndView(redirect);
+        return modelandview;
+    }
     
 
     public String timeConvert(String timeString) {

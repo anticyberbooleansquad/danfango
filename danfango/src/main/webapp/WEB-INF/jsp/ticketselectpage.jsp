@@ -70,7 +70,20 @@
                     <c:forEach items="${showingsPerTheatre}" var="theatreShowings">
 
                         <div class="theatreTimes">
-                            <h4 class="theatreTimeCardsName">${theatreShowings.theatre.name} <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
+                            <h4 class="theatreTimeCardsName">${theatreShowings.theatre.name} 
+                                <c:if test="${user != null}">
+                                    <c:if test="${theatreShowings.favorite == true}">
+                                        <form role="form" data-toggle="validator" action="/danfango/remFavoriteTheatre/${theatreShowings.theatre.id}/${movie.id}" id="remFavorite" method="GET">
+                                            <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true" onclick="document.getElementById('remFavorite').submit()"></i>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${theatreShowings.favorite == false}">
+                                        <form role="form" data-toggle="validator" action="/danfango/addFavoriteTheatre/${theatreShowings.theatre.id}/${movie.id}" id="addFavorite" method="GET">
+                                            <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" onclick="document.getElementById('addFavorite').submit()"></i>
+                                        </form>
+                                    </c:if>
+                                </c:if>
+                            </h4>
                             <p class="theatreTimeCardsAddress">${theatreShowings.theatre.address}, ${theatreShowings.theatre.city} ${theatreShowings.theatre.state}</p>
 
                             <c:if test="${theatreShowings.theatre.seatingType eq 'Reserved'}">

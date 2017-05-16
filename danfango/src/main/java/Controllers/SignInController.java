@@ -54,7 +54,7 @@ public class SignInController {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            modelandview = new ModelAndView("index");
+            modelandview = new ModelAndView("redirect:/index");
         } else {
             modelandview = new ModelAndView("signinpage");
             modelandview.addObject("signinError", "Incorrect credentials entered. Please try again.");
@@ -113,7 +113,7 @@ public class SignInController {
         HttpSession session = request.getSession();
         session.invalidate();
 
-        ModelAndView modelandview = new ModelAndView("index");
+        ModelAndView modelandview = new ModelAndView("redirect:/index");
         return modelandview;
     }
 }

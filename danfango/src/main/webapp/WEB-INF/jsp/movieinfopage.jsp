@@ -36,12 +36,12 @@
             <h1 class="spacing movietitle">${movie.title}
                 <c:if test="${user != null}">
                     <c:if test="${favoriteState == true}">
-                        <form role="form" data-toggle="validator" action="/danfango/removeFavorite/${movie.id}" id="remFavorite" method="GET">
+                        <form role="form" data-toggle="validator" action="/danfango/removeFavorite/${movie.id}" id="remFavorite" method="GET" style="display:inline">
                             <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true" onclick="document.getElementById('remFavorite').submit()"></i>
                         </form>
                     </c:if>
                     <c:if test="${favoriteState == false}">
-                        <form role="form" data-toggle="validator" action="/danfango/addFavorite/${movie.id}" id="addFavorite" method="GET">
+                        <form role="form" data-toggle="validator" action="/danfango/addFavorite/${movie.id}" id="addFavorite" method="GET" style="display:inline">
                             <i id="favorite" class="fa fa-heart fa-inverse hi" aria-hidden="true" onclick="document.getElementById('addFavorite').submit()"></i>
                         </form>
                     </c:if>
