@@ -67,10 +67,7 @@ public class PaymentController{
         ModelAndView modelandview = new ModelAndView("paymentpage");
         return modelandview;
     }
-    
-    
-    
-    
+ 
     @RequestMapping(value = "/paymentpage")
     protected ModelAndView getPaymentPage(HttpServletRequest request){
         String contextPath = request.getContextPath();

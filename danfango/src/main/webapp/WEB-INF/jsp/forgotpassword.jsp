@@ -1,7 +1,7 @@
 <%-- 
-    Document   : movienews
-    Created on : Apr 3, 2017, 7:04:16 PM
-    Author     : johnlegutko
+    Document   : signinpage
+    Created on : Apr 2, 2017, 7:52:39 PM
+    Author     : joeg332
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,56 +20,42 @@
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
-
     </head>
+
     <body>
 
         <jsp:include page="header.jsp" >
             <jsp:param name="contextPath" value="${contextPath}"/>
         </jsp:include>
 
-        <div class="spacing container">
+        <div class="spacing container signinmargin">
 
-            <div class="spacing screen">Theatre Screen</div>
-           <!-- <input type="" name="numAdults" value="${sessionScope.numAdults}"/>
-            <input type="" name="numSeniors" value="${sessionScope.numSeniors}"/>
-            <input type="" name="numChildren" value="${sessionScope.numChildren}"/> -->
-            <p>${numAdults}</p>
-            <p>${numSeniors}</p>
-            <p>${numChildren}</p>
+            <div class="row">
+                <div class="col-md-6 spacing border">
 
-            <div class ="seats">
+                    <h1 class="spacing">Request New Password</h1>
+
+                    <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/submitEmail">
+
+                        <div class="controls">
+                            <input type="text" name="email" id="email" placeholder="E-mail" required data-error="Please enter your E-mail">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        
+                        <h2>${sentEmail}</h2>
+                        <h2>${nonEmail}</h2>
+
+                        <input type="submit" value="Request" class="btn-system btn-large btn-gray joinbutton spacing">
+
+                    </form>
 
 
-                <c:forEach items="${seatingMatrix}" var="row">
-                    <div class="row row-centered spacing">
-                        <c:forEach items="${row}" var="seat">
-                            <c:choose>
-                                <c:when test="${seat.available eq true}">
-                                    <div class="col-md-1 col-centered"><button id="${seat.row}${seat.seatNumber}" type="button" class="btn btn-default seatButton seat-unselected">${seat.row}${seat.seatNumber}</button></div>
-                                    </c:when>
-                                    <c:otherwise>
-                                    <div class="col-md-1 col-centered"></div>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </div>
-                </c:forEach>
-
+                </div>
             </div>
-            <br>
-            <div class ="row row-centered">
-                <button type="button" class="btn btn-default changeSeats">CHANGE SEATS</button>
-            </div>
-            <div class ="row row-centered">
-                
-                    <button type="button" id="payment-button" class="btn btn-default changeSeats">Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-                
-            </div>
-            
+
+
+
         </div>
-
-
 
 
         <!-- Start Footer Section -->
@@ -123,7 +109,6 @@
         </footer>
         <!-- End Footer Section -->
 
-
     </div>
     <!-- End Full Body Container -->
 
@@ -136,8 +121,6 @@
             <div class="dot2"></div>
         </div>
     </div>
-
-
 
     <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
     <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
@@ -162,7 +145,6 @@
     <script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
     <script src="<c:url value="/resources/js/myjs.js" />"></script>
     <script src="<c:url value="/resources/js/script.js" />"></script>
-
-
 </body>
+
 </html>
