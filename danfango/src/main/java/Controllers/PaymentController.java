@@ -136,6 +136,7 @@ public class PaymentController{
         Orders order = new Orders();
         order.setEmail(email);
         order.setOrderDate(today);
+        order.setPrice(totalPrice);
         ordersService.addOrder(order);
         
         //get tickets off of the session
@@ -262,7 +263,7 @@ public class PaymentController{
             message.setSubject("Tickets");
             // Now set the actual message
             System.out.println("orderid: " + order.getId());
-            message.setText("Your orderId is: " + order.getId() + "   you paid: $"+ order.getPrice() );
+            message.setText("Your orderId is: " + order.getId() + "   you paid: $"+ String.format("%.2f", order.getPrice()));
             // Send message
             Transport.send(message);
             System.out.println("Sent message successfully....");
