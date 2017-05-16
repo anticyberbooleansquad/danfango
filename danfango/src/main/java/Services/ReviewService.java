@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import Dao.ReviewDAO;
 import Model.Movie;
 import Model.Review;
+import Model.User;
 
 @Service
 public class ReviewService {
@@ -51,6 +52,12 @@ public class ReviewService {
         public List<Review> getReviewsByMovie(Movie movie)
         {
             return this.reviewDAO.getReviewsByMovie(movie);
+        }
+        
+        @Transactional
+        public List<Review> getReviewsByUser(User user)
+        {
+            return this.reviewDAO.getReviewsByUser(user);
         }
 	
 	@Transactional

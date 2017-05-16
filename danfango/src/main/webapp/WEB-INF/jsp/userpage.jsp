@@ -19,7 +19,6 @@
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
-
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
     </head>
     <body>
@@ -41,81 +40,21 @@
                 <h2 class="spacing accountfont underline">My Movies</h2>
                 <div class="spacing projects-carousel touch-carousel">
 
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
+                    <c:forEach items="${favoriteMovies}" var="favoriteMovie">
+                        <a href="/danfango/movieinfopage/${favoriteMovie.movie.id}">
+                            <div class="portfolio-item item">
+                                <div class="portfolio-border">
+                                    <div class="portfolio-thumb">
+                                        <div class="thumb-overlay"></div>
+                                        <img alt="" src="https://image.tmdb.org/t/p/w500/${favoriteMovie.movie.poster}" />
+                                    </div>
+                                    <div class="portfolio-details">
+                                        <h4>${favoriteMovie.movie.title}</h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/danfango/movieinfopage.html">
-                        <div class="portfolio-item item">
-                            <div class="portfolio-border">
-                                <div class="portfolio-thumb">
-                                    <div class="thumb-overlay"></div>
-                                    <img alt="" src="resources/images/movies/legobatman.jpg" />
-                                </div>
-                                <div class="portfolio-details">
-                                    <h4>Movie Title</h4>
-                                    <h5>Year</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
+                        </a>
+                    </c:forEach>
 
                 </div>
             </div>
@@ -123,8 +62,21 @@
             <hr>
 
             <h2 class="spacing accountfont underline">My Reviews</h2>
+
+            <c:forEach items="${userReviews}" var="review" varStatus="loop">
+                <div class="row spacing">
+                    <div class="col-md-12">
+                        <div class="reviewCard">
+                            <h3 class="theatreTimeCardsName">${review.movie.title}</h3>
+                            <h4 class="theatreTimeCardsName">${review.title} By ${review.user.firstName} ${review.user.lastName}</h4>
+                            <p class="theatreTimeCardsAddress">${review.rating}/5</p>
+                            <p class ="ticketInfo">${review.content}</p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
             <hr>
-            
+
             <h2 class="spacing accountfont underline">Change Account Credentials</h2>
             ${UsedEmail}
             <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/changeemail">

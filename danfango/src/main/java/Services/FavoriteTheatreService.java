@@ -52,6 +52,11 @@ public class FavoriteTheatreService {
 	public FavoriteTheatre getFavoriteTheatreByUserAndTheatre(User user, Theatre theatre) {
 		return this.favoriteTheatreDAO.getFavoriteTheatreByUserAndTheatre(user, theatre);
 	}
+        
+        @Transactional
+	public List<FavoriteTheatre> getFavoriteTheatresByUser(User user) {
+		return this.favoriteTheatreDAO.getFavoriteTheatresByUser(user);
+	}
 	
 	@Transactional
 	public void removeFavoriteTheatre(int id) {

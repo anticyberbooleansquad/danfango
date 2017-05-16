@@ -93,7 +93,7 @@
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
-                            <h2>There are no showings for ${movie.title}</h2>
+                            <h2>There are no showings for ${movie.title}. Check back soon!</h2>
                         </c:otherwise>
                     </c:choose>
 

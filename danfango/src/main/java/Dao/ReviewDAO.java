@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Review;
+import Model.User;
 import org.hibernate.criterion.Restrictions;
 /**
  *
@@ -66,6 +67,16 @@ public class ReviewDAO{
     public List<Review> getReviewsByMovie(Movie movie) {
             Session session = this.sessionFactory.getCurrentSession();	
             List reviews = session.createCriteria(Review.class).add(Restrictions.eq("movie", movie)).list();
+            if (reviews.isEmpty()){
+                return null;
+            }
+            logger.info("Reviews loaded successfully, Reviews details="+reviews);
+            return reviews;
+    }
+    
+    public List<Review> getReviewsByUser(User user) {
+            Session session = this.sessionFactory.getCurrentSession();	
+            List reviews = session.createCriteria(Review.class).add(Restrictions.eq("user", user)).list();
             if (reviews.isEmpty()){
                 return null;
             }
