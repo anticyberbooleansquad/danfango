@@ -33,23 +33,19 @@
             <div class="row">
                 <div class="col-md-6 spacing border">
 
-                    <h1 class="spacing">SIGN-IN TO DANFANGO<font color="EA6630"><b>VIP</b></font></h1>
+                    <h1 class="spacing">Request New Password</h1>
 
-                    <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/submitCredentials">
+                    <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/submitEmail">
 
                         <div class="controls">
                             <input type="text" name="email" id="email" placeholder="E-mail" required data-error="Please enter your E-mail">
                             <div class="help-block with-errors"></div>
                         </div>
-                        <div class="controls">
-                            <input type="text" name="password" id="password" placeholder="Password" required data-error="Please enter your Password">
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <a href="/danfango/forgotpassword">Forgot Password</a><br/>
                         
-                        <h2>${signinError}</h2>
+                        <h2>${sentEmail}</h2>
+                        <h2>${nonEmail}</h2>
 
-                        <input type="submit" value="Sign-In" class="btn-system btn-large btn-gray joinbutton spacing">
+                        <input type="submit" value="Request" class="btn-system btn-large btn-gray joinbutton spacing">
 
                     </form>
 

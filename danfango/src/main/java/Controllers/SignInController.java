@@ -11,6 +11,8 @@ import Services.AuthenticationService;
 import Services.UserService;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 @Controller
 public class SignInController {
@@ -116,4 +122,94 @@ public class SignInController {
         ModelAndView modelandview = new ModelAndView("redirect:/index");
         return modelandview;
     }
+    
+    @RequestMapping(value = "/forgotpassword")
+    protected ModelAndView forgotPassword(HttpServletRequest request)
+    {
+        HttpSession session = request.getSession();
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        return new ModelAndView("forgotpassword");
+    }
+    
+    @RequestMapping(value = "/submitEmail", method = RequestMethod.POST)
+    protected ModelAndView forgotPassword(@RequestParam("email") String email, HttpServletRequest request)
+    {
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        User user = userService.getUserByEmail(email);
+        if(user != null)
+        {
+            String newPassword = getSaltString();
+            user.setPassword(authenticationService.hash(newPassword));
+            userService.updateUser(user);
+            try{
+                sendEmail(email, newPassword);
+            }
+            catch(Exception e)
+            {
+                System.out.println("email failed");
+            }
+            request.setAttribute("sentEmail", "An email has been sent with your temporary password");
+        }
+        else
+        {
+            request.setAttribute("nonEmail", "The email you have selected is not  attached to an account");
+        }
+        return new ModelAndView("forgotpassword");
+    }
+    
+    protected String getSaltString() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 18) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
+    }
+    
+    protected void sendEmail(String email, String password) throws AddressException, MessagingException
+    {
+        Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("aspencse308@gmail.com", "aspen308team");
+			}
+		  });
+        // Recipient's email ID needs to be mentioned.
+        String to = email;
+        // Sender's email ID needs to be mentioned
+        String from = "aspencse308@gmail.com";
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            // Set Subject: header field
+            message.setSubject("Temporary Password");
+            // Now set the actual message
+            System.out.println("password: " + password);
+            message.setText("Your temporary password is: " + password);
+            // Send message
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        }catch (MessagingException mex) {
+            mex.printStackTrace();
+        }  
+    }
+    
 }
