@@ -21,6 +21,7 @@ import Model.TheatreMovies;
 import Model.TheatreShowings;
 import Services.MovieGenreService;
 import Model.User;
+import Services.FavoriteMovieService;
 import Services.FavoriteTheatreService;
 import Services.MovieService;
 import Services.ShowingService;
@@ -58,6 +59,8 @@ public class TicketSelectController {
     TheatreService theatreService;
     @Autowired
     FavoriteTheatreService favoriteTheatreService;
+    @Autowired
+    FavoriteMovieService favoriteMovieService;
 
     @RequestMapping(value = "/ticketselectpage/{movieId}")
     protected ModelAndView getTicketSelectPage(@PathVariable(value = "movieId") int id, HttpServletRequest request) {
@@ -160,11 +163,12 @@ public class TicketSelectController {
 
     @RequestMapping(value = "/headerticketselectpage")
     protected ModelAndView getHeaderTicketSelectPage(HttpServletRequest request) {
-
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
-        
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         request.setAttribute("date", dateFormat.format(date));
@@ -176,67 +180,19 @@ public class TicketSelectController {
         List<Integer> theatreAgencyIds = theatreService.getTheatreIds();
         for (int tid : theatreAgencyIds) {
             Theatre theatre = theatreService.getTheatreByAgencyTheatreId(tid);
-            System.out.println("THEATRE NAME:" + theatre.getName());
-            TheatreMovies tm = new TheatreMovies();
-            tm.setTheatre(theatre);
             allTheatresList.add(theatre);
-            List<MovieShowings> allMovieShowings = new ArrayList<>();
-
-            //List<Showing> showingsForTheatre = showingService.getShowingByTheatre(theatre);
-            List<Integer> movieAgencyIds = showingService.getMovieIdsByTheatre(theatre);
-            if (movieAgencyIds != null) {
-                for (int mid : movieAgencyIds) {
-                    Movie movie = movieService.getMovieById(mid);
-                    List<Showing> movieShowings = showingService.getShowingByMovieAndTheatreAndTime(movie, theatre, now);
-                    MovieShowings ms = new MovieShowings();
-                    movie.setRunTime(timeConvert(movie.getRunTime()));
-                    ms.setMovie(movie);
-                    ms.setShowings(movieShowings);
-                    allMovieShowings.add(ms);
-                }
-
-                tm.setMovieShowings(allMovieShowings);
-                theatreMovies.add(tm);
-            }
-
         }
 
-        theatreMovies = theatreMovies.subList(1, 5);
-        request.setAttribute("theatreMovies", theatreMovies);
-        request.setAttribute("allTheatresList", allTheatresList);
-
-        ModelAndView modelandview = new ModelAndView("headerticketselectpage");
-        return modelandview;
-    }
-    
-    @RequestMapping(value = "/headerticketselectpage/date")
-    protected ModelAndView getHeaderTicketSelectPage(@RequestParam("showingDate") String date, HttpServletRequest request) {
-
-        String contextPath = request.getContextPath();
-        System.out.println("Path: " + contextPath);
-        request.setAttribute("contextPath", contextPath);
-        
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        Date startDate = null;
-        try {
-            startDate = df.parse(date);
-            String newDateString = df.format(startDate);
-            System.out.println(newDateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Timestamp now = new Timestamp(startDate.getTime());
-
-        List<TheatreMovies> theatreMovies = new ArrayList<>();
-
-        List<Integer> theatreAgencyIds = theatreService.getTheatreIds();
+        theatreAgencyIds = theatreAgencyIds.subList(1, 5);
         for (int tid : theatreAgencyIds) {
             Theatre theatre = theatreService.getTheatreByAgencyTheatreId(tid);
             System.out.println("THEATRE NAME:" + theatre.getName());
             TheatreMovies tm = new TheatreMovies();
             tm.setTheatre(theatre);
             List<MovieShowings> allMovieShowings = new ArrayList<>();
-
+            if (user != null && favoriteTheatreService.getFavoriteTheatreByUserAndTheatre(user, theatre) != null) {
+                tm.setFavorite(true);
+            }
             //List<Showing> showingsForTheatre = showingService.getShowingByTheatre(theatre);
             List<Integer> movieAgencyIds = showingService.getMovieIdsByTheatre(theatre);
             if (movieAgencyIds != null) {
@@ -244,6 +200,9 @@ public class TicketSelectController {
                     Movie movie = movieService.getMovieById(mid);
                     List<Showing> movieShowings = showingService.getShowingByMovieAndTheatreAndTime(movie, theatre, now);
                     MovieShowings ms = new MovieShowings();
+                    if (user != null && favoriteMovieService.getFavoriteMovieByUserAndMovie(user, movie) != null) {
+                        ms.setFavorite(true);
+                    }
                     movie.setRunTime(timeConvert(movie.getRunTime()));
                     ms.setMovie(movie);
                     ms.setShowings(movieShowings);
@@ -256,22 +215,26 @@ public class TicketSelectController {
 
         }
 
-        theatreMovies = theatreMovies.subList(1, 5);
         request.setAttribute("theatreMovies", theatreMovies);
-        request.setAttribute("date", date);
-
+        request.setAttribute("allTheatresList", allTheatresList);
 
         ModelAndView modelandview = new ModelAndView("headerticketselectpage");
         return modelandview;
     }
-    
-    @RequestMapping(value = "/headerticketselectpage/theatreFilter")
-    protected ModelAndView getHeaderTicketSelectPage(@RequestParam("showingDate") String date, @RequestParam("theatreId") int theatreId, HttpServletRequest request) {
 
+    @RequestMapping(value = "/headerticketselectpage/dateAndtheatre")
+    protected ModelAndView getHeaderTicketSelectPageDateAndTheatre(@RequestParam("showingDate") String date, @RequestParam("theatre") int theatreId, HttpServletRequest request) {
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
-        
+
+        if (date.equals("")) {
+            System.out.println("DATE BEFORE: " + date);
+            date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+            System.out.println("DATE AFTER: " + date);
+
+        }
+
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date startDate = null;
         try {
@@ -289,17 +252,135 @@ public class TicketSelectController {
         List<Integer> theatreAgencyIds = theatreService.getTheatreIds();
         for (int tid : theatreAgencyIds) {
             Theatre theatre = theatreService.getTheatreByAgencyTheatreId(tid);
-            System.out.println("THEATRE NAME:" + theatre.getName());
-            TheatreMovies tm = new TheatreMovies();
-            tm.setTheatre(theatre);
             allTheatresList.add(theatre);
+        }
+
+        Theatre theatre = theatreService.getTheatreById(theatreId);
+        TheatreMovies tm = new TheatreMovies();
+        tm.setTheatre(theatre);
+        List<MovieShowings> allMovieShowings = new ArrayList<>();
+
+        List<Integer> movieAgencyIds = showingService.getMovieIdsByTheatre(theatre);
+        if (movieAgencyIds != null) {
+            for (int mid : movieAgencyIds) {
+                Movie movie = movieService.getMovieById(mid);
+                List<Showing> movieShowings = showingService.getShowingByMovieAndTheatreAndTime(movie, theatre, now);
+                MovieShowings ms = new MovieShowings();
+                movie.setRunTime(timeConvert(movie.getRunTime()));
+                ms.setMovie(movie);
+                ms.setShowings(movieShowings);
+                allMovieShowings.add(ms);
+            }
+
+            tm.setMovieShowings(allMovieShowings);
+            theatreMovies.add(tm);
+        }
+
+        request.setAttribute("theatreMovies", theatreMovies);
+        request.setAttribute("allTheatresList", allTheatresList);
+        request.setAttribute("date", date);
+
+        ModelAndView modelandview = new ModelAndView("headerticketselectpage");
+        return modelandview;
+    }
+
+    @RequestMapping(value = "/headerticketselectpage/{theatreId}")
+    protected ModelAndView getHeaderTicketSelectPageTheatreId(@PathVariable(value = "theatreId") int theatreId, HttpServletRequest request) {
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = null;
+        try {
+            startDate = df.parse(date);
+            String newDateString = df.format(startDate);
+            System.out.println(newDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Timestamp now = new Timestamp(startDate.getTime());
+
+        List<TheatreMovies> theatreMovies = new ArrayList<>();
+        List<Theatre> allTheatresList = new ArrayList<>();
+
+        List<Integer> theatreAgencyIds = theatreService.getTheatreIds();
+        for (int tid : theatreAgencyIds) {
+            Theatre theatre = theatreService.getTheatreByAgencyTheatreId(tid);
+            allTheatresList.add(theatre);
+        }
+
+        Theatre theatre = theatreService.getTheatreById(theatreId);
+        TheatreMovies tm = new TheatreMovies();
+        tm.setTheatre(theatre);
+        List<MovieShowings> allMovieShowings = new ArrayList<>();
+
+        List<Integer> movieAgencyIds = showingService.getMovieIdsByTheatre(theatre);
+        if (movieAgencyIds != null) {
+            for (int mid : movieAgencyIds) {
+                Movie movie = movieService.getMovieById(mid);
+                List<Showing> movieShowings = showingService.getShowingByMovieAndTheatreAndTime(movie, theatre, now);
+                MovieShowings ms = new MovieShowings();
+                movie.setRunTime(timeConvert(movie.getRunTime()));
+                ms.setMovie(movie);
+                ms.setShowings(movieShowings);
+                allMovieShowings.add(ms);
+            }
+
+            tm.setMovieShowings(allMovieShowings);
+            theatreMovies.add(tm);
+        }
+
+        request.setAttribute("theatreMovies", theatreMovies);
+        request.setAttribute("allTheatresList", allTheatresList);
+        request.setAttribute("date", date);
+
+        ModelAndView modelandview = new ModelAndView("headerticketselectpage");
+        return modelandview;
+    }
+
+    @RequestMapping(value = "/headerticketselectpage/zip/{zipcode}")
+    protected ModelAndView getHeaderTicketSelectPageZipCode(@PathVariable(value = "zipcode") String zipcode, HttpServletRequest request) {
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = null;
+        try {
+            startDate = df.parse(date);
+            String newDateString = df.format(startDate);
+            System.out.println(newDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Timestamp now = new Timestamp(startDate.getTime());
+
+        List<TheatreMovies> theatreMovies = new ArrayList<>();
+        List<Theatre> allTheatresList = new ArrayList<>();
+
+        List<Integer> theatreAgencyIds = theatreService.getTheatreIds();
+        for (int tid : theatreAgencyIds) {
+            Theatre theatre = theatreService.getTheatreByAgencyTheatreId(tid);
+            allTheatresList.add(theatre);
+        }
+
+        List<Theatre> theatresWithZip = theatreService.getTheatresByZip(zipcode);
+        for (Theatre t : theatresWithZip) {
+            TheatreMovies tm = new TheatreMovies();
+            tm.setTheatre(t);
+
             List<MovieShowings> allMovieShowings = new ArrayList<>();
 
-            List<Integer> movieAgencyIds = showingService.getMovieIdsByTheatre(theatre);
+            List<Integer> movieAgencyIds = showingService.getMovieIdsByTheatre(t);
             if (movieAgencyIds != null) {
                 for (int mid : movieAgencyIds) {
                     Movie movie = movieService.getMovieById(mid);
-                    List<Showing> movieShowings = showingService.getShowingByMovieAndTheatreAndTime(movie, theatre, now);
+                    List<Showing> movieShowings = showingService.getShowingByMovieAndTheatreAndTime(movie, t, now);
                     MovieShowings ms = new MovieShowings();
                     movie.setRunTime(timeConvert(movie.getRunTime()));
                     ms.setMovie(movie);
@@ -310,43 +391,41 @@ public class TicketSelectController {
                 tm.setMovieShowings(allMovieShowings);
                 theatreMovies.add(tm);
             }
-
         }
 
-        theatreMovies = theatreMovies.subList(1, 5);
         request.setAttribute("theatreMovies", theatreMovies);
         request.setAttribute("allTheatresList", allTheatresList);
+        request.setAttribute("date", date);
 
         ModelAndView modelandview = new ModelAndView("headerticketselectpage");
         return modelandview;
     }
 
-    @RequestMapping(value = "/addFavoriteTheatre/{theatreId}/{movieId}")
-    public ModelAndView addFavorite(@PathVariable(value = "theatreId") int id, @PathVariable(value = "movieId") int movId, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        Theatre theatre = theatreService.getTheatreById(id);
-        FavoriteTheatre favorite = new FavoriteTheatre();
-        favorite.setTheatre(theatre);
-        favorite.setUser(user);
-        favoriteTheatreService.addFavoriteTheatre(favorite);
-        String redirect = "redirect:/ticketselectpage/" + movId;
-        ModelAndView modelandview = new ModelAndView(redirect);
-        return modelandview;
-    }
-
-    @RequestMapping(value = "/remFavoriteTheatre/{theatreId}/{movieId}")
-    public ModelAndView removeFavorite(@PathVariable(value = "theatreId") int id, @PathVariable(value = "movieId") int movId, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        Theatre theatre = theatreService.getTheatreById(id);
-        FavoriteTheatre favorite = favoriteTheatreService.getFavoriteTheatreByUserAndTheatre(user, theatre);
-        favoriteTheatreService.removeFavoriteTheatre(favorite.getId());
-        String redirect = "redirect:/ticketselectpage/" + movId;
-        ModelAndView modelandview = new ModelAndView(redirect);
-        return modelandview;
-    }
-
+//    @RequestMapping(value = "/addFavoriteTheatre/{theatreId}")
+//    public ModelAndView addFavorite(@PathVariable(value = "theatreId") int id, HttpServletRequest request) {
+//        HttpSession session = request.getSession();
+//        User user = (User) session.getAttribute("user");
+//        Theatre theatre = theatreService.getTheatreById(id);
+//        FavoriteTheatre favorite = new FavoriteTheatre();
+//        favorite.setTheatre(theatre);
+//        favorite.setUser(user);
+//        favoriteTheatreService.addFavoriteTheatre(favorite);
+//        String redirect = "redirect:/ticketselectpage/" + movId;
+//        ModelAndView modelandview = new ModelAndView(redirect);
+//        return modelandview;
+//    }
+//
+//    @RequestMapping(value = "/remFavoriteTheatre/{theatreId}")
+//    public ModelAndView removeFavorite(@PathVariable(value = "theatreId") int id, HttpServletRequest request) {
+//        HttpSession session = request.getSession();
+//        User user = (User) session.getAttribute("user");
+//        Theatre theatre = theatreService.getTheatreById(id);
+//        FavoriteTheatre favorite = favoriteTheatreService.getFavoriteTheatreByUserAndTheatre(user, theatre);
+//        favoriteTheatreService.removeFavoriteTheatre(favorite.getId());
+//        String redirect = "redirect:/ticketselectpage/" + movId;
+//        ModelAndView modelandview = new ModelAndView(redirect);
+//        return modelandview;
+//    }
     public String timeConvert(String timeString) {
         int time = Integer.parseInt(timeString);
         if (time == 0) {

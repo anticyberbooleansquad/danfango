@@ -11,50 +11,51 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Dao.TicketTypePriceDAO;
-import Dao.UserDAO;
-import Model.User;
+
+import Model.Theatre;
+import Model.TicketTypePrice;
 
 @Service
 public class TicketTypePriceService {
 
-	private UserDAO userDAO;
+	private TicketTypePriceDAO ticketTypePriceDAO;
 
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
+	public void setTicketTypePriceDAO(TicketTypePriceDAO ticketTypePriceDAO) {
+		this.ticketTypePriceDAO = ticketTypePriceDAO;
 	}
 
 	
 	@Transactional
-	public void addUser(User u) {
-		this.userDAO.addUser(u);
+	public void addTicketTypePrice(TicketTypePrice u) {
+		this.ticketTypePriceDAO.addTicketTypePrice(u);
 	}
 
 	
 	@Transactional
-	public void updateUser(User u) {
-		this.userDAO.updateUser(u);
+	public void updateTicketTypePrice(TicketTypePrice u) {
+		this.ticketTypePriceDAO.updateTicketTypePrice(u);
 	}
 
 	
 	@Transactional
-	public List<User> listUsers() {
-		return this.userDAO.listUsers();
+	public List<TicketTypePrice> listTicketTypePrices() {
+		return this.ticketTypePriceDAO.listTicketTypePrices();
 	}
 
 	
 	@Transactional
-	public User getUserById(int id) {
-		return this.userDAO.getUserById(id);
+	public TicketTypePrice getTicketTypePriceById(int id) {
+		return this.ticketTypePriceDAO.getTicketTypePriceById(id);
 	}
         
         @Transactional
-	public User getUserByEmail(String email) {
-		return this.userDAO.getUserByEmail(email);
+	public List<TicketTypePrice> getTicketTypePriceByTheatre(Theatre theatre) {
+		return this.ticketTypePriceDAO.getTicketTypePriceByTheatre(theatre);
 	}
 	
 	@Transactional
-	public void removeUser(int id) {
-		this.userDAO.removeUser(id);
+	public void removeTicketTypePrice(int id) {
+		this.ticketTypePriceDAO.removeTicketTypePrice(id);
 	}
         	
 }

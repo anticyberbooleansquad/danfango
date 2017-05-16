@@ -38,7 +38,7 @@ public class LocationService {
     @Autowired
     TheatreService theatreService;
 
-    String apiKey = "t6iMOqBUYrkSGbuFwSegmdNy5LgjER18XjUMKwHIY2BEd5kJYzZlNNTSyacd1dmZ";
+    String apiKey = "NLNodds66Hl2jlUXVNB4ymvd4B3NoqWcbJAoX3v3KQ64c017ODcm0HA5iDSH3OTe";
 
     private BiMap<String, String> states;
 
@@ -59,7 +59,7 @@ public class LocationService {
 
     public ArrayList<String> getNearbyZipCodes(int zipcode) throws MalformedURLException, IOException {
         String zipcodeAPIUrl = "https://www.zipcodeapi.com/rest/" + apiKey + "/radius.json/"
-                + Integer.toString(zipcode) + "/30/miles?minimal";
+                + Integer.toString(zipcode) + "/10/miles?minimal";
         ArrayList<String> zipcodes = new ArrayList();
         URL zipcodeAPI = new URL(zipcodeAPIUrl);
         try (BufferedReader in = new BufferedReader(new InputStreamReader(zipcodeAPI.openStream()))) {

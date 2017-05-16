@@ -104,16 +104,22 @@
 
             <h1 class="spacing accountfont underline">Theatres by Name</h1>
             <c:forEach items="${theatresByName}" var="theatre">
-                <p>${theatre.id} : ${theatre.name}<p>
-                </c:forEach>
-            <h1 class="spacing accountfont underline">Theatres by Location</h1>
+                <a class="" href="/danfango/headerticketselectpage/${theatre.id}">
+                    <h4 class="spacing">${theatre.id} : ${theatre.name}</h4>
+                </a>
+            </c:forEach>
+            <h1 class="spacing accountfont underline">Theatres by Zip ${zip}</h1>
             <c:forEach items="${theatresByLocation}" var="theatre">
-                <p>${theatre.id} : ${theatre.name}<p>
-                </c:forEach>
+                <a class="" href="/danfango/headerticketselectpage/${theatre.id}">
+                    <h4 class="spacing">${theatre.id} : ${theatre.name}</h4>
+                </a>
+            </c:forEach>
             <h1 class="spacing accountfont underline">Suggestions</h1>
             <c:forEach items="${locations}" var="location">
-                <p>${location.city}, ${location.state}<p>
-                </c:forEach>
+                <a class="" href="/danfango/headerticketselectpage/zip/${location.zipcode}">
+                    <h4 class="spacing">${location.city}, ${location.state}</h4>
+                </a>
+            </c:forEach>
         </div>
 
 

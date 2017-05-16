@@ -12,6 +12,8 @@ import Services.SearchService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,11 +34,10 @@ public class SearchController {
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     protected ModelAndView getSearchResultPage(@RequestParam("searchString") String searchString, HttpServletRequest request) throws IOException {
-       
+
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
-        
 
         // here is where we call the search service
         SearchResults searchResults = searchService.search(searchString);
@@ -44,7 +45,16 @@ public class SearchController {
         ArrayList<ClientSearchResult> crew = searchResults.getCrew();
         ArrayList<ClientSearchResult> theatresByName = searchResults.getTheatresByName();
         ArrayList<ClientSearchResult> theatresByLocation = searchResults.getTheatresByLocation();
+        if (theatresByLocation != null) {
+            request.setAttribute("zip", searchString);
+        }
         ArrayList<LocationSearchResult> locations = searchResults.getLocations();
+      
+        Set<LocationSearchResult> hs = new HashSet<>();
+        hs.addAll(locations);
+        locations.clear();
+        locations.addAll(hs);
+        
         System.out.println("We make it to the search controller");
         System.out.println("The crew is: " + Arrays.toString(crew.toArray()));
         request.setAttribute("movies", movies);
