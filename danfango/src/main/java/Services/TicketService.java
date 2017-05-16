@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Dao.TicketDAO;
 import Model.LiveTickets;
+import Model.Showing;
 import Model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -60,8 +61,8 @@ public class TicketService {
 	}
         
         @Transactional
-	public Ticket getTicketByEmail(String email) {
-		return this.ticketDAO.getTicketByEmail(email);
+	public List<Ticket> getTicketByShowing(Showing showing) {
+		return this.ticketDAO.getTicketByShowing(showing);
 	}
 	
 	@Transactional
