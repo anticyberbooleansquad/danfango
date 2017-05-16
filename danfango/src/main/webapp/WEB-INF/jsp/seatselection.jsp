@@ -39,16 +39,21 @@
             <p>${numChildren}</p>
 
             <div class ="seats">
-
-
                 <c:forEach items="${seatingMatrix}" var="row">
                     <div class="row row-centered spacing">
                         <c:forEach items="${row}" var="seat">
-                            <c:choose>
-                                <c:when test="${seat.available eq true}">
-                                    <div class="col-md-1 col-centered"><button id="${seat.row}${seat.seatNumber}" type="button" class="btn btn-default seatButton seat-unselected">${seat.row}${seat.seatNumber}</button></div>
-                                    </c:when>
-                                    <c:otherwise>
+                            <c:choose> 
+                                <c:when test="${not empty seat.available}">
+                                    <c:choose>
+                                        <c:when test="${seat.available eq true}">
+                                            <div class="col-md-1 col-centered"><button id="${seat.row}${seat.seatNumber}" type="button" class="btn btn-default seatButton seat-unselected">${seat.row}${seat.seatNumber}</button></div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="col-md-1 col-centered"><button disabled="true" id="${seat.row}${seat.seatNumber}" type="button" class="btn btn-default seatButton seat-unselected">${seat.row}${seat.seatNumber}</button></div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:when>
+                                <c:otherwise>
                                     <div class="col-md-1 col-centered"></div>
                                 </c:otherwise>
                             </c:choose>
@@ -62,11 +67,11 @@
                 <button type="button" class="btn btn-default changeSeats">CHANGE SEATS</button>
             </div>
             <div class ="row row-centered">
-                
-                    <button type="button" id="payment-button" class="btn btn-default changeSeats">Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-                
+
+                <button type="button" id="payment-button" class="btn btn-default changeSeats">Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+
             </div>
-            
+
         </div>
 
 

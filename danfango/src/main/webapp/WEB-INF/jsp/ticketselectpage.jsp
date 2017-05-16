@@ -24,7 +24,7 @@
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/datepicker.css"/>" rel="stylesheet">
         <link href="<c:url value = "https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Work+Sans:200|Josefin+Sans:100i" /> rel="stylesheet">
-              <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
     </head>
@@ -81,6 +81,7 @@
                                     </h4>
                                     <p class="theatreTimeCardsAddress">${theatreShowings.theatre.address}, ${theatreShowings.theatre.city} ${theatreShowings.theatre.state}, ${theatreShowings.theatre.zip}</p>
 
+                                    <p>TEST::::::${theatreShowings.theatre.seatingType}</p>
                                     <c:if test="${theatreShowings.theatre.seatingType eq 'Reserved'}">
                                         <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
                                     </c:if>
