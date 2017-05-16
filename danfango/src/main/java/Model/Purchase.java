@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class Purchase {
     
-    private Order order;
+    private Orders order;
     private List<OrderTicket> tickets;
 
-    public Order getOrder() {
+    public Orders getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Orders order) {
         this.order = order;
     }
 

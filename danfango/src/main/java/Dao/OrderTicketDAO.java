@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import Model.OrderTicket;
 import Model.Ticket;
-import Model.Order;
+import Model.Orders;
 import org.hibernate.criterion.Restrictions;
 /**
  *
@@ -64,7 +64,7 @@ public class OrderTicketDAO{
             return u;
     }
     
-    public List<OrderTicket> getOrderTicketsByOrder(Order order) {
+    public List<OrderTicket> getOrderTicketsByOrder(Orders order) {
             Session session = this.sessionFactory.getCurrentSession();	
             List orderTickets = session.createCriteria(OrderTicket.class).add(Restrictions.eq("order", order)).list();
             if (orderTickets.isEmpty()){

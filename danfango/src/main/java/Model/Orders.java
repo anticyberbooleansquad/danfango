@@ -16,7 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table
-public class Order implements Serializable{
+public class Orders implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

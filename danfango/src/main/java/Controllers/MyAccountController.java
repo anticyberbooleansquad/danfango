@@ -12,7 +12,7 @@ package Controllers;
 import Model.FavoriteMovie;
 import Model.FavoriteTheatre;
 import Model.OrderTicket;
-import Model.Order;
+import Model.Orders;
 import Model.Purchase;
 import Model.Review;
 import Model.User;
@@ -69,9 +69,9 @@ public class MyAccountController {
         User user = userService.getUserById(id);
         List<Purchase> userPurchases = new ArrayList<>();
 
-        List<Order> orders = ordersService.getOrdersByEmail(user.getEmail());
+        List<Orders> orders = ordersService.getOrdersByEmail(user.getEmail());
 
-        for (Order order : orders) {
+        for (Orders order : orders) {
             List<OrderTicket> tickets = orderTicketService.getOrderTicketByOrder(order);
             Purchase p = new Purchase();
             p.setOrder(order);
