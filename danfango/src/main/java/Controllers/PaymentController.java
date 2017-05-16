@@ -142,12 +142,15 @@ public class PaymentController{
         HttpSession session = request.getSession();
         Showing showing = (Showing) session.getAttribute("showing");
         LiveTickets livetickets = (LiveTickets) session.getAttribute("sessionTickets");
-        List<Ticket> tickets = livetickets.getLiveTicket();
+        List<Ticket> tickets = null;
+        if (livetickets != null){
+            tickets = livetickets.getLiveTicket();
+        }
         boolean reservedSeating;
         if(tickets == null){
             // create new list of tickets because didn't have any because not reserved seating
             tickets = new ArrayList<Ticket>();
-            int numseats = Integer.parseInt((String) session.getAttribute("totalNumSeats"));
+            int numseats = (int) session.getAttribute("totalNumSeats");
             for (int i=0; i<numseats;i++){
                 Ticket ticket = new Ticket();
                 ticket.setShowing(showing);
@@ -177,9 +180,9 @@ public class PaymentController{
             }
         }
         // now we need to get respective number of tickets of each type and add price for each
-        int numChildren = Integer.parseInt((String) session.getAttribute("numChildren"));
-        int numSeniors = Integer.parseInt((String) session.getAttribute("numSeniors"));
-        int numAdults = Integer.parseInt((String) session.getAttribute("numAdults"));
+        int numChildren = (int) session.getAttribute("numChildren");
+        int numSeniors = (int) session.getAttribute("numSeniors");
+        int numAdults = (int) session.getAttribute("numAdults");
         
         for(Ticket ticket: tickets){
             if(numChildren > 0){
@@ -259,7 +262,7 @@ public class PaymentController{
             message.setSubject("Tickets");
             // Now set the actual message
             System.out.println("orderid: " + order.getId());
-            message.setText("Your orderId is: " + order.getId() + "you paid: "+ order.getPrice() );
+            message.setText("Your orderId is: " + order.getId() + "   you paid: $"+ order.getPrice() );
             // Send message
             Transport.send(message);
             System.out.println("Sent message successfully....");
