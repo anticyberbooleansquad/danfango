@@ -94,6 +94,27 @@ public class TheatreDAO {
         logger.info("Theatre loaded successfully, Theatre details=" + u);
         return u;
     }
+    
+    public Theatre getTheatreByName(String name) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List theatres = session.createCriteria(Theatre.class).add(Restrictions.eq("name", name)).list();
+        if (theatres.isEmpty()) {
+            return null;
+        }
+        Theatre u = (Theatre) theatres.get(0);
+        logger.info("Theatre loaded successfully, Theatre details=" + u);
+        return u;
+    }
+    
+    public List<Theatre> getTheatresByZip(String zipcode) {
+        Session session = this.sessionFactory.getCurrentSession();
+        List theatres = session.createCriteria(Theatre.class).add(Restrictions.eq("zip", zipcode)).list();
+        if (theatres.isEmpty()) {
+            return null;
+        }
+        logger.info("Theatre loaded successfully, Theatre details=" + theatres);
+        return theatres;
+    }
 
     public List<Theatre> getTheatresLikeName(String name) {
         Session session = this.sessionFactory.getCurrentSession();

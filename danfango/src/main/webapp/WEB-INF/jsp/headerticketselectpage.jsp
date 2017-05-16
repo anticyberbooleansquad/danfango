@@ -37,9 +37,20 @@
         <div class="spacing container">
 
             <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES FOR ${date}</h2>
-            
-             <form role="form" class="spacing" method="POST" action="/danfango/headerticketselectpage/date">
+
+            <form role="form" class="spacing" method="POST" action="/danfango/headerticketselectpage/dateAndtheatre">
+                <h5>Date:</h5>
                 <input type="date" id="showingDate" name="showingDate">
+                <div class="row form-group">
+                    <div class="col-md-5">
+                        <h5>Nearby Theatres:</h5>
+                        <select class="form-control" name="theatre">
+                            <c:forEach items="${allTheatresList}" var="theatre">                        
+                                <option value="${theatre.id}">${theatre.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
                 <input type="submit">
             </form>
 
@@ -48,18 +59,18 @@
                     <div class ="spacing col-sm-12">
                         <div class="theatreTimes">
                             <h4 class="theatreTimeCardsName">${theatreMovie.theatre.name}
-                                <c:if test="${user != null}">
-                                    <c:if test="${theatreMovie.favorite == true}">
-                                        <form role="form" data-toggle="validator" action="/danfango/remFavoriteTheatre/${theatreMovie.theatre.id}/${movie.id}" id="remFavorite" method="GET" style="display:inline">
-                                            <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true" onclick="document.getElementById('remFavorite').submit()"></i>
-                                        </form>
-                                    </c:if>
-                                    <c:if test="${theatreMovie.favorite == false}">
-                                        <form role="form" data-toggle="validator" action="/danfango/addFavoriteTheatre/${theatreMovie.theatre.id}/${movie.id}" id="addFavorite" method="GET" style="display:inline">
-                                            <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" onclick="document.getElementById('addFavorite').submit()"></i>
-                                        </form>
-                                    </c:if>
-                                </c:if>
+                                <%--<c:if test="${user != null}">--%>
+                                    <%--<c:if test="${theatreMovie.favorite == true}">--%>
+                                        <!--<form role="form" data-toggle="validator" action="/danfango/remFavoriteTheatre/${theatreMovie.theatre.id}" id="remFavorite" method="GET" style="display:inline">-->
+                                            <!--<i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true" onclick="document.getElementById('remFavorite').submit()"></i>-->
+                                        <!--</form>-->
+                                    <%--</c:if>--%>
+                                    <%--<c:if test="${theatreMovie.favorite == false}">--%>
+                                        <!--<form role="form" data-toggle="validator" action="/danfango/addFavoriteTheatre/${theatreMovie.theatre.id}" id="addFavorite" method="GET" style="display:inline">-->
+                                            <!--<i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" onclick="document.getElementById('addFavorite').submit()"></i>-->
+                                        <!--</form>-->
+                                    <%--</c:if>--%>
+                                <%--</c:if>--%>
                             </h4>
                             <p class="theatreTimeCardsAddress">${theatreMovie.theatre.address}, ${theatreMovie.theatre.city} ${theatreMovie.theatre.state}, ${theatreMovie.theatre.zip}</p>
                             <div class="theatreTimeCardsTimes">

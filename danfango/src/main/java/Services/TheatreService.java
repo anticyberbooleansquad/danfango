@@ -57,6 +57,16 @@ public class TheatreService {
     public Theatre getTheatreByAgencyTheatreId(int id) {
         return this.theatreDAO.getTheatreByAgencyTheatreId(id);
     }
+    
+    @Transactional
+    public Theatre getTheatreByName(String name) {
+        return this.theatreDAO.getTheatreByName(name);
+    }
+    
+    @Transactional
+    public List<Theatre> getTheatresByZip(String zipcode) {
+        return this.theatreDAO.getTheatresByZip(zipcode);
+    }
 
     @Transactional
     public List<Theatre> getTheatresLikeName(String name) {
