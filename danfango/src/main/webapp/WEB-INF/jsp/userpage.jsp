@@ -36,8 +36,8 @@
                 <div class="row spacing">
                     <div class="col-md-12">
                         <div class="reviewCard">
-                            <h4 class="theatreTimeCardsName">${purchase.tickets[0].ticket.showing.movie.title}</h4>
-                            <h3 class="theatreTimeCardsName">${purchase.order.orderDate}</h3>
+                            <h5 class="theatreTimeCardsName">${purchase.tickets[0].ticket.showing.movie.title}</h5>
+                            <h4 class="theatreTimeCardsName">${purchase.order.orderDate}</h4>
                             <p class="theatreTimeCardsAddress">${purchase.tickets[0].ticket.showing.theatre.name}</p>
                             <p class ="ticketInfo">
                                 <img class="xsmallposters" alt="" src="https://image.tmdb.org/t/p/w500/${purchase.tickets[0].ticket.showing.movie.poster}" />
