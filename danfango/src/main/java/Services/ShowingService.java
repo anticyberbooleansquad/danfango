@@ -71,6 +71,11 @@ public class ShowingService {
         }
         
         @Transactional
+        public List<Showing> getShowingByMovieAndTheatreAndTime(Movie movie, Theatre theatre, Timestamp date){
+            return this.showingDAO.getShowingByMovieAndTheatreAndTime(movie, theatre, date);
+        }
+        
+        @Transactional
         public List<Showing> getShowingByMovie(Movie movie){
             return this.showingDAO.getShowingByMovie(movie);
         }

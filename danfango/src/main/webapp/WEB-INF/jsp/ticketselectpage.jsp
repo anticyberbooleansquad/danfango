@@ -36,21 +36,12 @@
 
         <div class="spacing container">
 
-            <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES</h2>
+            <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES FOR ${date}</h2>
 
-            <!--            <div class="spacing dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Nearby Theatres
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="/danfango/#">Theatre</a></li>
-                                <li><a href="/danfango/#">Theatre</a></li>
-                                <li><a href="/danfango/#">Theatre</a></li>
-                                <li><a href="/danfango/#">Theatre</a></li>
-                                <li><a href="/danfango/#">Theatre</a></li>
-                                <li><a href="/danfango/#">Theatre</a></li>
-                            </ul>
-                        </div>-->
+            <form role="form" class="spacing" method="POST" action="/danfango/ticketselectpage/${movie.id}/date">
+                <input type="date" id="showingDate" name="showingDate">
+                <input type="submit">
+            </form>
 
             <div class="row form-group">
                 <div class="col-sm-3">
@@ -60,59 +51,61 @@
                         <p><b>Release Date:</b> <fmt:formatDate value="${dateObject}" pattern="MM/dd/yyyy"/></p>
                         <p><b>Rating:</b> ${movie.rating}</p>
                         <p><b>Runtime:</b> ${movie.runTime}</p>
-                        <p><b>Genre:</b> Comedy, Action, Adventure</p>
+                        <p><b>Genre:</b> 
+                            <c:forEach items="${genres}" var="genre">
+                                ${genre.name} 
+                            </c:forEach>      
+                        </p>
                         <p><b>Score:</b> ${movie.movieScore}</p>
                     </div>
                 </div>
 
                 <div class ="spacing col-sm-6">
 
-                    <c:forEach items="${showingsPerTheatre}" var="theatreShowings">
+                    <c:choose>
+                        <c:when test="${not empty showingsPerTheatre}">
+                            <c:forEach items="${showingsPerTheatre}" var="theatreShowings">
 
-                        <div class="theatreTimes">
-                            <h4 class="theatreTimeCardsName">${theatreShowings.theatre.name} <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
-                            <p class="theatreTimeCardsAddress">${theatreShowings.theatre.address}, ${theatreShowings.theatre.city} ${theatreShowings.theatre.state}</p>
+                                <div class="theatreTimes">
+                                    <h4 class="theatreTimeCardsName">${theatreShowings.theatre.name} <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
+                                    <p class="theatreTimeCardsAddress">${theatreShowings.theatre.address}, ${theatreShowings.theatre.city} ${theatreShowings.theatre.state}, ${theatreShowings.theatre.zip}</p>
 
-                            <c:if test="${theatreShowings.theatre.seatingType eq 'Reserved'}">
-                                <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
-                            </c:if>
+                                    <c:if test="${theatreShowings.theatre.seatingType eq 'Reserved'}">
+                                        <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
+                                    </c:if>
 
-                            <c:choose>
-                                <c:when test="${not empty theatreShowings.showings}">
-                                    <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>  
-                                </c:when>
-                                <c:otherwise>
-                                    <p class ="ticketInfo"> Sorry, there are no showings at this theatre :(</p>  
-                                </c:otherwise>
-                            </c:choose>
+                                    <c:choose>
+                                        <c:when test="${not empty theatreShowings.showings}">
+                                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>  
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p class ="ticketInfo"> Sorry, there are no showings at this theatre :(</p>  
+                                        </c:otherwise>
+                                    </c:choose>
 
-                            <div class="theatreTimeCardsTimes">
-                                <c:forEach items="${theatreShowings.showings}" var="showing">
-                                    <fmt:parseDate value="${showing.time}" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss" />
+                                    <div class="theatreTimeCardsTimes">
+                                        <c:forEach items="${theatreShowings.showings}" var="showing">
+                                            <fmt:parseDate value="${showing.time}" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss" />
 
-                                    <a href="/danfango/checkoutpage/${showing.id}" class="btn btn-primary timeButton">
-                                        <fmt:formatDate value="${dateObject}" pattern="hh:mm a"/>
-                                    </a>
+                                            <a href="/danfango/checkoutpage/${showing.id}" class="btn btn-primary timeButton">
+                                                <fmt:formatDate value="${dateObject}" pattern="hh:mm a"/>
+                                            </a>
 
-                                </c:forEach>
-                            </div>
-                        </div>
-                    </c:forEach>
-
-
-
-
-
-
-
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <h2>There are no showings for ${movie.title}</h2>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
-                <div class="col-sm-3"></div>
 
+                <div class="col-sm-3"></div>
             </div>
         </div>
-
-
     </div>
 </div>
 

@@ -21,6 +21,7 @@ import Model.Movie;
 import Model.User;
 import Services.CrewMemberMovieService;
 import Services.FavoriteMovieService;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,48 +47,45 @@ public class MoviePageController {
     CrewMemberMovieService crewMemberMovieService;
     @Autowired
     FavoriteMovieService favoriteMovieService;
-    
+
     @RequestMapping(value = "/movieinfopage/{movieId}")
-    protected ModelAndView getMovieInfoPage(@PathVariable(value="movieId") int id, HttpServletRequest request){
+    protected ModelAndView getMovieInfoPage(@PathVariable(value = "movieId") int id, HttpServletRequest request) {
         HttpSession session = request.getSession();
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
+        
         Movie movie = movieService.getMovieById(id);
         movie.setRunTime(timeConvert(movie.getRunTime()));
-        User user = (User)session.getAttribute("user");
         
+        User user = (User) session.getAttribute("user");
         FavoriteMovie fav2 = favoriteMovieService.getFavoriteMovieByUserAndMovie(user, movie);
-        
-        if(fav2 != null)
-        {
+        if (fav2 != null) {
             request.setAttribute("favoriteState", true);
-        }
-        else
-        {
+        } else {
             request.setAttribute("favoriteState", false);
         }
-        
+
         request.setAttribute("movie", movie);
-        
+
         List<Genre> genres = new ArrayList<>();
-        
         List<MovieGenre> movieGenres = movieGenreService.getMovieGenresByMovie(movie);
-        for(MovieGenre mg: movieGenres){
+        for (MovieGenre mg : movieGenres) {
             genres.add(mg.getGenre());
         }
-        
-        System.out.println("GENRES LIST: "+ genres);
-        
+
         request.setAttribute("genres", genres);
 
         List<CrewMemberMovie> crewMemberMovie = crewMemberMovieService.getCrewMemberMovieByMovie(movie);
         request.setAttribute("crewMemberMovie", crewMemberMovie);
 
+        Timestamp today = new Timestamp(System.currentTimeMillis());
+        request.setAttribute("date", today);
+
         ModelAndView modelandview = new ModelAndView("movieinfopage");
         return modelandview;
     }
-    
+
 //    @RequestMapping(value = "/movieinfopage", method = RequestMethod.POST)
 //    protected ModelAndView changeFavoriteState(HttpServletRequest request , HttpServletRequest response){
 //        //ServletContext sc = request.getServletContext();
@@ -99,9 +97,8 @@ public class MoviePageController {
 //      
 //        return modelandview;
 //    }
-    
     @RequestMapping(value = "/changeFavorite", method = RequestMethod.POST)
-    protected String changeFavoriteState(HttpServletRequest request){
+    protected String changeFavoriteState(HttpServletRequest request) {
         System.out.println("fuck");
         return "success";
     }

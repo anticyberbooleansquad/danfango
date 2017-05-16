@@ -37,7 +37,7 @@
         <div class="spacing container">
 
             <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES HEADER</h2>
-
+            
             <div class="row form-group">
 
                 <div class ="spacing col-sm-12">
