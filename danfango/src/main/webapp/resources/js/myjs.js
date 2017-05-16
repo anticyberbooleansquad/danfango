@@ -16,17 +16,6 @@ $(function () {
             $.notify("Added To Favorites");
 
         }
-        $.ajax({
-                url : '${home}danfango/changeFavorite', // Your Servlet mapping or JSP(not suggested)
-                //data :'movieid' + movieid, 
-                type : 'POST',
-                success : function(response) {
-                    alert("success");
-                },
-                error : function(request, textStatus, errorThrown) {
-                    alert(errorThrown);
-                }
-        });
     });
 });
 
