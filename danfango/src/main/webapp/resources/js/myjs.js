@@ -35,11 +35,11 @@ $(function() {
         // obviously add the selected seats to the ajax call 
         
         $.ajax({
-                url : 'http://localhost:8080/danfango/paymentpage', // Your Servlet mapping or JSP(not suggested)
+                url : 'http://localhost:8080/danfango/lockSeats', // Your Servlet mapping or JSP(not suggested)
                 data: {seatNumbers: userSelectedSeats},
                 type : 'POST',
                 success : function(response) {
-                    alert("success");
+                    window.location.replace('http://localhost:8080/danfango/paymentpage');
                 },
                 error : function(request, textStatus, errorThrown) {
                     alert(errorThrown);
