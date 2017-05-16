@@ -31,13 +31,11 @@
         <div class="spacing container">
 
             <div class="spacing screen">Theatre Screen</div>
-           <!-- <input type="" name="numAdults" value="${sessionScope.numAdults}"/>
-            <input type="" name="numSeniors" value="${sessionScope.numSeniors}"/>
-            <input type="" name="numChildren" value="${sessionScope.numChildren}"/> -->
-            <p>${numAdults}</p>
-            <p>${numSeniors}</p>
-            <p>${numChildren}</p>
-
+           <input type="hidden" name="numAdults" value="${numAdults}"/>
+            <input type="hidden" name="numSeniors" value="${numSeniors}"/>
+            <input type="hidden" name="numChildren" value="${numChildren}"/> 
+            <input type="hidden" name="totalTickets" value="${totalNumSeats}"/>
+            <h3>Please select ${totalNumSeats} total seats</h3>
             <div class ="seats">
                 <c:forEach items="${seatingMatrix}" var="row">
                     <div class="row row-centered spacing">
@@ -68,7 +66,7 @@
             </div>
             <div class ="row row-centered">
 
-                <button type="button" id="payment-button" class="btn btn-default changeSeats">Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                <button type="button" id="payment-button" class="btn btn-default changeSeats" disabled>Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 
             </div>
 
