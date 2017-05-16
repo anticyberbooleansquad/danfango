@@ -122,7 +122,7 @@ public class SeatSelectionController {
                 for (int i = 0; i < numColumns; i++) {
                     Seat seatInMatrix = seatingMatrix[rowIndex][i];
                     if (seatInMatrix != null) {
-                        if (seatInMatrix.getId().equals(seat.getId())) {
+                        if (seatInMatrix.getRow().equals(ticket.getSeat().getRow()) && seatInMatrix.getSeatNumber().equals(ticket.getSeat().getSeatNumber())) {
                             seatInMatrix.setAvailable(false);
                         }
                     }
