@@ -36,11 +36,11 @@
                 <div class="row spacing">
                     <div class="col-md-12">
                         <div class="reviewCard">
-                            <h4 class="theatreTimeCardsName">${purchase.tickets.ticket.showing.movie.title}</h4>
+                            <h4 class="theatreTimeCardsName">${purchase.tickets[0].ticket.showing.movie.title}</h4>
                             <h3 class="theatreTimeCardsName">${purchase.order.orderDate}</h3>
-                            <p class="theatreTimeCardsAddress">${purchase.tickets.ticket.showing.theatre.name}/5</p>
+                            <p class="theatreTimeCardsAddress">${purchase.tickets[0].ticket.showing.theatre.name}</p>
                             <p class ="ticketInfo">
-                                <img class="posters" alt="" src="https://image.tmdb.org/t/p/w500/${purchase.tickets.ticket.showing.movie.poster}" />
+                                <img class="xsmallposters" alt="" src="https://image.tmdb.org/t/p/w500/${purchase.tickets[0].ticket.showing.movie.poster}" />
                             </p>
                         </div>
                     </div>
