@@ -91,10 +91,30 @@ public class MoviePageController {
         return modelandview;
     }
         
-    @RequestMapping(value = "/changeFavorite")
-    public @ResponseBody String changeFavoriteState(HttpServletRequest request){
-        System.out.println("fuck");
-        return "success";
+    @RequestMapping(value = "/addFavorite/{movieId}")
+    public ModelAndView addFavorite(@PathVariable(value="movieId") int id, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        Movie movie = movieService.getMovieById(id);
+        FavoriteMovie favorite = new FavoriteMovie();
+        favorite.setMovie(movie);
+        favorite.setUser(user);
+        favoriteMovieService.addFavoriteMovie(favorite);
+        String redirect = "redirect:/movieinfopage/" + id;
+        ModelAndView modelandview = new ModelAndView(redirect);
+        return modelandview;
+    }
+    
+    @RequestMapping(value = "/removeFavorite/{movieId}")
+    public ModelAndView removeFavorite(@PathVariable(value="movieId") int id, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        Movie movie = movieService.getMovieById(id);
+        FavoriteMovie favorite = favoriteMovieService.getFavoriteMovieByUserAndMovie(user, movie);
+        favoriteMovieService.removeFavoriteMovie(favorite.getId());
+        String redirect = "redirect:/movieinfopage/" + id;
+        ModelAndView modelandview = new ModelAndView(redirect);
+        return modelandview;
     }
     
     @RequestMapping(value = "/submitReview/{movieId}", method = RequestMethod.POST)
@@ -112,7 +132,6 @@ public class MoviePageController {
         review.setContent(content);
         reviewService.addReview(review);
         String redirect = "redirect:/movieinfopage/" + id;
-        System.out.println("some shit: " + redirect);
         ModelAndView modelandview = new ModelAndView(redirect);
         return modelandview;
     }
