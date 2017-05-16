@@ -117,7 +117,14 @@ public class AgencyService {
         } else if (agency.equals("theatreRoom")) {
             parseTheatreRoomFile();
         } else if (agency.equals("showing")) {
-            parseShowingFile();
+            parseShowingFile("showingAgency515.xml");
+            Thread.sleep(1000);
+            parseShowingFile("showingAgency516.xml");
+            Thread.sleep(1000);
+            parseShowingFile("showingAgency517.xml");
+            Thread.sleep(1000);
+            parseShowingFile("showingAgency518.xml");
+
         }
     }
 
@@ -430,8 +437,8 @@ public class AgencyService {
         }
     }
 
-    public void parseShowingFile() throws ParserConfigurationException, SAXException, IOException, ParseException {
-        Document doc = prepareDoc("showingAgency.xml");
+    public void parseShowingFile(String showingXML) throws ParserConfigurationException, SAXException, IOException, ParseException {
+        Document doc = prepareDoc(showingXML);
         NodeList nList = doc.getElementsByTagName("theatre");
 
         for (int counter = 0; counter < nList.getLength(); counter++) {

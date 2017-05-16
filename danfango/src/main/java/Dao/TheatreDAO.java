@@ -5,6 +5,7 @@
  */
 package Dao;
 
+import Model.Movie;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -66,7 +67,7 @@ public class TheatreDAO {
         }
         return theatreIds;
     }
-
+    
     public Theatre getTheatreById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Theatre u = (Theatre) session.load(Theatre.class, new Integer(id));

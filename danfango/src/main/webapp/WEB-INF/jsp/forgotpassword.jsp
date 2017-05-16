@@ -1,19 +1,15 @@
 <%-- 
-    Document   : ticketselectpage
-    Created on : Apr 3, 2017, 7:22:00 PM
-    Author     : johnlegutko
+    Document   : signinpage
+    Created on : Apr 2, 2017, 7:52:39 PM
+    Author     : joeg332
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
-        <link href="<c:url value="/resources/css/jquery-ui-1.10.1.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/settings.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/font-awesome.min.css"/>" rel="stylesheet">
@@ -22,40 +18,44 @@
         <link href="<c:url value="/resources/css/responsive.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/animate.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
-        <link href="<c:url value="/resources/css/datepicker.css"/>" rel="stylesheet">
-        <link href="<c:url value = "https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Work+Sans:200|Josefin+Sans:100i" /> rel="stylesheet">
-              <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
-
     </head>
+
     <body>
 
         <jsp:include page="header.jsp" >
             <jsp:param name="contextPath" value="${contextPath}"/>
         </jsp:include>
 
-        <div class="spacing container">
+        <div class="spacing container signinmargin">
 
-            <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES HEADER</h2>
-            
-            <div class="row form-group">
+            <div class="row">
+                <div class="col-md-6 spacing border">
 
-                <div class ="spacing col-sm-12">
-                    <div class="theatreTimes">
-                        <h4 class="theatreTimeCardsName">NAME <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
-                        <p class="theatreTimeCardsAddress">ADDRESS</p>
-                        <div class="theatreTimeCardsTimes"></div>
-                    </div>
+                    <h1 class="spacing">Request New Password</h1>
+
+                    <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/submitEmail">
+
+                        <div class="controls">
+                            <input type="text" name="email" id="email" placeholder="E-mail" required data-error="Please enter your E-mail">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        
+                        <h2>${sentEmail}</h2>
+                        <h2>${nonEmail}</h2>
+
+                        <input type="submit" value="Request" class="btn-system btn-large btn-gray joinbutton spacing">
+
+                    </form>
+
+
                 </div>
-
-                <div class="col-sm-3"></div>
-
             </div>
+
+
+
         </div>
-
-
-
-
 
 
         <!-- Start Footer Section -->
@@ -109,7 +109,6 @@
         </footer>
         <!-- End Footer Section -->
 
-
     </div>
     <!-- End Full Body Container -->
 
@@ -144,11 +143,8 @@
     <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
     <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
     <script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
-    <script src="<c:url value="/resources/js/notify.min.js" />"></script>
-
-
     <script src="<c:url value="/resources/js/myjs.js" />"></script>
     <script src="<c:url value="/resources/js/script.js" />"></script>
-
 </body>
+
 </html>

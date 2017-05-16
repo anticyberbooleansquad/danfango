@@ -20,6 +20,7 @@ import Model.TheatreRoom;
 import Model.TheatreShowings;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import org.hibernate.criterion.Restrictions;
 
@@ -105,6 +106,22 @@ public class ShowingDAO {
     public List<Showing> getShowingByMovieAndTheatre(Movie movie, Theatre theatre) {
         Session session = this.sessionFactory.getCurrentSession();
         List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).list();
+        if (showings.isEmpty()) {
+            return null;
+        } else {
+            return showings;
+        }
+    }
+
+    public List<Showing> getShowingByMovieAndTheatreAndTime(Movie movie, Theatre theatre, Timestamp date) {
+        Session session = this.sessionFactory.getCurrentSession();
+        
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DAY_OF_WEEK, 1);
+        Timestamp tomorrow = new Timestamp(cal.getTime().getTime());
+        
+        List showings = session.createCriteria(Showing.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("theatre", theatre)).add(Restrictions.ge("time", date)).add(Restrictions.le("time", tomorrow)).list();
         if (showings.isEmpty()) {
             return null;
         } else {

@@ -45,6 +45,7 @@
                             <input type="text" name="password" id="password" placeholder="Password" required data-error="Please enter your Password">
                             <div class="help-block with-errors"></div>
                         </div>
+                        <a href="/danfango/forgotpassword">Forgot Password</a><br/>
                         
                         <h2>${signinError}</h2>
 
