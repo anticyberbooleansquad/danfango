@@ -48,7 +48,6 @@ public class SeatSelectionController {
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
 
-        String seatingLayout = null;
         HttpSession session = request.getSession();
         session.setAttribute("numAdults", numAdults);
         request.setAttribute("numAdults", numAdults);
@@ -59,9 +58,8 @@ public class SeatSelectionController {
         Showing showing = (Showing) session.getAttribute("showing");
 
         ModelAndView modelandview;
-        seatingLayout = showing.getTheatreRoom().getLayout();
-
-        if (seatingLayout != null) {
+        String seatingLayout = showing.getTheatreRoom().getLayout();
+        if (!seatingLayout.equals("")) {
             seatingLayout = seatingLayout.replaceAll(" ", "");
             String[] rowsArray = seatingLayout.split("R");
             int numColumns = rowsArray[0].replaceAll(",", "").length();
