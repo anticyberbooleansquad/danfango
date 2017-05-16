@@ -5,6 +5,8 @@
  */
 var userSelectedSeats = [];
 
+var ticketsRemaining = null;
+
 
 $(function () {
     $('.fa-heart').on('click', function () {
@@ -28,22 +30,22 @@ $(function () {
     });
 });
 
-$(function() {
-    $("#payment-button").click(function(){
+$(function () {
+    $("#payment-button").click(function () {
         // userSelectedSeats
         // redirect using ajax to the payment controller where we will handle locking tickets
         // obviously add the selected seats to the ajax call 
-        
+
         $.ajax({
-                url : 'http://localhost:8080/danfango/lockSeats', // Your Servlet mapping or JSP(not suggested)
-                data: {seatNumbers: userSelectedSeats},
-                type : 'POST',
-                success : function(response) {
-                    window.location.replace('http://localhost:8080/danfango/paymentpage');
-                },
-                error : function(request, textStatus, errorThrown) {
-                    alert(errorThrown);
-                }
+            url: 'http://localhost:8080/danfango/lockSeats', // Your Servlet mapping or JSP(not suggested)
+            data: {seatNumbers: userSelectedSeats},
+            type: 'POST',
+            success: function (response) {
+                window.location.replace('http://localhost:8080/danfango/paymentpage');
+            },
+            error: function (request, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
         });
     });
 });
@@ -62,8 +64,23 @@ $(function () {
         });
         var buttonId = button.attr('id');
         if (unselected) {
-            button.removeClass("seat-unselected");
-            button.addClass("seat-selected");
+            if (ticketsRemaining === null) {
+                // get the total number of tickets
+                ticketsRemaining = Number($("input[name=totalTickets]").val());
+            }
+
+            // only select this seat if ticketsRemaining is > 0 
+            if (ticketsRemaining > 0) {
+                button.removeClass("seat-unselected");
+                button.addClass("seat-selected");
+                ticketsRemaining--;
+            }
+
+            if (ticketsRemaining == 0) {
+                // we must unblock the proceed to payment button 
+                // DO THIS DO THIS DO THIS DO THIS 
+                $("#payment-button").prop('disabled', false);
+            }
             // change the class on the button to 'seat-selected' from 'seat-unselected'
             // how do we do this because button has multiple classes
             // CONVERT BUTTON ID TO STRING 
@@ -71,6 +88,12 @@ $(function () {
         } else {
             button.removeClass("seat-selected");
             button.addClass("seat-unselected");
+            if (ticketsRemaining == 0) {
+                // we must block the proceed to payment button 
+                // DO THIS DO THIS DO THIS DO THIS 
+                $("#payment-button").prop('disabled', true);
+            }
+            ticketsRemaining++;
             var index;
             for (var i = 0; i < userSelectedSeats.length; i++) {
                 if (userSelectedSeats[i] === buttonId) {
@@ -87,6 +110,7 @@ $(function () {
     $(".changeSeats").click(function () {
         var length = userSelectedSeats.length;
         for (var i = 0; i < length; i++) {
+            ticketsRemaining++;
             var id = userSelectedSeats[i];
             var button = $("#" + id);
             button.removeClass("seat-selected");
