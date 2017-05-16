@@ -50,6 +50,12 @@
     padding-bottom:5px;
 }
 
+.xsmallposters{
+    height: 250px;
+    width: 175px;
+    padding-bottom:5px;
+}
+
 .noImage{
     height: 381px;
     width: 257px;

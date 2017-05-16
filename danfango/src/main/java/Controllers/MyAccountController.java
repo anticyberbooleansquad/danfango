@@ -76,7 +76,10 @@ public class MyAccountController {
             Purchase p = new Purchase();
             p.setOrder(order);
             p.setTickets(tickets);
+            userPurchases.add(p);
         }
+        
+        System.out.println("USER PURCHASES: "+ userPurchases);
 
         request.setAttribute("userPurchases", userPurchases);
 
