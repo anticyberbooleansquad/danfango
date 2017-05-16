@@ -62,17 +62,15 @@ public class OrdersDAO{
             return u;
     }
     
-    public Orders getOrderByEmail(String email) {
+    public List<Orders> getOrdersByEmail(String email) {
             Session session = this.sessionFactory.getCurrentSession();	
             List orders = session.createCriteria(Orders.class).add(Restrictions.eq("email", email)).list();
             if (orders.isEmpty()){
                 return null;
-            }
-            Orders u = (Orders) orders.get(0);
-            logger.info("Order loaded successfully, Order details="+u);
-            return u;
+            } 
+            logger.info("Order loaded successfully, Order details="+orders);
+            return orders;
     }
-
     
     public void removeOrder(int id) {
             Session session = this.sessionFactory.getCurrentSession();

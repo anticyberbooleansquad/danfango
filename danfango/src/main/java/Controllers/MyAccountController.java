@@ -11,12 +11,15 @@ package Controllers;
  */
 import Model.FavoriteMovie;
 import Model.FavoriteTheatre;
+import Model.Orders;
 import Model.Review;
 import Model.User;
 import Services.AuthenticationService;
 import Services.FavoriteMovieService;
 import Services.FavoriteTheatreService;
+import Services.OrdersService;
 import Services.ReviewService;
+import Services.TicketService;
 import Services.UserService;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +49,10 @@ public class MyAccountController{
     ReviewService reviewService;
     @Autowired
     AuthenticationService authenticationService;
+    @Autowired
+    OrdersService ordersService;
+    @Autowired
+    TicketService ticketService;
     
     @RequestMapping(value = "/userpage/{userId}")
     protected ModelAndView getUserAccountPage(@PathVariable(value = "userId") int id, HttpServletRequest request){
@@ -55,6 +62,10 @@ public class MyAccountController{
         request.setAttribute("contextPath", contextPath);
         
         User user = userService.getUserById(id);
+        
+        List<Orders> userPurchases = ordersService.getOrdersByEmail(user.getEmail());
+        request.setAttribute("userPurchases", userPurchases);
+        
         List<FavoriteMovie> favoriteMovies = favoriteMovieService.getFavoriteMoviesByUser(user);
         request.setAttribute("favoriteMovies", favoriteMovies);
         

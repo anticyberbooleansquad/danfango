@@ -47,8 +47,8 @@ public class OrdersService {
 	}
         
         @Transactional
-	public Orders getOrderByEmail(String email) {
-		return this.ordersDAO.getOrderByEmail(email);
+	public List<Orders> getOrdersByEmail(String email) {
+		return this.ordersDAO.getOrdersByEmail(email);
 	}
 	
 	@Transactional
