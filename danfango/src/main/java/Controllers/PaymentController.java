@@ -91,6 +91,7 @@ public class PaymentController{
  
     @RequestMapping(value = "/paymentpage")
     protected ModelAndView getPaymentPage(HttpServletRequest request){
+        // ORDER SHOULD BE MADE HERE FOR PRICING
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);  
@@ -102,8 +103,9 @@ public class PaymentController{
 //    protected ModelAndView processPayment(@RequestParam(value="card-holder-name") String cardHolder, @RequestParam(value="card-number") String cardNumber, 
 //            @RequestParam(value="expiry-month") String month, @RequestParam(value="expiry-year") String year, @RequestParam(value="cvv") String cvv,
 //            @RequestParam(value="email") String email, HttpServletRequest request){
-//        
-//        
+//          
+//              1. Grab order from session and add email then put into DB
+//              2. Process the payment and email customer with confirmation
 //        
 //    }
 }
