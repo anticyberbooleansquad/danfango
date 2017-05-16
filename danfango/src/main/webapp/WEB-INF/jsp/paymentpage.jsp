@@ -35,8 +35,12 @@
                     <h1 class="spacing movietitle">PAYMENT CONFIRMATION</h1>
 
 
-                    <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/register">
-
+                    <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/processPayment">
+                        <div class="controls">
+                            <label class="control-label" for="email">Email</label>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                        </div>
+                        <br>
                         <div class="controls">
                             <label class="control-label" for="card-holder-name">Name on Card</label>
                             <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
