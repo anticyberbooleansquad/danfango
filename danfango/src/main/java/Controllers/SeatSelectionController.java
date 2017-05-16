@@ -50,12 +50,15 @@ public class SeatSelectionController {
 
         String seatingLayout = null;
         HttpSession session = request.getSession();
+        int totalNumSeats = numAdults + numSeniors + numChildren;
         session.setAttribute("numAdults", numAdults);
         request.setAttribute("numAdults", numAdults);
         session.setAttribute("numSeniors", numSeniors);
         request.setAttribute("numSeniors", numSeniors);
         session.setAttribute("numChildren", numChildren);
         request.setAttribute("numChildren", numChildren);
+        session.setAttribute("totalNumSeats", totalNumSeats);
+        request.setAttribute("totalNumSeats", totalNumSeats);
         Showing showing = (Showing) session.getAttribute("showing");
 
         ModelAndView modelandview;

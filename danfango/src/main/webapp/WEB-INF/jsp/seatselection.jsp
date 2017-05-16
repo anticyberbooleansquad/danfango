@@ -31,13 +31,10 @@
         <div class="spacing container">
 
             <div class="spacing screen">Theatre Screen</div>
-           <!-- <input type="" name="numAdults" value="${sessionScope.numAdults}"/>
-            <input type="" name="numSeniors" value="${sessionScope.numSeniors}"/>
-            <input type="" name="numChildren" value="${sessionScope.numChildren}"/> -->
-            <p>${numAdults}</p>
-            <p>${numSeniors}</p>
-            <p>${numChildren}</p>
-
+           <input type="hidden" name="numAdults" value="${numAdults}"/>
+            <input type="hidden" name="numSeniors" value="${numSeniors}"/>
+            <input type="hidden" name="numChildren" value="${numChildren}"/> 
+            
             <div class ="seats">
 
 
