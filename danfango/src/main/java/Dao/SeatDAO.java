@@ -103,7 +103,7 @@ public class SeatDAO{
     
     public List<Seat> getPurchasedSeatsByShowing(Showing showing){
         Session session = this.sessionFactory.getCurrentSession();
-        Criteria criteria  = session.createCriteria(Ticket.class);
+        Criteria criteria  = session.createCriteria(Seat.class);
         criteria.add(Restrictions.eq("showing", showing));
         return criteria.list();      
     }

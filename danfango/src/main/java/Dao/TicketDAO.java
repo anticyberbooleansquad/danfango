@@ -5,6 +5,7 @@
  */
 package Dao;
 
+import Model.Showing;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -62,15 +63,14 @@ public class TicketDAO{
             return u;
     }
     
-    public Ticket getTicketByEmail(String email) {
+    public List<Ticket> getTicketByShowing(Showing showing) {
             Session session = this.sessionFactory.getCurrentSession();	
-            List tickets = session.createCriteria(Ticket.class).add(Restrictions.eq("email", email)).list();
+            List tickets = session.createCriteria(Ticket.class).add(Restrictions.eq("showing", showing)).list();
             if (tickets.isEmpty()){
                 return null;
             }
-            Ticket u = (Ticket) tickets.get(0);
-            logger.info("Ticket loaded successfully, Ticket details="+u);
-            return u;
+            logger.info("Ticket loaded successfully, Ticket details="+tickets);
+            return tickets;
     }
 
     
