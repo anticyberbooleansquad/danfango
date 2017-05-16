@@ -37,10 +37,23 @@
         <div class="spacing container">
 
             <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES FOR ${date}</h2>
-            
-             <form role="form" class="spacing" method="POST" action="/danfango/headerticketselectpage/date">
+
+            <form role="form" class="spacing" method="POST" action="/danfango/headerticketselectpage/date">
                 <input type="date" id="showingDate" name="showingDate">
                 <input type="submit">
+            </form>
+
+            <form role="form" class="spacing" method="POST" action="/danfango/headerticketselectpage/theatreFilter">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">Nearby Theatres:</label>
+                    <div class="col-xs-5 selectContainer">
+                        <select class="form-control" name="theatre">
+                            <c:forEach items="${allTheatresList}" var="theatre">                        
+                                <option value="${theatre.id}">${theatre.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
             </form>
 
             <c:forEach items="${theatreMovies}" var="theatreMovie">

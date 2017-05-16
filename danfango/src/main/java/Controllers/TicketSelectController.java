@@ -171,6 +171,7 @@ public class TicketSelectController {
         Timestamp now = new Timestamp(date.getTime());
 
         List<TheatreMovies> theatreMovies = new ArrayList<>();
+        List<Theatre> allTheatresList = new ArrayList<>();
 
         List<Integer> theatreAgencyIds = theatreService.getTheatreIds();
         for (int tid : theatreAgencyIds) {
@@ -178,6 +179,7 @@ public class TicketSelectController {
             System.out.println("THEATRE NAME:" + theatre.getName());
             TheatreMovies tm = new TheatreMovies();
             tm.setTheatre(theatre);
+            allTheatresList.add(theatre);
             List<MovieShowings> allMovieShowings = new ArrayList<>();
 
             //List<Showing> showingsForTheatre = showingService.getShowingByTheatre(theatre);
@@ -201,6 +203,7 @@ public class TicketSelectController {
 
         theatreMovies = theatreMovies.subList(1, 5);
         request.setAttribute("theatreMovies", theatreMovies);
+        request.setAttribute("allTheatresList", allTheatresList);
 
         ModelAndView modelandview = new ModelAndView("headerticketselectpage");
         return modelandview;
@@ -257,6 +260,62 @@ public class TicketSelectController {
         request.setAttribute("theatreMovies", theatreMovies);
         request.setAttribute("date", date);
 
+
+        ModelAndView modelandview = new ModelAndView("headerticketselectpage");
+        return modelandview;
+    }
+    
+    @RequestMapping(value = "/headerticketselectpage/theatreFilter")
+    protected ModelAndView getHeaderTicketSelectPage(@RequestParam("showingDate") String date, @RequestParam("theatreId") int theatreId, HttpServletRequest request) {
+
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);
+        
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = null;
+        try {
+            startDate = df.parse(date);
+            String newDateString = df.format(startDate);
+            System.out.println(newDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Timestamp now = new Timestamp(startDate.getTime());
+
+        List<TheatreMovies> theatreMovies = new ArrayList<>();
+        List<Theatre> allTheatresList = new ArrayList<>();
+
+        List<Integer> theatreAgencyIds = theatreService.getTheatreIds();
+        for (int tid : theatreAgencyIds) {
+            Theatre theatre = theatreService.getTheatreByAgencyTheatreId(tid);
+            System.out.println("THEATRE NAME:" + theatre.getName());
+            TheatreMovies tm = new TheatreMovies();
+            tm.setTheatre(theatre);
+            allTheatresList.add(theatre);
+            List<MovieShowings> allMovieShowings = new ArrayList<>();
+
+            List<Integer> movieAgencyIds = showingService.getMovieIdsByTheatre(theatre);
+            if (movieAgencyIds != null) {
+                for (int mid : movieAgencyIds) {
+                    Movie movie = movieService.getMovieById(mid);
+                    List<Showing> movieShowings = showingService.getShowingByMovieAndTheatreAndTime(movie, theatre, now);
+                    MovieShowings ms = new MovieShowings();
+                    movie.setRunTime(timeConvert(movie.getRunTime()));
+                    ms.setMovie(movie);
+                    ms.setShowings(movieShowings);
+                    allMovieShowings.add(ms);
+                }
+
+                tm.setMovieShowings(allMovieShowings);
+                theatreMovies.add(tm);
+            }
+
+        }
+
+        theatreMovies = theatreMovies.subList(1, 5);
+        request.setAttribute("theatreMovies", theatreMovies);
+        request.setAttribute("allTheatresList", allTheatresList);
 
         ModelAndView modelandview = new ModelAndView("headerticketselectpage");
         return modelandview;
