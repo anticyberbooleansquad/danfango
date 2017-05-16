@@ -36,7 +36,7 @@ $(function() {
         
         $.ajax({
                 url : 'http://localhost:8080/danfango/paymentpage', // Your Servlet mapping or JSP(not suggested)
-                data: {seatIds: userSelectedSeats},
+                data: {seatNumbers: userSelectedSeats},
                 type : 'POST',
                 success : function(response) {
                     alert("success");
@@ -66,6 +66,7 @@ $(function () {
             button.addClass("seat-selected");
             // change the class on the button to 'seat-selected' from 'seat-unselected'
             // how do we do this because button has multiple classes
+            // CONVERT BUTTON ID TO STRING 
             userSelectedSeats.push(buttonId);
         } else {
             button.removeClass("seat-selected");
@@ -77,13 +78,6 @@ $(function () {
                 }
             }
             userSelectedSeats.splice(index, 1);
-            // change the class on the button to 'seat-unselected' from 'seat-selected'
-            // after we've done this we want to remove this button from the array
-            // so that we have an accurate record of the users selected seats
-            // that we can send to the backend
-            // will have to get id off of the button 
-            // will have to loop through our array of selected buttons and remove the button with this id
-            // ^ should probably call a method to do this so this function doesn't get too long 
         }
     });
 });
