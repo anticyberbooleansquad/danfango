@@ -94,6 +94,7 @@ public class SeatSelectionController {
                 seatRow = (char) (seatRow + 1);
                 seatNum = 1;
             }
+            
             // make purchased seats unavailable
             List<Ticket> purchasedTickets = ticketService.getTicketByShowing(showing);
             for (Ticket ticket : purchasedTickets) {
@@ -103,12 +104,14 @@ public class SeatSelectionController {
                 for (int i = 0; i < numColumns; i++) {
                     Seat seatInMatrix = seatingMatrix[rowIndex][i];
                     if (seatInMatrix != null) {
-                        if (seatInMatrix.getId().equals(ticket.getSeat().getId())) {
+                        if (seatInMatrix.getRow().equals(ticket.getSeat().getRow()) && seatInMatrix.getSeatNumber().equals(ticket.getSeat().getSeatNumber())) {
                             seatInMatrix.setAvailable(false);
                         }
                     }
                 }
             }
+            
+            
             // make all locked live seats unavailable
             LiveTickets ts = ticketService.getLiveTickets();
             List<Ticket> tickets = ts.getTicketsByShowing(showing);
@@ -119,7 +122,7 @@ public class SeatSelectionController {
                 for (int i = 0; i < numColumns; i++) {
                     Seat seatInMatrix = seatingMatrix[rowIndex][i];
                     if (seatInMatrix != null) {
-                        if (seatInMatrix.getId().equals(seat.getId())) {
+                        if (seatInMatrix.getRow().equals(ticket.getSeat().getRow()) && seatInMatrix.getSeatNumber().equals(ticket.getSeat().getSeatNumber())) {
                             seatInMatrix.setAvailable(false);
                         }
                     }
