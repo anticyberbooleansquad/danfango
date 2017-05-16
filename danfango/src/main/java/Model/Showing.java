@@ -24,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class Showing {
+public class Showing implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
