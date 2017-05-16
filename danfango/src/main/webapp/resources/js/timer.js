@@ -26,4 +26,20 @@ window.onload = function () {
     var fiveMinutes = 60 * 5,
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
+    setTimeout(endTimer, (fiveMinutes * 1000) + 1000)
 };
+
+function endTimer()
+{
+    $.ajax({
+                url : 'http://localhost:8080/danfango/unlockSeats', // Your Servlet mapping or JSP(not suggested)
+                //data: {seatNumbers: userSelectedSeats},
+                type : 'POST',
+                success : function(response) {
+                    window.location.replace('http://localhost:8080/danfango/index');
+                },
+                error : function(request, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+        });
+}
