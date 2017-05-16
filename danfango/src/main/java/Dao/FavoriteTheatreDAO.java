@@ -5,6 +5,7 @@
  */
 package Dao;
 
+import Model.FavoriteMovie;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -63,6 +64,17 @@ public class FavoriteTheatreDAO{
             logger.info("FavoriteTheatre loaded successfully, FavoriteTheatre details="+u);
             return u;
     }
+    
+    public List<FavoriteTheatre> getFavoriteTheatresByUser(User user) {
+            Session session = this.sessionFactory.getCurrentSession();	
+            List favoriteTheatres = session.createCriteria(FavoriteTheatre.class).add(Restrictions.eq("user", user)).list();
+            if (favoriteTheatres.isEmpty()){
+                return null;
+            }
+            logger.info("FavoriteMovie loaded successfully, FavoriteMovie details="+favoriteTheatres);
+            return favoriteTheatres;
+    }
+    
     
     public FavoriteTheatre getFavoriteTheatreByUserAndTheatre(User user, Theatre theatre) {
             Session session = this.sessionFactory.getCurrentSession();	

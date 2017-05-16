@@ -44,6 +44,12 @@
     padding-bottom:20px;
 }
 
+.smallposters{
+    height: 320px;
+    width: 210px;
+    padding-bottom:5px;
+}
+
 .noImage{
     height: 381px;
     width: 257px;
@@ -54,6 +60,10 @@
 .seatButton{
     height: 50px;
     width: 95px;
+}
+
+.unavailable{
+    background-color: blue;
 }
 
 .screen{

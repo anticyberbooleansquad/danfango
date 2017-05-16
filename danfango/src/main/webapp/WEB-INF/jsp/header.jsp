@@ -63,9 +63,9 @@
 
 
                                     <c:if test="${sessionScope.user  != null}">
-                                        <a href="/danfango/signuppage">DanfangoVIP (Welcome ${user.firstName})</a>
+                                        <a href="/danfango/userpage/${user.id}">DanfangoVIP (Welcome ${user.firstName})</a>
                                         <ul class="dropdown">
-                                            <li><a href="/danfango/userpage">My Account</a>
+                                            <li><a href="/danfango/userpage/${user.id}">My Account</a>
                                             </li>
                                             <li><a href="/danfango/logout">Sign-Out</a>
                                             </li>

@@ -64,6 +64,16 @@ public class FavoriteMovieDAO{
             return u;
     }
     
+    public List<FavoriteMovie> getFavoriteMoviesByUser(User user) {
+            Session session = this.sessionFactory.getCurrentSession();	
+            List favoriteMovies = session.createCriteria(FavoriteMovie.class).add(Restrictions.eq("user", user)).list();
+            if (favoriteMovies.isEmpty()){
+                return null;
+            }
+            logger.info("FavoriteMovie loaded successfully, FavoriteMovie details="+favoriteMovies);
+            return favoriteMovies;
+    }
+    
     public FavoriteMovie getFavoriteMovieByUserAndMovie(User user, Movie movie) {
             Session session = this.sessionFactory.getCurrentSession();	
             List favoriteMovies = session.createCriteria(FavoriteMovie.class).add(Restrictions.eq("movie", movie)).add(Restrictions.eq("user", user)).list();

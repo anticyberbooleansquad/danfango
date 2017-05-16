@@ -83,6 +83,12 @@
     <bean id="reviewService" class="Services.ReviewService">
         <property name="reviewDAO" ref="reviewDAO"></property>
     </bean>
+    <bean id="ticketTypePriceService" class="Services.TicketTypePriceService">
+        <property name="ticketTypePriceDAO" ref="ticketTypePriceDAO"></property>
+    </bean>
+    <bean id="ticketTypePriceDAO" class="Dao.TicketTypePriceDAO">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
     <bean id="reviewDAO" class="Dao.ReviewDAO">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>

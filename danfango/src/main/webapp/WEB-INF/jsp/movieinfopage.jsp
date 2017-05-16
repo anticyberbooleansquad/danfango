@@ -51,7 +51,6 @@
             <ul class="spacing nav nav-pills">
                 <li class="active" role="presentation"><a href="/danfango/movieinfopage/${movie.id}"><h3>Overview</h3></a></li>
                 <li role="presentation"><a href="/danfango/ticketselectpage/${movie.id}"><h3>Movie Times + Tickets</h3></a></li>
-                <li role="presentation"><a href="/danfango/movieinfopage.html"><h3>Movie Reviews</h3></a></li>
                 <li role="presentation"><a href="/danfango/movietrailerpage/${movie.id}"><h3>Trailers</h3></a></li>
             </ul>
 
@@ -137,7 +136,7 @@
 
                         <div class="modal-body">
                             <form role="form" data-toggle="validator" action = "/danfango/submitReview/${movie.id}" id="myReview" method="POST">
-                                
+
                                 <fieldset class="rating">
                                     <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
                                     <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
@@ -162,115 +161,119 @@
                     </div>
                 </div>
             </div>
-                            
+
             <c:forEach items="${reviews}" var="review" varStatus="loop">
                 <div class="row spacing">
                     <div class="col-md-12">
                         <div class="reviewCard">
-                            <h4 class="theatreTimeCardsName">${review.title} By ${review.user}</h4>
-                            <p class="theatreTimeCardsAddress">${review.rating}</p>
+                            <h4 class="theatreTimeCardsName">${review.title} By ${review.user.firstName} ${review.user.lastName}</h4>
+                            <p class="theatreTimeCardsAddress">${review.rating}/5</p>
+                            <fieldset class="rating">
+                                <input type="radio" id="star${review.rating}" name="rating" value="${review.rating}" />
+                            </fieldset>
                             <p class ="ticketInfo">${review.content}</p>
                         </div>
                     </div>
                 </div>
             </c:forEach>
+
         </div>
-    </div>
 
 
 
 
-    <!-- Start Footer Section -->
-    <footer class="itemcenter">
-        <div class="container">
-            <div class="footer-widget social-widget">
-                <h4>Anti-Graduation Squad</h4>
-                <h6>ft. John Legutko, Joseph Giardina, Konrad Juszkiewicz, Charles Bendernagel</h6>
 
-                <h4>Follow Us<span class="head-line"></span></h4>
-                <ul class="social-icons">
-                    <li>
-                        <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
-                    </li>
-                    <li>
-                        <a class="instgram" href="#"><i class="fa fa-instagram"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- .row -->
-            <!-- Start Copyright -->
-            <div class="copyright-section">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
-                    </div>
-                    <!-- .col-md-6 -->
-                    <div class="col-md-6">
-                        <ul class="footer-nav">
-                            <li><a href="/danfango/#">Sitemap</a>
-                            </li>
-                            <li><a href="/danfango/#">Privacy Policy</a>
-                            </li>
-                            <li><a href="/danfango/#">Contact</a>
-                            </li>
-                        </ul>   
-                    </div>
-                    <!-- .col-md-6 -->
+        <!-- Start Footer Section -->
+        <footer class="itemcenter">
+            <div class="container">
+                <div class="footer-widget social-widget">
+                    <h4>Anti-Graduation Squad</h4>
+                    <h6>ft. John Legutko, Joseph Giardina, Konrad Juszkiewicz, Charles Bendernagel</h6>
+
+                    <h4>Follow Us<span class="head-line"></span></h4>
+                    <ul class="social-icons">
+                        <li>
+                            <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
+                        </li>
+                        <li>
+                            <a class="instgram" href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    </ul>
                 </div>
                 <!-- .row -->
+                <!-- Start Copyright -->
+                <div class="copyright-section">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Copyright © 2016 Margo - Designed &amp; Developed by <a href="/danfango/http://graygrids.com">GrayGrids</a></p>
+                        </div>
+                        <!-- .col-md-6 -->
+                        <div class="col-md-6">
+                            <ul class="footer-nav">
+                                <li><a href="/danfango/#">Sitemap</a>
+                                </li>
+                                <li><a href="/danfango/#">Privacy Policy</a>
+                                </li>
+                                <li><a href="/danfango/#">Contact</a>
+                                </li>
+                            </ul>   
+                        </div>
+                        <!-- .col-md-6 -->
+                    </div>
+                    <!-- .row -->
+                </div>
+                <!-- End Copyright -->
+
             </div>
-            <!-- End Copyright -->
-
-        </div>
-    </footer>
-    <!-- End Footer Section -->
+        </footer>
+        <!-- End Footer Section -->
 
 
-</div>
-<!-- End Full Body Container -->
-
-<!-- Go To Top Link -->
-<a href="/danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-
-<div id="loader">
-    <div class="spinner">
-        <div class="dot1"></div>
-        <div class="dot2"></div>
     </div>
-</div>
+    <!-- End Full Body Container -->
+
+    <!-- Go To Top Link -->
+    <a href="/danfango/#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <div id="loader">
+        <div class="spinner">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+        </div>
+    </div>
 
 
-<script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
-<script src="<c:url value="/resources/js/modernizrr.js" />"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
-<script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
-<script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
-<script src="<c:url value="/resources/js/count-to.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
-<script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
-<script src="<c:url value="/resources/js/skrollr.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
-<script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
-<script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
-<script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
-<script src="<c:url value="/resources/js/notify.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery-2.1.4.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.migrate.js" />"></script>
+    <script src="<c:url value="/resources/js/modernizrr.js" />"></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.fitvids.js" />"></script>
+    <script src="<c:url value="/resources/js/owl.carousel.min.js" />"></script>
+    <script src="<c:url value="/resources/js/nivo-lightbox.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.isotope.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.appear.js" />"></script>
+    <script src="<c:url value="/resources/js/count-to.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.textillate.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.lettering.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.easypiechart.min.js" />"></script>
+    <script src="<c:url value="/resources/js/smooth-scroll.js" />"></script>
+    <script src="<c:url value="/resources/js/skrollr.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.parallax.js" />"></script>
+    <script src="<c:url value="/resources/js/mediaelement-and-player.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.slicknav.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.themepunch.revolution.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jquery.themepunch.tools.min.js" />"></script>
+    <script src="<c:url value="/resources/jquery.bxslider/jquery.bxslider.min.js" />"></script>
+    <script src="<c:url value="/resources/js/notify.min.js" />"></script>
 
-<script src="<c:url value="/resources/js/myjs.js" />"></script>
-<script src="<c:url value="/resources/js/script.js" />"></script>
+    <script src="<c:url value="/resources/js/myjs.js" />"></script>
+    <script src="<c:url value="/resources/js/script.js" />"></script>
 </body>
 
 </html>

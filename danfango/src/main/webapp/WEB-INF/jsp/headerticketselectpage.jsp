@@ -36,21 +36,64 @@
 
         <div class="spacing container">
 
-            <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES HEADER</h2>
+            <h2 class="spacing movietitle padding">MOVIE THEATRES & TIMES FOR ${date}</h2>
             
-            <div class="row form-group">
+             <form role="form" class="spacing" method="POST" action="/danfango/headerticketselectpage/date">
+                <input type="date" id="showingDate" name="showingDate">
+                <input type="submit">
+            </form>
 
-                <div class ="spacing col-sm-12">
-                    <div class="theatreTimes">
-                        <h4 class="theatreTimeCardsName">NAME <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
-                        <p class="theatreTimeCardsAddress">ADDRESS</p>
-                        <div class="theatreTimeCardsTimes"></div>
+            <c:forEach items="${theatreMovies}" var="theatreMovie">
+                <div class="row form-group spacing">
+                    <div class ="spacing col-sm-12">
+                        <div class="theatreTimes">
+                            <h4 class="theatreTimeCardsName">${theatreMovie.theatre.name}
+                                <c:if test="${user != null}">
+                                    <c:if test="${theatreMovie.favorite == true}">
+                                        <form role="form" data-toggle="validator" action="/danfango/remFavoriteTheatre/${theatreMovie.theatre.id}/${movie.id}" id="remFavorite" method="GET" style="display:inline">
+                                            <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true" onclick="document.getElementById('remFavorite').submit()"></i>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${theatreMovie.favorite == false}">
+                                        <form role="form" data-toggle="validator" action="/danfango/addFavoriteTheatre/${theatreMovie.theatre.id}/${movie.id}" id="addFavorite" method="GET" style="display:inline">
+                                            <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" onclick="document.getElementById('addFavorite').submit()"></i>
+                                        </form>
+                                    </c:if>
+                                </c:if>
+                            </h4>
+                            <p class="theatreTimeCardsAddress">${theatreMovie.theatre.address}, ${theatreMovie.theatre.city} ${theatreMovie.theatre.state}, ${theatreMovie.theatre.zip}</p>
+                            <div class="theatreTimeCardsTimes">
+
+                                <c:forEach items="${theatreMovie.movieShowings}" var="movieShowing">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="smallposters" alt="" src="https://image.tmdb.org/t/p/w500/${movieShowing.movie.poster}" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h1>${movieShowing.movie.title}</h1>
+                                            <h4>Rating: ${movieShowing.movie.rating}</h4>
+                                            <h4>RunTime: ${movieShowing.movie.runTime}</h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class ="ticketInfo"><i class="fa fa-ticket" aria-hidden="true"></i> Select a movie time to buy tickets</p>
+                                            <c:forEach items="${movieShowing.showings}" var="showing">
+                                                <fmt:parseDate value="${showing.time}" var="dateObject" pattern="yyyy-MM-dd HH:mm:ss" />
+                                                <a href="/danfango/checkoutpage/${showing.id}" class="btn btn-primary timeButton">
+                                                    <fmt:formatDate value="${dateObject}" pattern="hh:mm a"/>
+                                                </a>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </c:forEach>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </c:forEach>
 
-                <div class="col-sm-3"></div>
 
-            </div>
         </div>
 
 

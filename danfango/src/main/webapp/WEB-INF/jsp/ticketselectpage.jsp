@@ -24,7 +24,7 @@
         <link href="<c:url value="/resources/css/colors/red.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/datepicker.css"/>" rel="stylesheet">
         <link href="<c:url value = "https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Work+Sans:200|Josefin+Sans:100i" /> rel="stylesheet">
-              <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
+        <link href="<c:url value="/resources/jquery.bxslider/jquery.bxslider.css"/>" rel="stylesheet">
         <link href="<c:url value="/resources/css/mycss.css"/>" rel="stylesheet">
 
     </head>
@@ -106,7 +106,7 @@
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
-                            <h2>There are no showings for ${movie.title}</h2>
+                            <h2>There are no showings for ${movie.title}. Check back soon!</h2>
                         </c:otherwise>
                     </c:choose>
 

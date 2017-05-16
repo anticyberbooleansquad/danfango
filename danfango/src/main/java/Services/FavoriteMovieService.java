@@ -53,6 +53,12 @@ public class FavoriteMovieService {
 		return this.favoriteMovieDAO.getFavoriteMovieByUserAndMovie(user, movie);
 	}
 	
+         @Transactional
+	public List<FavoriteMovie> getFavoriteMoviesByUser(User user) {
+		return this.favoriteMovieDAO.getFavoriteMoviesByUser(user);
+	}
+	
+        
 	@Transactional
 	public void removeFavoriteMovie(int id) {
 		this.favoriteMovieDAO.removeFavoriteMovie(id);

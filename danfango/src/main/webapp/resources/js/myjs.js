@@ -100,23 +100,38 @@ $(function () {
 document.getElementById('timer').innerHTML = 05 + ":" + 00;
 startTimer();
 
-function startTimer() {
-    var presentTime = document.getElementById('timer').innerHTML;
-    var timeArray = presentTime.split(/[:]+/);
-    var m = timeArray[0];
-    var s = checkSecond((timeArray[1] - 1));
-    if (s === 59) {
-        m = m - 1;
-    }
-    //if(m<0){alert('timer completed')}
+//function startTimer() {
+//    var presentTime = document.getElementById('timer').innerHTML;
+//    var timeArray = presentTime.split(/[:]+/);
+//    var m = timeArray[0];
+//    var s = checkSecond((timeArray[1] - 1));
+//    if (s === 59) {
+//        m = m - 1;
+//    }
+//    //if(m<0){alert('timer completed')}
+//
+//    document.getElementById('timer').innerHTML = m + ":" + s;
+//    setTimeout(startTimer, 1000);
+//    setInterval(endTimer, 1000);
+//    
+//    if(m === 0 && s === 0){
+//        document.getElementById('timer').innerHTML = "Done";
+//    }
+//}
 
-    document.getElementById('timer').innerHTML = m + ":" + s;
-    setTimeout(startTimer, 1000);
-    
-    if(m === 0 && s === 0){
-        document.getElementById('timer').innerHTML = "Done";
-    }
-}
+//function endTimer() {
+//    $.ajax({
+//                url : 'http://localhost:8080/danfango/lockSeats', // Your Servlet mapping or JSP(not suggested)
+//                data: {seatNumbers: userSelectedSeats},
+//                type : 'POST',
+//                success : function(response) {
+//                    window.location.replace('http://localhost:8080/danfango/paymentpage');
+//                },
+//                error : function(request, textStatus, errorThrown) {
+//                    alert(errorThrown);
+//                }
+//        });
+//}
 
 function checkSecond(sec) {
     if (sec < 10 && sec >= 0) {

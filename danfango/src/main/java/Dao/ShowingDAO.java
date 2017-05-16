@@ -76,9 +76,12 @@ public class ShowingDAO {
 
     public Showing getShowingById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Showing u = (Showing) session.load(Showing.class, new Integer(id));
-        logger.info("Showing loaded successfully, Showing details=" + u);
-        return u;
+        List showings = session.createCriteria(Showing.class).add(Restrictions.eq("id", id)).list();
+        if (showings.isEmpty()) {
+            return null;
+        } else {
+            return (Showing) showings.get(0);
+        }
     }
 
     public Showing getShowingByJoe(Movie movie, Theatre theatre, Timestamp time) {
