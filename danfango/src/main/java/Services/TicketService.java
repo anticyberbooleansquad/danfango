@@ -11,16 +11,29 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Dao.TicketDAO;
+import Model.LiveTickets;
 import Model.Ticket;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class TicketService {
-
+        @Autowired
+        private LiveTickets liveTickets;
 	private TicketDAO ticketDAO;
 
 	public void setTicketDAO(TicketDAO ticketDAO) {
 		this.ticketDAO = ticketDAO;
 	}
+        
+        public void setLiveTickets(LiveTickets liveTickets)
+        {
+            this.liveTickets = liveTickets;
+        }
+        
+        public LiveTickets getLiveTickets()
+        {
+            return this.liveTickets;
+        }
 
 	
 	@Transactional

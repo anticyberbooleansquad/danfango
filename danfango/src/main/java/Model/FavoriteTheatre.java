@@ -5,12 +5,10 @@
  */
 package Model;
 
-import Model.Ticket.TicketType;
-import java.sql.Time;
-import java.util.HashMap;
 import java.sql.Timestamp;
 import java.util.List;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,34 +22,39 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class OrderTicket implements Serializable{
-    
+public class FavoriteTheatre implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private Integer id;
     @OneToOne
-    private Orders order;
+    private Theatre theatre;
     @OneToOne
-    private Ticket ticket;
+    private User user;
 
-    public OrderTicket(){}
-    
-    public Orders getOrder() {
-        return order;
+    public Integer getId() {
+        return id;
     }
 
-    public void setOrder(Orders order) {
-        this.order = order;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public Theatre getTheatre() {
+        return theatre;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
+    public void setTheatre(Theatre theatre) {
+        this.theatre = theatre;
     }
-    
-    
-    
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

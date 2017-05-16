@@ -28,6 +28,9 @@ public class Review implements Serializable {
     private Integer id;
     @OneToOne
     private Movie movie;
+    @OneToOne
+    private User user;
+    private String rating;
     private String title;
     private String content;
 
@@ -85,6 +88,22 @@ public class Review implements Serializable {
      */
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
     

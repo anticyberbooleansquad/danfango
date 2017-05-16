@@ -16,17 +16,6 @@ $(function () {
             $.notify("Added To Favorites");
 
         }
-        $.ajax({
-                url : '/danfango/changeFavorite', // Your Servlet mapping or JSP(not suggested)
-                //data :'movieid' + movieid, 
-                type : 'POST',
-                success : function(response) {
-                    alert("success");
-                },
-                error : function(request, textStatus, errorThrown) {
-                    alert(errorThrown);
-                }
-        });
     });
 });
 
@@ -36,6 +25,26 @@ $(function () {
         minSlides: 1,
         maxSlides: 10,
         slideMargin: 1000
+    });
+});
+
+$(function() {
+    $("#payment-button").click(function(){
+        // userSelectedSeats
+        // redirect using ajax to the payment controller where we will handle locking tickets
+        // obviously add the selected seats to the ajax call 
+        
+        $.ajax({
+                url : 'http://localhost:8080/danfango/paymentpage', // Your Servlet mapping or JSP(not suggested)
+                data: {seatNumbers: userSelectedSeats},
+                type : 'POST',
+                success : function(response) {
+                    alert("success");
+                },
+                error : function(request, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+        });
     });
 });
 
@@ -57,6 +66,7 @@ $(function () {
             button.addClass("seat-selected");
             // change the class on the button to 'seat-selected' from 'seat-unselected'
             // how do we do this because button has multiple classes
+            // CONVERT BUTTON ID TO STRING 
             userSelectedSeats.push(buttonId);
         } else {
             button.removeClass("seat-selected");
@@ -68,13 +78,6 @@ $(function () {
                 }
             }
             userSelectedSeats.splice(index, 1);
-            // change the class on the button to 'seat-unselected' from 'seat-selected'
-            // after we've done this we want to remove this button from the array
-            // so that we have an accurate record of the users selected seats
-            // that we can send to the backend
-            // will have to get id off of the button 
-            // will have to loop through our array of selected buttons and remove the button with this id
-            // ^ should probably call a method to do this so this function doesn't get too long 
         }
     });
 });
@@ -94,20 +97,35 @@ $(function () {
     });
 });
 
+document.getElementById('timer').innerHTML = 05 + ":" + 00;
+startTimer();
 
-function checkFavorite(movieid)
-{
+function startTimer() {
+    var presentTime = document.getElementById('timer').innerHTML;
+    var timeArray = presentTime.split(/[:]+/);
+    var m = timeArray[0];
+    var s = checkSecond((timeArray[1] - 1));
+    if (s === 59) {
+        m = m - 1;
+    }
+    //if(m<0){alert('timer completed')}
+
+    document.getElementById('timer').innerHTML = m + ":" + s;
+    setTimeout(startTimer, 1000);
     
-    $.ajax({
-                url : 'danfango/getFavorite', // Your Servlet mapping or JSP(not suggested)
-                data :movieid, 
-                type : 'POST',
-                dataType : 'text', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
-                success : function(response) {
-                    $(document.getElementById('favorite'))[0].addClass('favoriteState')
-                },
-                error : function(request, textStatus, errorThrown) {
-                    alert(errorThrown);
-                }
-            });
+    if(m === 0 && s === 0){
+        document.getElementById('timer').innerHTML = "Done";
+    }
+}
+
+function checkSecond(sec) {
+    if (sec < 10 && sec >= 0) {
+        sec = "0" + sec;
+    }
+    ; // add zero in front of numbers < 10
+    if (sec < 0) {
+        sec = "59";
+    }
+    ;
+    return sec;
 }

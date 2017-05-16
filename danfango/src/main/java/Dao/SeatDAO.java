@@ -14,7 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Seat;
+import Model.Showing;
 import Model.TheatreRoom;
+import Model.Ticket;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 /**
@@ -98,6 +100,15 @@ public class SeatDAO{
             return null;
         }
     }
+    
+    public List<Seat> getPurchasedSeatsByShowing(Showing showing){
+        Session session = this.sessionFactory.getCurrentSession();
+        Criteria criteria  = session.createCriteria(Ticket.class);
+        criteria.add(Restrictions.eq("showing", showing));
+        return criteria.list();      
+    }
+    
+    
     
 
 }

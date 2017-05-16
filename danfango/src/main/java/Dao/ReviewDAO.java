@@ -5,6 +5,7 @@
  */
 package Dao;
 
+import Model.Movie;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.Review;
+import org.hibernate.criterion.Restrictions;
 /**
  *
  * @author charles
@@ -59,6 +61,16 @@ public class ReviewDAO{
             Review r = (Review) session.load(Review.class, new Integer(id));
             logger.info("Review loaded successfully, Review details="+r);
             return r;
+    }
+    
+    public List<Review> getReviewsByMovie(Movie movie) {
+            Session session = this.sessionFactory.getCurrentSession();	
+            List reviews = session.createCriteria(Review.class).add(Restrictions.eq("movie", movie)).list();
+            if (reviews.isEmpty()){
+                return null;
+            }
+            logger.info("Reviews loaded successfully, Reviews details="+reviews);
+            return reviews;
     }
 
     

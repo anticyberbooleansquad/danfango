@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Dao.ReviewDAO;
+import Model.Movie;
 import Model.Review;
 
 @Service
@@ -45,6 +46,12 @@ public class ReviewService {
 	public Review getReviewById(int id) {
 		return this.reviewDAO.getReviewById(id);
 	}
+        
+        @Transactional
+        public List<Review> getReviewsByMovie(Movie movie)
+        {
+            return this.reviewDAO.getReviewsByMovie(movie);
+        }
 	
 	@Transactional
 	public void removeReview(int id) {

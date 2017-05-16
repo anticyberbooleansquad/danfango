@@ -9,15 +9,22 @@ package Controllers;
  *
  * @author johnlegutko
  */
+import Model.LiveTickets;
 import Model.Seat;
 import Model.Showing;
+import Model.Ticket;
+import Services.OrdersService;
+import Services.SeatService;
+import Services.TicketService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +34,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SeatSelectionController {
+
+    @Autowired
+    SeatService seatService;
+    @Autowired
+    TicketService ticketService;
 
     @RequestMapping(value = "/seatselection")
     protected ModelAndView getSeatSelectionPage(HttpServletRequest request) {
@@ -38,7 +50,8 @@ public class SeatSelectionController {
         String seatingLayout = null;
         HttpSession session = request.getSession();
         Showing showing = (Showing) session.getAttribute("showing");
-        
+
+        ModelAndView modelandview;
         seatingLayout = showing.getTheatreRoom().getLayout();
 
         if (seatingLayout != null) {
@@ -69,16 +82,47 @@ public class SeatSelectionController {
                         seatNum++;
                     }
                     seatingMatrix[rowIndex][seatIndex] = seat;
-
                 }
                 seatRow = (char) (seatRow + 1);
                 seatNum = 1;
             }
-            // later have to make some of these seats unavailable
-            request.setAttribute("seatingMatrix", seatingMatrix);
-        }
+            // make purchased seats unavailable
+            List<Seat> purchasedSeats = seatService.getPurchasedSeatsByShowing(showing);
+            for (Seat seat : purchasedSeats) {
+                char purchasedSeatRow = seat.getRow().charAt(0);
+                int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
+                // now that we have the right row seat for this seat search all of the columns for it
+                for (int i = 0; i < numColumns; i++) {
+                    Seat seatInMatrix = seatingMatrix[rowIndex][i];
+                    if (seatInMatrix != null) {
+                        if (seatInMatrix.getId().equals(seat.getId())) {
+                            seatInMatrix.setAvailable(false);
+                        }
+                    }
+                }
+            }
+            // make all locked live seats unavailable
+            LiveTickets ts = ticketService.getLiveTickets();
+            List<Ticket> tickets = ts.getTicketsByShowing(showing);
+            for (Ticket ticket : tickets) {
+                Seat seat = ticket.getSeat();
+                char purchasedSeatRow = seat.getRow().charAt(0);
+                int rowIndex = ((int) purchasedSeatRow) - ((int) 'A');
+                for (int i = 0; i < numColumns; i++) {
+                    Seat seatInMatrix = seatingMatrix[rowIndex][i];
+                    if (seatInMatrix != null) {
+                        if (seatInMatrix.getId().equals(seat.getId())) {
+                            seatInMatrix.setAvailable(false);
+                        }
+                    }
+                }
+            }
 
-        ModelAndView modelandview = new ModelAndView("seatselection");
+            request.setAttribute("seatingMatrix", seatingMatrix);
+            modelandview = new ModelAndView("seatselection");
+        } else {
+            modelandview = new ModelAndView("paymentpage");
+        }
         return modelandview;
     }
 

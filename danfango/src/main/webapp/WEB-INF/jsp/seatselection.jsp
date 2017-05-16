@@ -56,9 +56,9 @@
                 <button type="button" class="btn btn-default changeSeats">CHANGE SEATS</button>
             </div>
             <div class ="row row-centered">
-                <a href="/danfango/paymentpage">
-                    <button type="button" class="btn btn-default changeSeats">Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-                </a>
+                
+                    <button type="button" id="payment-button" class="btn btn-default changeSeats">Proceed to Payment <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                
             </div>
             
         </div>
