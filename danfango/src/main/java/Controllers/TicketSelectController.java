@@ -21,6 +21,7 @@ import Model.TheatreMovies;
 import Model.TheatreShowings;
 import Services.MovieGenreService;
 import Model.User;
+import Services.FavoriteMovieService;
 import Services.FavoriteTheatreService;
 import Services.MovieService;
 import Services.ShowingService;
@@ -58,6 +59,8 @@ public class TicketSelectController {
     TheatreService theatreService;
     @Autowired
     FavoriteTheatreService favoriteTheatreService;
+    @Autowired
+    FavoriteMovieService favoriteMovieService;
 
     @RequestMapping(value = "/ticketselectpage/{movieId}")
     protected ModelAndView getTicketSelectPage(@PathVariable(value = "movieId") int id, HttpServletRequest request) {
@@ -160,7 +163,8 @@ public class TicketSelectController {
 
     @RequestMapping(value = "/headerticketselectpage")
     protected ModelAndView getHeaderTicketSelectPage(HttpServletRequest request) {
-
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
@@ -179,7 +183,9 @@ public class TicketSelectController {
             TheatreMovies tm = new TheatreMovies();
             tm.setTheatre(theatre);
             List<MovieShowings> allMovieShowings = new ArrayList<>();
-
+            if (user != null && favoriteTheatreService.getFavoriteTheatreByUserAndTheatre(user, theatre) != null) {
+                    tm.setFavorite(true);
+            }
             //List<Showing> showingsForTheatre = showingService.getShowingByTheatre(theatre);
             List<Integer> movieAgencyIds = showingService.getMovieIdsByTheatre(theatre);
             if (movieAgencyIds != null) {
@@ -187,6 +193,9 @@ public class TicketSelectController {
                     Movie movie = movieService.getMovieById(mid);
                     List<Showing> movieShowings = showingService.getShowingByMovieAndTheatreAndTime(movie, theatre, now);
                     MovieShowings ms = new MovieShowings();
+                    if (user != null && favoriteMovieService.getFavoriteMovieByUserAndMovie(user, movie) != null) {
+                        ms.setFavorite(true);
+                    }
                     movie.setRunTime(timeConvert(movie.getRunTime()));
                     ms.setMovie(movie);
                     ms.setShowings(movieShowings);
@@ -208,7 +217,6 @@ public class TicketSelectController {
     
     @RequestMapping(value = "/headerticketselectpage/date")
     protected ModelAndView getHeaderTicketSelectPage(@RequestParam("showingDate") String date, HttpServletRequest request) {
-
         String contextPath = request.getContextPath();
         System.out.println("Path: " + contextPath);
         request.setAttribute("contextPath", contextPath);
@@ -229,6 +237,7 @@ public class TicketSelectController {
         List<Integer> theatreAgencyIds = theatreService.getTheatreIds();
         for (int tid : theatreAgencyIds) {
             Theatre theatre = theatreService.getTheatreByAgencyTheatreId(tid);
+            
             System.out.println("THEATRE NAME:" + theatre.getName());
             TheatreMovies tm = new TheatreMovies();
             tm.setTheatre(theatre);

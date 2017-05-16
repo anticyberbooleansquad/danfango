@@ -47,7 +47,20 @@
                 <div class="row form-group spacing">
                     <div class ="spacing col-sm-12">
                         <div class="theatreTimes">
-                            <h4 class="theatreTimeCardsName">${theatreMovie.theatre.name} <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" ></i></h4>
+                            <h4 class="theatreTimeCardsName">${theatreMovie.theatre.name}
+                                <c:if test="${user != null}">
+                                    <c:if test="${theatreMovie.favorite == true}">
+                                        <form role="form" data-toggle="validator" action="/danfango/remFavoriteTheatre/${theatreMovie.theatre.id}/${movie.id}" id="remFavorite" method="GET" style="display:inline">
+                                            <i id="favorite" class="fa fa-heart fa-inverse favoriteState" aria-hidden="true" onclick="document.getElementById('remFavorite').submit()"></i>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${theatreMovie.favorite == false}">
+                                        <form role="form" data-toggle="validator" action="/danfango/addFavoriteTheatre/${theatreMovie.theatre.id}/${movie.id}" id="addFavorite" method="GET" style="display:inline">
+                                            <i id="favorite" class="fa fa-heart fa-inverse" aria-hidden="true" onclick="document.getElementById('addFavorite').submit()"></i>
+                                        </form>
+                                    </c:if>
+                                </c:if>
+                            </h4>
                             <p class="theatreTimeCardsAddress">${theatreMovie.theatre.address}, ${theatreMovie.theatre.city} ${theatreMovie.theatre.state}, ${theatreMovie.theatre.zip}</p>
                             <div class="theatreTimeCardsTimes">
 
