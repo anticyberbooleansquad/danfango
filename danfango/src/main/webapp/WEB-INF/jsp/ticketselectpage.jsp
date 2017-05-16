@@ -82,7 +82,7 @@
                                     <p class="theatreTimeCardsAddress">${theatreShowings.theatre.address}, ${theatreShowings.theatre.city} ${theatreShowings.theatre.state}, ${theatreShowings.theatre.zip}</p>
 
                                     <c:if test="${theatreShowings.theatre.seatingType eq 'Reserved'}">
-                                        <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
+                                        <p class ="ticketInfoReserved"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
                                     </c:if>
 
                                     <c:choose>

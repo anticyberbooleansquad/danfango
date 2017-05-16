@@ -356,6 +356,13 @@
     padding: 5px;   
 }
 
+.ticketInfoReserved{
+    font-family: 'Josefin Sans', sans-serif;    
+    font-size: 15px;
+    color: red;
+    padding: 5px;   
+}
+
 .timeButton{
     margin-bottom: 1%;
 }
