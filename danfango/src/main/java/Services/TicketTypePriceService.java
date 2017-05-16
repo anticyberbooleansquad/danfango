@@ -52,6 +52,11 @@ public class TicketTypePriceService {
 	public List<TicketTypePrice> getTicketTypePriceByTheatre(Theatre theatre) {
 		return this.ticketTypePriceDAO.getTicketTypePriceByTheatre(theatre);
 	}
+        
+        @Transactional
+	public TicketTypePrice getTicketTypePriceByTheatreAndType(Theatre theatre, String type) {
+		return this.ticketTypePriceDAO.getTicketTypePriceByTheatreAndType(theatre, type);
+	}
 	
 	@Transactional
 	public void removeTicketTypePrice(int id) {

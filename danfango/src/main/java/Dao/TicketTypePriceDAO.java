@@ -72,6 +72,17 @@ public class TicketTypePriceDAO{
             logger.info("TicketTypePrice loaded successfully, TicketTypePrice details="+ticketTypePrices);
             return ticketTypePrices;
     }
+    
+    public TicketTypePrice getTicketTypePriceByTheatreAndType(Theatre theatre, String type) {
+            Session session = this.sessionFactory.getCurrentSession();	
+            List ticketTypePrices = session.createCriteria(TicketTypePrice.class).add(Restrictions.eq("theatre", theatre)).add(Restrictions.eq("ticketType", type)).list();
+            if (ticketTypePrices.isEmpty()){
+                return null;
+            }
+            TicketTypePrice tp = (TicketTypePrice) ticketTypePrices.get(0);
+            logger.info("TicketTypePrice loaded successfully, TicketTypePrice details="+ticketTypePrices);
+            return tp;
+    }
 
     
     public void removeTicketTypePrice(int id) {

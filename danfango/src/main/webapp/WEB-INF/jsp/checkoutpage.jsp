@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +42,10 @@
 
                     <form role="form" id="ticketForm" class="spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/seatselection">
                         <div class="col-xs-3">
-                            <p>Adult:</p>
+                            <p>Adult: 
+                                <fmt:setLocale value = "en_US"/>
+                                <fmt:formatNumber value = "${adult.price}" type = "currency"/>
+                            </p>
                             <select class="form-control col-sm-2" name="adult" id="adult">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -54,7 +59,10 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
-                            <p>Senior:</p>
+                            <p>Senior: 
+                                <fmt:setLocale value = "en_US"/>
+                                <fmt:formatNumber value = "${senior.price}" type = "currency"/>
+                            </p>
                             <select class="form-control col-sm-2" name="senior" id="senior">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -68,7 +76,10 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
-                            <p>Child:</p>
+                            <p>Child: 
+                                <fmt:setLocale value = "en_US"/>
+                                <fmt:formatNumber value = "${child.price}" type = "currency"/>
+                            </p>
                             <select class="form-control col-sm-2" name="child" id="child">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -83,7 +94,7 @@
                                 <option value="10">10</option>
                             </select>
                         </div>
-                        
+
                         <input type="submit" value="BUY TICKETS!" class="btn-system btn-large btn-gray joinbutton spacing">
                     </form>
 
