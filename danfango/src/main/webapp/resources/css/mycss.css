@@ -492,4 +492,8 @@ biography {
     border-bottom-width: medium;
 }
 
-
+.buttonUnavailable{
+    color: #333;
+    background-color: orange;
+    border-color: #ccc;
+}

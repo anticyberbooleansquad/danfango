@@ -47,7 +47,7 @@
                                             <div class="col-md-1 col-centered"><button id="${seat.row}${seat.seatNumber}" type="button" class="btn btn-default seatButton seat-unselected">${seat.row}${seat.seatNumber}</button></div>
                                         </c:when>
                                         <c:otherwise>
-                                            <div class="col-md-1 col-centered"><button disabled="true" id="${seat.row}${seat.seatNumber}" type="button" class="btn btn-default seatButton seat-unselected">${seat.row}${seat.seatNumber}</button></div>
+                                            <div class="col-md-1 col-centered"><button disabled="true" id="${seat.row}${seat.seatNumber}" type="button" class="btn buttonUnavailable seatButton seat-unselected">${seat.row}${seat.seatNumber}</button></div>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:when>
