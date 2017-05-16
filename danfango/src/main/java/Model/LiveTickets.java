@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author charles
  */
-public class LiveTickets {
+public class LiveTickets implements Serializable{
     
     private List<Ticket> liveTicket;
     

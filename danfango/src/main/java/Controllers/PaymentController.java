@@ -48,6 +48,7 @@ public class PaymentController{
         Showing showing = (Showing) session.getAttribute("showing");
         TheatreRoom room = showing.getTheatreRoom();
         LiveTickets liveTickets = ticketService.getLiveTickets();
+        LiveTickets sessionTickets = new LiveTickets();
         if(seatNumbers != null){
             for(String seatNumber: seatNumbers){
                 // get seat row
@@ -58,10 +59,30 @@ public class PaymentController{
                 Seat seat = seatService.getSeat(seatRow, seatNum, room);
                 Ticket ticket = new Ticket();
                 ticket.setSeat(seat);
-                ticket.setShowing(showing);                
+                ticket.setShowing(showing);         
                 // add this ticket to LiveTickets .addTicket
+                sessionTickets.addTicket(ticket);
                 liveTickets.addTicket(ticket);   
             }
+        }
+        session.setAttribute("sessionTickets", sessionTickets);
+        ModelAndView modelandview = new ModelAndView("paymentpage");
+        return modelandview;
+    }
+    
+    @RequestMapping(value = "/unlockSeats", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    protected ModelAndView unlockSeats( HttpServletRequest request){
+        String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);  
+        
+        HttpSession session = request.getSession();
+        Showing showing = (Showing) session.getAttribute("showing");
+        TheatreRoom room = showing.getTheatreRoom();
+        LiveTickets liveTickets = ticketService.getLiveTickets();
+        LiveTickets sessionTickets = (LiveTickets)session.getAttribute("sessionTickets");
+        for(Ticket ticket: sessionTickets.getLiveTicket()){
+            liveTickets.removeTicket(ticket);
         }
         
         ModelAndView modelandview = new ModelAndView("paymentpage");
@@ -77,5 +98,12 @@ public class PaymentController{
         return modelandview;
     }
     
-    
+//    @RequestMapping(value = "/processPayment", method = RequestMethod.POST)
+//    protected ModelAndView processPayment(@RequestParam(value="card-holder-name") String cardHolder, @RequestParam(value="card-number") String cardNumber, 
+//            @RequestParam(value="expiry-month") String month, @RequestParam(value="expiry-year") String year, @RequestParam(value="cvv") String cvv,
+//            @RequestParam(value="email") String email, HttpServletRequest request){
+//        
+//        
+//        
+//    }
 }

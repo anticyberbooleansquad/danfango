@@ -81,7 +81,6 @@
                                     </h4>
                                     <p class="theatreTimeCardsAddress">${theatreShowings.theatre.address}, ${theatreShowings.theatre.city} ${theatreShowings.theatre.state}, ${theatreShowings.theatre.zip}</p>
 
-                                    <p>TEST::::::${theatreShowings.theatre.seatingType}</p>
                                     <c:if test="${theatreShowings.theatre.seatingType eq 'Reserved'}">
                                         <p class ="ticketInfo"><i class="fa fa-registered" aria-hidden="true"></i> Reserved Seating</p>
                                     </c:if>
