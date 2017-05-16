@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Dao.OrderTicketDAO;
 import Model.OrderTicket;
-import Model.Order;
+import Model.Orders;
 import Model.Ticket;
 
 @Service
@@ -49,7 +49,7 @@ public class OrderTicketService {
 	}
         
         @Transactional
-	public List<OrderTicket> getOrderTicketByOrder(Order order) {
+	public List<OrderTicket> getOrderTicketByOrder(Orders order) {
 		return this.orderTicketDAO.getOrderTicketsByOrder(order);
 	}
         

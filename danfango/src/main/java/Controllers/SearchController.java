@@ -49,14 +49,7 @@ public class SearchController {
             request.setAttribute("zip", searchString);
         }
         ArrayList<LocationSearchResult> locations = searchResults.getLocations();
-      
-        Set<LocationSearchResult> hs = new HashSet<>();
-        hs.addAll(locations);
-        locations.clear();
-        locations.addAll(hs);
-        
-        System.out.println("We make it to the search controller");
-        System.out.println("The crew is: " + Arrays.toString(crew.toArray()));
+    
         request.setAttribute("movies", movies);
         request.setAttribute("crew", crew);
         request.setAttribute("theatresByName", theatresByName);
