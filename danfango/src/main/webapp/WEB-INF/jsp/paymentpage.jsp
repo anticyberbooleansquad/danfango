@@ -38,24 +38,24 @@
                     <form role="form" id="contactForm" class="signupform spacing" data-toggle="validator" class="shake" method="POST" action="/danfango/processPayment">
                         <div class="controls">
                             <label class="control-label" for="email">Email</label>
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
                         </div>
                         <br>
                         <div class="controls">
                             <label class="control-label" for="card-holder-name">Name on Card</label>
-                            <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+                            <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name" required>
                         </div>
                         <br>
                         <div class="controls">
                             <label class="control-label" for="card-number">Card Number</label>
-                            <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
+                            <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number" required>
                         </div>
                         <br>
                         <div class="controls">
                             <label class="control-label" for="expiry-month">Expiration Date</label>
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                                    <select class="form-control col-sm-2" name="expiry-month" id="expiry-month" required>
                                         <option>Month</option>
                                         <option value="01">Jan (01)</option>
                                         <option value="02">Feb (02)</option>
@@ -72,7 +72,7 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-3">
-                                    <select class="form-control" name="expiry-year">
+                                    <select class="form-control" name="expiry-year" required>
                                         <option value="13">2013</option>
                                         <option value="14">2014</option>
                                         <option value="15">2015</option>
@@ -91,7 +91,7 @@
                         <br>
                         <div class="controls">
                             <label class="control-label" for="cvv">Card CVV</label>
-                            <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
+                            <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code" required>
                         </div>
 
                         <input type="submit" value="PAY NOW!" class="btn-system btn-large btn-gray joinbutton spacing">
