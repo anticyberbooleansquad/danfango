@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import Model.OrderTicket;
+import Model.Ticket;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 /**
  *
@@ -62,15 +64,22 @@ public class OrderTicketDAO{
             return u;
     }
     
-    public OrderTicket getOrderTicketByEmail(String email) {
+    public List<OrderTicket> getOrderTicketsByOrder(Order order) {
             Session session = this.sessionFactory.getCurrentSession();	
-            List orderTickets = session.createCriteria(OrderTicket.class).add(Restrictions.eq("email", email)).list();
+            List orderTickets = session.createCriteria(OrderTicket.class).add(Restrictions.eq("order", order)).list();
             if (orderTickets.isEmpty()){
                 return null;
             }
-            OrderTicket u = (OrderTicket) orderTickets.get(0);
-            logger.info("OrderTicket loaded successfully, OrderTicket details="+u);
-            return u;
+            return orderTickets;
+    }
+    
+    public OrderTicket getOrderTicketsByTicket(Ticket ticket) {
+            Session session = this.sessionFactory.getCurrentSession();	
+            List orderTickets = session.createCriteria(OrderTicket.class).add(Restrictions.eq("ticket", ticket)).list();
+            if (orderTickets.isEmpty()){
+                return null;
+            }
+            return (OrderTicket)orderTickets.get(0);
     }
 
     

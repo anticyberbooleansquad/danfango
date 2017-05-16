@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Dao.OrderTicketDAO;
 import Model.OrderTicket;
+import Model.Ticket;
+import org.hibernate.criterion.Order;
 
 @Service
 public class OrderTicketService {
@@ -47,8 +49,13 @@ public class OrderTicketService {
 	}
         
         @Transactional
-	public OrderTicket getOrderTicketByEmail(String email) {
-		return this.orderTicketDAO.getOrderTicketByEmail(email);
+	public List<OrderTicket> getOrderTicketByOrder(Order order) {
+		return this.orderTicketDAO.getOrderTicketsByOrder(order);
+	}
+        
+        @Transactional
+	public OrderTicket getOrderTicketsByTicket(Ticket ticket) {
+		return this.orderTicketDAO.getOrderTicketsByTicket(ticket);
 	}
 	
 	@Transactional
