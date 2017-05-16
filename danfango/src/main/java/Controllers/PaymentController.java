@@ -10,12 +10,15 @@ package Controllers;
  * @author johnlegutko
  */
 import Model.LiveTickets;
+import Model.Orders;
 import Model.Seat;
 import Model.Showing;
 import Model.TheatreRoom;
 import Model.Ticket;
+import Services.OrdersService;
 import Services.SeatService;
 import Services.TicketService;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +40,8 @@ public class PaymentController{
     TicketService ticketService;
     @Autowired
     SeatService seatService;
+    @Autowired
+    OrdersService ordersService;
     
     @RequestMapping(value = "/lockSeats", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     protected ModelAndView lockSeats(@RequestParam(value="seatNumbers[]") String[] seatNumbers, HttpServletRequest request){
@@ -98,12 +103,58 @@ public class PaymentController{
         return modelandview;
     }
     
-//    @RequestMapping(value = "/processPayment", method = RequestMethod.POST)
-//    protected ModelAndView processPayment(@RequestParam(value="card-holder-name") String cardHolder, @RequestParam(value="card-number") String cardNumber, 
-//            @RequestParam(value="expiry-month") String month, @RequestParam(value="expiry-year") String year, @RequestParam(value="cvv") String cvv,
-//            @RequestParam(value="email") String email, HttpServletRequest request){
-//        
-//        
-//        
-//    }
+    @RequestMapping(value = "/processPayment", method = RequestMethod.POST)
+    protected ModelAndView processPayment(@RequestParam(value="card-holder-name") String cardHolder, @RequestParam(value="card-number") String cardNumber, 
+            @RequestParam(value="expiry-month") String month, @RequestParam(value="expiry-year") String year, @RequestParam(value="cvv") String cvv,
+            @RequestParam(value="email") String email, HttpServletRequest request){
+                
+                String contextPath = request.getContextPath();
+        System.out.println("Path: " + contextPath);
+        request.setAttribute("contextPath", contextPath);  
+        Timestamp today = new Timestamp(System.currentTimeMillis());
+        double totalPrice=0;
+        //create the orders
+        Orders order = new Orders();
+        order.setEmail(email);
+        order.setOrderDate(today);
+        ordersService.addOrder(order);
+        
+        //get tickets off of the session
+        HttpSession session = request.getSession();
+        LiveTickets livetickets = (LiveTickets) session.getAttribute("sessionTickets");
+        List<Ticket> tickets = livetickets.getLiveTicket();
+        boolean reservedSeating;
+        if(tickets == null){
+            // create new list of tickets because didn't have any because not reserved seating
+            reservedSeating = false;
+        }
+        else{
+            reservedSeating = true;
+        }
+        
+        for(Ticket ticket : tickets){
+            // put tickets on database 
+            ticketService.addTicket(ticket);
+            totalPrice += ticket.getPrice();
+            // remove the tickets from the live objects list
+            LiveTickets ts = ticketService.getLiveTickets();
+            if (reservedSeating){
+                ts.removeTicket(ticket);
+            }
+            // map ticket to order
+            
+            
+        }
+        // need to add total price but can only be done after we map orders and tickets together
+        order.setPrice(totalPrice);
+        ordersService.updateOrder(order);
+
+        // send an email with the attached tickets
+        
+        
+        ModelAndView modelandview = new ModelAndView("index");        
+        return modelandview;
+            
+        
+    }
 }
