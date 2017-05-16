@@ -117,7 +117,7 @@ $(function () {
             button.addClass("seat-unselected");
         }
         userSelectedSeats = [];
-
+        $("#payment-button").prop('disabled', true);
     });
 });
 
