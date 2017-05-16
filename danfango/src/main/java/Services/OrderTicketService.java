@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Dao.OrderTicketDAO;
 import Model.OrderTicket;
+import Model.Order;
 import Model.Ticket;
-import org.hibernate.criterion.Order;
 
 @Service
 public class OrderTicketService {

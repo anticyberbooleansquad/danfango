@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import Dao.OrdersDAO;
 import Model.LiveTickets;
-import Model.Orders;
+import Model.Order;
 
 @Service
 public class OrdersService {
@@ -24,30 +24,30 @@ public class OrdersService {
 	}
 	
 	@Transactional
-	public void addOrder(Orders u) {
+	public void addOrder(Order u) {
 		this.ordersDAO.addOrder(u);
 	}
 
 	
 	@Transactional
-	public void updateOrder(Orders u) {
+	public void updateOrder(Order u) {
 		this.ordersDAO.updateOrder(u);
 	}
 
 	
 	@Transactional
-	public List<Orders> listOrders() {
+	public List<Order> listOrders() {
 		return this.ordersDAO.listOrders();
 	}
 
 	
 	@Transactional
-	public Orders getOrderById(int id) {
+	public Order getOrderById(int id) {
 		return this.ordersDAO.getOrderById(id);
 	}
         
         @Transactional
-	public List<Orders> getOrdersByEmail(String email) {
+	public List<Order> getOrdersByEmail(String email) {
 		return this.ordersDAO.getOrdersByEmail(email);
 	}
 	

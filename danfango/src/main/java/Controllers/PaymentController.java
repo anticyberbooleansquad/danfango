@@ -11,7 +11,7 @@ package Controllers;
  */
 import Model.LiveTickets;
 import Model.OrderTicket;
-import Model.Orders;
+import Model.Order;
 import Model.Seat;
 import Model.Showing;
 import Model.TheatreRoom;
@@ -133,7 +133,7 @@ public class PaymentController{
         Timestamp today = new Timestamp(System.currentTimeMillis());
         double totalPrice=0;
         //create the orders
-        Orders order = new Orders();
+        Order order = new Order();
         order.setEmail(email);
         order.setOrderDate(today);
         ordersService.addOrder(order);
@@ -230,7 +230,7 @@ public class PaymentController{
     }
     
     
-        protected void sendEmail(String email, Orders order) throws AddressException, MessagingException
+        protected void sendEmail(String email, Order order) throws AddressException, MessagingException
     {
         Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
